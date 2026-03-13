@@ -1,0 +1,2597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Point93 — Information Architecture Map v2.0 — Screen-Level Build Spec</title>
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface2: #eef0f4;
+    --border: #d1d5de;
+    --text: #1a1d27;
+    --text-muted: #5c6478;
+    --accent: #2563eb;
+    --accent-glow: rgba(37,99,235,0.08);
+    --green: #059669;
+    --green-bg: rgba(5,150,105,0.06);
+    --amber: #d97706;
+    --amber-bg: rgba(217,119,6,0.06);
+    --purple: #7c3aed;
+    --purple-bg: rgba(124,58,237,0.06);
+    --rose: #e11d48;
+    --rose-bg: rgba(225,29,72,0.06);
+    --teal: #0d9488;
+    --teal-bg: rgba(13,148,136,0.06);
+    --orange: #ea580c;
+    --orange-bg: rgba(234,88,12,0.06);
+    --blue-bg: rgba(37,99,235,0.06);
+    --flow-line: #c1c7d4;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  /* ── AI-Generated Content Denotation ── */
+  .ai-generated {
+    position: relative;
+    border-left: 3px solid;
+    border-image: linear-gradient(180deg, var(--accent), var(--teal)) 1;
+    padding-left: 12px;
+  }
+  .ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(37,99,235,0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .ai-badge::before {
+    content: '✦';
+    font-size: 9px;
+  }
+  .ai-marker {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--teal);
+    opacity: 0.8;
+  }
+  .ai-marker::before {
+    content: '✦';
+    font-size: 8px;
+  }
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .header h1 span { color: var(--accent); }
+  .header .subtitle { font-size: 13px; color: var(--text-muted); margin-left: 16px; }
+  .header-controls { display: flex; gap: 8px; align-items: center; }
+  .badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge-version { background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(37,99,235,0.2); }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    gap: 16px;
+    padding: 12px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .legend-title { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-right: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  /* ── Layout ── */
+  .container { padding: 32px; max-width: 1600px; margin: 0 auto; }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
+
+  /* ── Section rows ── */
+  .section-row {
+    margin-bottom: 32px;
+    transition: opacity 0.3s;
+  }
+  .section-row.dimmed { opacity: 0.15; pointer-events: none; }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .section-icon {
+    width: 32px; height: 32px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .section-name { font-size: 14px; font-weight: 700; letter-spacing: -0.2px; }
+  .section-ref { font-size: 11px; color: var(--text-muted); }
+
+  /* ── Cards grid ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    padding-left: 42px;
+  }
+  .cards.flow-row {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  /* ── Page card ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: var(--radius) 0 0 var(--radius);
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .card.expanded { border-color: var(--accent); background: var(--surface2); }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    padding-left: 8px;
+  }
+  .card-ref {
+    font-size: 10px;
+    color: var(--text-muted);
+    padding-left: 8px;
+    margin-bottom: 6px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .card-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    padding-left: 8px;
+    line-height: 1.5;
+  }
+  .card-detail {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(0,0,0,0.04);
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .card.expanded .card-detail { display: block; }
+  .card-components {
+    list-style: none;
+    padding: 0;
+  }
+  .card-components li {
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    gap: 6px;
+  }
+  .card-components li:last-child { border: none; }
+  .comp-num {
+    color: var(--accent);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 10px;
+    min-width: 16px;
+  }
+
+  /* Color coding by nav section */
+  .nav-dashboard .card::before { background: var(--accent); }
+  .nav-results .card::before { background: var(--green); }
+  .nav-assessments .card::before { background: var(--purple); }
+  .nav-areas .card::before { background: var(--amber); }
+  .nav-bi .card::before { background: var(--teal); }
+  .nav-clients .card::before { background: var(--rose); }
+  .nav-settings .card::before { background: var(--orange); }
+  .nav-onboarding .card::before { background: #94a3b8; }
+
+  .nav-dashboard .section-icon { background: var(--blue-bg); color: var(--accent); }
+  .nav-results .section-icon { background: var(--green-bg); color: var(--green); }
+  .nav-assessments .section-icon { background: var(--purple-bg); color: var(--purple); }
+  .nav-areas .section-icon { background: var(--amber-bg); color: var(--amber); }
+  .nav-bi .section-icon { background: var(--teal-bg); color: var(--teal); }
+  .nav-clients .section-icon { background: var(--rose-bg); color: var(--rose); }
+  .nav-settings .section-icon { background: var(--orange-bg); color: var(--orange); }
+  .nav-onboarding .section-icon { background: rgba(100,116,139,0.06); color: #94a3b8; }
+
+  /* ── Flow connections ── */
+  .flow-section {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .flow-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+  }
+  .flow-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .flow-table th {
+    text-align: left;
+    padding: 10px 14px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 10px;
+  }
+  .flow-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  .flow-table tr:hover td { background: rgba(79,140,255,0.04); }
+  .flow-from { color: var(--accent); font-weight: 600; }
+  .flow-to { color: var(--green); font-weight: 600; }
+  .flow-trigger { color: var(--text-muted); }
+  .flow-arrow { color: var(--text-muted); font-size: 16px; }
+
+  /* ── Stats bar ── */
+  .stats-bar {
+    display: flex;
+    gap: 24px;
+    padding: 16px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-value { font-size: 20px; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── Search ── */
+  .search-input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    color: var(--text);
+    font-size: 12px;
+    outline: none;
+    width: 200px;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--text-muted); }
+
+  /* ── Onboarding flow special ── */
+  .onboarding-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding-left: 42px;
+    flex-wrap: wrap;
+  }
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    position: relative;
+  }
+  .flow-connector {
+    width: 32px;
+    height: 2px;
+    background: var(--flow-line);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .flow-connector::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-left: 6px solid var(--flow-line);
+  }
+
+  /* ── Tooltips ── */
+  [data-tooltip] { position: relative; }
+  [data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  /* ── Layer sections ── */
+  .layer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px 0;
+    margin-bottom: 16px;
+  }
+  .layer-header:hover .layer-toggle { color: var(--accent); }
+  .layer-toggle {
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: transform 0.3s, color 0.2s;
+  }
+  .layer-toggle.collapsed { transform: rotate(-90deg); }
+  .layer-content {
+    transition: max-height 0.4s ease, opacity 0.3s;
+    overflow: hidden;
+  }
+  .layer-content.collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ── Tier badges ── */
+  .tier-yes {
+    color: var(--green);
+    background: rgba(52,211,153,0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .tier-upgrade {
+    color: var(--amber);
+    background: rgba(251,191,36,0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .tier-partial {
+    color: var(--accent);
+    background: rgba(79,140,255,0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .tier-locked {
+    color: var(--text-muted);
+    background: rgba(100,116,139,0.06);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+
+  /* ── v2.0 Catalog Styles ── */
+  .catalog-section {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .catalog-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 12px;
+  }
+  .catalog-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .catalog-card:hover { border-color: var(--accent); }
+  .catalog-card.expanded .catalog-detail { display: block; }
+  .catalog-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .catalog-code {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+  }
+  .catalog-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .catalog-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .catalog-detail {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .catalog-detail table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+  }
+  .catalog-detail th {
+    text-align: left;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .catalog-detail td {
+    padding: 4px 8px;
+    font-size: 11px;
+    border-bottom: 1px solid rgba(46,51,70,0.3);
+  }
+  .dp-count {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 8px;
+    background: rgba(79,140,255,0.1);
+    color: var(--accent);
+  }
+  .bi-stage {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(45,212,191,0.1);
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .spec-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .spec-value {
+    font-size: 11px;
+  }
+  .acceptance-list {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0 0;
+  }
+  .acceptance-list li {
+    padding: 3px 0;
+    font-size: 11px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .acceptance-list li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    .cards { padding-left: 0; grid-template-columns: 1fr; }
+    .header { padding: 12px 16px; }
+    .legend, .stats-bar { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="display:flex;align-items:center;">
+    <h1><span>Point93</span> Information Architecture</h1>
+    <span class="subtitle">Screen-Level Build Spec v2.0</span>
+  </div>
+  <div class="header-controls">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search pages..." aria-label="Search pages" oninput="handleSearch(this.value)">
+    <span class="badge badge-version">v2.0</span>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-value">28</span><span class="stat-label">Screens</span></div>
+  <div class="stat"><span class="stat-value">6</span><span class="stat-label">Nav Sections</span></div>
+  <div class="stat"><span class="stat-value">17</span><span class="stat-label">Modules</span></div>
+  <div class="stat"><span class="stat-value">6</span><span class="stat-label">Areas</span></div>
+  <div class="stat"><span class="stat-value">7</span><span class="stat-label">BI Products</span></div>
+  <div class="stat"><span class="stat-value">11</span><span class="stat-label">Nav Flows</span></div>
+  <div class="stat"><span class="stat-value">178</span><span class="stat-label">Data Points</span></div>
+</div>
+
+<div class="legend">
+  <span class="legend-title">Sections</span>
+  <span class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span> Dashboard</span>
+  <span class="legend-item"><span class="legend-dot" style="background:var(--green)"></span> My Results</span>
+  <span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span> Assessments</span>
+  <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span> My Areas</span>
+  <span class="legend-item"><span class="legend-dot" style="background:var(--teal)"></span> Business Intelligence</span>
+  <span class="legend-item"><span class="legend-dot" style="background:var(--rose)"></span> What Clients Are Asking</span>
+  <span class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span> Settings</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#94a3b8"></span> Onboarding</span>
+</div>
+
+<div class="container">
+
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterSection('all')">All Pages</button>
+    <button class="filter-btn" onclick="filterSection('nav-onboarding')">Onboarding</button>
+    <button class="filter-btn" onclick="filterSection('nav-dashboard')">Dashboard</button>
+    <button class="filter-btn" onclick="filterSection('nav-results')">My Results</button>
+    <button class="filter-btn" onclick="filterSection('nav-assessments')">Assessments</button>
+    <button class="filter-btn" onclick="filterSection('nav-areas')">My Areas</button>
+    <button class="filter-btn" onclick="filterSection('nav-bi')">Business Intelligence</button>
+    <button class="filter-btn" onclick="filterSection('nav-clients')">Clients</button>
+    <button class="filter-btn" onclick="filterSection('nav-settings')">Settings</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- ONBOARDING FLOW -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-onboarding" data-section="nav-onboarding">
+    <div class="section-label">
+      <div class="section-icon">&#9654;</div>
+      <div>
+        <div class="section-name">Entry & Onboarding</div>
+        <div class="section-ref">Section 10 &mdash; First-time user flow</div>
+      </div>
+    </div>
+    <div class="onboarding-flow">
+      <div class="flow-step" data-tooltip="Public preview with sample data, sign-up form">Public Preview + Sign-up</div>
+      <div class="flow-connector"></div>
+      <div class="flow-step" data-tooltip="Full 17-module priority ranking">Module Ranking</div>
+      <div class="flow-connector"></div>
+      <div class="flow-step" data-tooltip="Skips Module Home, goes straight to questions">First Assessment</div>
+      <div class="flow-connector"></div>
+      <div class="flow-step" data-tooltip="Three-Act Reveal fires for first time">Three-Act Reveal</div>
+      <div class="flow-connector"></div>
+      <div class="flow-step" data-tooltip="Module Results, then free navigation">Module Results</div>
+      <div class="flow-connector"></div>
+      <div class="flow-step" style="border-color: var(--accent); color: var(--accent);" data-tooltip="Dashboard now shows data, full platform access">Dashboard</div>
+    </div>
+    <div class="cards" style="margin-top: 12px;">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;10.1</div>
+        <div class="card-title">Public Preview + Sign-up</div>
+        <div class="card-desc">Two-part welcome: product preview with sample data, then email sign-up.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Sample module result with scores, treatment panels, Moenio Lens</li>
+            <li><span class="comp-num">2</span> Clear "sample data" labeling throughout</li>
+            <li><span class="comp-num">3</span> Sign-up: name, email, firm association</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;10.2</div>
+        <div class="card-title">Module Ranking</div>
+        <div class="card-desc">Advisor ranks all 17 modules by personal priority. Drives card order and suggested sequence.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Recommended default order shown</li>
+            <li><span class="comp-num">2</span> Accept as-is, full reorder, or partial adjust</li>
+            <li><span class="comp-num">3</span> Plain English names + area groupings + descriptions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- DASHBOARD -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-dashboard" data-section="nav-dashboard">
+    <div class="section-label">
+      <div class="section-icon">&#9632;</div>
+      <div>
+        <div class="section-name">Dashboard</div>
+        <div class="section-ref">Section 3 &mdash; Three-layer hub: Welcome + Exec Summary + Detail &amp; Action</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;3.1</div>
+        <div class="card-title">Layer 1: Welcome & Orientation</div>
+        <div class="card-desc">Personalized greeting, tier badge, progress ring, Moenio Nudge.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Welcome header with name + tier badge</li>
+            <li><span class="comp-num">2</span> Progress ring (modules completed / total)</li>
+            <li><span class="comp-num">3</span> Moenio Nudge: contextual next-step prompt</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;3.2</div>
+        <div class="card-title">Layer 2: Executive Summary</div>
+        <div class="card-desc">Overall score, ranking, area assessment map, strengths & gaps preview.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Overall Score + Band + Percentile</li>
+            <li><span class="comp-num">2</span> Area Assessment Map (6 areas, color-coded)</li>
+            <li><span class="comp-num">3</span> Strengths preview (top 2) + Gaps preview (top 2)</li>
+            <li><span class="comp-num">4</span> Hub Verdict: adaptive narrative summary <span class="ai-badge">AI GENERATED</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;3.3</div>
+        <div class="card-title">Layer 3: Detail & Action</div>
+        <div class="card-desc">Module cards, quick win, new intelligence feed, cascade reveal.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Module Cards grid (17 modules, enriched)</li>
+            <li><span class="comp-num">2</span> Quick Win prompt</li>
+            <li><span class="comp-num">3</span> New Intelligence component (latest BI insights)</li>
+            <li><span class="comp-num">4</span> Cascade Reveal: progressive unlock animation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- MY RESULTS -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-results" data-section="nav-results">
+    <div class="section-label">
+      <div class="section-icon">&#9733;</div>
+      <div>
+        <div class="section-name">My Results</div>
+        <div class="section-ref">Section 4 &mdash; Scores, benchmarks, strengths, gaps, trends</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;4.2</div>
+        <div class="card-title">Score Overview</div>
+        <div class="card-desc">Tab 1: All scores, percentiles, band indicators across completed modules.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Overall composite score + band</li>
+            <li><span class="comp-num">2</span> Module score table (name, score, band, percentile)</li>
+            <li><span class="comp-num">3</span> Area averages with band indicators</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;4.3</div>
+        <div class="card-title">Strengths & Gaps</div>
+        <div class="card-desc">Tab 2: Edge/Exposure ranking algorithm surfaces top strengths and growth areas.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Edge items (competitive advantages)</li>
+            <li><span class="comp-num">2</span> Exposure items (competitive risks)</li>
+            <li><span class="comp-num">3</span> Ranked by Edge/Exposure algorithm (&sect;4.3.1)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;4.4</div>
+        <div class="card-title">Trends</div>
+        <div class="card-desc">Tab 3: Score movement over time, reassessment comparison, trajectory.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Score trendlines per module</li>
+            <li><span class="comp-num">2</span> Reassessment deltas (before/after)</li>
+            <li><span class="comp-num">3</span> Single data point behavior: no trend line yet</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- ASSESSMENTS -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-assessments" data-section="nav-assessments">
+    <div class="section-label">
+      <div class="section-icon">&#10003;</div>
+      <div>
+        <div class="section-name">Assessments</div>
+        <div class="section-ref">Section 5 &mdash; Module assessments, results, IA deep-dives</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.1</div>
+        <div class="card-title">Module List View</div>
+        <div class="card-desc">All 17 modules with enriched cards: description, tier badge, completion state.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Module name + one-line description</li>
+            <li><span class="comp-num">2</span> Area tag + status indicator</li>
+            <li><span class="comp-num">3</span> Available: time estimate + tier badge</li>
+            <li><span class="comp-num">4</span> Completed: score, band, date, tier completed at</li>
+            <li><span class="comp-num">5</span> Completed-at-higher-tier: upgrade badge</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.2</div>
+        <div class="card-title">Module Home</div>
+        <div class="card-desc">Gateway page per module: description, status, time estimate, Start/Continue CTA.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Module title + area tag</li>
+            <li><span class="comp-num">2</span> Module description (2-3 sentences)</li>
+            <li><span class="comp-num">3</span> Assessment status + time estimate</li>
+            <li><span class="comp-num">4</span> Start/Continue/View Results CTA</li>
+            <li><span class="comp-num">5</span> Related modules (2-3 from same area)</li>
+            <li><span class="comp-num">6</span> "Why This Matters" context</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.3</div>
+        <div class="card-title">Assessment Flow</div>
+        <div class="card-desc">One question per screen. Progress bar, back nav, auto-save. Completion screen with score reveal.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Question types: Likert, multiple choice, slider</li>
+            <li><span class="comp-num">2</span> Questions vary by tier (Ess: 10-15, Comp: 25-40)</li>
+            <li><span class="comp-num">3</span> Progress bar + back button + auto-save</li>
+            <li><span class="comp-num">4</span> Completion: celebration + score + band reveal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.4</div>
+        <div class="card-title">Module Results</div>
+        <div class="card-desc">9-section results page: score, overview, treatments, action plan, Moenio Lens, report.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Module Score + percentile + band + DP count</li>
+            <li><span class="comp-num">2</span> Module Overview (summary narrative) <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">3</span> Key Findings (V1: Point93 Analytical) <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">4</span> In Practice panels <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">5</span> Client Voice (V2, max 2 per module) <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">6</span> Top Performers (V3: External Benchmark) <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">7</span> Your Action Plan + Next Steps <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">8</span> Moenio Lens (&sect;5.6) <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">9</span> Comprehensive Report toggle (Comp tier only)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.5</div>
+        <div class="card-title">Three-Act Reveal</div>
+        <div class="card-desc">Animated progressive disclosure of results: Mirror &rarr; Lens &rarr; Path.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Act 1 "Mirror": Score + band revealed</li>
+            <li><span class="comp-num">2</span> Act 2 "Lens": Key findings + context</li>
+            <li><span class="comp-num">3</span> Act 3 "Path": Action plan + next steps</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.7</div>
+        <div class="card-title">IA Pages (Insight Area)</div>
+        <div class="card-desc">Deep-dive pages for each Insight Area within a module. Data point expansion.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> IA title + score + band</li>
+            <li><span class="comp-num">2</span> IA narrative (treatment panels) <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">3</span> Data points (expandable inline)</li>
+            <li><span class="comp-num">4</span> Navigation: back to Module Results</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.6</div>
+        <div class="card-title">Moenio Lens <span class="ai-badge">AI GENERATED</span></div>
+        <div class="card-desc">Competitive positioning deep-dive using 6 strategic lenses (Advisor Lens Framework).</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> 6 Moenio Lens categories per module</li>
+            <li><span class="comp-num">2</span> Tier-gated depth: Essential sees category only, Professional adds context, Comprehensive full analysis</li>
+            <li><span class="comp-num">3</span> Voice &amp; tone: V1 Point93 Analytical only</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.4.3</div>
+        <div class="card-title">Comprehensive Report</div>
+        <div class="card-desc">Toggle-accessible deep report for Comprehensive tier. Multiple content formats.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Accessible via toggle on Module Results (Comprehensive tier only)</li>
+            <li><span class="comp-num">2</span> Extended narrative, data tables, comparative analysis <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">3</span> Printable / exportable format</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.9.1</div>
+        <div class="card-title">Assessment Save/Resume</div>
+        <div class="card-desc">Auto-save after each question. Resume at next unanswered question on return.</div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;5.9.2</div>
+        <div class="card-title">Reassessment Flow</div>
+        <div class="card-desc">Module retake: same flow, new results replace previous. Trends track score movement over time.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- MY AREAS -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-areas" data-section="nav-areas">
+    <div class="section-label">
+      <div class="section-icon">&#9670;</div>
+      <div>
+        <div class="section-name">My Areas</div>
+        <div class="section-ref">Section 6 &mdash; Cross-module patterns within 6 practice areas</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;6.1</div>
+        <div class="card-title">Area Card Grid (Landing)</div>
+        <div class="card-desc">6 area cards (2&times;3 responsive). Enriched with descriptions, module preview row.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Area name + code + one-line description</li>
+            <li><span class="comp-num">2</span> Module count (X of Y completed)</li>
+            <li><span class="comp-num">3</span> Area score + band indicator</li>
+            <li><span class="comp-num">4</span> Module preview row (names + completion dots)</li>
+            <li><span class="comp-num">5</span> Card tap &rarr; Area Detail Page</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;6.3</div>
+        <div class="card-title">Area Detail Page</div>
+        <div class="card-desc">Single area view: score, summary, strengths, growth opportunity, module gallery.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Area title + score + band</li>
+            <li><span class="comp-num">2</span> Area summary narrative (V1: Point93 Analytical) <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">3</span> Strength narrative <span class="ai-badge">AI GENERATED</span></li>
+            <li><span class="comp-num">4</span> Growth opportunity (cross-module gaps)</li>
+            <li><span class="comp-num">5</span> Module priority assessment</li>
+            <li><span class="comp-num">6</span> Module gallery (name, score, band, status)</li>
+          </ul>
+          <div style="margin-top:8px;color:var(--amber);font-size:10px;">6 areas: PF, FT, IM, PI, SC, FV</div>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;6.4</div>
+        <div class="card-title">FV Exception Page</div>
+        <div class="card-desc">Single-module area (FV): area page still exists but suppresses redundant cross-module content.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- BUSINESS INTELLIGENCE -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-bi" data-section="nav-bi">
+    <div class="section-label">
+      <div class="section-icon">&#9672;</div>
+      <div>
+        <div class="section-name">Business Intelligence</div>
+        <div class="section-ref">Section 7 &mdash; Self-contained strategic assessment products (Dual Access)</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;7.1</div>
+        <div class="card-title">BI Overview Page</div>
+        <div class="card-desc">Grid of all 7 BI products with stage progress and access status.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Page title + context line</li>
+            <li><span class="comp-num">2</span> BI Profile Cards grid (7 products)</li>
+            <li><span class="comp-num">3</span> Access summary: X of 7 active, Y stages done</li>
+          </ul>
+          <div style="margin-top:8px;color:var(--teal);font-size:10px;">Dual Access: Earn via modules or Purchase</div>
+        </div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;7.3</div>
+        <div class="card-title">BI Product Home</div>
+        <div class="card-desc">Per-product view: score, stage map, prerequisites, current stage CTA, results, intel panels.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Profile title + score + band</li>
+            <li><span class="comp-num">2</span> Stage map (visual stage-by-stage progress)</li>
+            <li><span class="comp-num">3</span> Prerequisites per stage (module links)</li>
+            <li><span class="comp-num">4</span> Current stage CTA</li>
+            <li><span class="comp-num">5</span> Stage results (cumulative)</li>
+            <li><span class="comp-num">6</span> Intelligence panels (Three-Voice, Dual Access)</li>
+          </ul>
+          <div style="margin-top:8px;color:var(--teal);font-size:10px;">7 products: PP, CR, COI, RT, DQ, HH, NG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- WHAT CLIENTS ARE ASKING -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-clients" data-section="nav-clients">
+    <div class="section-label">
+      <div class="section-icon">&#63;</div>
+      <div>
+        <div class="section-name">What Clients Are Asking</div>
+        <div class="section-ref">Section 8 &mdash; Coming Soon in v1</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;8.1</div>
+        <div class="card-title">Coming Soon Page</div>
+        <div class="card-desc">Explanatory page: feature description, preview of format, value prop, "Notify me" CTA.</div>
+        <div class="card-detail">
+          <ul class="card-components">
+            <li><span class="comp-num">1</span> Nav item visible with "Coming Soon" badge</li>
+            <li><span class="comp-num">2</span> Feature description (2-3 sentences)</li>
+            <li><span class="comp-num">3</span> Preview: periodic topical question sets</li>
+            <li><span class="comp-num">4</span> "Notify me when available" CTA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SETTINGS -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-row nav-settings" data-section="nav-settings">
+    <div class="section-label">
+      <div class="section-icon">&#9881;</div>
+      <div>
+        <div class="section-name">Settings & Profile</div>
+        <div class="section-ref">Section 16 &mdash; Top-right avatar/gear icon</div>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;16.1</div>
+        <div class="card-title">Profile Information</div>
+        <div class="card-desc">Name, email, credentials, photo. Account management basics.</div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;16.2</div>
+        <div class="card-title">Firm & Practice Details</div>
+        <div class="card-desc">Firm type, size, AUM, specialization. Feeds benchmarking context.</div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;16.3</div>
+        <div class="card-title">Platform Preferences</div>
+        <div class="card-desc">Notification settings, display preferences, communication opt-ins.</div>
+      </div>
+      <div class="card" onclick="toggleCard(this)">
+        <div class="card-ref">&sect;16.4</div>
+        <div class="card-title">Tier Management</div>
+        <div class="card-desc">Current tier display, upgrade/downgrade, billing. Essential | Professional | Comprehensive.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- NAVIGATION FLOWS -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="flow-section" id="flowSection">
+    <div class="flow-title">Navigation Flows <span style="font-size:12px;color:var(--text-muted);font-weight:400;">&sect;12.1</span></div>
+    <table class="flow-table">
+      <thead>
+        <tr>
+          <th style="width:25%">From</th>
+          <th style="width:5%"></th>
+          <th style="width:25%">To</th>
+          <th>Trigger</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="flow-from">Dashboard (Exec Summary)</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">My Areas &rarr; Area Page</td>
+          <td class="flow-trigger">Click area in Area Assessment Map</td>
+        </tr>
+        <tr>
+          <td class="flow-from">Dashboard (Detail Layer)</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Assessments &rarr; Module</td>
+          <td class="flow-trigger">Click Assessment Card or Quick Win CTA</td>
+        </tr>
+        <tr>
+          <td class="flow-from">Dashboard (Exec Summary)</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">My Results</td>
+          <td class="flow-trigger">Click "see all" link on Strengths or Gaps</td>
+        </tr>
+        <tr>
+          <td class="flow-from">Module Results</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">IA Page</td>
+          <td class="flow-trigger">Click an Insight Area</td>
+        </tr>
+        <tr>
+          <td class="flow-from">IA Page</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Data Point (inline)</td>
+          <td class="flow-trigger">Expand a data point</td>
+        </tr>
+        <tr>
+          <td class="flow-from">Module Results</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Dashboard</td>
+          <td class="flow-trigger">Left nav or post-reveal navigation</td>
+        </tr>
+        <tr>
+          <td class="flow-from">My Results</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Module Results</td>
+          <td class="flow-trigger">Click a module score</td>
+        </tr>
+        <tr>
+          <td class="flow-from">My Areas</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Module Results</td>
+          <td class="flow-trigger">Click a module within an area</td>
+        </tr>
+        <tr>
+          <td class="flow-from">BI Profile</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Module Home</td>
+          <td class="flow-trigger">Click prerequisite module link</td>
+        </tr>
+        <tr>
+          <td class="flow-from">Any page</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Settings</td>
+          <td class="flow-trigger">Top-right avatar/gear icon</td>
+        </tr>
+        <tr>
+          <td class="flow-from">Module List / Module Card</td>
+          <td class="flow-arrow">&rarr;</td>
+          <td class="flow-to">Module Home</td>
+          <td class="flow-trigger">Click module card (returning visitor)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- POST-MODULE COMPLETION -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="flow-section">
+    <div class="flow-title">Post-Module Completion <span style="font-size:12px;color:var(--text-muted);font-weight:400;">&sect;12.2</span></div>
+    <div style="padding: 16px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); font-size: 13px; line-height: 1.8;">
+      <div style="display: grid; grid-template-columns: 24px 1fr; gap: 8px; align-items: start;">
+        <span style="color: var(--green);">&#10003;</span><span>Advisor remains on Module Results (no redirect)</span>
+        <span style="color: var(--green);">&#10003;</span><span>Overall score updates in Dashboard</span>
+        <span style="color: var(--green);">&#10003;</span><span>Next module CTA appears in Next Steps</span>
+        <span style="color: var(--green);">&#10003;</span><span>Left nav reflects updated completion states</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SYSTEM ARCHITECTURE REFERENCE -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="flow-section">
+    <div class="flow-title">Platform Architecture Reference</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
+        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--accent);">Layout</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          Two-panel: left navigation + center content area. Desktop-first. Left nav collapses to hamburger on mobile. No right panel.
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
+        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--purple);">Three Tiers</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          Essential (free) &bull; Professional ($115) &bull; Comprehensive ($175). Hybrid model: scores always visible, intelligence depth varies.
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
+        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--green);">Three Voices</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          V1: Point93 Analytical (Gray/Teal) &bull; V2: Client Composite (Gold) &bull; V3: External Benchmark (Green)
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
+        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--amber);">Five Treatments <span class="ai-marker">AI Generated</span></div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          Key Finding &bull; In Practice &bull; Client Voice &bull; Top Performers &bull; Your Action Plan
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
+        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--teal);">Four Bands</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          Top Tier (&ge; CF) &bull; Competitive (VF &ndash; CF) &bull; Needs Work (A &ndash; VF) &bull; At Risk (&lt; A)
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px;">
+        <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; color: var(--rose);">Positioning</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          Diagnostic &amp; benchmarking platform. NOT coaching. Comparative analysis, competitive intelligence, strategic assessment.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CATALOG: 6 ASSESSMENT AREAS                                 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="catalog-section" id="areaCatalog">
+    <div class="catalog-title">
+      <span style="color:var(--amber);">&#9670;</span>
+      Area Catalog
+      <span style="font-size:12px;color:var(--text-muted);font-weight:400;">6 areas &bull; 17 modules &bull; 178 data points &bull; §1.5 / §6.2</span>
+    </div>
+    <div style="margin-bottom:12px;padding:10px 14px;background:rgba(251,191,36,0.06);border:1px solid rgba(217,119,6,0.08);border-radius:var(--radius-sm);font-size:11px;color:var(--text-muted);">
+      <strong style="color:var(--amber);">Scoring:</strong> Area score = weighted average of constituent module scores, where weight = number of Insight Areas per module. Display name uses "Your" prefix; structural references omit it.
+    </div>
+    <div class="catalog-grid">
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(100,116,139,0.08);color:#64748b;">PF</span>
+          <span class="dp-count">24 DPs</span>
+        </div>
+        <div class="catalog-name">Your Professional Foundation & Team Structure</div>
+        <div class="catalog-meta">3 modules &bull; Area 1</div>
+        <div class="catalog-detail">
+          <table>
+            <thead><tr><th>Code</th><th>Module Name</th><th>DPs</th><th>Range</th></tr></thead>
+            <tbody>
+              <tr><td>PF.1</td><td>Compliance Fundamentals</td><td>6</td><td>D01–D06</td></tr>
+              <tr><td>PF.2</td><td>Compliance Infrastructure</td><td>8</td><td>D01–D08</td></tr>
+              <tr><td>PF.3</td><td>Compliance Structure</td><td>10</td><td>D01–D10</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-row" style="margin-top:8px;">
+            <span class="spec-label">UNS Pattern</span>
+            <span class="spec-value">P93-PF.[1-3]-D[NN]-Q[NN]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(37,99,235,0.08);color:var(--accent);">FT</span>
+          <span class="dp-count">35 DPs</span>
+        </div>
+        <div class="catalog-name">Your Firm Platform, Technology & Support</div>
+        <div class="catalog-meta">3 modules &bull; Area 2</div>
+        <div class="catalog-detail">
+          <table>
+            <thead><tr><th>Code</th><th>Module Name</th><th>DPs</th><th>Range</th></tr></thead>
+            <tbody>
+              <tr><td>FT.1</td><td>Firm Platform & Product Access</td><td>13</td><td>D01–D13</td></tr>
+              <tr><td>FT.2</td><td>Technology Capabilities</td><td>12</td><td>D01–D12</td></tr>
+              <tr><td>FT.3</td><td>Firm Support & Operational Infrastructure</td><td>10</td><td>D01–D10</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-row" style="margin-top:8px;">
+            <span class="spec-label">UNS Pattern</span>
+            <span class="spec-value">P93-FT.[1-3]-D[NN]-Q[NN]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(5,150,105,0.08);color:var(--green);">IM</span>
+          <span class="dp-count">59 DPs</span>
+        </div>
+        <div class="catalog-name">Your Investment Strategy, Selection & Performance</div>
+        <div class="catalog-meta">5 modules &bull; Area 3 (largest)</div>
+        <div class="catalog-detail">
+          <table>
+            <thead><tr><th>Code</th><th>Module Name</th><th>DPs</th><th>Range</th></tr></thead>
+            <tbody>
+              <tr><td>IM.1</td><td>Client Relationship Depth</td><td>12</td><td>D01–D12</td></tr>
+              <tr><td>IM.2</td><td>Practice Management</td><td>15</td><td>D01–D15</td></tr>
+              <tr><td>IM.3</td><td>Succession & Continuity Planning</td><td>14</td><td>D01–D14</td></tr>
+              <tr><td>IM.4</td><td>Risk Management & Investment Oversight</td><td>10</td><td>D01–D10</td></tr>
+              <tr><td>IM.5</td><td>Investment Communication</td><td>8</td><td>D01–D08</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-row" style="margin-top:8px;">
+            <span class="spec-label">UNS Pattern</span>
+            <span class="spec-value">P93-IM.[1-5]-D[NN]-Q[NN]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(124,58,237,0.08);color:var(--purple);">PI</span>
+          <span class="dp-count">26 DPs</span>
+        </div>
+        <div class="catalog-name">Your Planning Process & Implementation</div>
+        <div class="catalog-meta">3 modules &bull; Area 4</div>
+        <div class="catalog-detail">
+          <table>
+            <thead><tr><th>Code</th><th>Module Name</th><th>DPs</th><th>Range</th></tr></thead>
+            <tbody>
+              <tr><td>PI.1</td><td>Client Discovery & Needs Assessment</td><td>11</td><td>D01–D11</td></tr>
+              <tr><td>PI.2</td><td>Financial Planning Breadth & Depth</td><td>6</td><td>D01–D06</td></tr>
+              <tr><td>PI.3</td><td>Plan Implementation & Monitoring</td><td>9</td><td>D01–D09</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-row" style="margin-top:8px;">
+            <span class="spec-label">UNS Pattern</span>
+            <span class="spec-value">P93-PI.[1-3]-D[NN]-Q[NN]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(251,113,133,0.15);color:var(--rose);">SC</span>
+          <span class="dp-count">22 DPs</span>
+        </div>
+        <div class="catalog-name">Your Client Service & Communication</div>
+        <div class="catalog-meta">2 modules &bull; Area 5</div>
+        <div class="catalog-detail">
+          <table>
+            <thead><tr><th>Code</th><th>Module Name</th><th>DPs</th><th>Range</th></tr></thead>
+            <tbody>
+              <tr><td>SC.1</td><td>Client Service & Communication</td><td>14</td><td>D01–D14</td></tr>
+              <tr><td>SC.2</td><td>Communication Quality</td><td>8</td><td>D01–D08</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-row" style="margin-top:8px;">
+            <span class="spec-label">UNS Pattern</span>
+            <span class="spec-value">P93-SC.[1-2]-D[NN]-Q[NN]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(251,146,60,0.15);color:var(--orange);">FV</span>
+          <span class="dp-count">12 DPs</span>
+        </div>
+        <div class="catalog-name">Your Fees, Value & Positioning</div>
+        <div class="catalog-meta">1 module &bull; Area 6 (single-module exception §6.4)</div>
+        <div class="catalog-detail">
+          <table>
+            <thead><tr><th>Code</th><th>Module Name</th><th>DPs</th><th>Range</th></tr></thead>
+            <tbody>
+              <tr><td>FV.1</td><td>Fees, Value & Positioning</td><td>12</td><td>D01–D12</td></tr>
+            </tbody>
+          </table>
+          <div class="spec-row" style="margin-top:8px;">
+            <span class="spec-label">UNS Pattern</span>
+            <span class="spec-value">P93-FV.1-D[NN]-Q[NN]</span>
+          </div>
+          <div style="margin-top:6px;padding:6px 10px;background:rgba(251,146,60,0.06);border-radius:6px;font-size:10px;color:var(--orange);">
+            Single-module area: Area Detail page suppresses cross-module comparison content (§6.4)
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CATALOG: 17 ASSESSMENT MODULES                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="catalog-section" id="moduleCatalog">
+    <div class="catalog-title">
+      <span style="color:var(--purple);">&#10003;</span>
+      Module Catalog
+      <span style="font-size:12px;color:var(--text-muted);font-weight:400;">17 modules &bull; 178 total DPs &bull; §1.5 / §5</span>
+    </div>
+    <div style="margin-bottom:12px;padding:10px 14px;background:rgba(167,139,250,0.06);border:1px solid rgba(124,58,237,0.08);border-radius:var(--radius-sm);font-size:11px;color:var(--text-muted);">
+      <strong style="color:var(--purple);">Module Scoring:</strong> Score = weighted average of all constituent questions. Tier controls question count (Essential: 10-15, Professional: subset, Comprehensive: all). Insight Areas group data points into diagnostic themes; IA scores are independent views ranked by Gap Priority.
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="flow-table" style="font-size:11px;">
+        <thead>
+          <tr>
+            <th style="width:7%">Code</th>
+            <th style="width:7%">Area</th>
+            <th style="width:22%">Module Name</th>
+            <th style="width:5%;text-align:center;">DPs</th>
+            <th style="width:8%">DP Range</th>
+            <th style="width:7%">Legacy</th>
+            <th style="width:44%">Screen Spec: Module Results (§5.4)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">PF.1</td>
+            <td><span style="color:#64748b;">PF</span></td>
+            <td>Compliance Fundamentals</td>
+            <td style="text-align:center;">6</td>
+            <td>D01–D06</td>
+            <td style="color:var(--text-muted);">M01</td>
+            <td style="font-size:10px;">9-section results: Score + band + overview + Key Finding per IA + In Practice (GP-based) + Client Voice (GP1, Pro+) + Top Performers (GP-based) + Your Action Plan (GP1, Comp) + Moenio Lens (2/5/6 by tier) + Comp Report toggle</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">PF.2</td>
+            <td><span style="color:#64748b;">PF</span></td>
+            <td>Compliance Infrastructure</td>
+            <td style="text-align:center;">8</td>
+            <td>D01–D08</td>
+            <td style="color:var(--text-muted);">M02</td>
+            <td style="font-size:10px;">Same 9-section pattern. Treatment count per IA governed by Gap Priority ranking within this module.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">PF.3</td>
+            <td><span style="color:#64748b;">PF</span></td>
+            <td>Compliance Structure</td>
+            <td style="text-align:center;">10</td>
+            <td>D01–D10</td>
+            <td style="color:var(--text-muted);">M03</td>
+            <td style="font-size:10px;">Same 9-section pattern. 10 DPs = higher IA granularity potential.</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border);">
+            <td style="font-weight:600;">FT.1</td>
+            <td><span style="color:var(--accent);">FT</span></td>
+            <td>Firm Platform & Product Access</td>
+            <td style="text-align:center;">13</td>
+            <td>D01–D13</td>
+            <td style="color:var(--text-muted);">M04</td>
+            <td style="font-size:10px;">Largest DP count in FT area. 13 DPs yield rich dot-grid visualization at Comprehensive tier.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">FT.2</td>
+            <td><span style="color:var(--accent);">FT</span></td>
+            <td>Technology Capabilities</td>
+            <td style="text-align:center;">12</td>
+            <td>D01–D12</td>
+            <td style="color:var(--text-muted);">M05</td>
+            <td style="font-size:10px;">MRK complete (ia_scoring_complete). Measures firm technology infrastructure vs. client experience.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">FT.3</td>
+            <td><span style="color:var(--accent);">FT</span></td>
+            <td>Firm Support & Operational Infrastructure</td>
+            <td style="text-align:center;">10</td>
+            <td>D01–D10</td>
+            <td style="color:var(--text-muted);">M06</td>
+            <td style="font-size:10px;">Same 9-section pattern. Operational support and back-office infrastructure assessment.</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border);">
+            <td style="font-weight:600;">IM.1</td>
+            <td><span style="color:var(--green);">IM</span></td>
+            <td>Client Relationship Depth</td>
+            <td style="text-align:center;">12</td>
+            <td>D01–D12</td>
+            <td style="color:var(--text-muted);">M07</td>
+            <td style="font-size:10px;">IM is the largest area (5 modules, 59 DPs). This module covers relationship quality and depth.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">IM.2</td>
+            <td><span style="color:var(--green);">IM</span></td>
+            <td>Practice Management</td>
+            <td style="text-align:center;">15</td>
+            <td>D01–D15</td>
+            <td style="color:var(--text-muted);">M08</td>
+            <td style="font-size:10px;">Highest DP count in system (15). Richest dot-grid. Practice operations and business management.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">IM.3</td>
+            <td><span style="color:var(--green);">IM</span></td>
+            <td>Succession & Continuity Planning</td>
+            <td style="text-align:center;">14</td>
+            <td>D01–D14</td>
+            <td style="color:var(--text-muted);">M09</td>
+            <td style="font-size:10px;">14 DPs. Business continuity, succession planning, key-person risk assessment.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">IM.4</td>
+            <td><span style="color:var(--green);">IM</span></td>
+            <td>Risk Management & Investment Oversight</td>
+            <td style="text-align:center;">10</td>
+            <td>D01–D10</td>
+            <td style="color:var(--text-muted);">M10</td>
+            <td style="font-size:10px;">Investment process, portfolio oversight, risk management frameworks.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">IM.5</td>
+            <td><span style="color:var(--green);">IM</span></td>
+            <td>Investment Communication</td>
+            <td style="text-align:center;">8</td>
+            <td>D01–D08</td>
+            <td style="color:var(--text-muted);">M11</td>
+            <td style="font-size:10px;">How investment strategy and performance are communicated to clients.</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border);">
+            <td style="font-weight:600;">PI.1</td>
+            <td><span style="color:var(--purple);">PI</span></td>
+            <td>Client Discovery & Needs Assessment</td>
+            <td style="text-align:center;">11</td>
+            <td>D01–D11</td>
+            <td style="color:var(--text-muted);">M12</td>
+            <td style="font-size:10px;">Discovery process, needs analysis, client onboarding quality.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">PI.2</td>
+            <td><span style="color:var(--purple);">PI</span></td>
+            <td>Financial Planning Breadth & Depth</td>
+            <td style="text-align:center;">6</td>
+            <td>D01–D06</td>
+            <td style="color:var(--text-muted);">M13</td>
+            <td style="font-size:10px;">Fewest DPs in PI area. Planning scope and comprehensiveness.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">PI.3</td>
+            <td><span style="color:var(--purple);">PI</span></td>
+            <td>Plan Implementation & Monitoring</td>
+            <td style="text-align:center;">9</td>
+            <td>D01–D09</td>
+            <td style="color:var(--text-muted);">M14</td>
+            <td style="font-size:10px;">Execution quality, monitoring cadence, plan-to-action follow-through.</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border);">
+            <td style="font-weight:600;">SC.1</td>
+            <td><span style="color:var(--rose);">SC</span></td>
+            <td>Client Service & Communication</td>
+            <td style="text-align:center;">14</td>
+            <td>D01–D14</td>
+            <td style="color:var(--text-muted);">M15</td>
+            <td style="font-size:10px;">14 DPs. Service model design, delivery consistency, client experience.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">SC.2</td>
+            <td><span style="color:var(--rose);">SC</span></td>
+            <td>Communication Quality</td>
+            <td style="text-align:center;">8</td>
+            <td>D01–D08</td>
+            <td style="color:var(--text-muted);">M16</td>
+            <td style="font-size:10px;">Communication effectiveness, client engagement, messaging clarity.</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border);">
+            <td style="font-weight:600;">FV.1</td>
+            <td><span style="color:var(--orange);">FV</span></td>
+            <td>Fees, Value & Positioning</td>
+            <td style="text-align:center;">12</td>
+            <td>D01–D12</td>
+            <td style="color:var(--text-muted);">M17</td>
+            <td style="font-size:10px;">Single-module area (§6.4 exception). Fee structure, value articulation, competitive positioning.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="font-weight:600;border-top:2px solid var(--accent);">
+            <td colspan="3">Total: 6 Areas, 17 Modules</td>
+            <td style="text-align:center;">178</td>
+            <td colspan="3">All modules use identical 9-section Module Results template (§5.4)</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- CATALOG: 7 BUSINESS INTELLIGENCE PRODUCTS                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="catalog-section" id="biCatalog">
+    <div class="catalog-title">
+      <span style="color:var(--teal);">&#9672;</span>
+      Business Intelligence Product Catalog
+      <span style="font-size:12px;color:var(--text-muted);font-weight:400;">7 products &bull; Dual Access &bull; §7 / §7.6</span>
+    </div>
+    <div style="margin-bottom:12px;padding:10px 14px;background:rgba(45,212,191,0.06);border:1px solid rgba(13,148,136,0.1);border-radius:var(--radius-sm);font-size:11px;color:var(--text-muted);">
+      <strong style="color:var(--teal);">Dual Access Model (§7.3):</strong> Every BI product can be accessed two ways: <strong>Earn</strong> (complete prerequisite assessment modules) or <strong>Purchase</strong> ($25/product or $125 bundle). BI is NOT tier-gated &mdash; all tiers access all products through either path. BI products branch from P93 root, NOT from areas or modules. BI scores do NOT feed into module or overall P93 scores.
+    </div>
+    <div style="margin-bottom:12px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:11px;color:var(--text-muted);">
+      <strong>BI Stage Progression:</strong> Locked &rarr; Available &rarr; Active &rarr; Complete. Each stage unlocks via module prerequisites. Stage Map shows lock icon + gray-out for locked stages; highlighted + actionable CTAs for available stages. Results appear per stage (cumulative). Scoring uses "Lean Into" (strengths) and "Watch For" (vulnerabilities) framing.
+    </div>
+    <div class="catalog-grid">
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(13,148,136,0.1);color:var(--teal);">PP</span>
+          <span class="bi-stage">Stage-based</span>
+        </div>
+        <div class="catalog-name">PitchPerfect</div>
+        <div class="catalog-meta">UNS: P93-BI-PP &bull; Self-contained strategic assessment</div>
+        <div class="catalog-detail">
+          <div class="spec-row"><span class="spec-label">Access</span><span class="spec-value">Earn via module completion OR Purchase ($25 / $125 bundle)</span></div>
+          <div class="spec-row"><span class="spec-label">UNS Pattern</span><span class="spec-value">P93-BI-PP-S[N]-Q[NN]</span></div>
+          <div class="spec-row"><span class="spec-label">Screen</span><span class="spec-value">BI Product Home (§7.3): Profile title + score + band + stage map + prerequisites + current stage CTA + stage results + intelligence panels</span></div>
+          <div class="spec-row"><span class="spec-label">Visual</span><span class="spec-value">Must be visually distinct from module results (§7.4 BI Visual Differentiation Mandate)</span></div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(13,148,136,0.1);color:var(--teal);">CR</span>
+          <span class="bi-stage">Stage-based</span>
+        </div>
+        <div class="catalog-name">Client Referrals</div>
+        <div class="catalog-meta">UNS: P93-BI-CR &bull; Self-contained strategic assessment</div>
+        <div class="catalog-detail">
+          <div class="spec-row"><span class="spec-label">Access</span><span class="spec-value">Earn via module completion OR Purchase ($25 / $125 bundle)</span></div>
+          <div class="spec-row"><span class="spec-label">UNS Pattern</span><span class="spec-value">P93-BI-CR-S[N]-Q[NN]</span></div>
+          <div class="spec-row"><span class="spec-label">Screen</span><span class="spec-value">Same BI Product Home template (§7.3)</span></div>
+          <div class="spec-row"><span class="spec-label">Visual</span><span class="spec-value">BI Visual Differentiation Mandate applies (§7.4)</span></div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(13,148,136,0.1);color:var(--teal);">COI</span>
+          <span class="bi-stage">Stage-based</span>
+        </div>
+        <div class="catalog-name">COI Referrals</div>
+        <div class="catalog-meta">UNS: P93-BI-COI &bull; Self-contained strategic assessment</div>
+        <div class="catalog-detail">
+          <div class="spec-row"><span class="spec-label">Access</span><span class="spec-value">Earn via module completion OR Purchase ($25 / $125 bundle)</span></div>
+          <div class="spec-row"><span class="spec-label">UNS Pattern</span><span class="spec-value">P93-BI-COI-S[N]-Q[NN]</span></div>
+          <div class="spec-row"><span class="spec-label">Note</span><span class="spec-value">Replaces legacy "RE / Referral Engine" code (F-01 resolution)</span></div>
+          <div class="spec-row"><span class="spec-label">Screen</span><span class="spec-value">Same BI Product Home template (§7.3)</span></div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(13,148,136,0.1);color:var(--teal);">RT</span>
+          <span class="bi-stage">Stage-based</span>
+        </div>
+        <div class="catalog-name">Client Retention Risk</div>
+        <div class="catalog-meta">UNS: P93-BI-RT &bull; Self-contained strategic assessment</div>
+        <div class="catalog-detail">
+          <div class="spec-row"><span class="spec-label">Access</span><span class="spec-value">Earn via module completion OR Purchase ($25 / $125 bundle)</span></div>
+          <div class="spec-row"><span class="spec-label">UNS Pattern</span><span class="spec-value">P93-BI-RT-S[N]-Q[NN]</span></div>
+          <div class="spec-row"><span class="spec-label">Note</span><span class="spec-value">Full name is "Client Retention Risk" (not just "Retention")</span></div>
+          <div class="spec-row"><span class="spec-label">Screen</span><span class="spec-value">Same BI Product Home template (§7.3)</span></div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(13,148,136,0.1);color:var(--teal);">DQ</span>
+          <span class="bi-stage">Stage-based</span>
+        </div>
+        <div class="catalog-name">Discovery Quality</div>
+        <div class="catalog-meta">UNS: P93-BI-DQ &bull; Self-contained strategic assessment</div>
+        <div class="catalog-detail">
+          <div class="spec-row"><span class="spec-label">Access</span><span class="spec-value">Earn via module completion OR Purchase ($25 / $125 bundle)</span></div>
+          <div class="spec-row"><span class="spec-label">UNS Pattern</span><span class="spec-value">P93-BI-DQ-S[N]-Q[NN]</span></div>
+          <div class="spec-row"><span class="spec-label">Screen</span><span class="spec-value">Same BI Product Home template (§7.3)</span></div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(13,148,136,0.1);color:var(--teal);">HH</span>
+          <span class="bi-stage">Stage-based</span>
+        </div>
+        <div class="catalog-name">Head to Head</div>
+        <div class="catalog-meta">UNS: P93-BI-HH &bull; Self-contained strategic assessment</div>
+        <div class="catalog-detail">
+          <div class="spec-row"><span class="spec-label">Access</span><span class="spec-value">Earn via module completion OR Purchase ($25 / $125 bundle)</span></div>
+          <div class="spec-row"><span class="spec-label">UNS Pattern</span><span class="spec-value">P93-BI-HH-S[N]-Q[NN]</span></div>
+          <div class="spec-row"><span class="spec-label">Note</span><span class="spec-value">No hyphen: "Head to Head" not "Head-to-Head"</span></div>
+          <div class="spec-row"><span class="spec-label">Screen</span><span class="spec-value">Same BI Product Home template (§7.3)</span></div>
+        </div>
+      </div>
+
+      <div class="catalog-card" onclick="this.classList.toggle('expanded')">
+        <div class="catalog-card-header">
+          <span class="catalog-code" style="background:rgba(13,148,136,0.1);color:var(--teal);">NG</span>
+          <span class="bi-stage">Stage-based</span>
+        </div>
+        <div class="catalog-name">NextGen Ready</div>
+        <div class="catalog-meta">UNS: P93-BI-NG &bull; Self-contained strategic assessment</div>
+        <div class="catalog-detail">
+          <div class="spec-row"><span class="spec-label">Access</span><span class="spec-value">Earn via module completion OR Purchase ($25 / $125 bundle)</span></div>
+          <div class="spec-row"><span class="spec-label">UNS Pattern</span><span class="spec-value">P93-BI-NG-S[N]-Q[NN]</span></div>
+          <div class="spec-row"><span class="spec-label">Screen</span><span class="spec-value">Same BI Product Home template (§7.3)</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+    <!-- LAYER 1: EMPTY STATE MATRIX                                -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="flow-section layer-section" id="layerEmpty">
+    <div class="layer-header" onclick="toggleLayer('layerEmptyContent')">
+      <div class="flow-title" style="margin-bottom:0;">
+        <span style="color:#64748b;">&#9671;</span> Empty State Matrix
+        <span style="font-size:12px;color:var(--text-muted);font-weight:400;">&sect;13 &mdash; Every page's lifecycle states</span>
+      </div>
+      <span class="layer-toggle" id="layerEmptyToggle">&#9660;</span>
+    </div>
+    <div class="layer-content" id="layerEmptyContent">
+
+      <!-- Universal Pattern -->
+      <div style="margin-bottom:20px;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);border-left:4px solid #94a3b8;">
+        <div style="font-size:12px;font-weight:700;margin-bottom:8px;">Universal Pattern &mdash; All Pages</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;font-size:11px;color:var(--text-muted);">
+          <div><span style="color:var(--amber);">&#9679;</span> <strong>Pre-assessment:</strong> Page structure shown with guidance text. CTA to begin first assessment. Shows what <em>will</em> appear.</div>
+          <div><span style="color:var(--accent);">&#9679;</span> <strong>Partial completion:</strong> Available data displayed. Remaining sections: "Complete [X] to see [Y]." No blank sections.</div>
+          <div><span style="color:var(--green);">&#9679;</span> <strong>Full completion:</strong> All components active with full data.</div>
+          <div><span style="color:var(--purple);">&#9679;</span> <strong>Tier-locked:</strong> Scores always visible. Intelligence depth varies. One upgrade prompt per section, not per item.</div>
+        </div>
+      </div>
+
+      <!-- Per-Page Matrix -->
+      <table class="flow-table" style="font-size:11px;">
+        <thead>
+          <tr>
+            <th style="width:18%">Page</th>
+            <th style="width:42%">Pre-Assessment State</th>
+            <th style="width:40%">Key Guidance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span style="color:var(--accent);font-weight:600;">Dashboard</span></td>
+            <td>Welcome expanded. Exec Summary shows ranking placeholder. Layer 3 shows Module Cards with start CTAs. Quick Win, Moenio Nudge, New Intelligence hidden until first module.</td>
+            <td>Estimated time to first result (15-20 min). Encouragement to begin.</td>
+          </tr>
+          <tr>
+            <td><span style="color:var(--green);font-weight:600;">My Results</span></td>
+            <td>Message per tab: "Complete a module to see [scores / strengths / trends]."</td>
+            <td>Link to Assessments section.</td>
+          </tr>
+          <tr>
+            <td><span style="color:var(--purple);font-weight:600;">Assessments</span></td>
+            <td>All 17 modules listed with Available status. Organized by advisor's module ranking order.</td>
+            <td>First module from advisor's ranking highlighted.</td>
+          </tr>
+          <tr>
+            <td><span style="color:var(--amber);font-weight:600;">My Areas</span></td>
+            <td>6 area cards with descriptions + module counts. "Start exploring" prompts.</td>
+            <td>Which area to start with.</td>
+          </tr>
+          <tr>
+            <td><span style="color:var(--teal);font-weight:600;">Business Intelligence</span></td>
+            <td>BI cards with prerequisite info. "Complete [module] to unlock."</td>
+            <td>Earn vs. purchase paths explained.</td>
+          </tr>
+          <tr>
+            <td><span style="color:var(--rose);font-weight:600;">What Clients Are Asking</span></td>
+            <td>Coming Soon page with feature description.</td>
+            <td>"Notify me when available" CTA.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LAYER 2: CONTENT SYSTEMS OVERLAY                           -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="flow-section layer-section" id="layerContent">
+    <div class="layer-header" onclick="toggleLayer('layerContentContent')">
+      <div class="flow-title" style="margin-bottom:0;">
+        <span style="color:var(--green);">&#9671;</span> Content Systems Overlay
+        <span style="font-size:12px;color:var(--text-muted);font-weight:400;">&sect;9 &mdash; Voices, treatments, and band-adaptive language per screen</span>
+      </div>
+      <span class="layer-toggle" id="layerContentToggle">&#9660;</span>
+    </div>
+    <div class="layer-content" id="layerContentContent">
+
+      <!-- Three Voices -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Three-Voice System &mdash; &sect;9.1</div>
+        <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:12px;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-left:4px solid #2dd4bf;">
+            <div style="font-size:12px;font-weight:700;color:#0d9488;">V1: Point93 Analytical <span class="ai-marker">AI Generated</span></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">The platform's own analysis</div>
+            <div style="font-size:10px;margin-top:6px;display:flex;gap:6px;">
+              <span style="background:rgba(13,148,136,0.1);color:#0d9488;padding:2px 8px;border-radius:10px;">Teal = Key Finding</span>
+              <span style="background:rgba(100,116,139,0.08);color:#64748b;padding:2px 8px;border-radius:10px;">Gray = In Practice</span>
+            </div>
+            <div style="font-size:10px;color:var(--text-muted);margin-top:6px;">Used in: All treatment types except Client Voice</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-left:4px solid #fbbf24;">
+            <div style="font-size:12px;font-weight:700;color:#d97706;">V2: Client Composite <span class="ai-marker">AI Generated</span></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Synthesized client perspective</div>
+            <div style="font-size:10px;margin-top:6px;">
+              <span style="background:rgba(217,119,6,0.08);color:#d97706;padding:2px 8px;border-radius:10px;">Gold panel</span>
+            </div>
+            <div style="font-size:10px;color:var(--text-muted);margin-top:6px;">Used in: Client Voice only. Max 2 per module.</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-left:4px solid #34d399;">
+            <div style="font-size:12px;font-weight:700;color:#059669;">V3: External Benchmark <span class="ai-marker">AI Generated</span></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Industry/peer comparison</div>
+            <div style="font-size:10px;margin-top:6px;">
+              <span style="background:rgba(5,150,105,0.08);color:#059669;padding:2px 8px;border-radius:10px;">Green panel</span>
+            </div>
+            <div style="font-size:10px;color:var(--text-muted);margin-top:6px;">Used in: Top Performers only</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Five Treatment Types -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Five Treatment Types &mdash; &sect;9.2</div>
+        <table class="flow-table" style="font-size:11px;">
+          <thead>
+            <tr><th>Treatment</th><th>Voice</th><th>Purpose</th><th>Placement</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:#0d9488;font-weight:600;">Key Finding</td>
+              <td>V1 (teal)</td>
+              <td>Analytical interpretation of scores</td>
+              <td>All IAs — the universal treatment</td>
+            </tr>
+            <tr>
+              <td style="color:#64748b;font-weight:600;">In Practice</td>
+              <td>V1 (gray)</td>
+              <td>Factual observations with specific counts</td>
+              <td>Module Overview, IA panels (priority-based)</td>
+            </tr>
+            <tr>
+              <td style="color:#d97706;font-weight:600;">Client Voice</td>
+              <td>V2 (gold)</td>
+              <td>Composited client perspective. Max 2/module.</td>
+              <td>Module Overview + Gap Priority 1 IA only</td>
+            </tr>
+            <tr>
+              <td style="color:#059669;font-weight:600;">Top Performers</td>
+              <td>V3 (green)</td>
+              <td>What top performers do. Not band-adaptive.</td>
+              <td>IA panels (priority-based)</td>
+            </tr>
+            <tr>
+              <td style="color:var(--accent);font-weight:600;">Your Action Plan</td>
+              <td>V1</td>
+              <td>Diagnostic gap analysis with peer comparison</td>
+              <td>Gap Priority 1 IA + Next Steps section</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Treatment Distribution Formula -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Treatment Distribution by Gap Priority &mdash; &sect;2.4</div>
+        <table class="flow-table" style="font-size:11px;">
+          <thead>
+            <tr><th>Gap Priority</th><th>Treatments Assigned</th><th>Count</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:var(--rose);font-weight:600;">GP 1 (lowest score)</td>
+              <td>Client Voice + Your Action Plan + Key Finding</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td style="color:var(--amber);font-weight:600;">GP 2</td>
+              <td>In Practice + Key Finding</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td style="color:var(--accent);font-weight:600;">GP 3</td>
+              <td>Top Performers + Key Finding</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text-muted);font-weight:600;">GP 4+</td>
+              <td>Key Finding only</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Module Overview</td>
+              <td>Key Finding + Client Voice (Pro+ only)</td>
+              <td>1-2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Band-Adaptive Language -->
+      <div>
+        <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Band-Adaptive Language &mdash; &sect;9.3</div>
+        <table class="flow-table" style="font-size:11px;">
+          <thead>
+            <tr><th>Band</th><th>V2 Client Behavior</th><th>V1/V3 Tone</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="color:var(--green);font-weight:600;">Top Tier</span></td>
+              <td>Volunteers positive specifics</td>
+              <td>Confident, leverage-focused</td>
+            </tr>
+            <tr>
+              <td><span style="color:var(--accent);font-weight:600;">Competitive</span></td>
+              <td>Positive but vague</td>
+              <td>Affirming, position-confirming</td>
+            </tr>
+            <tr>
+              <td><span style="color:var(--amber);font-weight:600;">Needs Work</span></td>
+              <td>Hedges, qualified praise</td>
+              <td>Honest, opportunity-focused</td>
+            </tr>
+            <tr>
+              <td><span style="color:var(--rose);font-weight:600;">At Risk</span></td>
+              <td>Blind trust, can't articulate</td>
+              <td>Direct, gap-identification focused</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LAYER 3: TIER BEHAVIOR MATRIX                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="flow-section layer-section" id="layerTier">
+    <div class="layer-header" onclick="toggleLayer('layerTierContent')">
+      <div class="flow-title" style="margin-bottom:0;">
+        <span style="color:var(--purple);">&#9671;</span> Tier Behavior Matrix
+        <span style="font-size:12px;color:var(--text-muted);font-weight:400;">&sect;2 &mdash; What each tier actually sees per screen</span>
+      </div>
+      <span class="layer-toggle" id="layerTierToggle">&#9660;</span>
+    </div>
+    <div class="layer-content" id="layerTierContent">
+
+      <!-- Tier Overview -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-top:3px solid #94a3b8;">
+          <div style="font-size:13px;font-weight:700;">Essential</div>
+          <div style="font-size:10px;color:var(--text-muted);">Free &bull; 10-15 questions</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Key Finding per IA. Scores + key findings. DP analysis on visible data points.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-top:3px solid var(--accent);">
+          <div style="font-size:13px;font-weight:700;">Professional <span style="font-size:10px;color:var(--text-muted);">$115</span></div>
+          <div style="font-size:10px;color:var(--text-muted);">Subset questions</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Treatment formula governs IA count. Moenio Lens: 5 of 6 categories. Full treatment set for prioritized IAs.</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-top:3px solid var(--purple);">
+          <div style="font-size:13px;font-weight:700;">Comprehensive <span style="font-size:10px;color:var(--text-muted);">$175</span></div>
+          <div style="font-size:10px;color:var(--text-muted);">All questions</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">All Moenio Lens categories. Full DP scores + dot grid. Comprehensive Report toggle functional.</div>
+        </div>
+      </div>
+
+      <!-- Core Principle -->
+      <div style="margin-bottom:20px;padding:12px 16px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:var(--radius);font-size:11px;color:var(--text-muted);">
+        <strong style="color:var(--purple);">Hybrid Model Principle:</strong> All tiers see the same section structure. Content depth increases with tier. Scores are <em>never</em> locked. Tier gating controls rendering depth, not data access. Upgrading is a display change, not a data change.
+      </div>
+
+      <!-- Tier × Content Matrix -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Tier &times; Content Matrix &mdash; &sect;2.3</div>
+        <table class="flow-table" style="font-size:11px;">
+          <thead>
+            <tr>
+              <th>Content Type</th>
+              <th style="text-align:center;">Essential (Free)</th>
+              <th style="text-align:center;">Professional ($115)</th>
+              <th style="text-align:center;">Comprehensive ($175)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600;">Scores (Module, IA, DP)</td>
+              <td style="text-align:center;"><span class="tier-yes">All visible</span></td>
+              <td style="text-align:center;"><span class="tier-yes">All visible</span></td>
+              <td style="text-align:center;"><span class="tier-yes">All visible</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Key Finding (V1)</td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">In Practice (V1)</td>
+              <td style="text-align:center;"><span class="tier-upgrade">Upgrade CTA</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Client Voice (V2)</td>
+              <td style="text-align:center;"><span class="tier-upgrade">Upgrade CTA</span></td>
+              <td style="text-align:center;"><span class="tier-partial">Max 1/module</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Full depth</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Top Performers (V3)</td>
+              <td style="text-align:center;"><span class="tier-upgrade">Upgrade CTA</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Your Action Plan (V1)</td>
+              <td style="text-align:center;"><span class="tier-upgrade">Upgrade CTA</span></td>
+              <td style="text-align:center;"><span class="tier-upgrade">Upgrade CTA</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Included</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Moenio Lens</td>
+              <td style="text-align:center;"><span class="tier-partial">2 of 6</span></td>
+              <td style="text-align:center;"><span class="tier-partial">5 of 6</span></td>
+              <td style="text-align:center;"><span class="tier-yes">All 6</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Comprehensive Report</td>
+              <td style="text-align:center;"><span class="tier-locked">Toggle visible, non-functional</span></td>
+              <td style="text-align:center;"><span class="tier-locked">Toggle visible, non-functional</span></td>
+              <td style="text-align:center;"><span class="tier-yes">Fully functional</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Per-Screen Tier Detail -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Per-Screen Tier Behavior</div>
+        <table class="flow-table" style="font-size:11px;">
+          <thead>
+            <tr><th style="width:20%">Screen</th><th>Essential</th><th>Professional</th><th>Comprehensive</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:600;">Module Results &sect;5.4</td>
+              <td>Score + band + Key Finding per IA. Single upgrade prompt at bottom of Insight Areas section.</td>
+              <td>Full treatment set for prioritized IAs. V2 Client Voice in Overview. Moenio Lens at 5 categories.</td>
+              <td>All voices + all IAs treated. Full Moenio Lens. Comp Report toggle functional.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">IA Pages &sect;5.7</td>
+              <td>Score + band + single Key Finding panel. DP scores on visible subset.</td>
+              <td>Multiple treatment panels per distribution formula. Broader DP set.</td>
+              <td>All treatments rendered. Complete DP analysis across all data points.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Data Points &sect;5.4</td>
+              <td>Fewer questions &rarr; fewer DPs. Color-coded dot grid + top/bottom DP treatments on visible subset.</td>
+              <td>More questions &rarr; more DPs. Broader DP analysis. Top/bottom treatments inline.</td>
+              <td>All questions &rarr; all DPs. Full dot grid + DP analysis across complete set.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Moenio Lens &sect;5.6</td>
+              <td>2 of 6 Advisor Lens categories. 2 of 7 Peer Intelligence items.</td>
+              <td>5 of 6 categories. 5 of 7 Peer Intelligence items.</td>
+              <td>All 6 categories. All 7 Peer Intelligence items.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Dashboard &sect;3</td>
+              <td>All layers visible. Scores shown. Intelligence depth limited to Key Finding summaries.</td>
+              <td>Richer intelligence in Exec Summary. Practice Position Statement available.</td>
+              <td>Full intelligence depth. All narrative components active.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">My Areas &sect;6</td>
+              <td>Area scores visible. Area narrative V1 Key Finding only.</td>
+              <td>Deeper area narratives. Module priority assessment.</td>
+              <td>Full cross-module analysis and connection patterns.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">BI Products &sect;7</td>
+              <td>V1 Key Finding only. Locked stages visible with prereq info.</td>
+              <td>V1 + V2 content. Client Voice max 1 per BI profile.</td>
+              <td>All voices. Full treatment depth.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Assessment Flow &sect;5.3</td>
+              <td>10-15 questions per module.</td>
+              <td>Subset of questions (varies by module, always &lt; Comprehensive).</td>
+              <td>All questions (typically 25-40 per module).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Upgrade UX Pattern -->
+      <div style="padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:11px;color:var(--text-muted);">
+        <strong>Upgrade UX Rules:</strong> One upgrade prompt per section, not per item. No lock icons on individual scores, IAs, or DPs. In-page expansion: gated content expands in place, no reflow. Comp Report toggle visible at all tiers but non-functional below Comprehensive &mdash; shows single-line upgrade CTA.
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LAYER 4: SCREEN BUILD SPECS                                  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="flow-section layer-section" id="layerBuild">
+    <div class="layer-header" onclick="toggleLayer('layerBuildContent')">
+      <div class="flow-title" style="margin-bottom:0;">
+        <span style="color:var(--accent);">&#9671;</span> Screen Build Specs
+        <span style="font-size:12px;color:var(--text-muted);font-weight:400;">v2.0 &mdash; Acceptance criteria and data requirements per screen</span>
+      </div>
+      <span class="layer-toggle" id="layerBuildToggle">&#9660;</span>
+    </div>
+    <div class="layer-content" id="layerBuildContent">
+
+      <!-- Global Build Rules -->
+      <div style="margin-bottom:20px;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);border-left:4px solid var(--accent);">
+        <div style="font-size:12px;font-weight:700;margin-bottom:8px;">Global Build Rules</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:12px;font-size:11px;color:var(--text-muted);">
+          <div><strong style="color:var(--accent);">Layout:</strong> Two-panel (left nav + center content). Desktop-first. Left nav collapses to hamburger on mobile. No right panel.</div>
+          <div><strong style="color:var(--accent);">Positioning:</strong> Diagnostic only. Never coaching, prescriptive, or advisory language. "Your Action Plan" is the only near-advisory element &mdash; uses prompts, not directives.</div>
+          <div><strong style="color:var(--accent);">Tier Model:</strong> Hybrid. Same structure, different depth. Scores never locked. One upgrade CTA per section, not per item. No lock icons on individual scores.</div>
+          <div><strong style="color:var(--accent);">Voice System:</strong> V1 (Gray/Teal) for platform analysis, V2 (Gold) for client composite, V3 (Green) for external benchmark. Visual distinction is mandatory.</div>
+          <div><strong style="color:var(--accent);">Naming:</strong> "Your" prefix in UI, omit in structural/API. P93-UNS v3 identifiers for all elements. Area codes are permanent.</div>
+          <div><strong style="color:var(--accent);">BI Differentiation:</strong> BI screens must be visually distinct from module results (§7.4). Different card style, color treatment, or layout pattern.</div>
+        </div>
+      </div>
+
+      <!-- Per-Screen Acceptance Criteria -->
+      <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Per-Screen Acceptance Criteria</div>
+      <table class="flow-table" style="font-size:11px;">
+        <thead>
+          <tr>
+            <th style="width:15%">Screen</th>
+            <th style="width:20%">Data Requirements</th>
+            <th style="width:35%">Acceptance Criteria</th>
+            <th style="width:15%">Dependencies</th>
+            <th style="width:15%">API Endpoints</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;color:#64748b;">Public Preview §10.1</td>
+            <td>Sample module result data (static/seeded). Sign-up form fields.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Sample data clearly labeled "sample" throughout</li>
+                <li>Score, band, treatment panels render with sample data</li>
+                <li>Sign-up captures: name, email, firm association</li>
+                <li>No real advisor data exposed</li>
+              </ul>
+            </td>
+            <td>None (pre-auth)</td>
+            <td>POST /auth/signup</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:#64748b;">Module Ranking §10.2</td>
+            <td>17 module definitions (name, area, description). Default rank order.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>All 17 modules displayed with plain-English names</li>
+                <li>Area groupings visible</li>
+                <li>Three modes: accept default, full reorder, partial adjust</li>
+                <li>Ranking persists to user profile</li>
+              </ul>
+            </td>
+            <td>Auth complete</td>
+            <td>GET /modules<br>POST /user/ranking</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--accent);">Dashboard L1 §3.1</td>
+            <td>User profile (name, tier). Module completion count. Moenio Nudge context.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Personalized greeting with name + tier badge</li>
+                <li>Progress ring shows X/17 modules</li>
+                <li>Moenio Nudge contextual to completion state</li>
+                <li>Pre-assessment: estimated time to first result</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET /user/profile<br>GET /user/progress</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--accent);">Dashboard L2 §3.2</td>
+            <td>Overall score + band. 6 area scores. Edge/Exposure top 2 each. Hub Verdict text.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Overall Score + Band + Percentile displays</li>
+                <li>Area Assessment Map renders 6 areas color-coded</li>
+                <li>Strengths/Gaps preview (top 2 each)</li>
+                <li>Hub Verdict: adaptive narrative summary</li>
+                <li>Pre-assessment: ranking placeholder, no scores</li>
+              </ul>
+            </td>
+            <td>≥1 module complete</td>
+            <td>GET /scores/overall<br>GET /scores/areas<br>GET /edge-exposure</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--accent);">Dashboard L3 §3.3</td>
+            <td>17 module cards with status/score. Quick Win IA. New Intelligence feed.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Module Cards grid: all 17, enriched per status</li>
+                <li>Quick Win prompt appears after first module</li>
+                <li>New Intelligence: latest BI insights</li>
+                <li>Cascade Reveal: progressive unlock animation</li>
+              </ul>
+            </td>
+            <td>≥1 module complete for Quick Win</td>
+            <td>GET /modules/status<br>GET /intelligence/new</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--green);">Score Overview §4.2</td>
+            <td>All module scores, bands, percentiles. Area averages.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Overall composite score + band</li>
+                <li>Module score table sortable by score/area/name</li>
+                <li>Area averages with band indicators</li>
+                <li>Scores visible at ALL tiers (never locked)</li>
+              </ul>
+            </td>
+            <td>≥1 module complete</td>
+            <td>GET /scores/modules<br>GET /scores/areas</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--green);">Strengths & Gaps §4.3</td>
+            <td>Edge/Exposure algorithm output. Ranked IA list.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Edge: top 3 highest-scoring IAs</li>
+                <li>Exposure: bottom 3 lowest-scoring IAs</li>
+                <li>Ranked by Edge/Exposure algorithm (§4.3.1)</li>
+                <li>Click through to IA detail page</li>
+              </ul>
+            </td>
+            <td>≥1 module complete</td>
+            <td>GET /edge-exposure</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--green);">Trends §4.4</td>
+            <td>Historical score data per module. Reassessment deltas.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Score trendlines per module (line chart)</li>
+                <li>Reassessment deltas (before/after comparison)</li>
+                <li>Single data point: no trend line, message shown</li>
+              </ul>
+            </td>
+            <td>≥2 assessments for trends</td>
+            <td>GET /scores/history</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Module List §5.1</td>
+            <td>17 module definitions + status per module. Tier badges.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>All 17 modules with name + description</li>
+                <li>Area tag + status indicator per module</li>
+                <li>Available: time estimate + tier badge</li>
+                <li>Completed: score, band, date, tier completed at</li>
+                <li>Order matches advisor's module ranking</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET /modules<br>GET /user/ranking</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Module Home §5.2</td>
+            <td>Module definition, status, time estimate, related modules.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Module title + area tag</li>
+                <li>2-3 sentence description</li>
+                <li>Status + time estimate</li>
+                <li>Start/Continue/View Results CTA</li>
+                <li>"Why This Matters" context block</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET /modules/:id</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Assessment Flow §5.3</td>
+            <td>Questions for current module + tier. Progress state.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>One question per screen</li>
+                <li>Question types: Likert, multiple choice, slider</li>
+                <li>Question count varies by tier (Ess: 10-15, Comp: all)</li>
+                <li>Progress bar + back button</li>
+                <li>Auto-save after each answer</li>
+                <li>Completion: celebration + score + band reveal</li>
+              </ul>
+            </td>
+            <td>Module started</td>
+            <td>GET /modules/:id/questions<br>POST /answers</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Module Results §5.4</td>
+            <td>Module score, IAs with scores/bands, treatment content per GP, Moenio Lens data.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>9-section template renders for all 17 modules</li>
+                <li>Score + percentile + band + DP count</li>
+                <li>Treatment panels governed by Gap Priority</li>
+                <li>GP1: 3 treatments, GP2-3: 2, GP4+: 1</li>
+                <li>V1/V2/V3 panels visually distinct</li>
+                <li>Moenio Lens: 2/5/6 categories by tier</li>
+                <li>Comp Report toggle visible all tiers, functional only at Comp</li>
+              </ul>
+            </td>
+            <td>Module complete</td>
+            <td>GET /modules/:id/results<br>GET /modules/:id/treatments</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Three-Act Reveal §5.5</td>
+            <td>Score, key findings, action plan content for current module.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Act 1 "Mirror": Score + band animated reveal</li>
+                <li>Act 2 "Lens": Key findings + context fade in</li>
+                <li>Act 3 "Path": Action plan + next steps appear</li>
+                <li>Fires only on first completion per module</li>
+              </ul>
+            </td>
+            <td>Module just completed</td>
+            <td>Same as Module Results</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">IA Pages §5.7</td>
+            <td>IA score/band, treatment content, data point scores.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>IA title + score + band</li>
+                <li>Treatment panels per Gap Priority</li>
+                <li>Data points expandable inline</li>
+                <li>DP dot-grid visualization (Comp tier)</li>
+                <li>Back navigation to Module Results</li>
+              </ul>
+            </td>
+            <td>Parent module complete</td>
+            <td>GET /modules/:id/ia/:iaId</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--purple);">Moenio Lens §5.6</td>
+            <td>6 Advisor Lens categories, 7 Peer Intelligence items per module.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Essential: 2 of 6 categories, 2 of 7 peer items</li>
+                <li>Professional: 5 of 6, 5 of 7</li>
+                <li>Comprehensive: all 6, all 7</li>
+                <li>V1 Point93 Analytical voice only</li>
+              </ul>
+            </td>
+            <td>Parent module complete</td>
+            <td>GET /modules/:id/lens</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--amber);">Area Card Grid §6.1</td>
+            <td>6 area definitions, module counts, area scores.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>6 area cards in 2&times;3 responsive grid</li>
+                <li>Area name + code + description</li>
+                <li>Module count (X of Y completed)</li>
+                <li>Area score + band indicator</li>
+                <li>Module preview row (names + completion dots)</li>
+              </ul>
+            </td>
+            <td>Auth (shows at all states)</td>
+            <td>GET /areas<br>GET /scores/areas</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--amber);">Area Detail §6.3</td>
+            <td>Area score, module gallery, cross-module analysis.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Area title + score + band</li>
+                <li>V1 area summary narrative</li>
+                <li>Strength + growth opportunity narratives</li>
+                <li>Module gallery (name, score, band, status)</li>
+                <li>Module priority assessment</li>
+              </ul>
+            </td>
+            <td>≥1 module in area complete</td>
+            <td>GET /areas/:id<br>GET /areas/:id/modules</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--amber);">FV Exception §6.4</td>
+            <td>Same as Area Detail but single-module.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Area page renders but suppresses cross-module content</li>
+                <li>No "module comparison" or "module priority" sections</li>
+                <li>Direct link through to FV.1 Module Results</li>
+              </ul>
+            </td>
+            <td>FV.1 complete</td>
+            <td>Same as Area Detail</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--teal);">BI Overview §7.1</td>
+            <td>7 BI product definitions + access status per product.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>7 BI Profile Cards in grid</li>
+                <li>Access summary: X of 7 active</li>
+                <li>Each card: name, code, stage progress, access status</li>
+                <li>Earn vs Purchase paths clear on each card</li>
+                <li>Visually distinct from module cards (§7.4)</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET /bi/products<br>GET /bi/access</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--teal);">BI Product Home §7.3</td>
+            <td>Product score, stage map, prerequisites, stage results, intelligence panels.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Profile title + score + band</li>
+                <li>Stage map with locked/available/complete states</li>
+                <li>Prerequisites: module links with completion status</li>
+                <li>Current stage CTA (start/continue)</li>
+                <li>Stage results cumulative</li>
+                <li>"Lean Into" / "Watch For" framing</li>
+                <li>Three-Voice panels (tier-gated depth)</li>
+              </ul>
+            </td>
+            <td>Product accessed (earn or purchase)</td>
+            <td>GET /bi/:code<br>GET /bi/:code/stages</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--rose);">Coming Soon §8.1</td>
+            <td>Feature description content (static).</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Nav item visible with "Coming Soon" badge</li>
+                <li>Feature description (2-3 sentences)</li>
+                <li>Preview of format</li>
+                <li>"Notify me when available" CTA</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>POST /notifications/subscribe</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--orange);">Profile §16.1</td>
+            <td>User profile fields.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Name, email, credentials, photo</li>
+                <li>Edit and save functionality</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET/PUT /user/profile</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--orange);">Firm Details §16.2</td>
+            <td>Firm profile fields. Benchmarking context.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Firm type, size, AUM, specialization</li>
+                <li>Changes feed benchmarking context</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET/PUT /user/firm</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--orange);">Preferences §16.3</td>
+            <td>Notification and display settings.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Notification toggles (email, in-app)</li>
+                <li>Display preferences</li>
+                <li>Communication opt-ins</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET/PUT /user/preferences</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:var(--orange);">Tier Management §16.4</td>
+            <td>Current tier, pricing, upgrade/downgrade state.</td>
+            <td>
+              <ul class="acceptance-list">
+                <li>Current tier display</li>
+                <li>Upgrade/downgrade options with pricing</li>
+                <li>Essential (Free) | Professional ($115) | Comprehensive ($175)</li>
+                <li>Billing management</li>
+              </ul>
+            </td>
+            <td>Auth</td>
+            <td>GET /user/tier<br>POST /user/tier/change</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+
+<script>
+  function toggleCard(el) {
+    el.classList.toggle('expanded');
+    el.setAttribute('aria-expanded', el.classList.contains('expanded'));
+  }
+
+  // Keyboard support for cards
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.card').forEach(function(card) {
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-expanded', 'false');
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleCard(card);
+        }
+      });
+    });
+  });
+
+  function toggleLayer(id) {
+    const content = document.getElementById(id);
+    const toggle = document.getElementById(id.replace('Content', 'Toggle'));
+    content.classList.toggle('collapsed');
+    if (toggle) toggle.classList.toggle('collapsed');
+  }
+
+  function filterSection(section) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+
+    document.querySelectorAll('.section-row').forEach(row => {
+      if (section === 'all') {
+        row.classList.remove('dimmed');
+      } else {
+        row.classList.toggle('dimmed', !row.classList.contains(section));
+      }
+    });
+
+    // Show/hide flow sections
+    const flowSections = document.querySelectorAll('.flow-section');
+    flowSections.forEach(fs => {
+      fs.style.opacity = section === 'all' ? '1' : '0.3';
+    });
+  }
+
+  function handleSearch(query) {
+    const q = query.toLowerCase().trim();
+    document.querySelectorAll('.card').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      if (!q) {
+        card.style.display = '';
+        card.style.opacity = '1';
+      } else {
+        const match = text.includes(q);
+        card.style.opacity = match ? '1' : '0.15';
+      }
+    });
+
+    // Also search flow table
+    document.querySelectorAll('.flow-table tbody tr').forEach(tr => {
+      const text = tr.textContent.toLowerCase();
+      if (!q) {
+        tr.style.opacity = '1';
+      } else {
+        tr.style.opacity = text.includes(q) ? '1' : '0.15';
+      }
+    });
+  }
+</script>
+</body>
+</html>

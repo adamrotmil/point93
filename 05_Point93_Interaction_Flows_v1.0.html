@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Point93 — Interaction &amp; State Flows v1.0</title>
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --surface: #ffffff;
+    --surface2: #eef0f4;
+    --border: #d1d5de;
+    --text: #1a1d27;
+    --text-muted: #5c6478;
+    --accent: #2563eb;
+    --accent-glow: rgba(37,99,235,0.08);
+    --green: #059669;
+    --green-bg: rgba(5,150,105,0.06);
+    --amber: #d97706;
+    --amber-bg: rgba(217,119,6,0.06);
+    --purple: #7c3aed;
+    --purple-bg: rgba(124,58,237,0.06);
+    --rose: #e11d48;
+    --rose-bg: rgba(225,29,72,0.06);
+    --teal: #0d9488;
+    --teal-bg: rgba(13,148,136,0.06);
+    --orange: #ea580c;
+    --orange-bg: rgba(234,88,12,0.06);
+    --blue-bg: rgba(37,99,235,0.06);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  /* ── AI-Generated Content Denotation ── */
+  .ai-generated {
+    position: relative;
+    border-left: 3px solid;
+    border-image: linear-gradient(180deg, var(--accent), var(--teal)) 1;
+    padding-left: 12px;
+  }
+  .ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(37,99,235,0.15);
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .ai-badge::before {
+    content: '✦';
+    font-size: 9px;
+  }
+  .ai-marker {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--teal);
+    opacity: 0.8;
+  }
+  .ai-marker::before {
+    content: '✦';
+    font-size: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ── Header ── */
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+  .header h1 span { color: var(--accent); }
+  .header .subtitle { font-size: 13px; color: var(--text-muted); margin-left: 16px; }
+  .badge {
+    font-size: 11px; padding: 3px 10px; border-radius: 20px;
+    font-weight: 600; letter-spacing: 0.3px;
+  }
+  .badge-version { background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(37,99,235,0.2); }
+
+  /* ── Stats bar ── */
+  .stats-bar {
+    display: flex; gap: 24px; padding: 16px 32px;
+    background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat-value { font-size: 20px; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ── Nav tabs ── */
+  .flow-nav {
+    display: flex; gap: 4px; padding: 12px 32px;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .flow-nav-btn {
+    padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
+    background: transparent; color: var(--text-muted);
+    font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .flow-nav-btn:hover { border-color: var(--accent); color: var(--text); }
+  .flow-nav-btn.active { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
+
+  /* ── Container ── */
+  .container { padding: 32px; max-width: 1400px; margin: 0 auto; }
+
+  /* ── Flow panel ── */
+  .flow-panel { display: none; }
+  .flow-panel.active { display: block; }
+  .flow-panel-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.3px;
+  }
+  .flow-panel-desc {
+    font-size: 13px; color: var(--text-muted); margin-bottom: 24px; max-width: 800px;
+  }
+  .flow-panel-ref {
+    font-size: 11px; color: var(--text-muted); margin-bottom: 20px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  /* ── Flow diagram ── */
+  .flow-diagram {
+    display: flex; flex-direction: column; gap: 0; align-items: stretch;
+    position: relative;
+  }
+  .flow-row {
+    display: flex; align-items: stretch; gap: 0;
+  }
+  .flow-node {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    min-width: 200px;
+    max-width: 320px;
+    position: relative;
+    transition: all 0.2s;
+  }
+  .flow-node:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .flow-node-title {
+    font-size: 13px; font-weight: 700; margin-bottom: 4px;
+  }
+  .flow-node-screen {
+    font-size: 10px; color: var(--text-muted);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-bottom: 6px;
+  }
+  .flow-node-body {
+    font-size: 11px; color: var(--text-muted); line-height: 1.6;
+  }
+  .flow-node-body ul {
+    list-style: none; padding: 0; margin-top: 4px;
+  }
+  .flow-node-body li {
+    padding: 2px 0;
+  }
+  .flow-node-body li::before {
+    content: '→ ';
+    color: var(--accent);
+    font-size: 10px;
+  }
+
+  /* Node color variants */
+  .node-start { border-left: 4px solid #94a3b8; }
+  .node-entry { border-left: 4px solid var(--accent); }
+  .node-action { border-left: 4px solid var(--purple); }
+  .node-result { border-left: 4px solid var(--green); }
+  .node-decision { border-left: 4px solid var(--amber); }
+  .node-bi { border-left: 4px solid var(--teal); }
+  .node-upgrade { border-left: 4px solid var(--orange); }
+  .node-end { border-left: 4px solid var(--rose); }
+
+  /* ── Sequence layout ── */
+  .sequence {
+    display: flex; flex-direction: column; gap: 0; align-items: center;
+  }
+  .seq-arrow {
+    width: 2px; height: 28px; background: var(--border); position: relative;
+  }
+  .seq-arrow::after {
+    content: ''; position: absolute; bottom: -1px; left: -5px;
+    border: 6px solid transparent; border-top: 7px solid var(--border);
+  }
+  .seq-arrow-label {
+    font-size: 10px; color: var(--text-muted);
+    position: absolute; left: 14px; top: 4px; white-space: nowrap;
+    font-style: italic;
+  }
+
+  /* ── Decision diamond (CSS) ── */
+  .decision-wrapper {
+    display: flex; align-items: center; gap: 0; justify-content: center;
+    position: relative; width: 100%;
+  }
+  .decision-node {
+    background: var(--amber-bg);
+    border: 1.5px solid var(--amber);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 180px;
+  }
+  .decision-node .flow-node-title { color: var(--amber); }
+
+  /* Branch arms */
+  .branch-container {
+    display: flex; gap: 24px; justify-content: center; width: 100%;
+  }
+  .branch {
+    flex: 1; max-width: 380px;
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .branch-label {
+    font-size: 11px; font-weight: 700; padding: 4px 12px;
+    border-radius: 12px; margin-bottom: 4px; letter-spacing: 0.3px;
+  }
+  .branch-label-left { background: var(--green-bg); color: var(--green); }
+  .branch-label-right { background: var(--orange-bg); color: var(--orange); }
+  .branch-label-center { background: var(--purple-bg); color: var(--purple); }
+
+  /* Horizontal connector */
+  .h-connector {
+    display: flex; align-items: center; gap: 0;
+    width: 100%; justify-content: center;
+  }
+  .h-line {
+    height: 2px; flex: 1; background: var(--border); max-width: 100px;
+  }
+
+  /* ── State table ── */
+  .state-table {
+    width: 100%; border-collapse: collapse; margin-top: 24px;
+    font-size: 12px;
+  }
+  .state-table th {
+    text-align: left; padding: 10px 14px;
+    background: var(--surface2); border-bottom: 1px solid var(--border);
+    color: var(--text-muted); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px; font-size: 10px;
+  }
+  .state-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  .state-table tr:hover td { background: rgba(79,140,255,0.04); }
+
+  /* ── Edge case callout ── */
+  .edge-callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--rose);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-top: 20px;
+  }
+  .edge-callout-title {
+    font-size: 12px; font-weight: 700; color: var(--rose); margin-bottom: 6px;
+  }
+  .edge-callout-body {
+    font-size: 11px; color: var(--text-muted); line-height: 1.7;
+  }
+
+  /* ── Rule boxes ── */
+  .rule-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-top: 16px;
+  }
+  .rule-box-title {
+    font-size: 12px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .rule-list {
+    list-style: none; padding: 0;
+  }
+  .rule-list li {
+    font-size: 11px; color: var(--text-muted); padding: 3px 0;
+    line-height: 1.6;
+  }
+  .rule-list li::before {
+    content: '✓ '; color: var(--green); font-weight: 700;
+  }
+
+  /* ── Merge node ── */
+  .merge-node {
+    display: flex; align-items: center; justify-content: center;
+    padding: 10px 20px;
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    font-size: 11px; color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; color: #1a1a2e; }
+    .header { background: #fff; border-bottom: 2px solid #e0e0e0; }
+    .flow-nav { display: none; }
+    .flow-panel { display: block !important; page-break-inside: avoid; margin-bottom: 48px; }
+    .flow-node { border-color: #ccc; }
+    .stats-bar { background: #f5f5f5; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div style="display:flex;align-items:center;">
+    <h1><span>Point93</span> Interaction &amp; State Flows</h1>
+    <span class="subtitle">11 Flow Diagrams · Blueprint v1.6.0 Spec</span>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <span class="badge badge-version">v1.0</span>
+  </div>
+</div>
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-value">11</span><span class="stat-label">Flow Diagrams</span></div>
+  <div class="stat"><span class="stat-value">32</span><span class="stat-label">Steps Mapped</span></div>
+  <div class="stat"><span class="stat-value">4</span><span class="stat-label">Decision Points</span></div>
+  <div class="stat"><span class="stat-value">12</span><span class="stat-label">Edge Cases</span></div>
+  <div class="stat"><span class="stat-value">§5–§16</span><span class="stat-label">Blueprint Sections</span></div>
+</div>
+
+<!-- ═══ FLOW NAV ═══ -->
+<div class="flow-nav">
+  <button class="flow-nav-btn active" onclick="showFlow('flow1')">1 · Onboarding</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow2')">2 · Assessment</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow3')">3 · BI Access</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow4')">4 · Tier Upgrade</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow5')">5 · Retake</button>
+  <span style="width:1px;height:24px;background:var(--border);margin:0 8px;"></span>
+  <button class="flow-nav-btn" onclick="showFlow('flow6')">Dashboard</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow7')">My Results</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow8')">Assessments</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow9')">My Areas</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow10')">BI</button>
+  <button class="flow-nav-btn" onclick="showFlow('flow11')">Clients Asking</button>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 1: FIRST-TIME ONBOARDING THROUGH FIRST RESULTS
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow1" class="flow-panel active">
+  <div class="flow-panel-title">Flow 1: First-Time Onboarding through First Results</div>
+  <div class="flow-panel-ref">Blueprint §10.1–10.4, §5.3, §5.5, §12.2</div>
+  <div class="flow-panel-desc">The complete sequence from first landing on Point93 through account creation, module ranking, first assessment completion, and receiving the Three-Act Reveal. After this flow, the advisor has a populated Dashboard, initial scores, and free navigation.</div>
+
+  <div class="sequence">
+    <!-- Step 1 -->
+    <div class="flow-node node-start" style="width:320px;">
+      <div class="flow-node-title">Public Preview (Landing)</div>
+      <div class="flow-node-screen">§10.1 Part 1</div>
+      <div class="flow-node-body">
+        Real product components with sample data. Shows representative module result with sample scores, treatment panels, and Moenio Lens categories.
+        <ul>
+          <li>Sample score display</li>
+          <li>Sample treatment panel</li>
+          <li>Sample Moenio Lens</li>
+          <li>All data clearly labeled "sample/demo"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">CTA: "Get Started"</span>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="flow-node node-entry" style="width:320px;">
+      <div class="flow-node-title">Email Sign-Up</div>
+      <div class="flow-node-screen">§10.1 Part 2</div>
+      <div class="flow-node-body">
+        Fields: name, email, firm association. Social sign-in deferred to post-v1.
+        <ul>
+          <li>Account created → Essential tier (free)</li>
+          <li>No payment required at entry</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Account created</span>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="flow-node node-action" style="width:320px;">
+      <div class="flow-node-title">Module Ranking</div>
+      <div class="flow-node-screen">§10.2</div>
+      <div class="flow-node-body">
+        Full 17-module ranking. Advisor sees recommended default order.
+        <ul>
+          <li>Can accept default, fully reorder, or partially adjust</li>
+          <li>Modules shown with plain English names + area groupings</li>
+          <li>Rank order drives Module Cards, Quick Win, next-module recommendations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Ranking submitted → routes to #1 module</span>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="flow-node node-action" style="width:320px;">
+      <div class="flow-node-title">First Assessment (Questions)</div>
+      <div class="flow-node-screen">§10.3, §5.3</div>
+      <div class="flow-node-body">
+        Routes directly to #1 ranked module assessment. <strong>Skips Module Home</strong> (first-time only).
+        <ul>
+          <li>One question per screen, no momentum breaks</li>
+          <li>Likert scale (primary), multiple choice, slider</li>
+          <li>Essential: 10–15 questions</li>
+          <li>Progress bar at top (questions answered / total)</li>
+          <li>Back nav preserves answers; auto-saves each question</li>
+          <li>15–20 minute first-time promise</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Final question submitted</span>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="flow-node node-result" style="width:320px;">
+      <div class="flow-node-title">Completion Screen</div>
+      <div class="flow-node-screen">§5.3.3</div>
+      <div class="flow-node-body">
+        Immediately after final question:
+        <ul>
+          <li>Celebration moment: success message + module name</li>
+          <li>Score preview: overall module score + band (the "Mirror" moment)</li>
+          <li>CTA: "View Your Results" → Module Results</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">"View Your Results" clicked</span>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="flow-node node-result" style="width:320px;">
+      <div class="flow-node-title">Three-Act Reveal <span class="ai-badge">AI GENERATED</span></div>
+      <div class="flow-node-screen">§5.5</div>
+      <div class="flow-node-body">
+        Sequential reveal on Module Results page:
+        <ul>
+          <li><strong>Act 1 — Mirror:</strong> Score, percentile, band. Where you stand.</li>
+          <li><strong>Act 2 — Map:</strong> Treatment panels <span class="ai-marker">AI</span>, competitive position. What it means.</li>
+          <li><strong>Act 3 — Path:</strong> Key diagnostic insight + next module to assess.</li>
+        </ul>
+        Advisor remains on Module Results. No redirect.
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Reveal complete → free navigation</span>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="flow-node node-end" style="width:320px;">
+      <div class="flow-node-title">Platform Active State</div>
+      <div class="flow-node-screen">§10.4, §12.2</div>
+      <div class="flow-node-body">
+        Post-first-module state:
+        <ul>
+          <li>Dashboard now shows data (Executive Summary populates)</li>
+          <li>My Results begins populating</li>
+          <li>Left nav reflects completion states</li>
+          <li>Subsequent modules show Module Home before assessment</li>
+          <li>Next module CTA appears in Next Steps</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edge cases -->
+  <div class="edge-callout">
+    <div class="edge-callout-title">Edge Cases — Onboarding (§5.9, §10)</div>
+    <div class="edge-callout-body">
+      <strong>Browser close during assessment:</strong> Progress auto-saves after each question. Advisor returns and resumes at next unanswered question. No timeout in v1.<br>
+      <strong>Module Ranking skip:</strong> Not allowed — ranking is mandatory before first assessment.<br>
+      <strong>Three-Act Reveal interruption:</strong> If advisor navigates away mid-reveal, reveal is marked complete. On return, all content shows in final state. No re-animation. Content is always accessible.
+    </div>
+  </div>
+
+  <!-- State table -->
+  <table class="state-table">
+    <thead>
+      <tr><th>Screen</th><th>Entry Condition</th><th>Exit Trigger</th><th>State Changes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color:var(--accent);font-weight:600;">Public Preview</td>
+        <td>Anonymous visitor</td>
+        <td>CTA click → Sign-Up</td>
+        <td>None (read-only sample data)</td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent);font-weight:600;">Email Sign-Up</td>
+        <td>CTA from preview</td>
+        <td>Form submit</td>
+        <td>Account created, Essential tier assigned</td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent);font-weight:600;">Module Ranking</td>
+        <td>New account (once)</td>
+        <td>Ranking submitted</td>
+        <td>Module priority order stored; drives all recommendations</td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent);font-weight:600;">Assessment</td>
+        <td>Ranking complete (routes to #1)</td>
+        <td>Final question submit</td>
+        <td>Answers stored, score calculated, module marked complete</td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent);font-weight:600;">Completion Screen</td>
+        <td>Final question submit</td>
+        <td>"View Your Results" CTA</td>
+        <td>Score + band revealed (Mirror moment)</td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent);font-weight:600;">Three-Act Reveal</td>
+        <td>First visit to Module Results after completion</td>
+        <td>Animation completes (one-time)</td>
+        <td>All 9 result sections populated; Dashboard updates</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 2: FULL ASSESSMENT FLOW
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow2" class="flow-panel">
+  <div class="flow-panel-title">Flow 2: Full Assessment Flow (Returning Advisor)</div>
+  <div class="flow-panel-ref">Blueprint §5.1–5.5, §5.9, §12.2</div>
+  <div class="flow-panel-desc">The standard assessment path for returning advisors completing their 2nd through 17th modules across 6 practice areas (178 total data points). Includes Module Home (gateway), question flow, completion, Three-Act Reveal, and all downstream state updates. Each module measures and compares advisor practices against benchmarks and peer data.</div>
+
+  <div class="sequence">
+    <!-- Step 1 -->
+    <div class="flow-node node-entry" style="width:340px;">
+      <div class="flow-node-title">Module List View</div>
+      <div class="flow-node-screen">§5.1</div>
+      <div class="flow-node-body">
+        Landing page from "Assessments" nav. Shows all 17 modules organized by area.
+        <ul>
+          <li>Status indicators: Not Started, In Progress, Complete</li>
+          <li>Area groupings visible</li>
+          <li>Module Cards reflect priority ranking order</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click module card</span>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="flow-node node-entry" style="width:340px;">
+      <div class="flow-node-title">Module Home (Gateway)</div>
+      <div class="flow-node-screen">§5.2</div>
+      <div class="flow-node-body">
+        Gateway page for each module. Returning visitors always see this.
+        <ul>
+          <li>Module overview + what it measures</li>
+          <li>Previous score (if retake) or "Not yet assessed"</li>
+          <li>CTA: "Start Assessment" (or "Retake Assessment")</li>
+          <li>First-time onboarding skips this page</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">"Start Assessment" clicked</span>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="flow-node node-action" style="width:340px;">
+      <div class="flow-node-title">Assessment Questions</div>
+      <div class="flow-node-screen">§5.3.1–5.3.2</div>
+      <div class="flow-node-body">
+        One question per screen. No momentum breaks.
+        <ul>
+          <li>Question types: Likert (primary), multiple choice, slider</li>
+          <li>Depth by tier: Essential 10–15, Professional subset, Comprehensive all (25–40)</li>
+          <li>Progress bar: questions answered / total + percentage</li>
+          <li>Back button preserves answers</li>
+          <li>Auto-save after each question</li>
+          <li>No timeout — progress persists indefinitely</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Final question submitted</span>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="flow-node node-result" style="width:340px;">
+      <div class="flow-node-title">Completion Screen</div>
+      <div class="flow-node-screen">§5.3.3</div>
+      <div class="flow-node-body">
+        <ul>
+          <li>Celebration moment with module name</li>
+          <li>Score preview: module score + band ("Mirror" moment)</li>
+          <li>CTA: "View Your Results"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">"View Your Results" clicked</span>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="flow-node node-result" style="width:340px;">
+      <div class="flow-node-title">Module Results + Three-Act Reveal <span class="ai-badge">AI GENERATED</span></div>
+      <div class="flow-node-screen">§5.4, §5.5</div>
+      <div class="flow-node-body">
+        9-section layout: 7 Main View + 2 Comprehensive toggle.
+        <ul>
+          <li><strong>Act 1 — Mirror:</strong> Score, percentile, band</li>
+          <li><strong>Act 2 — Map:</strong> Treatment panels <span class="ai-marker">AI</span> (Key Finding, In Practice, Client Voice, Top Performers, Your Action Plan)</li>
+          <li><strong>Act 3 — Path:</strong> Diagnostic insight + next module</li>
+          <li>IAs ordered by Gap Priority (GP1 first = largest gap)</li>
+          <li>Comprehensive Report toggle at bottom (Comprehensive tier only)</li>
+          <li>Moenio Lens <span class="ai-marker">AI Generated</span> below Comprehensive sections</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Reveal complete</span>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="flow-node node-end" style="width:340px;">
+      <div class="flow-node-title">Post-Module Completion State</div>
+      <div class="flow-node-screen">§12.2</div>
+      <div class="flow-node-body">
+        Advisor remains on Module Results (no redirect).
+        <ul>
+          <li>Overall score updates in Dashboard</li>
+          <li>Next module CTA in Next Steps</li>
+          <li>Left nav reflects updated completion states</li>
+          <li>My Results / My Areas / Executive Summary all update on next page load</li>
+          <li>No real-time sync in v1 — updates on next page load</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save/Resume edge case -->
+  <div class="edge-callout">
+    <div class="edge-callout-title">Edge Cases — Assessment Flow (§5.9)</div>
+    <div class="edge-callout-body">
+      <strong>Save &amp; Resume:</strong> Auto-save after each question. Browser close → return days later → resumes at next unanswered question. No timeout in v1.<br>
+      <strong>Partial completion display:</strong> Module shows "In Progress" with question count (e.g., "12 of 30 questions answered").<br>
+      <strong>Three-Act Reveal interruption:</strong> Navigate away mid-reveal → marked complete. On return, all content in final state. The reveal is a one-time animation, not a gating mechanism.<br>
+      <strong>No open text questions in v1:</strong> Likert, multiple choice, slider only.
+    </div>
+  </div>
+
+  <!-- Content system reference -->
+  <div class="rule-box">
+    <div class="rule-box-title" style="color:var(--purple);">📋 Content System Rules Applied to Results (§9)</div>
+    <ul class="rule-list">
+      <li>Three-Voice System: V1 Point93 Analytical (Gray/Teal) · V2 Client Composite (Gold) · V3 External Benchmark (Green)</li>
+      <li>Five Treatment Types <span class="ai-marker">AI Generated</span>: Key Finding · In Practice · Client Voice · Top Performers · Your Action Plan</li>
+      <li>Gap Priority drives treatment count: GP1=3 treatments, GP2=2, GP3=2, GP4+=1</li>
+      <li>Client Voice scarcity: Max 2 per module (1 Overview + 1 GP1 IA). Non-negotiable.</li>
+      <li>Band-Adaptive language: tone shifts by band (Top Tier, Competitive, Needs Work, At Risk)</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 3: BI ACCESS (EARN vs PURCHASE)
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow3" class="flow-panel">
+  <div class="flow-panel-title">Flow 3: BI Access — Dual Access Model</div>
+  <div class="flow-panel-ref">Blueprint §7.1–7.6</div>
+  <div class="flow-panel-desc">Business Intelligence products use a Dual Access Model: advisors can earn access through module completion prerequisites, or purchase individual BI profiles as standalone products. BI is NOT tier-gated. Stage-based progression is independent from the module (BARS) assessment track.</div>
+
+  <div class="sequence">
+    <!-- Entry -->
+    <div class="flow-node node-bi" style="width:340px;">
+      <div class="flow-node-title">BI Overview Page</div>
+      <div class="flow-node-screen">§7.1</div>
+      <div class="flow-node-body">
+        Shows all 7 registered BI products: PP, CR, COI, RT, DQ, HH, NG.
+        <ul>
+          <li>Each product card shows: name, stage count, access status</li>
+          <li>BI branches from P93 root (not from any area/module)</li>
+          <li>Visually distinct from module assessment path</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click BI product card</span>
+    </div>
+
+    <!-- BI Product Home -->
+    <div class="flow-node node-bi" style="width:340px;">
+      <div class="flow-node-title">BI Product Home</div>
+      <div class="flow-node-screen">§7.3</div>
+      <div class="flow-node-body">
+        Gateway for each BI profile.
+        <ul>
+          <li>Stage Map (hero component): sequential, unlockable stages</li>
+          <li>Stage states: Locked (muted, lock icon, prerequisite visible) · Available (highlighted, actionable) · Completed (check, results accessible)</li>
+          <li>Cumulative intelligence: completed stages remain expanded</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">How to unlock?</span>
+    </div>
+
+    <!-- Decision: Earn vs Purchase -->
+    <div class="decision-node" style="width:280px;">
+      <div class="flow-node-title">Dual Access Decision</div>
+      <div class="flow-node-screen">§7.2</div>
+      <div class="flow-node-body" style="margin-top:6px;font-size:11px;color:var(--text-muted);">
+        Two parallel paths to BI access
+      </div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <!-- Branch: Earn vs Purchase -->
+  <div class="branch-container">
+    <!-- EARN PATH -->
+    <div class="branch">
+      <div class="branch-label branch-label-left">PATH 1 — EARN</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-action" style="width:100%;max-width:360px;">
+        <div class="flow-node-title">Complete Prerequisite Modules</div>
+        <div class="flow-node-screen">§7.2 Path 1</div>
+        <div class="flow-node-body">
+          Complete prerequisite modules to unlock BI stages progressively.
+          <ul>
+            <li>Each BI stage has specific module prerequisites</li>
+            <li>Stages unlock sequentially as prerequisites are met</li>
+            <li>Partial data produces partial intelligence</li>
+            <li>More stages = richer results</li>
+          </ul>
+        </div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:360px;">
+        <div class="flow-node-title">Stage Unlocked → Take BI Questions</div>
+        <div class="flow-node-body">
+          Each BI profile has its own questions, stages, and scoring independent from module assessments. Stage transitions should feel meaningful and rewarding.
+        </div>
+      </div>
+    </div>
+
+    <!-- PURCHASE PATH -->
+    <div class="branch">
+      <div class="branch-label branch-label-right">PATH 2 — PURCHASE</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-upgrade" style="width:100%;max-width:360px;">
+        <div class="flow-node-title">Purchase BI Profile</div>
+        <div class="flow-node-screen">§7.2 Path 2</div>
+        <div class="flow-node-body">
+          Buy individual BI profiles as standalone products.
+          <ul>
+            <li>Individual: $25 per BI profile</li>
+            <li>Bundle: $125 for all 7 profiles</li>
+            <li>Bypasses module prerequisites</li>
+            <li>All stages available immediately</li>
+          </ul>
+        </div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:360px;">
+        <div class="flow-node-title">Full Access → Take All BI Questions</div>
+        <div class="flow-node-body">
+          All stages unlocked. Complete questions per stage to build cumulative intelligence profile.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <!-- Merge -->
+  <div class="sequence">
+    <div class="merge-node" style="width:340px;">Both paths converge → BI Results</div>
+    <div class="seq-arrow"></div>
+    <div class="flow-node node-result" style="width:340px;">
+      <div class="flow-node-title">BI Results (Cumulative)</div>
+      <div class="flow-node-screen">§7.3–7.5</div>
+      <div class="flow-node-body">
+        Stage results build cumulatively. Completed stages remain expanded.
+        <ul>
+          <li>BI scores do NOT feed into module scores or overall P93 score</li>
+          <li>Results appear only on BI pages</li>
+          <li>Exception: Moenio Nudge can blend BI results into recommendations</li>
+          <li>Self-contained architecture: branches from P93 root</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visual mandate callout -->
+  <div class="rule-box">
+    <div class="rule-box-title" style="color:var(--teal);">🎨 BI Visual Differentiation Mandate (§7.4)</div>
+    <ul class="rule-list">
+      <li>Distinct visual identity: differentiated color palette, layout pattern, or visual treatment from module assessment path</li>
+      <li>Stage progression emphasis: Stage Map is hero component with clear locked/available/completed states</li>
+      <li>NO tier-gating language or patterns: no tier upgrade CTAs, no tier badges on BI pages</li>
+      <li>Cumulative intelligence display: completed stages remain expanded, building a growing intelligence profile</li>
+    </ul>
+  </div>
+
+  <div class="edge-callout">
+    <div class="edge-callout-title">Critical Rule: BI ≠ Tier-Gated</div>
+    <div class="edge-callout-body">
+      BI access is governed solely by module completion prerequisites (earn) or optional purchase ($25/$125). BI pages must NOT display tier upgrade CTAs, tier badges, or any visual element implying content is restricted by subscription tier. This is a design mandate (§7.4).
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 4: TIER UPGRADE FLOW
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow4" class="flow-panel">
+  <div class="flow-panel-title">Flow 4: Tier Upgrade Flow</div>
+  <div class="flow-panel-ref">Blueprint §16.4, §13.1, §5.3.1, §5.6.2</div>
+  <div class="flow-panel-desc">The upgrade path from Essential (free) through Professional ($115) to Comprehensive ($175). Same structure, different depth — scores are never locked. Intelligence depth and assessment question count increase with tier.</div>
+
+  <div class="sequence">
+    <!-- Current Tier -->
+    <div class="flow-node node-entry" style="width:360px;">
+      <div class="flow-node-title">Settings → Tier Management</div>
+      <div class="flow-node-screen">§16.4</div>
+      <div class="flow-node-body">
+        <ul>
+          <li>Current tier display: name + badge (Essential / Professional / Comprehensive)</li>
+          <li>Upgrade CTA if not Comprehensive: tier comparison summary</li>
+          <li>Tier history: dates of tier changes</li>
+          <li>Payment: v1 placeholder "Upgrade → Contact us"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">"Upgrade" CTA clicked</span>
+    </div>
+
+    <!-- Decision -->
+    <div class="decision-node" style="width:300px;">
+      <div class="flow-node-title">Current Tier?</div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <div class="branch-container">
+    <!-- Essential → Professional -->
+    <div class="branch">
+      <div class="branch-label branch-label-left">ESSENTIAL → PROFESSIONAL</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-upgrade" style="width:100%;max-width:380px;">
+        <div class="flow-node-title">Upgrade to Professional ($115)</div>
+        <div class="flow-node-body">
+          What changes:
+          <ul>
+            <li>Assessment depth: more questions per module (subset of Comprehensive)</li>
+            <li>Moenio Lens: 2 → 5 categories (Advisor Lens: 2→5 of 6 · Peer Intelligence: 2→5 of 7)</li>
+            <li>Scores remain unlocked (same structure, deeper content)</li>
+            <li>No scores change — existing data preserved</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional → Comprehensive -->
+    <div class="branch">
+      <div class="branch-label branch-label-right">PROFESSIONAL → COMPREHENSIVE</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-upgrade" style="width:100%;max-width:380px;">
+        <div class="flow-node-title">Upgrade to Comprehensive ($175)</div>
+        <div class="flow-node-body">
+          What changes:
+          <ul>
+            <li>Assessment depth: all questions (25–40 per module)</li>
+            <li>Moenio Lens: 5 → all categories (Advisor Lens: 5→6 of 6 · Peer Intelligence: 5→7 of 7)</li>
+            <li>Comprehensive Report toggle unlocked in Module Results</li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <div class="sequence">
+    <div class="merge-node" style="width:360px;">Payment processed → Tier updated</div>
+    <div class="seq-arrow"></div>
+
+    <div class="flow-node node-result" style="width:360px;">
+      <div class="flow-node-title">Post-Upgrade State</div>
+      <div class="flow-node-screen">§13.1</div>
+      <div class="flow-node-body">
+        <ul>
+          <li>Existing scores preserved — no data loss</li>
+          <li>New tier-appropriate content appears immediately</li>
+          <li>Previously completed modules: advisor can retake to get deeper questions</li>
+          <li>Tier-locked sections show new content (not re-gated)</li>
+          <li>One upgrade prompt per section, not per item</li>
+          <li>No lock icons on individual scores, IAs, or DPs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tier behavior table -->
+  <table class="state-table">
+    <thead>
+      <tr><th>Feature</th><th>Essential (Free)</th><th>Professional ($115)</th><th>Comprehensive ($175)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:600;">Questions per Module</td>
+        <td>10–15</td>
+        <td>Subset (varies)</td>
+        <td>All (25–40)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Scores</td>
+        <td>All visible, never locked</td>
+        <td>All visible, never locked</td>
+        <td>All visible, never locked</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Moenio Lens — Advisor Lens</td>
+        <td>2 of 6 categories</td>
+        <td>5 of 6 categories</td>
+        <td>6 of 6 categories</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Moenio Lens — Peer Intelligence</td>
+        <td>2 of 7 categories</td>
+        <td>5 of 7 categories</td>
+        <td>7 of 7 categories</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Comprehensive Report Toggle</td>
+        <td>Not available</td>
+        <td>Not available</td>
+        <td>Expanded analysis</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Treatment Panels</td>
+        <td>Full (5 types)</td>
+        <td>Full (5 types)</td>
+        <td>Full (5 types)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="edge-callout">
+    <div class="edge-callout-title">Critical Rule: Scores Never Locked (§13.1)</div>
+    <div class="edge-callout-body">
+      <strong>Tier-locked content rule:</strong> Scores are always visible at every tier. Intelligence depth varies. One upgrade prompt per section, not per item. No lock icons on individual scores, IAs, or DPs. The tier system controls depth of analysis, not access to scores.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 5: RETAKE / REASSESSMENT FLOW
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow5" class="flow-panel">
+  <div class="flow-panel-title">Flow 5: Retake / Reassessment Flow</div>
+  <div class="flow-panel-ref">Blueprint §5.9.2, §5.2, §5.3, §5.5, §4.4.2</div>
+  <div class="flow-panel-desc">When an advisor retakes a previously completed module. The assessment is fresh (no pre-filled answers), new results replace previous ones, the Three-Act Reveal fires again, and all downstream calculations cascade.</div>
+
+  <div class="sequence">
+    <!-- Entry -->
+    <div class="flow-node node-entry" style="width:340px;">
+      <div class="flow-node-title">Module Home (Retake State)</div>
+      <div class="flow-node-screen">§5.9.2, §5.2</div>
+      <div class="flow-node-body">
+        Module Home shows retake variant:
+        <ul>
+          <li>CTA changes: "Retake Assessment" (not "Start")</li>
+          <li>Previous score shown: "Your current score: [X]"</li>
+          <li>Note: "Retaking will update your results"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">"Retake Assessment" clicked</span>
+    </div>
+
+    <!-- Assessment -->
+    <div class="flow-node node-action" style="width:340px;">
+      <div class="flow-node-title">Assessment Questions (Fresh)</div>
+      <div class="flow-node-screen">§5.9.2</div>
+      <div class="flow-node-body">
+        Identical to first-time flow:
+        <ul>
+          <li>All questions presented fresh</li>
+          <li>No pre-filled answers from previous attempt</li>
+          <li>Same question count per tier</li>
+          <li>Same save/resume behavior</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Final question submitted</span>
+    </div>
+
+    <!-- Completion -->
+    <div class="flow-node node-result" style="width:340px;">
+      <div class="flow-node-title">Completion + Three-Act Reveal <span class="ai-badge">AI GENERATED</span></div>
+      <div class="flow-node-screen">§5.9.2, §5.5</div>
+      <div class="flow-node-body">
+        <ul>
+          <li>New Module Results replace previous results</li>
+          <li>Three-Act Reveal fires again (Mirror → Map → Path)</li>
+          <li>New score + band shown</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">All downstream recalculations</span>
+    </div>
+
+    <!-- Cascade -->
+    <div class="flow-node node-end" style="width:340px;">
+      <div class="flow-node-title">Score Cascade &amp; Downstream Updates</div>
+      <div class="flow-node-screen">§5.9.2, §4.4.2</div>
+      <div class="flow-node-body">
+        All downstream recalculates:
+        <ul>
+          <li>Area scores recalculated</li>
+          <li>Overall score recalculated</li>
+          <li>Edge/Exposure lists recalculated (using most recent scores)</li>
+          <li>Dashboard Executive Summary components update</li>
+          <li>All updates on next page load (no real-time sync in v1)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <!-- Trends comparison -->
+  <div class="rule-box">
+    <div class="rule-box-title" style="color:var(--green);">📊 Trends Impact — Before/After Display (§4.4.2)</div>
+    <ul class="rule-list">
+      <li>Score Progression: new data point added to timeline. Both original and new scores visible.</li>
+      <li>Before/After card: module name, original score + date, new score + date, delta with direction arrow</li>
+      <li>Module Score Grid: shows current (most recent) score. Previous score via hover/tooltip: "78 (was 72)"</li>
+      <li>Edge/Exposure lists: recalculated using most recent scores. Previous positions not shown.</li>
+    </ul>
+  </div>
+
+  <!-- State table -->
+  <table class="state-table">
+    <thead>
+      <tr><th>Data Element</th><th>Before Retake</th><th>After Retake</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:600;">Module Score</td>
+        <td>Original score</td>
+        <td>New score (replaces original)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Module Results</td>
+        <td>Original treatment panels + content</td>
+        <td>New treatment panels + content (replaces)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Area Score</td>
+        <td>Calculated with original</td>
+        <td>Recalculated with new score</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Overall Score</td>
+        <td>Calculated with original</td>
+        <td>Recalculated with new score</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Edge/Exposure</td>
+        <td>Ranked with original</td>
+        <td>Re-ranked with new (previous positions not shown)</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Trends</td>
+        <td>Single data point</td>
+        <td>Two data points + Before/After card + delta</td>
+      </tr>
+      <tr>
+        <td style="font-weight:600;">Three-Act Reveal</td>
+        <td>Previously completed</td>
+        <td>Fires again with new data</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="edge-callout">
+    <div class="edge-callout-title">Edge Cases — Retake (§5.9)</div>
+    <div class="edge-callout-body">
+      <strong>Save &amp; Resume during retake:</strong> Same behavior as first-time — auto-save after each question, resume at next unanswered.<br>
+      <strong>Abandon retake mid-way:</strong> Module stays "In Progress" until completed. Previous completed score still in effect for all calculations until new submission.<br>
+      <strong>Tier upgrade between takes:</strong> Retake uses current tier's question set (more questions available if upgraded).<br>
+      <strong>Band changes:</strong> If retake moves advisor between bands, all band-adaptive language regenerates across Module Results.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 6: DASHBOARD NAVIGATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow6" class="flow-panel">
+  <div class="flow-panel-title">Flow 6: Dashboard</div>
+  <div class="flow-panel-ref">Blueprint §3, §3.4–3.6, §12.1</div>
+  <div class="flow-panel-desc">The advisor's primary landing page. Three-layer structure: Layer 1 (Welcome &amp; Orientation), Layer 2 (Executive Summary), Layer 3 (Detail &amp; Action). Each layer contains clickable elements that route to other sections of the platform.</div>
+
+  <div class="sequence">
+    <!-- Entry -->
+    <div class="flow-node node-entry" style="width:360px;">
+      <div class="flow-node-title">Dashboard Landing</div>
+      <div class="flow-node-screen">§3 — Layer 1: Welcome &amp; Orientation</div>
+      <div class="flow-node-body">
+        Personalized greeting, tier badge, progress ring (modules completed / 17).
+        <ul>
+          <li>Moenio Nudge: contextual next-step prompt (Layer 1)</li>
+          <li>Updates on next page load after any module completion</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Scroll down</span>
+    </div>
+
+    <div class="flow-node node-entry" style="width:360px;">
+      <div class="flow-node-title">Executive Summary</div>
+      <div class="flow-node-screen">§3 — Layer 2</div>
+      <div class="flow-node-body">
+        Overall score, area scores, Edge &amp; Exposure (top/bottom 3 IAs), Verdict synthesis.
+        <ul>
+          <li>Area Assessment Map: 6 areas, color-coded</li>
+          <li>Verdict: 5 templates (120–180 words), selected by score profile</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Scroll down</span>
+    </div>
+
+    <div class="flow-node node-action" style="width:360px;">
+      <div class="flow-node-title">Detail &amp; Action Layer</div>
+      <div class="flow-node-screen">§3 — Layer 3</div>
+      <div class="flow-node-body">
+        Module Cards grid (17 modules with status/score), Quick Win prompt, new intelligence feed.
+        <ul>
+          <li>Cascade Reveal on first visit after module completion (~300ms intervals)</li>
+          <li>Quick Win → Module Cards → Moenio Nudge (staggered)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Advisor clicks an element</span>
+    </div>
+
+    <!-- Decision: where do they go? -->
+    <div class="decision-node" style="width:300px;">
+      <div class="flow-node-title">Where Does the Click Go?</div>
+      <div class="flow-node-screen">§12.1</div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <div class="branch-container" style="gap:16px;">
+    <div class="branch">
+      <div class="branch-label branch-label-left">AREA MAP CLICK</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">→ My Areas → Area Page</div>
+        <div class="flow-node-screen">§6.3</div>
+        <div class="flow-node-body">Click area in Area Assessment Map → navigates to that area's detail page.</div>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="branch-label branch-label-center">MODULE CARD / QUICK WIN</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">→ Assessments → Module</div>
+        <div class="flow-node-screen">§5.2</div>
+        <div class="flow-node-body">Click Assessment Card or Quick Win CTA → navigates to Module Home (or Module Results if complete).</div>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="branch-label branch-label-right">STRENGTHS / GAPS "SEE ALL"</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">→ My Results</div>
+        <div class="flow-node-screen">§4</div>
+        <div class="flow-node-body">Click "see all" on Edge or Exposure → navigates to My Results Strengths &amp; Gaps tab.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edge-callout">
+    <div class="edge-callout-title">Edge Cases — Dashboard (§3.6, §13)</div>
+    <div class="edge-callout-body">
+      <strong>Pre-first-assessment:</strong> Page structure with guidance text. Exec Summary shows ranking placeholder. Layer 3 shows Module Cards with start CTAs. Quick Win, Moenio Nudge hidden until first module complete. (§13.1)<br>
+      <strong>Cascade interruption:</strong> Scroll during reveal → remaining items complete instantly. Navigate away → marked complete, no re-animation on return. (§3.6.1)<br>
+      <strong>Refresh:</strong> No real-time sync in v1. Updates on next page load after module completion. (§4.6)
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 7: MY RESULTS NAVIGATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow7" class="flow-panel">
+  <div class="flow-panel-title">Flow 7: My Results</div>
+  <div class="flow-panel-ref">Blueprint §4, §4.1–4.6, §12.1</div>
+  <div class="flow-panel-desc">Comprehensive data dashboard with all scores, benchmarks, and analytical views. Three horizontal tabs at top of content area. Requires at least 1 completed module. Clicking any module score navigates out to Module Results.</div>
+
+  <div class="sequence">
+    <div class="flow-node node-entry" style="width:360px;">
+      <div class="flow-node-title">My Results Landing</div>
+      <div class="flow-node-screen">§4, §4.1</div>
+      <div class="flow-node-body">
+        Horizontal tabs at top. Default tab: Score Overview (broadest view, works at all tiers).
+        <ul>
+          <li>Tab 1: Score Overview</li>
+          <li>Tab 2: Strengths &amp; Gaps</li>
+          <li>Tab 3: Trends</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Advisor selects a tab</span>
+    </div>
+
+    <div class="decision-node" style="width:280px;">
+      <div class="flow-node-title">Which Tab?</div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <div class="branch-container" style="gap:16px;">
+    <!-- Score Overview -->
+    <div class="branch">
+      <div class="branch-label branch-label-left">SCORE OVERVIEW</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Score Overview</div>
+        <div class="flow-node-screen">§4.2</div>
+        <div class="flow-node-body">
+          All module scores, area scores, overall score. Module Score Grid shows current scores with band indicators.
+          <ul>
+            <li>Click any module score → Module Results (§12.1)</li>
+            <li>Reassessment: "78 (was 72)" via hover/tooltip</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strengths & Gaps -->
+    <div class="branch">
+      <div class="branch-label branch-label-center">STRENGTHS &amp; GAPS</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Edge &amp; Exposure Rankings</div>
+        <div class="flow-node-screen">§4.3</div>
+        <div class="flow-node-body">
+          Edge IAs (highest-scoring) and Exposure IAs (lowest-scoring) across all completed modules.
+          <ul>
+            <li>Ranked by raw score (desc for Edge, asc for Exposure)</li>
+            <li>Ties broken by most recent completion date (§4.3.1)</li>
+            <li>Click an IA → IA Page (§5.7)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trends -->
+    <div class="branch">
+      <div class="branch-label branch-label-right">TRENDS</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Score Progression &amp; Before/After</div>
+        <div class="flow-node-screen">§4.4</div>
+        <div class="flow-node-body">
+          Score Progression timeline, Before/After cards (reassessment deltas), Area Trend Lines.
+          <ul>
+            <li>Single point: "First Assessment" label, no trend line (§4.4.1)</li>
+            <li>Reassessment: new data point + Before/After card with delta arrow (§4.4.2)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edge-callout">
+    <div class="edge-callout-title">Edge Cases — My Results (§4.5, §4.6, §13)</div>
+    <div class="edge-callout-body">
+      <strong>Pre-first-assessment:</strong> Page structure visible with empty state guidance. CTA to begin first assessment. Requires ≥1 completed module. (§13.1)<br>
+      <strong>Single module complete:</strong> Score Progression shows single point with "First Assessment" label. No trend line. Before/After hidden. Area Trend Lines show single dot per area with data. (§4.4.1)<br>
+      <strong>Refresh:</strong> Updates on next page load after module completion. No real-time sync in v1. (§4.6)
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 8: ASSESSMENTS NAVIGATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow8" class="flow-panel">
+  <div class="flow-panel-title">Flow 8: Assessments</div>
+  <div class="flow-panel-ref">Blueprint §5, §5.1–5.7, §12.1</div>
+  <div class="flow-panel-desc">Where advisors take assessments and review intelligence results. All 17 modules follow the same pattern. Entry is the Module List View. The advisor selects a module and navigates through a multi-screen path that varies by module status (Not Started, In Progress, Complete).</div>
+
+  <div class="sequence">
+    <div class="flow-node node-entry" style="width:360px;">
+      <div class="flow-node-title">Module List View</div>
+      <div class="flow-node-screen">§5.1</div>
+      <div class="flow-node-body">
+        Landing page when advisor clicks "Assessments" in nav. All 17 modules organized by area.
+        <ul>
+          <li>Status indicators: Not Started · In Progress · Complete (§5.1.2)</li>
+          <li>Priority ranking order from onboarding applied</li>
+          <li>Area groupings visible</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click a module</span>
+    </div>
+
+    <div class="decision-node" style="width:300px;">
+      <div class="flow-node-title">Module Status?</div>
+      <div class="flow-node-screen">§5.1.2</div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <div class="branch-container" style="gap:16px;">
+    <!-- Not Started — First-Time Entry -->
+    <div class="branch">
+      <div class="branch-label branch-label-left">NOT STARTED (First-Time)</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-action" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Direct to Questions</div>
+        <div class="flow-node-screen">§10.3, §5.3</div>
+        <div class="flow-node-body">
+          First-time entry skips Module Home — advisor goes straight to the first question (§10.3). One question per screen → Completion Screen → "View Your Results."
+        </div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Module Results + Three-Act Reveal <span class="ai-badge">AI GENERATED</span></div>
+        <div class="flow-node-screen">§5.4, §5.5</div>
+        <div class="flow-node-body">
+          9-section layout. Mirror → Map → Path reveal. IAs ordered by Gap Priority.
+        </div>
+      </div>
+    </div>
+
+    <!-- Not Started — Returning Entry -->
+    <div class="branch">
+      <div class="branch-label branch-label-left">NOT STARTED (Returning)</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-action" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Module Home (Gateway)</div>
+        <div class="flow-node-screen">§5.2</div>
+        <div class="flow-node-body">
+          Returning advisor (has completed other modules) sees Module Home with overview, what it measures, CTA: "Start Assessment."
+        </div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-action" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Questions → Completion</div>
+        <div class="flow-node-screen">§5.3</div>
+        <div class="flow-node-body">One question per screen → Completion Screen → "View Your Results"</div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Module Results + Three-Act Reveal <span class="ai-badge">AI GENERATED</span></div>
+        <div class="flow-node-screen">§5.4, §5.5</div>
+        <div class="flow-node-body">
+          9-section layout. Mirror → Map → Path reveal. IAs ordered by Gap Priority.
+        </div>
+      </div>
+    </div>
+
+    <!-- In Progress -->
+    <div class="branch">
+      <div class="branch-label branch-label-center">IN PROGRESS</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-action" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Resume at Next Unanswered</div>
+        <div class="flow-node-screen">§5.9.1</div>
+        <div class="flow-node-body">
+          Auto-saved progress. Resumes at next unanswered question. Shows "12 of 30 answered."
+        </div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-action" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Continue Questions → Completion</div>
+        <div class="flow-node-screen">§5.3</div>
+        <div class="flow-node-body">Same flow as Not Started from the resume point onward.</div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Module Results + Three-Act Reveal <span class="ai-badge">AI GENERATED</span></div>
+        <div class="flow-node-screen">§5.4, §5.5</div>
+        <div class="flow-node-body">Same 9-section layout and reveal.</div>
+      </div>
+    </div>
+
+    <!-- Complete -->
+    <div class="branch">
+      <div class="branch-label branch-label-right">COMPLETE</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Module Results (View)</div>
+        <div class="flow-node-screen">§5.4</div>
+        <div class="flow-node-body">
+          Full results. No re-animation. All 9 sections in final state.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:20px;"></div>
+
+  <!-- Sub-navigation from Module Results -->
+  <div class="rule-box">
+    <div class="rule-box-title" style="color:var(--purple);">From Module Results — Where Can the Advisor Go? (§5.4–5.7, §12.1)</div>
+    <ul class="rule-list">
+      <li>Click an Insight Area → IA Page (§5.7) — deep-dive on that IA's data points and treatments</li>
+      <li>Expand a data point → inline Data Point detail (§5.7)</li>
+      <li>Comprehensive Report toggle → expanded analysis (Comprehensive tier only, §5.4.3)</li>
+      <li>Moenio Lens <span class="ai-marker">AI</span> section → competitive intelligence (tier-gated: E=2/2, P=5/5, C=6/7 — Advisor Lens 6 categories, Peer Intelligence 7 categories; §5.6.2)</li>
+      <li>Next Module CTA → Module Home for next ranked module (§12.2)</li>
+      <li>Module Home for this module → "Retake Assessment" CTA (§5.9.2)</li>
+      <li>Left nav → any other section</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 9: MY AREAS NAVIGATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow9" class="flow-panel">
+  <div class="flow-panel-title">Flow 9: My Areas</div>
+  <div class="flow-panel-ref">Blueprint §6, §6.1–6.6, §12.1</div>
+  <div class="flow-panel-desc">Strategic view across the 6 practice areas. Visible from first login; content populates progressively. The advisor drills from the area landing page into individual area pages, then into module-level results. My Areas ≠ Dashboard — this is per-area strategic analysis with cross-module synthesis (§6.6).</div>
+
+  <div class="sequence">
+    <div class="flow-node node-entry" style="width:360px;">
+      <div class="flow-node-title">My Areas Landing Page</div>
+      <div class="flow-node-screen">§6.1</div>
+      <div class="flow-node-body">
+        6 area cards: PF, FT, IM, PI, SC, FV. Each shows area name, score (if available), module completion count.
+        <ul>
+          <li>Cards with completed modules show area score + band</li>
+          <li>Cards with no data show "No modules completed yet" + CTA</li>
+          <li>Area Card States defined in §6.1.2</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click an area card</span>
+    </div>
+
+    <div class="flow-node node-action" style="width:360px;">
+      <div class="flow-node-title">Area Page</div>
+      <div class="flow-node-screen">§6.3</div>
+      <div class="flow-node-body">
+        Area-level strategic analysis with cross-module synthesis.
+        <ul>
+          <li>Area score + band</li>
+          <li>Module Gallery: grid of module cards (name, score, band, status — clickable) (DD-1)</li>
+          <li>Strength Narrative (50–75 words each)</li>
+          <li>Growth Opportunities (75–100 words each)</li>
+          <li>Module Priority Assessment (which module to do next)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click a module in the gallery</span>
+    </div>
+
+    <div class="flow-node node-result" style="width:360px;">
+      <div class="flow-node-title">→ Module Results</div>
+      <div class="flow-node-screen">§5.4, §12.1</div>
+      <div class="flow-node-body">
+        Navigates to the selected module's full results (same Module Results screen as Assessments flow).
+        <ul>
+          <li>If module not yet complete → navigates to Module Home instead</li>
+          <li>From Module Results → can navigate to IA Pages, retake, or back via left nav</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="edge-callout">
+    <div class="edge-callout-title">Edge Cases — My Areas (§6.4–6.5, §13)</div>
+    <div class="edge-callout-body">
+      <strong>FV Exception (§6.4):</strong> FV (Fees, Value &amp; Positioning) has exactly 1 module. Area page still exists. No cross-module analysis. Strength Narrative and Growth Opportunities are module-specific. Module Priority Assessment replaced with "Related areas to explore" linking to PF and PI.<br>
+      <strong>Progressive Feedback (§6.5):</strong> Area intelligence refreshes with each module completion within the area. Each new module adds cross-module synthesis depth.<br>
+      <strong>Pre-first-assessment:</strong> All 6 area cards visible in empty state with guidance. Structure shown, no data.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 10: BUSINESS INTELLIGENCE NAVIGATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow10" class="flow-panel">
+  <div class="flow-panel-title">Flow 10: Business Intelligence</div>
+  <div class="flow-panel-ref">Blueprint §7, §7.1–7.6</div>
+  <div class="flow-panel-desc">Self-contained strategic assessment products with stage-based progression. 7 BI profiles, each with own questions and scoring independent from the module (BARS) track. Dual Access Model: Earn or Purchase. NOT tier-gated. Visually distinct from the module assessment path (§7.4).</div>
+
+  <div class="sequence">
+    <div class="flow-node node-bi" style="width:360px;">
+      <div class="flow-node-title">BI Overview Page</div>
+      <div class="flow-node-screen">§7.1</div>
+      <div class="flow-node-body">
+        All 7 BI product cards: PP, CR, COI, RT, DQ, HH, NG.
+        <ul>
+          <li>Each card: product name, stage count, access status</li>
+          <li>Visually distinct from module assessment path (§7.4)</li>
+          <li>BI branches from P93 root (not from area/module) (§7.5)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click a BI product card</span>
+    </div>
+
+    <div class="flow-node node-bi" style="width:360px;">
+      <div class="flow-node-title">BI Product Home</div>
+      <div class="flow-node-screen">§7.3</div>
+      <div class="flow-node-body">
+        Hero component: Stage Map showing sequential stages.
+        <ul>
+          <li>Locked stages: muted, lock icon, prerequisite visible</li>
+          <li>Available stages: highlighted, actionable</li>
+          <li>Completed stages: check, results accessible, remain expanded</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click an available stage</span>
+    </div>
+
+    <div class="decision-node" style="width:300px;">
+      <div class="flow-node-title">Stage Access?</div>
+      <div class="flow-node-screen">§7.2</div>
+    </div>
+  </div>
+
+  <div style="height:16px;"></div>
+
+  <div class="branch-container" style="gap:16px;">
+    <!-- Locked -->
+    <div class="branch">
+      <div class="branch-label" style="background:rgba(100,116,139,0.06);color:#64748b;">LOCKED</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-start" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Prerequisite Not Met</div>
+        <div class="flow-node-body">
+          Shows which module(s) must be completed to unlock this stage.
+          <ul>
+            <li>Click prerequisite → Module Home (§12.1)</li>
+            <li>Or purchase to bypass (§7.2 Path 2)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Available -->
+    <div class="branch">
+      <div class="branch-label branch-label-left">AVAILABLE</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-action" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">BI Stage Questions</div>
+        <div class="flow-node-body">
+          Own questions, independent from module assessments. Stage-specific scoring.
+        </div>
+      </div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">Stage Results (Cumulative)</div>
+        <div class="flow-node-body">
+          Intelligence builds cumulatively across completed stages. Completed stages remain expanded.
+        </div>
+      </div>
+    </div>
+
+    <!-- Completed -->
+    <div class="branch">
+      <div class="branch-label branch-label-right">COMPLETED</div>
+      <div class="seq-arrow"></div>
+      <div class="flow-node node-result" style="width:100%;max-width:340px;">
+        <div class="flow-node-title">View Stage Results</div>
+        <div class="flow-node-body">
+          Results remain accessible and expanded. Cumulative intelligence visible. Can review any time.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edge-callout">
+    <div class="edge-callout-title">Critical Rules — BI (§7.4, §7.5)</div>
+    <div class="edge-callout-body">
+      <strong>NOT tier-gated:</strong> No tier upgrade CTAs, no tier badges on BI pages. Access governed by module prerequisites + optional purchase only. (§7.4)<br>
+      <strong>Self-contained:</strong> BI scores do NOT feed into module scores or overall P93 score. Results appear only on BI pages. (§7.5)<br>
+      <strong>Exception:</strong> Moenio Nudge (Dashboard) can reference BI results after completion — this is a reference, not a display. (§7.5)<br>
+      <strong>Pricing:</strong> Individual $25 per profile · Bundle $125 for all 7.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FLOW 11: WHAT CLIENTS ARE ASKING NAVIGATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="flow11" class="flow-panel">
+  <div class="flow-panel-title">Flow 11: What Clients Are Asking</div>
+  <div class="flow-panel-ref">Blueprint §8, §8.1–8.2</div>
+  <div class="flow-panel-desc">Lead generation feature with its own nav section. v1 shows Coming Soon state only — a placeholder explanatory page with a notification CTA. Future versions will add periodic topical question sets with peer comparison.</div>
+
+  <div class="sequence">
+    <div class="flow-node node-end" style="width:360px;">
+      <div class="flow-node-title">Nav Item: "What Clients Are Asking"</div>
+      <div class="flow-node-screen">§8.1</div>
+      <div class="flow-node-body">
+        Visible in left nav with "Coming Soon" badge. Always present, all tiers.
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">Click nav item</span>
+    </div>
+
+    <div class="flow-node node-start" style="width:360px;">
+      <div class="flow-node-title">Explanatory Page (v1)</div>
+      <div class="flow-node-screen">§8.1</div>
+      <div class="flow-node-body">
+        Placeholder content:
+        <ul>
+          <li>Feature description (2–3 sentences)</li>
+          <li>Preview of format: periodic question sets</li>
+          <li>Value proposition: compare yourself to peers on current topics</li>
+          <li>CTA: "Notify me when available"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="seq-arrow" style="position:relative;">
+      <span class="seq-arrow-label">"Notify me" clicked</span>
+    </div>
+
+    <div class="flow-node node-entry" style="width:360px;">
+      <div class="flow-node-title">Notification Registered</div>
+      <div class="flow-node-body">
+        Advisor's email stored for future notification. CTA changes to "You'll be notified" confirmation state. No further action in v1.
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box">
+    <div class="rule-box-title" style="color:var(--rose);">🔮 Future Functionality (§8.2)</div>
+    <ul class="rule-list">
+      <li>Periodic topical question sets (10–15 questions) on current topics</li>
+      <li>Same one-per-screen format as module assessments</li>
+      <li>Peer comparison on topic scores</li>
+      <li>Rotates periodically with new topics</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+function showFlow(id) {
+  document.querySelectorAll('.flow-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.flow-nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
