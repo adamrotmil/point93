@@ -1,0 +1,2557 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Point93 / Screens</title>
+          <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+          <style>
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --border: #d1d5de;
+  --text: #1a1d27;
+  --text-muted: #5c6478;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.08);
+  --green: #059669;
+  --green-bg: rgba(5, 150, 105, 0.08);
+  --amber: #d97706;
+  --amber-bg: rgba(217, 119, 6, 0.08);
+  --purple: #7c3aed;
+  --purple-bg: rgba(124, 58, 237, 0.08);
+  --rose: #e11d48;
+  --rose-bg: rgba(225, 29, 72, 0.08);
+  --teal: #0d9488;
+  --teal-bg: rgba(13, 148, 136, 0.08);
+  --orange: #ea580c;
+  --orange-bg: rgba(234, 88, 12, 0.08);
+  --blue-bg: rgba(37, 99, 235, 0.06);
+  --gray-700: #64748b;
+  --gray-bg: rgba(100, 116, 139, 0.08);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 4px 12px rgba(17, 24, 39, 0.05);
+  --shadow-md: 0 12px 24px rgba(17, 24, 39, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 26%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.capture-root {
+  width: 1920px;
+  padding: 56px 72px 88px;
+}
+
+.page-cover {
+  margin-bottom: 40px;
+  padding: 36px 40px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-md);
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-cover h1 {
+  margin: 0 0 12px;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.page-cover p {
+  max-width: 1040px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.cover-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.section-block {
+  margin-bottom: 42px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.section-header p {
+  max-width: 920px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.count-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.card-grid-2,
+.card-grid-3,
+.mini-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.card-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mini-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.doc-card,
+.panel-card,
+.token-card,
+.component-card {
+  padding: 20px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-card h3,
+.panel-card h3,
+.token-card h3,
+.component-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.doc-card p,
+.panel-card p,
+.token-card p,
+.component-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.meta-line {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.list li + li {
+  margin-top: 8px;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.swatch {
+  overflow: hidden;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 16px;
+  background: white;
+}
+
+.swatch-color {
+  height: 72px;
+}
+
+.swatch-info {
+  padding: 12px;
+}
+
+.swatch-info strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.swatch-info span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.type-sample {
+  padding: 16px 18px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 16px;
+  background: white;
+}
+
+.type-name {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.type-meta {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.scale-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scale-table th,
+.scale-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+  text-align: left;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.scale-table th {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scale-table tr:last-child td {
+  border-bottom: none;
+}
+
+.token-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.token-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.component-preview {
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  border: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.component-meta {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.screen-section {
+  margin-bottom: 48px;
+}
+
+.screen-block + .screen-block {
+  margin-top: 28px;
+}
+
+.screen-meta {
+  margin-bottom: 12px;
+}
+
+.screen-meta h3 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.screen-meta p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.app-frame {
+  width: 1440px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 24px;
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.desktop-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: 960px;
+}
+
+.sidebar {
+  width: 220px;
+  background: var(--surface-2);
+  border-right: 1px solid rgba(209, 213, 222, 0.9);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-logo {
+  padding: 0 18px 16px;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nav-item.active {
+  padding-left: 15px;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border-left: 3px solid var(--accent);
+  font-weight: 700;
+}
+
+.nav-item .badge {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--amber-bg);
+  color: var(--amber);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.nav-item .dot {
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 18px;
+  border-top: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.sidebar-footer .label {
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.main {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.content-width {
+  width: 100%;
+  max-width: 1188px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-title {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.page-subtitle,
+.meta,
+.subtle {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.meta {
+  font-weight: 600;
+}
+
+.row,
+.stack,
+.cluster,
+.screen-grid-2,
+.screen-grid-3 {
+  display: flex;
+  gap: 16px;
+}
+
+.stack {
+  flex-direction: column;
+}
+
+.row {
+  align-items: stretch;
+}
+
+.cluster {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.screen-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.screen-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel,
+.surface-card,
+.metric-card,
+.module-card,
+.area-card,
+.bi-card,
+.form-card,
+.question-card,
+.table-card,
+.cta-card {
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 18px;
+  background: white;
+  padding: 18px;
+}
+
+.panel-header {
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-card strong,
+.surface-card strong,
+.module-card strong,
+.area-card strong,
+.bi-card strong,
+.form-card strong,
+.question-card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.score-circle {
+  width: 78px;
+  height: 78px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.score-circle.sm {
+  width: 52px;
+  height: 52px;
+  font-size: 18px;
+  border-width: 2px;
+}
+
+.band-pill,
+.state-pill,
+.tier-pill,
+.voice-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.band-pill.comp {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.band-pill.top {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.band-pill.needs {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.band-pill.risk {
+  background: var(--rose-bg);
+  color: var(--rose);
+}
+
+.state-pill.info {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.state-pill.warn {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.state-pill.neutral {
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+.tier-pill {
+  background: var(--purple-bg);
+  color: var(--purple);
+}
+
+.voice-pill.v1 {
+  background: var(--gray-bg);
+  color: var(--gray-700);
+}
+
+.voice-pill.v2 {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.voice-pill.v3 {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.section-label {
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.treatment {
+  border-left: 4px solid var(--gray-700);
+  border-radius: 16px;
+  background: var(--gray-bg);
+  padding: 16px;
+}
+
+.treatment.v1 {
+  border-left-color: var(--teal);
+  background: var(--teal-bg);
+}
+
+.treatment.v2 {
+  border-left-color: var(--amber);
+  background: var(--amber-bg);
+}
+
+.treatment.v3 {
+  border-left-color: var(--green);
+  background: var(--green-bg);
+}
+
+.lens-card {
+  border: 2px solid var(--amber);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(217, 119, 6, 0.05), rgba(245, 158, 11, 0.08));
+  padding: 20px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button,
+.button-secondary,
+.button-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.button {
+  background: var(--accent);
+  color: white;
+}
+
+.button-secondary {
+  background: var(--teal);
+  color: white;
+}
+
+.button-ghost {
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+  overflow: hidden;
+}
+
+.progress-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+  text-align: left;
+  vertical-align: top;
+  font-size: 12px;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.input,
+.select {
+  padding: 12px 14px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 12px;
+  background: white;
+  font-size: 12px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.toggle {
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  position: relative;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: white;
+}
+
+.toggle.off {
+  background: rgba(209, 213, 222, 0.9);
+}
+
+.toggle.off::after {
+  right: auto;
+  left: 3px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: white;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tab.active {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.question-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 24px;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.answer {
+  padding: 14px 16px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 14px;
+  background: white;
+  font-size: 13px;
+}
+
+.answer.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.stepper {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
+.stepper-line {
+  flex: 1;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+}
+
+.step-node {
+  min-width: 108px;
+  text-align: center;
+}
+
+.step-node .bubble {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 8px;
+  border-radius: 999px;
+  border: 3px solid var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.step-node.complete .bubble {
+  background: var(--teal);
+  color: white;
+}
+
+.step-node.locked {
+  opacity: 0.45;
+}
+
+.timeline {
+  width: 100%;
+  height: 220px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(248,250,252,0.94));
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  padding: 12px;
+}
+
+.note {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.warning {
+  background: var(--amber-bg);
+  color: #8a4a09;
+}
+
+.success {
+  background: var(--green-bg);
+  color: #065f46;
+}
+
+.teal {
+  color: var(--teal);
+}
+
+.teal-card {
+  border-color: rgba(13, 148, 136, 0.28);
+  background: linear-gradient(180deg, rgba(13,148,136,0.05), rgba(255,255,255,1));
+}
+</style>
+        </head>
+        <body>
+          <div class="capture-root">
+            <header class="page-cover">
+  <div class="eyebrow">Point93 mechanical system pass</div>
+  <h1>Point93 / Screens</h1>
+  <p>Cleaned Point93 MVP screen set rebuilt as separate native desktop frames. These frames preserve the original IA and state model while stripping import chrome and reducing clipping risk.</p>
+  <div class="cover-chips"><div class="chip">Desktop-first 1440px frames</div><div class="chip">220px sidebar + 32px content padding</div><div class="chip">23 MVP states rebuilt in batches</div></div>
+</header>
+
+            <section class="screen-section">
+              <div class="section-header">
+                <div>
+                  <div class="eyebrow">Batch A</div>
+                  <h2>Batch A screens</h2>
+                  <p>Platform overview and My Results surfaces.</p>
+                </div>
+                <div class="count-pill">4 frames</div>
+              </div>
+                      <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Dashboard</h3>
+            <p>Three-layer intelligence briefing rebuilt as a clean desktop frame.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:1120px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item active"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Dashboard</h1>
+                  <div class="page-subtitle">Three-layer intelligence briefing with quick action, executive summary, and detail surfaces.</div>
+                </div>
+                <div class="panel">
+  <div class="section-label">Layer 1 · Welcome & Orientation</div>
+  <div class="row" style="justify-content:space-between;">
+    <div class="stack" style="max-width:620px;">
+      <strong>Welcome back, Adam</strong>
+      <div class="page-subtitle">Point93 measures and compares your practice across modules, areas, and intelligence layers.</div>
+      <div class="cta-row">
+        <div class="button">Continue FT.2 Technology Capabilities</div>
+        <div class="button-ghost">View Welcome Tour</div>
+      </div>
+    </div>
+    <div class="surface-card" style="min-width:240px;">
+      <div class="section-label">Progress</div>
+      <strong>29% complete</strong>
+      <div class="subtle">5 of 17 modules · 3 of 6 areas touched</div>
+      <div class="progress-bar" style="margin-top:12px;"><span style="width:29%;"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="metric-card">
+    <div class="section-label">Layer 2 · Executive Summary</div>
+    <div class="row" style="align-items:center;justify-content:space-between;">
+      <div class="stack">
+        <strong>Overall P93 Score</strong>
+        <div class="meta">You are in the 83rd percentile among comparable advisors.</div>
+      </div>
+      <div class="score-circle" style="border-color:var(--accent);color:var(--accent);">74</div>
+    </div>
+    <div class="cluster" style="margin-top:14px;">
+      <div class="band-pill comp">B · Competitive</div>
+      <div class="state-pill info">5 modules complete</div>
+      <div class="state-pill info">2 BI profiles active</div>
+    </div>
+  </div>
+  <div class="metric-card">
+    <div class="section-label">Area Assessment Map</div>
+    <div class="screen-grid-3">
+      <div class="surface-card"><strong>PF</strong><div class="meta">100% assessed</div></div>
+      <div class="surface-card"><strong>FT</strong><div class="meta">67% assessed</div></div>
+      <div class="surface-card"><strong>IM</strong><div class="meta">20% assessed</div></div>
+      <div class="surface-card"><strong>PI</strong><div class="meta">0% assessed</div></div>
+      <div class="surface-card"><strong>SC</strong><div class="meta">0% assessed</div></div>
+      <div class="surface-card"><strong>FV</strong><div class="meta">0% assessed</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Top strengths & gaps</div>
+    <div class="screen-grid-2">
+      <div class="surface-card">
+        <strong>Top strengths</strong>
+        <div class="stack">
+          <div>Client autonomy systems <span class="meta">91 · PF.2</span></div>
+          <div>Repeatable workflows <span class="meta">88 · FT.2</span></div>
+          <div>Compliance oversight <span class="meta">84 · PF.1</span></div>
+        </div>
+      </div>
+      <div class="surface-card">
+        <strong>Top gaps</strong>
+        <div class="stack">
+          <div>Investment communication <span class="meta">49 · IM.1</span></div>
+          <div>Practice management cadence <span class="meta">56 · IM.2</span></div>
+          <div>Value articulation <span class="meta">59 · PitchPerfect</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Hub Verdict</div>
+    <div class="ai-badge">AI generated</div>
+    <div class="note" style="margin-top:12px;">Your current position is solidly Competitive, with strength clustered around structure and operational clarity. The next lift comes from how that operational quality translates into client-facing confidence and clearer differentiation.</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="section-label">Layer 3 · Detail & Action</div>
+  <div class="screen-grid-3">
+    <div class="surface-card">
+      <strong>Quick Win</strong>
+      <div class="page-subtitle">Complete IM.2 Practice Management to unlock cross-module synthesis in Investment Strategy.</div>
+      <div class="button" style="margin-top:14px;">Continue IM.2</div>
+    </div>
+    <div class="surface-card">
+      <strong>Data Point Health</strong>
+      <div class="dots" style="margin-top:10px;">
+        <span class="dot" style="background:var(--green);"></span>
+        <span class="dot" style="background:var(--green);"></span>
+        <span class="dot" style="background:var(--accent);"></span>
+        <span class="dot" style="background:var(--accent);"></span>
+        <span class="dot" style="background:var(--amber);"></span>
+        <span class="dot" style="background:var(--amber);"></span>
+        <span class="dot" style="background:var(--rose);"></span>
+        <span class="dot" style="background:var(--border);"></span>
+        <span class="dot" style="background:var(--border);"></span>
+      </div>
+    </div>
+    <div class="surface-card teal-card">
+      <strong class="teal">Moenio Nudge</strong>
+      <div class="ai-inline">AI reference</div>
+      <div class="page-subtitle" style="margin-top:10px;">A new BI profile is available once you finish SC.1 Client Service & Communication.</div>
+    </div>
+  </div>
+  <div class="screen-grid-3" style="margin-top:16px;">
+    <div class="module-card">
+      <strong>PF.1 Compliance Fundamentals</strong>
+      <div class="meta">Completed · ~8 min</div>
+      <div class="row" style="margin-top:10px;align-items:center;justify-content:space-between;">
+        <div class="band-pill comp">78 · B · Competitive</div>
+        <div class="button-ghost">View Results</div>
+      </div>
+    </div>
+    <div class="module-card">
+      <strong>FT.2 Technology Capabilities</strong>
+      <div class="meta">In Progress · 67% done</div>
+      <div class="progress-bar" style="margin-top:10px;"><span style="width:67%;background:var(--amber);"></span></div>
+      <div class="button" style="margin-top:12px;">Continue Assessment</div>
+    </div>
+    <div class="module-card">
+      <strong>IM.2 Practice Management</strong>
+      <div class="meta">Recommended next · ~15 min</div>
+      <div class="button" style="margin-top:12px;">Start Assessment</div>
+    </div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>My Results · Score Overview</h3>
+            <p>Tabbed results view with score, area, and benchmark structures.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:960px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item active"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">My Results</h1>
+                  <div class="page-subtitle">All scores, bands, and benchmark comparisons across completed modules.</div>
+                </div>
+                        <div class="tabs">
+          <div class="tab active">Score Overview</div>
+          <div class="tab">Strengths & Gaps</div>
+          <div class="tab">Trends</div>
+        </div>
+
+        <div class="screen-grid-2">
+          <div class="panel">
+            <div class="section-label">Overall score + band</div>
+            <div class="row" style="align-items:center;">
+  <div class="score-circle" style="border-color:var(--accent);color:var(--accent);">74</div>
+  <div class="stack" style="gap:8px;">
+    <div class="band-pill comp">B · Competitive</div>
+    <div class="meta">Percentile anchored to firm category and peer group</div>
+  </div>
+</div>
+
+            <div class="note" style="margin-top:14px;">Same platform score as Dashboard, but expanded with benchmark framing and comparison detail.</div>
+          </div>
+          <div class="panel">
+            <div class="section-label">Area scores</div>
+            <div class="screen-grid-2">
+              <div class="surface-card"><strong>PF · 73</strong><div class="band-pill top">A · Top Tier</div></div>
+              <div class="surface-card"><strong>FT · 71</strong><div class="band-pill comp">B · Competitive</div></div>
+              <div class="surface-card"><strong>IM · 62</strong><div class="band-pill needs">C · Needs Work</div></div>
+              <div class="surface-card"><strong>PI · —</strong><div class="state-pill neutral">Not assessed</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="section-label">Module score grid</div>
+          <table class="table">
+            <thead>
+              <tr><th>Module</th><th>Your score</th><th>Average</th><th>Top 5%</th><th>Band</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>PF.1 Compliance Fundamentals</td><td>78</td><td>66</td><td>88</td><td>B · Competitive</td></tr>
+              <tr><td>PF.2 Compliance Infrastructure</td><td>76</td><td>69</td><td>91</td><td>B · Competitive</td></tr>
+              <tr><td>FT.2 Technology Capabilities</td><td>71</td><td>64</td><td>86</td><td>B · Competitive</td></tr>
+              <tr><td>IM.1 Client Relationship Depth</td><td>62</td><td>67</td><td>85</td><td>C · Needs Work</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="section-label">Benchmark snapshot</div>
+          <div class="screen-grid-3">
+            <div class="surface-card"><strong>Your Score</strong><div class="page-subtitle">74 overall · 73 PF · 71 FT</div></div>
+            <div class="surface-card"><strong>Peer Median</strong><div class="page-subtitle">68 overall · 66 PF · 64 FT</div></div>
+            <div class="surface-card"><strong>Top 5%</strong><div class="page-subtitle">88 overall · 91 PF · 86 FT</div></div>
+          </div>
+        </div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>My Results · Strengths & Gaps</h3>
+            <p>Full Edge/Exposure surface with ranking and gap analysis.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:960px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item active"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">My Results</h1>
+                  <div class="page-subtitle">Full Edge and Exposure rankings with position detail and gap prioritization.</div>
+                </div>
+                <div class="tabs">
+  <div class="tab">Score Overview</div>
+  <div class="tab active">Strengths & Gaps</div>
+  <div class="tab">Trends</div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Full edge list</div>
+    <div class="stack">
+      <div class="surface-card"><strong>Can your clients operate without calling you?</strong><div class="meta">91 · PF.2 Compliance Infrastructure</div></div>
+      <div class="surface-card"><strong>Are your workflows repeatable across advisors?</strong><div class="meta">88 · FT.2 Technology Capabilities</div></div>
+      <div class="surface-card"><strong>Is your oversight framework durable?</strong><div class="meta">84 · PF.1 Compliance Fundamentals</div></div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Full exposure list</div>
+    <div class="stack">
+      <div class="surface-card"><strong>Are investment decisions consistently framed for clients?</strong><div class="meta">49 · IM.1 Client Relationship Depth</div></div>
+      <div class="surface-card"><strong>Is your operating cadence visible to the team?</strong><div class="meta">56 · IM.2 Practice Management</div></div>
+      <div class="surface-card"><strong>Do prospects hear a clear value story?</strong><div class="meta">59 · PitchPerfect</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Your position detail</div>
+    <div class="note">You are currently closer to Top Tier than to Needs Work overall. Technology and operational structure support that position, but investment communication remains the clearest risk to upward movement.</div>
+  </div>
+  <div class="table-card">
+    <div class="section-label">Priority gap analysis</div>
+    <table class="table">
+      <thead>
+        <tr><th>IA</th><th>Current</th><th>Competitive floor</th><th>Gap</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Investment Communication</td><td>49</td><td>70</td><td>21</td></tr>
+        <tr><td>Practice Management Cadence</td><td>56</td><td>70</td><td>14</td></tr>
+        <tr><td>Value Story Clarity</td><td>59</td><td>70</td><td>11</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>My Results · Trends</h3>
+            <p>Trendline and before/after view for reassessment-aware reporting.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:960px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item active"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">My Results</h1>
+                  <div class="page-subtitle">Trendline view with reassessment deltas and area trajectories.</div>
+                </div>
+                <div class="tabs">
+  <div class="tab">Score Overview</div>
+  <div class="tab">Strengths & Gaps</div>
+  <div class="tab active">Trends</div>
+</div>
+
+<div class="panel">
+  <div class="section-label">Score progression</div>
+  <div class="timeline">
+    <svg width="100%" height="100%" viewBox="0 0 1100 190" xmlns="http://www.w3.org/2000/svg">
+      <line x1="70" y1="150" x2="1040" y2="150" stroke="#d1d5de" stroke-width="2"/>
+      <line x1="70" y1="106" x2="1040" y2="106" stroke="rgba(37,99,235,0.18)" stroke-width="1"/>
+      <line x1="70" y1="70" x2="1040" y2="70" stroke="rgba(5,150,105,0.18)" stroke-width="1"/>
+      <polyline fill="none" stroke="#2563eb" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" points="120,138 300,130 470,118 680,98 900,86"/>
+      <circle cx="120" cy="138" r="6" fill="white" stroke="#2563eb" stroke-width="3"/>
+      <circle cx="300" cy="130" r="6" fill="white" stroke="#2563eb" stroke-width="3"/>
+      <circle cx="470" cy="118" r="6" fill="white" stroke="#2563eb" stroke-width="3"/>
+      <circle cx="680" cy="98" r="6" fill="white" stroke="#2563eb" stroke-width="3"/>
+      <circle cx="900" cy="86" r="6" fill="white" stroke="#2563eb" stroke-width="3"/>
+      <text x="90" y="174" font-family="Inter" font-size="11" fill="#5c6478">Jan 9</text>
+      <text x="270" y="174" font-family="Inter" font-size="11" fill="#5c6478">Jan 22</text>
+      <text x="440" y="174" font-family="Inter" font-size="11" fill="#5c6478">Feb 1</text>
+      <text x="650" y="174" font-family="Inter" font-size="11" fill="#5c6478">Feb 19</text>
+      <text x="870" y="174" font-family="Inter" font-size="11" fill="#5c6478">Mar 8</text>
+    </svg>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Before / after</div>
+    <div class="stack">
+      <div class="surface-card"><strong>FT.2 Technology Capabilities</strong><div class="meta">68 → 71 · ↑ +3</div></div>
+      <div class="surface-card"><strong>PF.1 Compliance Fundamentals</strong><div class="meta">74 → 78 · ↑ +4</div></div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Area trajectories</div>
+    <div class="screen-grid-2">
+      <div class="surface-card"><strong>PF</strong><div class="meta">Trending up</div></div>
+      <div class="surface-card"><strong>FT</strong><div class="meta">Trending up</div></div>
+      <div class="surface-card"><strong>IM</strong><div class="meta">Early data only</div></div>
+      <div class="surface-card"><strong>PI</strong><div class="meta">No data yet</div></div>
+    </div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+
+            </section>
+
+            <section class="screen-section">
+              <div class="section-header">
+                <div>
+                  <div class="eyebrow">Batch B</div>
+                  <h2>Batch B screens</h2>
+                  <p>Assessment discovery, gateway states, question flow, and flagship results.</p>
+                </div>
+                <div class="count-pill">9 frames</div>
+              </div>
+                      <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Assessments Landing</h3>
+            <p>Module list view with grouped area sections and state-aware cards.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:1240px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Assessments</h1>
+                  <div class="page-subtitle">Module list view with all modules organized by area and status.</div>
+                </div>
+                <div class="note">All 17 modules are organized by area. Each card keeps time-first framing, state clarity, and a single primary action.</div><div class="panel"><div class="section-label">Professional Foundation</div><div class="screen-grid-3"><div class="module-card"><strong>PF.1 Compliance Fundamentals</strong><div class="meta">Completed</div><div class="band-pill comp">78 · B · Competitive</div><div class="button-ghost" style="margin-top:12px;">View Results</div></div><div class="module-card"><strong>PF.2 Compliance Infrastructure</strong><div class="meta">Completed</div><div class="band-pill comp">76 · B · Competitive</div><div class="button-ghost" style="margin-top:12px;">View Results</div></div><div class="module-card"><strong>PF.3 Compliance Structure</strong><div class="meta">Available</div><div class="state-pill info">~8 min</div><div class="button" style="margin-top:12px;">Open Module</div></div></div></div><div class="panel"><div class="section-label">Firm Platform & Technology</div><div class="screen-grid-3"><div class="module-card"><strong>FT.1 Platform & Product Access</strong><div class="meta">Available</div><div class="state-pill info">~10 min</div><div class="button" style="margin-top:12px;">Open Module</div></div><div class="module-card"><strong>FT.2 Technology Capabilities</strong><div class="meta">In Progress</div><div class="progress-bar" style="margin-top:12px;"><span style="width:67%;background:var(--amber);"></span></div><div class="button" style="margin-top:12px;">Continue Assessment</div></div><div class="module-card"><strong>FT.3 Support & Ops Infrastructure</strong><div class="meta">Available</div><div class="state-pill info">~9 min</div><div class="button" style="margin-top:12px;">Open Module</div></div></div></div><div class="panel"><div class="section-label">Investment Strategy</div><div class="screen-grid-3"><div class="module-card"><strong>IM.1 Client Relationship Depth</strong><div class="meta">Completed</div><div class="band-pill comp">62 · C · Needs Work</div><div class="button-ghost" style="margin-top:12px;">View Results</div></div><div class="module-card"><strong>IM.2 Practice Management</strong><div class="meta">Available</div><div class="state-pill info">~15 min</div><div class="button" style="margin-top:12px;">Open Module</div></div><div class="module-card"><strong>IM.3 Succession & Continuity</strong><div class="meta">Available</div><div class="state-pill info">~12 min</div><div class="button" style="margin-top:12px;">Open Module</div></div></div></div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Module Home · Not Started</h3>
+            <p>Gateway screen for a returning advisor before the first answer.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:980px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Module Home · Not Started</h1>
+                  <div class="page-subtitle">Gateway screen shown before module questions for returning advisors.</div>
+                </div>
+                <div class="panel">
+  <div class="row" style="justify-content:space-between;align-items:start;">
+    <div class="stack" style="max-width:720px;">
+      <div class="section-label">Module Home</div>
+      <strong style="font-size:24px;">FT.2 Technology Capabilities</strong>
+      <div class="page-subtitle">Measures technology adoption, digital tools, and automation across your practice.</div>
+      <div class="cluster" style="margin-top:10px;">
+        <div class="state-pill info">Firm Platform & Technology</div>
+        <div class="state-pill neutral">12 questions</div>
+        <div class="state-pill neutral">~8 minutes</div>
+      </div>
+    </div>
+    <div class="surface-card" style="min-width:280px;">
+      <div class="section-label">Status</div>
+      <div class="stack"><div class="state-pill info">Available</div><div class="button">Start Assessment</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Why this matters</div>
+    <div class="note">Returning advisors see Module Home before assessment. First-time onboarding skips this page.</div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Results preview</div>
+    <div class="note">Complete this module to unlock Essential Insight, Client Voice, and Moenio Lens scaffolding.</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="section-label">Related modules</div>
+  <div class="screen-grid-3">
+    <div class="module-card"><strong>FT.1 Platform & Product Access</strong><div class="meta">Available</div></div>
+    <div class="module-card"><strong>FT.3 Support & Ops Infrastructure</strong><div class="meta">Available</div></div>
+    <div class="module-card"><strong>PF.2 Compliance Infrastructure</strong><div class="meta">Completed · 76</div></div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Module Home · In Progress</h3>
+            <p>Gateway screen with preserved progress and resume affordance.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:980px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Module Home · In Progress</h1>
+                  <div class="page-subtitle">Gateway screen shown before module questions for returning advisors.</div>
+                </div>
+                <div class="panel">
+  <div class="row" style="justify-content:space-between;align-items:start;">
+    <div class="stack" style="max-width:720px;">
+      <div class="section-label">Module Home</div>
+      <strong style="font-size:24px;">FT.2 Technology Capabilities</strong>
+      <div class="page-subtitle">Measures technology adoption, digital tools, and automation across your practice.</div>
+      <div class="cluster" style="margin-top:10px;">
+        <div class="state-pill info">Firm Platform & Technology</div>
+        <div class="state-pill neutral">12 questions</div>
+        <div class="state-pill neutral">~8 minutes</div>
+      </div>
+    </div>
+    <div class="surface-card" style="min-width:280px;">
+      <div class="section-label">Status</div>
+      <div class="stack"><div class="state-pill warn">In Progress · 8 of 12 answered</div><div class="progress-bar"><span style="width:67%;background:var(--amber);"></span></div><div class="button">Continue Assessment</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Why this matters</div>
+    <div class="note">Surface the same module information, but swap the CTA and add momentum through progress framing.</div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Results preview</div>
+    <div class="note">Progress is auto-saved after every answer. Resume at the next unanswered question.</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="section-label">Related modules</div>
+  <div class="screen-grid-3">
+    <div class="module-card"><strong>FT.1 Platform & Product Access</strong><div class="meta">Available</div></div>
+    <div class="module-card"><strong>FT.3 Support & Ops Infrastructure</strong><div class="meta">Available</div></div>
+    <div class="module-card"><strong>PF.2 Compliance Infrastructure</strong><div class="meta">Completed · 76</div></div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Module Home · Completed</h3>
+            <p>Gateway screen after results exist, with retake secondary to view-results.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:980px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Module Home · Completed</h1>
+                  <div class="page-subtitle">Gateway screen shown before module questions for returning advisors.</div>
+                </div>
+                <div class="panel">
+  <div class="row" style="justify-content:space-between;align-items:start;">
+    <div class="stack" style="max-width:720px;">
+      <div class="section-label">Module Home</div>
+      <strong style="font-size:24px;">FT.2 Technology Capabilities</strong>
+      <div class="page-subtitle">Measures technology adoption, digital tools, and automation across your practice.</div>
+      <div class="cluster" style="margin-top:10px;">
+        <div class="state-pill info">Firm Platform & Technology</div>
+        <div class="state-pill neutral">12 questions</div>
+        <div class="state-pill neutral">~8 minutes</div>
+      </div>
+    </div>
+    <div class="surface-card" style="min-width:280px;">
+      <div class="section-label">Status</div>
+      <div class="stack"><div class="band-pill comp">78 · B · Competitive</div><div class="cta-row"><div class="button">View Results</div><div class="button-ghost">Retake Assessment</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Why this matters</div>
+    <div class="note">Retake is always secondary to viewing the existing results.</div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Results preview</div>
+    <div class="note">Completed advisors see score context, DP fingerprint, and the primary path back into results.</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="section-label">Related modules</div>
+  <div class="screen-grid-3">
+    <div class="module-card"><strong>FT.1 Platform & Product Access</strong><div class="meta">Available</div></div>
+    <div class="module-card"><strong>FT.3 Support & Ops Infrastructure</strong><div class="meta">Available</div></div>
+    <div class="module-card"><strong>PF.2 Compliance Infrastructure</strong><div class="meta">Completed · 76</div></div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Question Type 1 · Likert / BARS</h3>
+            <p>Behaviorally anchored primary format.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:960px;">
+            <aside class="sidebar" style="opacity:0.7;">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div class="meta">Assessments › FT.2 Technology Capabilities</div>
+                <div class="progress-bar"><span style="width:58%;"></span></div>
+                <div class="row" style="justify-content:space-between;align-items:center;">
+                  <div class="meta">Question 7 of 12</div>
+                  <div class="button-ghost">Save & Exit</div>
+                </div>
+                <div class="question-shell">
+                  <div class="section-label">Question Type 1 · Likert / BARS</div>
+                  <strong style="font-size:24px;">How consistently does your team use defined workflow automation across recurring client operations?</strong>
+                  <div class="page-subtitle" style="margin:10px 0 18px;">Answers are auto-saved after each response. One question per screen keeps momentum intact.</div>
+                  <div class="stack">
+        <div class="answer">1 · Not at all true of our practice</div>
+        <div class="answer">2 · Rarely true</div>
+        <div class="answer selected">3 · Sometimes true</div>
+        <div class="answer">4 · Usually true</div>
+        <div class="answer">5 · Consistently true</div>
+        </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Question Type 2 · Multiple Choice / Yes-No</h3>
+            <p>Binary and structured branch questions.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:960px;">
+            <aside class="sidebar" style="opacity:0.7;">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div class="meta">Assessments › FT.2 Technology Capabilities</div>
+                <div class="progress-bar"><span style="width:58%;"></span></div>
+                <div class="row" style="justify-content:space-between;align-items:center;">
+                  <div class="meta">Question 7 of 12</div>
+                  <div class="button-ghost">Save & Exit</div>
+                </div>
+                <div class="question-shell">
+                  <div class="section-label">Question Type 2 · Multiple Choice / Yes-No</div>
+                  <strong style="font-size:24px;">How consistently does your team use defined workflow automation across recurring client operations?</strong>
+                  <div class="page-subtitle" style="margin:10px 0 18px;">Answers are auto-saved after each response. One question per screen keeps momentum intact.</div>
+                  <div class="stack">
+        <div class="answer selected">We have a documented cadence and defined owners</div>
+        <div class="answer">We review this informally but inconsistently</div>
+        <div class="answer">This is handled ad hoc</div>
+        </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Question Type 3 · Slider</h3>
+            <p>Continuous scale input.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:960px;">
+            <aside class="sidebar" style="opacity:0.7;">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div class="meta">Assessments › FT.2 Technology Capabilities</div>
+                <div class="progress-bar"><span style="width:58%;"></span></div>
+                <div class="row" style="justify-content:space-between;align-items:center;">
+                  <div class="meta">Question 7 of 12</div>
+                  <div class="button-ghost">Save & Exit</div>
+                </div>
+                <div class="question-shell">
+                  <div class="section-label">Question Type 3 · Slider</div>
+                  <strong style="font-size:24px;">How consistently does your team use defined workflow automation across recurring client operations?</strong>
+                  <div class="page-subtitle" style="margin:10px 0 18px;">Answers are auto-saved after each response. One question per screen keeps momentum intact.</div>
+                  <div class="stack">
+        <div class="panel">
+          <div class="section-label">Slider response</div>
+          <div class="progress-bar"><span style="width:72%;"></span></div>
+          <div class="row" style="justify-content:space-between;margin-top:8px;">
+            <div class="meta">0</div><div class="band-pill comp">72 / 100</div><div class="meta">100</div>
+          </div>
+        </div>
+        </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Completion Screen</h3>
+            <p>Three-Act Reveal begins after completion.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:960px;">
+            <aside class="sidebar" style="opacity:0.7;">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div class="meta">Assessments › FT.2 Technology Capabilities</div>
+                <div class="progress-bar"><span style="width:58%;"></span></div>
+                <div class="row" style="justify-content:space-between;align-items:center;">
+                  <div class="meta">Question 7 of 12</div>
+                  <div class="button-ghost">Save & Exit</div>
+                </div>
+                <div class="question-shell">
+                  <div class="section-label">Completion Screen</div>
+                  <strong style="font-size:24px;">How consistently does your team use defined workflow automation across recurring client operations?</strong>
+                  <div class="page-subtitle" style="margin:10px 0 18px;">Answers are auto-saved after each response. One question per screen keeps momentum intact.</div>
+                  <div class="stack">
+        <div class="note success">FT.2 Technology Capabilities is complete. Your score preview is now available.</div>
+        <div class="row" style="align-items:center;justify-content:center;margin-top:10px;">
+          <div class="score-circle" style="border-color:var(--accent);color:var(--accent);">71</div>
+        </div>
+        <div class="cta-row" style="justify-content:center;margin-top:16px;">
+          <div class="button">View Your Results</div>
+        </div>
+        </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Module Results</h3>
+            <p>Flagship results page with score reveal, insights, data points, and Moenio Lens.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:1200px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item active"><span>✎</span><span>Assessments</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Module Results</h1>
+                  <div class="page-subtitle">Flagship post-assessment screen with score reveal, insight areas, data points, and Moenio Lens.</div>
+                </div>
+                <div class="panel">
+  <div class="row" style="justify-content:space-between;">
+    <div class="stack" style="max-width:720px;">
+      <div class="meta">Assessments › Professional Foundation › Compliance Fundamentals</div>
+      <strong style="font-size:28px;">Compliance Fundamentals</strong>
+      <div class="cluster">
+        <div class="band-pill comp">78 · B · Competitive</div>
+        <div class="state-pill info">83rd percentile</div>
+        <div class="state-pill neutral">6 data points assessed</div>
+      </div>
+    </div>
+    <div class="score-circle" style="border-color:var(--accent);color:var(--accent);">78</div>
+  </div>
+</div>
+
+<div class="treatment v1">
+  <div class="cluster" style="justify-content:space-between;">
+    <div class="voice-pill v1">V1 · Key Finding</div>
+    <div class="ai-badge">AI generated</div>
+  </div>
+  <div class="note" style="margin-top:12px;background:white;">Your compliance baseline is structurally sound, but the distribution of scores suggests execution consistency is stronger than documentation clarity when measured against the competitive set.</div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Insight Areas</div>
+    <div class="stack">
+      <div class="surface-card"><strong>GP1 · Can your clients operate without calling you?</strong><div class="meta">91 · Top Tier</div></div>
+      <div class="surface-card"><strong>GP2 · Is documentation quality visible across the team?</strong><div class="meta">68 · Competitive</div></div>
+      <div class="surface-card"><strong>GP3 · Are filing risks surfaced early enough?</strong><div class="meta">52 · At Risk</div></div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Data Points</div>
+    <div class="dots">
+      <span class="dot" style="background:var(--green);"></span>
+      <span class="dot" style="background:var(--green);"></span>
+      <span class="dot" style="background:var(--accent);"></span>
+      <span class="dot" style="background:var(--accent);"></span>
+      <span class="dot" style="background:var(--amber);"></span>
+      <span class="dot" style="background:var(--rose);"></span>
+    </div>
+    <div class="note" style="margin-top:12px;">DP dot array stays compact here but expands fully on hover/detail views in later design passes.</div>
+  </div>
+</div>
+
+<div class="lens-card">
+  <div class="cluster" style="justify-content:space-between;">
+    <div class="section-label" style="color:var(--amber);">Moenio Lens</div>
+    <div class="ai-badge">AI generated</div>
+  </div>
+  <div class="screen-grid-2">
+    <div class="surface-card"><strong>What wins meetings</strong><div class="page-subtitle">Clear governance, visible standards, and strong confidence in baseline controls.</div></div>
+    <div class="surface-card"><strong>What loses meetings</strong><div class="page-subtitle">Process quality is not always translating into language clients can easily understand.</div></div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Insights unlocked</div>
+    <div class="note">This module contributes to PitchPerfect stage 1 and the Dashboard Hub Verdict.</div>
+  </div>
+  <div class="cta-card">
+    <div class="section-label">Next steps</div>
+    <strong>Continue to FT.2 Technology Capabilities</strong>
+    <div class="page-subtitle">Closing technology workflow gaps is the fastest way to strengthen overall platform competitiveness.</div>
+    <div class="button" style="margin-top:14px;">Open next module</div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+
+            </section>
+
+            <section class="screen-section">
+              <div class="section-header">
+                <div>
+                  <div class="eyebrow">Batch C</div>
+                  <h2>Batch C screens</h2>
+                  <p>Area and BI views.</p>
+                </div>
+                <div class="count-pill">5 frames</div>
+              </div>
+                      <div class="screen-block">
+          <div class="screen-meta">
+            <h3>My Areas Landing</h3>
+            <p>Landing page across all six practice areas with mixed completion states.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:980px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item active"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">My Areas</h1>
+                  <div class="page-subtitle">Landing view across all six practice areas with progressive completion states.</div>
+                </div>
+                <div class="screen-grid-3"><div class="area-card"><div class="row" style="align-items:center;justify-content:space-between;"><strong>Professional Foundation</strong><div class="score-circle sm" style="border-color:var(--green);color:var(--green);">73</div></div><div class="band-pill top">A · Top Tier</div><div class="meta" style="margin-top:10px;">100% assessed · 3 modules</div><div class="button-ghost" style="margin-top:14px;">View Area</div></div><div class="area-card"><div class="row" style="align-items:center;justify-content:space-between;"><strong>Firm Platform & Technology</strong><div class="score-circle sm" style="border-color:var(--accent);color:var(--accent);">71</div></div><div class="band-pill comp">B · Competitive</div><div class="meta" style="margin-top:10px;">100% assessed · 3 modules</div><div class="button-ghost" style="margin-top:14px;">View Area</div></div><div class="area-card"><div class="row" style="align-items:center;justify-content:space-between;"><strong>Investment Strategy</strong><div class="score-circle sm" style="border-color:var(--amber);color:var(--amber);">62</div></div><div class="band-pill needs">C · Needs Work</div><div class="meta" style="margin-top:10px;">20% assessed · 1 of 5 modules</div><div class="button-ghost" style="margin-top:14px;">View Area</div></div><div class="area-card"><div class="row" style="align-items:center;justify-content:space-between;"><strong>Planning Process</strong><div class="score-circle sm" style="border-color:var(--border);color:var(--text-muted);">—</div></div><div class="state-pill neutral">Not assessed</div><div class="meta" style="margin-top:10px;">0 of 3 modules</div><div class="button-ghost" style="margin-top:14px;">View Area</div></div><div class="area-card"><div class="row" style="align-items:center;justify-content:space-between;"><strong>Client Service</strong><div class="score-circle sm" style="border-color:var(--border);color:var(--text-muted);">—</div></div><div class="state-pill neutral">Not assessed</div><div class="meta" style="margin-top:10px;">0 of 2 modules</div><div class="button-ghost" style="margin-top:14px;">View Area</div></div><div class="area-card"><div class="row" style="align-items:center;justify-content:space-between;"><strong>Fees, Value & Positioning</strong><div class="score-circle sm" style="border-color:var(--border);color:var(--text-muted);">—</div></div><div class="state-pill neutral">Not assessed</div><div class="meta" style="margin-top:10px;">0 of 1 modules</div><div class="button-ghost" style="margin-top:14px;">View Area</div></div></div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Area Page · Full Cross-Module Synthesis</h3>
+            <p>Completed-area view with strong cross-module analysis.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:980px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item active"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Area Page</h1>
+                  <div class="page-subtitle">Per-area strategic view with either progressive feedback or full cross-module synthesis.</div>
+                </div>
+                <div class="panel">
+  <div class="row" style="align-items:start;justify-content:space-between;">
+    <div class="stack" style="max-width:760px;">
+      <div class="section-label">Area page</div>
+      <strong style="font-size:28px;">Professional Foundation & Team Structure</strong>
+      <div class="cluster"><div class="band-pill top">73 · A · Top Tier</div><div class="meta">All modules complete</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Area summary</div>
+    <div class="note">Professional Foundation shows consistent operational maturity across modules, with strong structural alignment between governance, documentation, and oversight.</div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Strength / gap signal</div>
+    <div class="note success">Cross-module synthesis is now active because all constituent modules are complete.</div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Priority assessment</div>
+    <div class="surface-card"><strong>Focus: compliance documentation clarity</strong><div class="page-subtitle">The remaining upside sits in how rigor becomes easier for clients to see and understand.</div></div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Module gallery</div>
+    <div class="screen-grid-3"><div class="module-card"><strong>PF.1 Compliance Fundamentals</strong><div class="meta">78 · Competitive</div></div><div class="module-card"><strong>PF.2 Compliance Infrastructure</strong><div class="meta">76 · Competitive</div></div><div class="module-card"><strong>PF.3 Compliance Structure</strong><div class="meta">65 · Competitive</div></div></div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Area Page · Progressive Feedback</h3>
+            <p>Partial-area view with provisional score and next-module prompt.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:980px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item active"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Area Page</h1>
+                  <div class="page-subtitle">Per-area strategic view with either progressive feedback or full cross-module synthesis.</div>
+                </div>
+                <div class="panel">
+  <div class="row" style="align-items:start;justify-content:space-between;">
+    <div class="stack" style="max-width:760px;">
+      <div class="section-label">Area page</div>
+      <strong style="font-size:28px;">Investment Strategy, Selection & Performance</strong>
+      <div class="cluster"><div class="band-pill needs">Provisional · 62 · C · Needs Work</div><div class="meta">1 of 5 modules complete</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Area summary</div>
+    <div class="note">Initial area score based on Client Relationship Depth only. Complete more modules for deeper cross-module analysis.</div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Strength / gap signal</div>
+    <div class="note warning">Cross-module gap patterns activate after the second completed module in this area.</div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Priority assessment</div>
+    <div class="surface-card"><strong>Next: IM.2 Practice Management</strong><div class="page-subtitle">Completing the next module unlocks cross-module synthesis in this area.</div></div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Module gallery</div>
+    <div class="stack"><div class="module-card"><strong>IM.1 Client Relationship Depth</strong><div class="meta">Completed · 62</div></div><div class="module-card"><strong>IM.2 Practice Management</strong><div class="meta">In Progress · 8 of 15</div></div><div class="module-card"><strong>IM.3 Succession & Continuity</strong><div class="meta">Not started</div></div></div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Business Intelligence Landing</h3>
+            <p>Seven BI products with dual access and separate scoring logic.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:1040px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item active"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Business Intelligence</h1>
+                  <div class="page-subtitle">Seven BI products using dual access and stage-based progression.</div>
+                </div>
+                <div class="panel teal-card">
+  <div class="section-label teal">Dual access model</div>
+  <div class="screen-grid-2">
+    <div class="surface-card"><strong>Earn</strong><div class="page-subtitle">Complete prerequisite modules to unlock BI stages progressively.</div></div>
+    <div class="surface-card"><strong>Purchase</strong><div class="page-subtitle">Buy individual profiles or the full bundle while BI remains separate from P93 scoring.</div></div>
+  </div>
+</div>
+<div class="screen-grid-3"><div class="bi-card teal-card"><strong>PitchPerfect</strong><div class="meta">Stage 2 of 4 complete</div><div class="button-secondary" style="margin-top:14px;">View Profile</div></div><div class="bi-card"><strong>Client Referrals</strong><div class="meta">Locked until SC.1 or Purchase</div><div class="button" style="margin-top:14px;">Purchase $25</div></div><div class="bi-card"><strong>COI Referrals</strong><div class="meta">Locked until PI.1 or Purchase</div><div class="button" style="margin-top:14px;">Purchase $25</div></div><div class="bi-card"><strong>Client Retention Risk</strong><div class="meta">Locked until SC.1 + SC.2</div><div class="button" style="margin-top:14px;">Purchase $25</div></div><div class="bi-card"><strong>Discovery Quality</strong><div class="meta">Locked until PI.1</div><div class="button" style="margin-top:14px;">Purchase $25</div></div><div class="bi-card"><strong>Head to Head</strong><div class="meta">Locked until 3+ modules</div><div class="button" style="margin-top:14px;">Purchase $25</div></div><div class="bi-card"><strong>NextGen Ready</strong><div class="meta">Locked until IM.3</div><div class="button" style="margin-top:14px;">Purchase $25</div></div></div>
+<div class="cta-card teal-card">
+  <div class="section-label teal">Bundle</div>
+  <strong>All 7 BI Products · $125</strong>
+  <div class="page-subtitle">Save against individual purchase while keeping BI separate from the assessment track.</div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>BI Product Page</h3>
+            <p>Stage-based BI detail with prerequisites, stepper, and cumulative results.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:1120px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item active"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">BI Product Page</h1>
+                  <div class="page-subtitle">Stage-based BI detail page with prerequisites, current stage CTA, and cumulative results.</div>
+                </div>
+                <div class="panel teal-card">
+  <div class="row" style="justify-content:space-between;">
+    <div class="stack">
+      <div class="meta">Business Intelligence › PitchPerfect</div>
+      <strong style="font-size:28px;" class="teal">PitchPerfect</strong>
+      <div class="cluster">
+        <div class="band-pill comp">68 · Competitive</div>
+        <div class="state-pill info">Stage 2 of 4 complete</div>
+      </div>
+    </div>
+    <div class="score-circle" style="border-color:var(--teal);color:var(--teal);">68</div>
+  </div>
+</div>
+
+<div class="panel teal-card">
+  <div class="section-label teal">Stage map</div>
+  <div class="stepper">
+    <div class="step-node complete"><div class="bubble">✓</div><div class="meta">Stage 1<br/>Foundation</div></div>
+    <div class="stepper-line" style="background:var(--teal);"></div>
+    <div class="step-node complete"><div class="bubble">✓</div><div class="meta">Stage 2<br/>Positioning</div></div>
+    <div class="stepper-line" style="background:linear-gradient(90deg,var(--teal),rgba(209,213,222,0.9));"></div>
+    <div class="step-node"><div class="bubble">▶</div><div class="meta">Stage 3<br/>Differentiation</div></div>
+    <div class="stepper-line"></div>
+    <div class="step-node locked"><div class="bubble">🔒</div><div class="meta">Stage 4<br/>Mastery</div></div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Prerequisites</div>
+    <div class="stack">
+      <div class="surface-card"><strong>Stage 1</strong><div class="meta">PF.1 Compliance Fundamentals ✓</div></div>
+      <div class="surface-card"><strong>Stage 2</strong><div class="meta">FT.1 Platform Access ✓</div></div>
+      <div class="surface-card"><strong>Stage 4</strong><div class="meta">Requires IM.2 Practice Management</div></div>
+    </div>
+  </div>
+  <div class="cta-card teal-card">
+    <div class="section-label teal">Current stage</div>
+    <strong>Start Stage 3 · Differentiation</strong>
+    <div class="page-subtitle">8 questions · ~5 minutes · builds on completed BI stages.</div>
+    <div class="button-secondary" style="margin-top:14px;">Start Stage 3</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="section-label">Completed stage results</div>
+  <div class="stack">
+    <div class="treatment v1"><div class="voice-pill v1">Stage 2 · Positioning</div><div class="note" style="margin-top:12px;background:white;">Positioning language is improving, but differentiation is still too dependent on process quality rather than a clear client-facing value story.</div></div>
+    <div class="treatment v1"><div class="voice-pill v1">Stage 1 · Foundation</div><div class="note" style="margin-top:12px;background:white;">Operational foundations are strong enough to support a credible pitch once message discipline becomes clearer.</div></div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+
+            </section>
+
+            <section class="screen-section">
+              <div class="section-header">
+                <div>
+                  <div class="eyebrow">Batch D</div>
+                  <h2>Batch D screens</h2>
+                  <p>Entry, settings, and future-state placeholder surfaces.</p>
+                </div>
+                <div class="count-pill">5 frames</div>
+              </div>
+                      <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Onboarding · Public Preview</h3>
+            <p>First-time landing that previews real Point93 output with sample data.</p>
+          </div>
+          <div class="app-frame">
+  <div class="stack" style="padding:32px;gap:24px;min-height:960px;">
+    <div class="row" style="justify-content:space-between;align-items:center;">
+      <strong style="font-size:24px;color:var(--accent);">Point93</strong>
+      <div class="button-ghost">Sign In</div>
+    </div>
+    <div class="row" style="justify-content:space-between;align-items:center;">
+      <div class="stack" style="max-width:560px;">
+        <div class="section-label">Step 1 · Public Preview</div>
+        <strong style="font-size:40px;line-height:1.05;">Measure where your practice stands before you decide what comes next.</strong>
+        <div class="page-subtitle">The preview uses real product components with sample data, so first-time advisors understand the output before creating an account.</div>
+        <div class="cta-row">
+          <div class="button">Get Started</div>
+          <div class="button-ghost">View sample results</div>
+        </div>
+      </div>
+      <div class="panel" style="width:560px;">
+        <div class="section-label">Sample module result</div>
+        <div class="screen-grid-2">
+          <div class="surface-card"><strong>Sample score</strong><div class="band-pill comp">72 · B · Competitive</div></div>
+          <div class="surface-card"><strong>Sample treatment</strong><div class="ai-badge">AI generated</div></div>
+        </div>
+        <div class="lens-card" style="margin-top:16px;">
+          <div class="section-label" style="color:var(--amber);">Sample Moenio Lens</div>
+          <div class="page-subtitle">The preview clearly labels all output as sample/demo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Onboarding · Email Sign-Up</h3>
+            <p>Account creation step before module ranking.</p>
+          </div>
+          <div class="app-frame">
+  <div class="stack" style="padding:32px;gap:24px;min-height:960px;justify-content:center;align-items:center;">
+    <div class="question-shell" style="max-width:640px;width:100%;">
+      <div class="section-label">Step 2 · Email Sign-Up</div>
+      <strong style="font-size:28px;">Create your Point93 account</strong>
+      <div class="page-subtitle">Accounts start on the Essential tier. No payment is required during onboarding.</div>
+      <div class="stack" style="margin-top:18px;">
+        <div class="field"><label>Full Name</label><div class="input">Adam Rotmil</div></div>
+        <div class="field"><label>Email</label><div class="input">rotmila@evolve24.com</div></div>
+        <div class="field"><label>Firm Association</label><div class="input">Evolve24</div></div>
+      </div>
+      <div class="button" style="margin-top:18px;">Create Account</div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Onboarding · Module Ranking</h3>
+            <p>Default ranking with reordering before the first assessment begins.</p>
+          </div>
+          <div class="app-frame">
+  <div class="stack" style="padding:32px;gap:24px;min-height:960px;">
+    <div>
+      <div class="section-label">Step 3 · Module Ranking</div>
+      <strong style="font-size:32px;">Set your starting order</strong>
+      <div class="page-subtitle">Ranking determines the recommended assessment path, quick wins, and next-module suggestions.</div>
+    </div>
+    <div class="screen-grid-2">
+      <div class="stack"><div class="module-card"><div class="row" style="justify-content:space-between;align-items:center;"><strong>1. FT.2 Technology Capabilities</strong><div class="state-pill neutral">Drag</div></div><div class="meta">Default order can be accepted or adjusted.</div></div><div class="module-card"><div class="row" style="justify-content:space-between;align-items:center;"><strong>2. IM.2 Practice Management</strong><div class="state-pill neutral">Drag</div></div><div class="meta">Default order can be accepted or adjusted.</div></div><div class="module-card"><div class="row" style="justify-content:space-between;align-items:center;"><strong>3. PF.1 Compliance Fundamentals</strong><div class="state-pill neutral">Drag</div></div><div class="meta">Default order can be accepted or adjusted.</div></div><div class="module-card"><div class="row" style="justify-content:space-between;align-items:center;"><strong>4. PI.1 Client Discovery</strong><div class="state-pill neutral">Drag</div></div><div class="meta">Default order can be accepted or adjusted.</div></div><div class="module-card"><div class="row" style="justify-content:space-between;align-items:center;"><strong>5. SC.1 Client Service</strong><div class="state-pill neutral">Drag</div></div><div class="meta">Default order can be accepted or adjusted.</div></div><div class="module-card"><div class="row" style="justify-content:space-between;align-items:center;"><strong>6. FV.1 Fees, Value & Positioning</strong><div class="state-pill neutral">Drag</div></div><div class="meta">Default order can be accepted or adjusted.</div></div></div>
+      <div class="panel">
+        <div class="section-label">What this affects</div>
+        <div class="stack">
+          <div class="surface-card"><strong>Assessments Landing</strong><div class="meta">Recommended order and highlighted next module</div></div>
+          <div class="surface-card"><strong>Dashboard Quick Win</strong><div class="meta">Highest-priority next step after each completion</div></div>
+          <div class="surface-card"><strong>Onboarding flow</strong><div class="meta">First-time path routes directly into the top-ranked module</div></div>
+        </div>
+        <div class="button" style="margin-top:16px;">Save Ranking & Start #1 Module</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>Settings & Profile</h3>
+            <p>Account management, preferences, privacy, and tier management.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:1040px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item active"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">Settings & Profile</h1>
+                  <div class="page-subtitle">Account management, preferences, privacy, and tier settings.</div>
+                </div>
+                <div class="screen-grid-2">
+  <div class="form-card">
+    <div class="section-label">Profile information</div>
+    <div class="stack">
+      <div class="field"><label>Full Name</label><div class="input">Jane Doe</div></div>
+      <div class="field"><label>Email (read-only)</label><div class="input">jane.doe@example.com</div></div>
+      <div class="field"><label>Firm Association</label><div class="input">Merrill Lynch</div></div>
+    </div>
+  </div>
+  <div class="form-card">
+    <div class="section-label">Firm & practice details</div>
+    <div class="stack">
+      <div class="field"><label>Team Size</label><div class="input">12</div></div>
+      <div class="field"><label>Number of Advisors</label><div class="input">4</div></div>
+      <div class="field"><label>Advisor Category</label><div class="select">Senior Partner</div></div>
+      <div class="field"><label>Type of Firm</label><div class="select">Wealth Management — Large</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Platform preferences</div>
+    <div class="toggle-row"><span>New results available</span><div class="toggle"></div></div>
+    <div class="toggle-row"><span>BI stage unlocks</span><div class="toggle"></div></div>
+    <div class="toggle-row"><span>Platform updates</span><div class="toggle off"></div></div>
+    <div class="toggle-row"><span>Anonymous benchmarking pool</span><div class="toggle"></div></div>
+    <div class="toggle-row"><span>Practice data sharing</span><div class="toggle off"></div></div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Tier management</div>
+    <div class="tier-pill">Professional · $115</div>
+    <div class="note" style="margin-top:14px;">Upgrade prompts remain inline and never block access to existing scores.</div>
+    <div class="cta-card" style="margin-top:16px;">
+      <strong>Upgrade to Comprehensive · $175</strong>
+      <div class="page-subtitle">Unlock deeper voice coverage, full Moenio Lens depth, and complete treatment rendering.</div>
+      <div class="button" style="margin-top:14px;">Upgrade</div>
+    </div>
+  </div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+        <div class="screen-block">
+          <div class="screen-meta">
+            <h3>What Clients Are Asking · Coming Soon</h3>
+            <p>v1 placeholder with explanatory content and notification CTA.</p>
+          </div>
+                  <div class="app-frame">
+          <div class="desktop-shell" style="min-height:880px;">
+            <aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item active"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+
+            <main class="main">
+              <div class="content-width">
+                <div>
+                  <h1 class="page-title">What Clients Are Asking</h1>
+                  <div class="page-subtitle">Coming Soon state for the future lead-generation feature.</div>
+                </div>
+                <div class="panel">
+  <div class="row" style="justify-content:space-between;align-items:center;">
+    <div class="stack">
+      <div class="section-label">What Clients Are Asking</div>
+      <strong style="font-size:28px;">Coming Soon</strong>
+      <div class="page-subtitle">v1 exposes the nav item and an explanatory landing page only.</div>
+    </div>
+    <div class="state-pill warn">Coming Soon</div>
+  </div>
+</div>
+
+<div class="screen-grid-2">
+  <div class="panel">
+    <div class="section-label">Value proposition</div>
+    <div class="note">This future feature will surface current client questions and market concerns using the same one-question-per-screen assessment pattern you already know.</div>
+  </div>
+  <div class="panel">
+    <div class="section-label">Preview format</div>
+    <div class="surface-card"><strong>Periodic strategic pulse</strong><div class="page-subtitle">10–15 questions on live industry topics with profile-style output when released.</div></div>
+  </div>
+</div>
+
+<div class="cta-card">
+  <div class="section-label">Launch interest</div>
+  <strong>Notify me when available</strong>
+  <div class="page-subtitle">Used in v1 instead of assessment functionality.</div>
+  <div class="button" style="margin-top:14px;">Join notification list</div>
+</div>
+
+              </div>
+            </main>
+          </div>
+        </div>
+
+        </div>
+
+            </section>
+
+          </div>
+        </body>
+        </html>

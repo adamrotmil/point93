@@ -1,0 +1,1097 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Point93 / Components</title>
+          <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+          <style>
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --border: #d1d5de;
+  --text: #1a1d27;
+  --text-muted: #5c6478;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.08);
+  --green: #059669;
+  --green-bg: rgba(5, 150, 105, 0.08);
+  --amber: #d97706;
+  --amber-bg: rgba(217, 119, 6, 0.08);
+  --purple: #7c3aed;
+  --purple-bg: rgba(124, 58, 237, 0.08);
+  --rose: #e11d48;
+  --rose-bg: rgba(225, 29, 72, 0.08);
+  --teal: #0d9488;
+  --teal-bg: rgba(13, 148, 136, 0.08);
+  --orange: #ea580c;
+  --orange-bg: rgba(234, 88, 12, 0.08);
+  --blue-bg: rgba(37, 99, 235, 0.06);
+  --gray-700: #64748b;
+  --gray-bg: rgba(100, 116, 139, 0.08);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 4px 12px rgba(17, 24, 39, 0.05);
+  --shadow-md: 0 12px 24px rgba(17, 24, 39, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 26%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.capture-root {
+  width: 1920px;
+  padding: 56px 72px 88px;
+}
+
+.page-cover {
+  margin-bottom: 40px;
+  padding: 36px 40px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-md);
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-cover h1 {
+  margin: 0 0 12px;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.page-cover p {
+  max-width: 1040px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.cover-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.section-block {
+  margin-bottom: 42px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.section-header p {
+  max-width: 920px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.count-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.card-grid-2,
+.card-grid-3,
+.mini-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.card-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mini-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.doc-card,
+.panel-card,
+.token-card,
+.component-card {
+  padding: 20px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-card h3,
+.panel-card h3,
+.token-card h3,
+.component-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.doc-card p,
+.panel-card p,
+.token-card p,
+.component-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.meta-line {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.list li + li {
+  margin-top: 8px;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.swatch {
+  overflow: hidden;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 16px;
+  background: white;
+}
+
+.swatch-color {
+  height: 72px;
+}
+
+.swatch-info {
+  padding: 12px;
+}
+
+.swatch-info strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.swatch-info span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.type-sample {
+  padding: 16px 18px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 16px;
+  background: white;
+}
+
+.type-name {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.type-meta {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.scale-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scale-table th,
+.scale-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+  text-align: left;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.scale-table th {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scale-table tr:last-child td {
+  border-bottom: none;
+}
+
+.token-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.token-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.component-preview {
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  border: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.component-meta {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.screen-section {
+  margin-bottom: 48px;
+}
+
+.screen-block + .screen-block {
+  margin-top: 28px;
+}
+
+.screen-meta {
+  margin-bottom: 12px;
+}
+
+.screen-meta h3 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.screen-meta p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.app-frame {
+  width: 1440px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 24px;
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.desktop-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: 960px;
+}
+
+.sidebar {
+  width: 220px;
+  background: var(--surface-2);
+  border-right: 1px solid rgba(209, 213, 222, 0.9);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-logo {
+  padding: 0 18px 16px;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nav-item.active {
+  padding-left: 15px;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border-left: 3px solid var(--accent);
+  font-weight: 700;
+}
+
+.nav-item .badge {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--amber-bg);
+  color: var(--amber);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.nav-item .dot {
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 18px;
+  border-top: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.sidebar-footer .label {
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.main {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.content-width {
+  width: 100%;
+  max-width: 1188px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-title {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.page-subtitle,
+.meta,
+.subtle {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.meta {
+  font-weight: 600;
+}
+
+.row,
+.stack,
+.cluster,
+.screen-grid-2,
+.screen-grid-3 {
+  display: flex;
+  gap: 16px;
+}
+
+.stack {
+  flex-direction: column;
+}
+
+.row {
+  align-items: stretch;
+}
+
+.cluster {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.screen-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.screen-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel,
+.surface-card,
+.metric-card,
+.module-card,
+.area-card,
+.bi-card,
+.form-card,
+.question-card,
+.table-card,
+.cta-card {
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 18px;
+  background: white;
+  padding: 18px;
+}
+
+.panel-header {
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-card strong,
+.surface-card strong,
+.module-card strong,
+.area-card strong,
+.bi-card strong,
+.form-card strong,
+.question-card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.score-circle {
+  width: 78px;
+  height: 78px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.score-circle.sm {
+  width: 52px;
+  height: 52px;
+  font-size: 18px;
+  border-width: 2px;
+}
+
+.band-pill,
+.state-pill,
+.tier-pill,
+.voice-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.band-pill.comp {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.band-pill.top {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.band-pill.needs {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.band-pill.risk {
+  background: var(--rose-bg);
+  color: var(--rose);
+}
+
+.state-pill.info {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.state-pill.warn {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.state-pill.neutral {
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+.tier-pill {
+  background: var(--purple-bg);
+  color: var(--purple);
+}
+
+.voice-pill.v1 {
+  background: var(--gray-bg);
+  color: var(--gray-700);
+}
+
+.voice-pill.v2 {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.voice-pill.v3 {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.section-label {
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.treatment {
+  border-left: 4px solid var(--gray-700);
+  border-radius: 16px;
+  background: var(--gray-bg);
+  padding: 16px;
+}
+
+.treatment.v1 {
+  border-left-color: var(--teal);
+  background: var(--teal-bg);
+}
+
+.treatment.v2 {
+  border-left-color: var(--amber);
+  background: var(--amber-bg);
+}
+
+.treatment.v3 {
+  border-left-color: var(--green);
+  background: var(--green-bg);
+}
+
+.lens-card {
+  border: 2px solid var(--amber);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(217, 119, 6, 0.05), rgba(245, 158, 11, 0.08));
+  padding: 20px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button,
+.button-secondary,
+.button-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.button {
+  background: var(--accent);
+  color: white;
+}
+
+.button-secondary {
+  background: var(--teal);
+  color: white;
+}
+
+.button-ghost {
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+  overflow: hidden;
+}
+
+.progress-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+  text-align: left;
+  vertical-align: top;
+  font-size: 12px;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.input,
+.select {
+  padding: 12px 14px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 12px;
+  background: white;
+  font-size: 12px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.toggle {
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  position: relative;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: white;
+}
+
+.toggle.off {
+  background: rgba(209, 213, 222, 0.9);
+}
+
+.toggle.off::after {
+  right: auto;
+  left: 3px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: white;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tab.active {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.question-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 24px;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.answer {
+  padding: 14px 16px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 14px;
+  background: white;
+  font-size: 13px;
+}
+
+.answer.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.stepper {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
+.stepper-line {
+  flex: 1;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+}
+
+.step-node {
+  min-width: 108px;
+  text-align: center;
+}
+
+.step-node .bubble {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 8px;
+  border-radius: 999px;
+  border: 3px solid var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.step-node.complete .bubble {
+  background: var(--teal);
+  color: white;
+}
+
+.step-node.locked {
+  opacity: 0.45;
+}
+
+.timeline {
+  width: 100%;
+  height: 220px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(248,250,252,0.94));
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  padding: 12px;
+}
+
+.note {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.warning {
+  background: var(--amber-bg);
+  color: #8a4a09;
+}
+
+.success {
+  background: var(--green-bg);
+  color: #065f46;
+}
+
+.teal {
+  color: var(--teal);
+}
+
+.teal-card {
+  border-color: rgba(13, 148, 136, 0.28);
+  background: linear-gradient(180deg, rgba(13,148,136,0.05), rgba(255,255,255,1));
+}
+</style>
+        </head>
+        <body>
+          <div class="capture-root">
+            <header class="page-cover">
+  <div class="eyebrow">Point93 mechanical system pass</div>
+  <h1>Point93 / Components</h1>
+  <p>Mechanical component scaffolding for the MVP. These are the canonical Point93 patterns used to rebuild screens cleanly while the visual language stays intentionally neutral.</p>
+  <div class="cover-chips"><div class="chip">Navigation, layout, scoring, assessment, areas, BI, settings</div><div class="chip">Promote reusable patterns only</div><div class="chip">Neutral mechanics, no mood-board polish yet</div></div>
+</header>
+
+        <section class="section-block">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">P93 / Navigation + Layout</div>
+              <h2>Shell components</h2>
+              <p>These primitives define the overall Point93 desktop frame before product-specific content gets placed inside.</p>
+            </div>
+            <div class="count-pill">6 layout primitives</div>
+          </div>
+          <div class="card-grid-2">
+            <div class="component-card"><h3>Sidebar shell</h3><div class="component-preview"><aside class="sidebar">
+  <div class="sidebar-logo">Point93</div>
+  <div class="nav-item active"><span>◫</span><span>Dashboard</span></div>
+  <div class="nav-item"><span>★</span><span>My Results</span><span class="dot"></span></div>
+  <div class="nav-item"><span>✎</span><span>Assessments</span><span class="badge">1 in progress</span></div>
+  <div class="nav-item"><span>◧</span><span>My Areas</span></div>
+  <div class="nav-item"><span>◈</span><span>Business Intelligence</span></div>
+  <div class="nav-item"><span>◇</span><span>What Clients Are Asking</span><span class="badge">Soon</span></div>
+  <div class="sidebar-footer">
+    <div class="label">Account</div>
+    <div class="tier-pill">Comprehensive</div>
+    <div class="meta" style="margin-top: 10px;">5/17 modules · 29%</div>
+    <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+  </div>
+</aside>
+</div><div class="component-meta">220px fixed sidebar, active state with 3px accent rule, account summary at the bottom.</div></div>
+            <div class="component-card"><h3>Page header block</h3><div class="component-preview"><div class="stack"><div class="section-label">Page context</div><strong style="font-size:28px;">Dashboard</strong><div class="page-subtitle">Three-layer intelligence briefing with quick action and executive summary surfaces.</div></div></div><div class="component-meta">Used across all Point93 app screens.</div></div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">P93 / Scoring + Intelligence</div>
+              <h2>Score and intelligence patterns</h2>
+              <p>Core score, band, AI, and treatment structures that recur across Dashboard, My Results, Module Results, and BI.</p>
+            </div>
+            <div class="count-pill">8 reusable patterns</div>
+          </div>
+          <div class="card-grid-3">
+            <div class="component-card"><h3>Score circle</h3><div class="component-preview"><div class="row" style="align-items:center;">
+  <div class="score-circle" style="border-color:var(--accent);color:var(--accent);">78</div>
+  <div class="stack" style="gap:8px;">
+    <div class="band-pill comp">B · Competitive</div>
+    <div class="meta">Percentile anchored to firm category and peer group</div>
+  </div>
+</div>
+</div><div class="component-meta">Module, area, BI, and overall score anchor.</div></div>
+            <div class="component-card"><h3>Band and state chips</h3><div class="component-preview"><div class="cluster"><div class="band-pill top">A · Top Tier</div><div class="band-pill comp">B · Competitive</div><div class="band-pill needs">C · Needs Work</div><div class="band-pill risk">D · At Risk</div><div class="state-pill info">In Progress</div><div class="state-pill warn">Coming Soon</div></div></div><div class="component-meta">Used for scoring, states, and supporting status.</div></div>
+            <div class="component-card"><h3>AI denotation</h3><div class="component-preview"><div class="stack"><div class="ai-badge">AI generated</div><div class="ai-inline">AI reference</div><div class="treatment v1"><div class="voice-pill v1">V1 · Key Finding</div><div class="note" style="margin-top:12px;background:white;">Diagnostic narration with semantic treatment structure.</div></div></div></div><div class="component-meta">Prominent badge + compact inline marker.</div></div>
+            <div class="component-card"><h3>Treatment block variants</h3><div class="component-preview"><div class="stack"><div class="treatment v1"><div class="voice-pill v1">V1</div></div><div class="treatment v2"><div class="voice-pill v2">V2</div></div><div class="treatment v3"><div class="voice-pill v3">V3</div></div></div></div><div class="component-meta">Maps the three-voice system into reusable content shells.</div></div>
+            <div class="component-card"><h3>Tier prompt</h3><div class="component-preview"><div class="cta-card"><strong>Upgrade to Comprehensive</strong><div class="page-subtitle">Unlock deeper treatment coverage without gating scores.</div><div class="button" style="margin-top:12px;">Upgrade</div></div></div><div class="component-meta">Inline and contextual only.</div></div>
+            <div class="component-card"><h3>Moenio Lens shell</h3><div class="component-preview"><div class="lens-card"><div class="section-label" style="color:var(--amber);">Moenio Lens</div><div class="screen-grid-2"><div class="surface-card"><strong>Wins meetings</strong></div><div class="surface-card"><strong>Loses meetings</strong></div></div></div></div><div class="component-meta">Distinct gold-bordered intelligence container.</div></div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">P93 / Assessments</div>
+              <h2>Assessment components</h2>
+              <p>Core assessment patterns used in module discovery, gateway states, question flow, and post-completion results.</p>
+            </div>
+            <div class="count-pill">7 assessment patterns</div>
+          </div>
+          <div class="card-grid-3">
+            <div class="component-card"><h3>Module card</h3><div class="component-preview"><div class="module-card"><strong>FT.2 Technology Capabilities</strong><div class="meta">In Progress · 67% done</div><div class="progress-bar" style="margin-top:12px;"><span style="width:67%;background:var(--amber);"></span></div><div class="button" style="margin-top:12px;">Continue Assessment</div></div></div><div class="component-meta">Single primary CTA and time/progress-first framing.</div></div>
+            <div class="component-card"><h3>DP dot array</h3><div class="component-preview"><div class="stack"><div class="dots"><span class="dot" style="background:var(--green);"></span><span class="dot" style="background:var(--green);"></span><span class="dot" style="background:var(--accent);"></span><span class="dot" style="background:var(--amber);"></span><span class="dot" style="background:var(--rose);"></span></div><div class="note">Hover detail box lives adjacent in later interaction passes.</div></div></div><div class="component-meta">Compact module fingerprint without exposing full DP detail.</div></div>
+            <div class="component-card"><h3>Question shell</h3><div class="component-preview"><div class="question-shell" style="max-width:none;"><strong style="font-size:22px;">How consistently does your team use workflow automation?</strong><div class="stack" style="margin-top:16px;"><div class="answer selected">Usually true</div><div class="answer">Sometimes true</div><div class="answer">Rarely true</div></div></div></div><div class="component-meta">One question per screen with preserved answer state.</div></div>
+            <div class="component-card"><h3>Progress bar</h3><div class="component-preview"><div class="stack"><div class="meta">Question 7 of 12</div><div class="progress-bar"><span style="width:58%;"></span></div></div></div><div class="component-meta">Used in question flow and gateway momentum surfaces.</div></div>
+            <div class="component-card"><h3>Completion CTA block</h3><div class="component-preview"><div class="cta-card"><strong>FT.2 Technology Capabilities is complete</strong><div class="page-subtitle">Your score preview is available. Continue into Three-Act Reveal.</div><div class="button" style="margin-top:12px;">View Your Results</div></div></div><div class="component-meta">Transitions assessment completion into Module Results.</div></div>
+            <div class="component-card"><h3>Module Home state</h3><div class="component-preview"><div class="panel"><div class="section-label">Module Home</div><strong>FT.2 Technology Capabilities</strong><div class="state-pill warn" style="margin-top:10px;">In Progress · 8 of 12 answered</div><div class="button" style="margin-top:12px;">Continue Assessment</div></div></div><div class="component-meta">Gateway pattern for returning visitors.</div></div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-header">
+            <div>
+              <div class="eyebrow">P93 / Areas + BI + Settings</div>
+              <h2>Supporting product patterns</h2>
+              <p>Core patterns that round out areas, BI, forms, navigation tabs, and empty-state utility blocks.</p>
+            </div>
+            <div class="count-pill">9 supporting patterns</div>
+          </div>
+          <div class="card-grid-3">
+            <div class="component-card"><h3>Area card</h3><div class="component-preview"><div class="area-card"><strong>Professional Foundation</strong><div class="band-pill top" style="margin-top:10px;">73 · A · Top Tier</div><div class="meta" style="margin-top:10px;">100% assessed · 3 modules</div></div></div><div class="component-meta">Used on My Areas landing and previews.</div></div>
+            <div class="component-card"><h3>BI product card</h3><div class="component-preview"><div class="bi-card teal-card"><strong>PitchPerfect</strong><div class="meta">Stage 2 of 4 complete</div><div class="button-secondary" style="margin-top:12px;">View Profile</div></div></div><div class="component-meta">Distinct BI palette and state model.</div></div>
+            <div class="component-card"><h3>BI stage stepper</h3><div class="component-preview"><div class="stepper"><div class="step-node complete"><div class="bubble">✓</div><div class="meta">1</div></div><div class="stepper-line" style="background:var(--teal);"></div><div class="step-node"><div class="bubble">▶</div><div class="meta">2</div></div><div class="stepper-line"></div><div class="step-node locked"><div class="bubble">🔒</div><div class="meta">3</div></div></div></div><div class="component-meta">Used on BI Product Page.</div></div>
+            <div class="component-card"><h3>Tabs</h3><div class="component-preview"><div class="tabs"><div class="tab active">Score Overview</div><div class="tab">Strengths & Gaps</div><div class="tab">Trends</div></div></div><div class="component-meta">Used on My Results and future tabbed surfaces.</div></div>
+            <div class="component-card"><h3>Text field + select</h3><div class="component-preview"><div class="stack"><div class="field"><label>Full Name</label><div class="input">Jane Doe</div></div><div class="field"><label>Type of Firm</label><div class="select">Wealth Management — Large</div></div></div></div><div class="component-meta">Settings and onboarding structure.</div></div>
+            <div class="component-card"><h3>Toggle row</h3><div class="component-preview"><div class="toggle-row"><span>Anonymous benchmarking pool</span><div class="toggle"></div></div><div class="toggle-row"><span>Practice data sharing</span><div class="toggle off"></div></div></div><div class="component-meta">Settings preference rows.</div></div>
+            <div class="component-card"><h3>Comparison row</h3><div class="component-preview"><table class="table"><thead><tr><th>Metric</th><th>Your score</th><th>Peer median</th></tr></thead><tbody><tr><td>Overall</td><td>74</td><td>68</td></tr></tbody></table></div><div class="component-meta">Benchmark tables and summary rows.</div></div>
+            <div class="component-card"><h3>Empty / Coming Soon block</h3><div class="component-preview"><div class="note warning">Complete a module to unlock this area of the product.</div></div><div class="component-meta">Used for pre-data and future-state messaging.</div></div>
+            <div class="component-card"><h3>CTA card</h3><div class="component-preview"><div class="cta-card"><strong>Notify me when available</strong><div class="page-subtitle">Used for What Clients Are Asking in v1.</div><div class="button" style="margin-top:12px;">Join notification list</div></div></div><div class="component-meta">Flexible call-to-action shell.</div></div>
+          </div>
+        </section>
+
+          </div>
+        </body>
+        </html>

@@ -1,0 +1,80 @@
+{
+  "route": "/admin/graph-view",
+  "requestedUrl": "https://point93.ai/admin/graph-view",
+  "finalUrl": "https://point93.ai/admin/graph-view",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "System Graph View",
+    "Your Professional Foundation & Team Structure",
+    "Your Firm Platform, Technology & Support",
+    "Your Investment Management Excellence",
+    "Your Planning Process & Implementation",
+    "Your Client Service & Communication",
+    "Your Fees, Value & Positioning",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "View all →",
+      "href": "https://point93.ai/business-intelligence"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com System Graph View Complete hierarchical visualization of your scoring infrastructure Areas 6 Modules 18 Data Points 184 Questions 893 Options 4771 Benchmarks Set 571/893 Total Points 4944 Expand All Collapse All Add New Area Your Professional Foundation & Team Structure (4 modules, 25 data points) Order: Points: Status: Active Pending Inactive Add Module Industry Experience & Market Navigation (8 data points) Order: Points: Status: Active Pending Inactive Regulatory Record & Fiduciary Standing (6 data points) Order: Points: Status: Active Pending Inactive Team Structure & Client Service Model (10 data points) Order: Points: Status: Active Pending Inactive Test Module (2 Questions) (1 data points) Order: Points: Status: Active Pending Inactive Your Firm Platform, Technology & Support (3 modules, 35 data points) Order: Points: Status: Active Pending Inactive Add Module Firm Platform & Product Access (13 data points) Order: Points: Status: Active Pending Inactive Technology & Digital Experience (12 data points) Order: Points: Status: Active Pending Inactive Firm Support & Operational Infrastructure (10 data points) Order: Points: Status: Active Pending Inactive Your Investment Management Excellence (5 modules, 61 data points) Order: Points: Status: Active Pending Inactive Add Module Investment Philosophy & Portfolio Construction (17 data points) Order: Points: Status: Active Pending Inactive Investment Selection & Due Diligence (14 data points) Order: Points: Status: Active Pending Inactive Risk Management & Portfolio Monitoring (10 data points) Order: Points: Status: Active Pending Inactive Performance Measurement & Reporting (12 data points) Order: Points: Status: Active Pending Inactive Investment Communication & Client Education (8 data points) Order: Points: Status: Active Pending Inactive Your Planning Process & Implementation (3 modules, 29 data points) Order: Points: Status: Active Pending Inactive Add Module Discovery Process & Goal-Setting Excellence (11 data points) Order: Points: Status: Active Pending Inactive Planning Breadth & Specialized Capabilities (10 data points) Order: Points: Status: Active Pending Inactive Plan Implementation & Progress Monitoring (8 data points) Order: Points: Status: Active Pending Inactive Your Client Service & Communication (2 modules, 22 data points) Order: Points: Status: Active Pending Inactive Add Module Service Model & Client Experience (14 data points) Order: Points: Status: Active Pending Inactive Team Coordination & Capability (8 data points) Order: Points: Status: Active Pending Inactive Your Fees, Value & Positioning (1 modules, 12 data points) Order: Points: Status: Active Pending Inactive Add Module Fee Structure & Value Articulation (12 data points) Order: Points: Status: Active Pending Inactive 0 Advisor Score At Risk Profile Completion 0 of 18 modules · Comprehensive Intelligence Profiles View all → 🎯 NextGen Ready 0% 🎯 Client Referrals 0% What Clients Are Asking Coming Soon Weekly - Jan 27 “Should I be worried about the new fiduciary rule changes?” Advisors rated ready 68% Your readiness 72 - top 34% Improve your ranking → Strengths / Weaknesses Complete modules to see your strengths and areas needing attention Insight Areas Complete modules to see your insight area scores",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-graph-view.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-graph-view.html"
+}

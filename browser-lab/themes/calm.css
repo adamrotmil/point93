@@ -1,0 +1,33 @@
+:root {
+  --canvas-top: #c3d6e8;
+  --canvas-mid: #edf2f6;
+  --canvas-bottom: #eee1d2;
+  --ink: #1d1917;
+  --text-main: #5b554f;
+  --text-muted: #8a8177;
+  --topbar-bg: rgba(255,255,255,0.66);
+  --topbar-border: rgba(29,25,23,0.08);
+  --topbar-shadow: 0 8px 24px rgba(29,25,23,0.05);
+  --topbar-button-bg: rgba(255,255,255,0.76);
+  --topbar-button-border: rgba(29,25,23,0.08);
+  --topbar-button-text: #5b554f;
+  --sidebar-bg: #2a4064;
+  --sidebar-bg-2: #22385a;
+  --sidebar-active-bg: rgba(255,255,255,0.09);
+  --sidebar-active-text: #f0d38e;
+  --sidebar-accent: #f0d38e;
+  --right-rail-bg: rgba(248,244,238,0.86);
+  --surface: rgba(255,255,255,0.94);
+  --surface-border: #e7ddd3;
+  --surface-shadow: 0 12px 28px rgba(29,25,23,0.05);
+  --surface-radius: 20px;
+  --button-bg: #161513;
+  --button-text: #ffffff;
+  --accent-text: #8e6a2f;
+  --chip-border: rgba(29,25,23,0.08);
+  --success: #6e8660;
+  --warning: #b7863f;
+  --danger: #b56b57;
+  --track-bg: rgba(29,25,23,0.08);
+  --accent-fill: #d8b169;
+}

@@ -1,0 +1,126 @@
+{
+  "route": "/assess",
+  "requestedUrl": "https://point93.ai/assess",
+  "finalUrl": "https://point93.ai/dashboard",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "Welcome back, Adam!",
+    "Start Your Assessment",
+    "Strengths / Weaknesses",
+    "BUSINESS INTELLIGENCE",
+    "YOUR FOCUS AREAS",
+    "RECOMMENDED NEXT",
+    "Module Level Scorecard",
+    "Module Performance Board",
+    "DATA POINT SCORES",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "Begin First Module →",
+      "href": "https://point93.ai/assess"
+    },
+    {
+      "text": "View all",
+      "href": "https://point93.ai/business-intelligence"
+    },
+    {
+      "text": "NextGen Ready Start",
+      "href": "https://point93.ai/business-intelligence/a3bd6321-3069-42a6-9b5f-4566c8a4b8de"
+    },
+    {
+      "text": "Client Referrals Start",
+      "href": "https://point93.ai/business-intelligence/6a20f63d-2d4f-42a2-9671-0e0c7b44f44c"
+    },
+    {
+      "text": "PitchPerfect Start",
+      "href": "https://point93.ai/business-intelligence/ad510a5b-388f-4702-8412-7fbdb31e7c0b"
+    },
+    {
+      "text": "COI Referrals Start",
+      "href": "https://point93.ai/business-intelligence/1e1dfe2d-d93c-41b5-9f5d-ccd52f248dd9"
+    },
+    {
+      "text": "Client Retention Risk Start",
+      "href": "https://point93.ai/business-intelligence/aba03388-b815-4cb7-afc1-5fe5dd683ad6"
+    },
+    {
+      "text": "1 Investment Communication & Client Education Your Investment Management Excellence · 30 min Highest Impact",
+      "href": "https://point93.ai/modules/59d39250-8e60-4426-bea3-5ce7908b0ea6"
+    },
+    {
+      "text": "2 Regulatory Record & Fiduciary Standing Your Professional Foundation & Team Structure · 30 min Highest Impact",
+      "href": "https://point93.ai/modules/ce29cfe2-9258-411f-be85-dbc98f9e80ff"
+    },
+    {
+      "text": "3 Industry Experience & Market Navigation Your Professional Foundation & Team Structure · 30 min Highest Impact",
+      "href": "https://point93.ai/modules/1921d2b9-4145-47fd-b5f7-91c50d0ffebb"
+    },
+    {
+      "text": "View all modules",
+      "href": "https://point93.ai/my-journey"
+    },
+    {
+      "text": "View all →",
+      "href": "https://point93.ai/business-intelligence"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com Welcome back, Adam! Your business health based on what actually wins and keeps clients Current Plan: Comprehensive Start Your Assessment Complete your first module to see your scores. Your top priority modules will appear here based on what typically wins and keeps clients. Begin First Module → -- Overall Score -- Performance -- Gap to Top 5% -- Gap to Average 0 of 18 Modules Completed Your score Top 5% Industry average 0 20 40 60 80 100 Your Professional Firm Platform Your Investment Your Planning Client Service Your Fees, Complete assessments to see your scores Strengths / Weaknesses Complete modules to see your strengths and areas needing attention BUSINESS INTELLIGENCE View all NextGen Ready Start Client Referrals Start PitchPerfect Start COI Referrals Start Client Retention Risk Start YOUR FOCUS AREAS RECOMMENDED NEXT Based on your priorities 1 Investment Communication & Client Education Your Investment Management Excellence · 30 min Highest Impact 2 Regulatory Record & Fiduciary Standing Your Professional Foundation & Team Structure · 30 min Highest Impact 3 Industry Experience & Market Navigation Your Professional Foundation & Team Structure · 30 min Highest Impact View all modules Module Level Scorecard Complete modules to see scorecard Module Performance Board Complete modules to see performance data DATA POINT SCORES Complete modules to see your data point scores 0 Advisor Score At Risk Profile Completion 0 of 18 modules · Comprehensive Intelligence Profiles View all → 🎯 NextGen Ready 0% 🎯 Client Referrals 0% What Clients Are Asking Coming Soon Weekly - Jan 27 “Should I be worried about the new fiduciary rule changes?” Advisors rated ready 68% Your readiness 72 - top 34% Improve your ranking → Strengths / Weaknesses Complete modules to see your strengths and areas needing attention Insight Areas Complete modules to see your insight area scores",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/assess.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/assess.html"
+}

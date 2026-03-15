@@ -1,0 +1,42 @@
+:root {
+  --canvas-top: #d2ddd8;
+  --canvas-mid: #f3f1ec;
+  --canvas-bottom: #eadcc8;
+  --ink: #1d1814;
+  --text-main: #5b524a;
+  --text-muted: #8b8177;
+  --topbar-bg: rgba(255,250,245,0.78);
+  --topbar-border: rgba(29,24,20,0.08);
+  --topbar-shadow: 0 10px 30px rgba(29,24,20,0.04);
+  --topbar-button-bg: rgba(255,255,255,0.82);
+  --topbar-button-border: rgba(29,24,20,0.08);
+  --topbar-button-text: #5b524a;
+  --sidebar-bg: #36465d;
+  --sidebar-bg-2: #2c394d;
+  --sidebar-active-bg: rgba(255,255,255,0.08);
+  --sidebar-active-text: #edd4a3;
+  --sidebar-accent: #edd4a3;
+  --right-rail-bg: rgba(250,246,240,0.90);
+  --surface: rgba(255,252,248,0.94);
+  --surface-border: #e7ddd0;
+  --surface-shadow: 0 16px 34px rgba(29,24,20,0.05);
+  --surface-radius: 22px;
+  --button-bg: #181513;
+  --button-text: #ffffff;
+  --accent-text: #9a7340;
+  --chip-border: rgba(29,24,20,0.08);
+  --success: #697d59;
+  --warning: #aa7a39;
+  --danger: #b16a59;
+  --track-bg: rgba(29,24,20,0.08);
+  --accent-fill: #d4b078;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.045em !important;
+}

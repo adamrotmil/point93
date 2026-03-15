@@ -1,0 +1,314 @@
+:root {
+  --subtle-canvas-top: #f8f7f4;
+  --subtle-canvas-mid: #f4f3ef;
+  --subtle-canvas-bottom: #f0eee8;
+  --subtle-sidebar-top: #f1efe8;
+  --subtle-sidebar-bottom: #ebe8e1;
+  --subtle-sidebar-border: rgba(28, 22, 18, 0.08);
+  --subtle-sidebar-text: #6c665f;
+  --subtle-sidebar-text-strong: #2f2a25;
+  --subtle-sidebar-active-bg: rgba(255, 255, 255, 0.76);
+  --subtle-sidebar-active-accent: #c6a262;
+  --subtle-topbar-bg: rgba(248, 247, 244, 0.86);
+  --subtle-topbar-border: rgba(28, 22, 18, 0.08);
+  --subtle-topbar-shadow: 0 8px 18px rgba(28, 22, 18, 0.035);
+  --subtle-topbar-text: #5d5750;
+  --subtle-stat-line: rgba(28, 22, 18, 0.075);
+  --subtle-stat-shadow: 0 8px 16px rgba(28, 22, 18, 0.045);
+  --subtle-icon-surface: rgba(141, 163, 194, 0.12);
+  --subtle-icon-stroke: #667081;
+  --subtle-label: #5d5750;
+  --subtle-value: #21272a;
+  --subtle-empty: #8d877f;
+  --subtle-right-rail: rgba(248, 247, 244, 0.92);
+  --subtle-card-line: rgba(28, 22, 18, 0.08);
+  --subtle-card-shadow: 0 8px 18px rgba(28, 22, 18, 0.035);
+  --subtle-card-title: #21272a;
+  --subtle-card-copy: #6c665f;
+}
+
+html,
+body {
+  background: linear-gradient(
+    180deg,
+    var(--subtle-canvas-top) 0%,
+    var(--subtle-canvas-mid) 46%,
+    var(--subtle-canvas-bottom) 100%
+  ) !important;
+}
+
+body > div.min-h-screen {
+  background: transparent !important;
+}
+
+header.fixed.top-0 {
+  background: var(--subtle-topbar-bg) !important;
+  border-bottom: 1px solid var(--subtle-topbar-border) !important;
+  box-shadow: var(--subtle-topbar-shadow) !important;
+  backdrop-filter: blur(16px) saturate(1.08) !important;
+}
+
+header.fixed.top-0 button,
+header.fixed.top-0 a.inline-flex {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(28, 22, 18, 0.08) !important;
+  color: var(--subtle-topbar-text) !important;
+  box-shadow: none !important;
+}
+
+header.fixed.top-0 [class*="text-white"],
+header.fixed.top-0 [class*="text-white/"],
+header.fixed.top-0 [class*="text-gray-"],
+header.fixed.top-0 svg {
+  color: var(--subtle-topbar-text) !important;
+}
+
+header.fixed.top-0 svg path {
+  stroke: currentColor !important;
+}
+
+aside.fixed.right-0 {
+  background: var(--subtle-right-rail) !important;
+  border-left-color: rgba(28, 22, 18, 0.07) !important;
+}
+
+aside.fixed.left-0 {
+  background: linear-gradient(180deg, var(--subtle-sidebar-top) 0%, var(--subtle-sidebar-bottom) 100%) !important;
+  border-right: 1px solid var(--subtle-sidebar-border) !important;
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+aside.fixed.left-0 [class*="text-white/70"],
+aside.fixed.left-0 [class*="text-white/50"],
+aside.fixed.left-0 [class*="text-white/40"],
+aside.fixed.left-0 [class*="text-white"] {
+  color: var(--subtle-sidebar-text) !important;
+}
+
+aside.fixed.left-0 .bg-gold-500\/15 {
+  background: var(--subtle-sidebar-active-bg) !important;
+}
+
+aside.fixed.left-0 .text-gold-400,
+aside.fixed.left-0 .group.text-gold-400,
+aside.fixed.left-0 .group .text-gold-400,
+aside.fixed.left-0 .bg-gold-400 {
+  color: var(--subtle-sidebar-active-accent) !important;
+}
+
+aside.fixed.left-0 .bg-gold-400 {
+  background: var(--subtle-sidebar-active-accent) !important;
+}
+
+aside.fixed.left-0 a[href="/dashboard"] .sidebar-label,
+aside.fixed.left-0 a[href="/dashboard"] svg,
+aside.fixed.left-0 .text-gold-400 {
+  color: var(--subtle-sidebar-text-strong) !important;
+}
+
+aside.fixed.left-0 .border-white\/10,
+aside.fixed.left-0 .border-white\/20 {
+  border-color: rgba(28, 22, 18, 0.08) !important;
+}
+
+aside.fixed.left-0 .bg-navy-800,
+aside.fixed.left-0 .hover\:bg-navy-700:hover {
+  background: rgba(28, 22, 18, 0.05) !important;
+}
+
+aside.fixed.left-0 [class*="bg-gold-500/20"] {
+  background: rgba(198, 162, 98, 0.16) !important;
+}
+
+aside.fixed.left-0 .hover\:bg-white\/5:hover,
+aside.fixed.left-0 button:hover,
+aside.fixed.left-0 a:hover {
+  background: rgba(28, 22, 18, 0.035) !important;
+}
+
+main .space-y-6 > [class~="@container"] > div {
+  gap: 14px !important;
+}
+
+main .space-y-6 > .bg-gradient-to-br.from-navy-900.to-navy-800 {
+  position: relative !important;
+  border: 1px solid rgba(28, 22, 18, 0.08) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(176, 194, 219, 0.22), transparent 22%),
+    linear-gradient(135deg, rgba(235, 240, 246, 0.96) 0%, rgba(247, 244, 239, 0.98) 100%) !important;
+  box-shadow: 0 12px 24px rgba(28, 22, 18, 0.045) !important;
+  color: var(--subtle-card-title) !important;
+  overflow: hidden !important;
+}
+
+main .space-y-6 > .bg-gradient-to-br.from-navy-900.to-navy-800 h2,
+main .space-y-6 > .bg-gradient-to-br.from-navy-900.to-navy-800 [class*="text-2xl"] {
+  color: var(--subtle-card-title) !important;
+  font-size: 29px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.035em !important;
+}
+
+main .space-y-6 > .bg-gradient-to-br.from-navy-900.to-navy-800 p,
+main .space-y-6 > .bg-gradient-to-br.from-navy-900.to-navy-800 [class*="text-white/70"] {
+  color: var(--subtle-card-copy) !important;
+}
+
+main .space-y-6 > .bg-gradient-to-br.from-navy-900.to-navy-800 a {
+  background: #171513 !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  box-shadow: 0 6px 14px rgba(23, 21, 19, 0.12) !important;
+}
+
+main .space-y-6 > .bg-gradient-to-br.from-navy-900.to-navy-800 a span {
+  color: inherit !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div {
+  position: relative !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 14px !important;
+  min-height: 72px !important;
+  padding: 0 18px !important;
+  border: 1px solid var(--subtle-stat-line) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--subtle-stat-shadow) !important;
+  overflow: hidden !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div > img {
+  display: none !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div::before {
+  content: "" !important;
+  display: block !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 999px !important;
+  background-color: var(--subtle-icon-surface) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 16px 16px !important;
+  flex: none !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div:nth-child(1)::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 4.5L14.4 9.3L19.7 10.05L15.85 13.8L16.75 19.1L12 16.55L7.25 19.1L8.15 13.8L4.3 10.05L9.6 9.3L12 4.5Z' stroke='%235d5750' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div:nth-child(2)::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M7 16.5V11.5' stroke='%235d5750' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M12 16.5V7.5' stroke='%235d5750' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M17 16.5V9.5' stroke='%235d5750' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div:nth-child(3)::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M7 16.5L11 12.5L14 14.75L18 9.5' stroke='%235d5750' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15.5 9.5H18V12' stroke='%235d5750' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div:nth-child(4)::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Ccircle cx='12' cy='12' r='6.5' stroke='%235d5750' stroke-width='1.65'/%3E%3Cpath d='M6.5 12H17.5' stroke='%235d5750' stroke-width='1.65' stroke-linecap='round'/%3E%3Cpath d='M12 6.5V17.5' stroke='%235d5750' stroke-width='1.65' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div:nth-child(5)::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M8 6.5H16' stroke='%235d5750' stroke-width='1.65' stroke-linecap='round'/%3E%3Cpath d='M8 10.5H16' stroke='%235d5750' stroke-width='1.65' stroke-linecap='round'/%3E%3Cpath d='M8 14.5H13' stroke='%235d5750' stroke-width='1.65' stroke-linecap='round'/%3E%3Cpath d='M6.5 4.5H17.5V19.5L14.5 17L12 19.5L9.5 17L6.5 19.5V4.5Z' stroke='%235d5750' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div > .min-w-0 {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  min-width: 0 !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div > .min-w-0 > p {
+  margin: 0 !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div > .min-w-0 > p:first-child {
+  color: var(--subtle-value) !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div > .min-w-0 > p:first-child.text-gray-400 {
+  color: var(--subtle-empty) !important;
+}
+
+main .space-y-6 > [class~="@container"] > div > div > .min-w-0 > p:last-child {
+  color: var(--subtle-label) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+}
+
+main .bg-white.rounded-\[22px\].p-5,
+main .bg-white.rounded-xl.p-6,
+main .bg-white.rounded-xl.shadow-card.p-5.shadow-sm,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4,
+aside.fixed.right-0 .relative.bg-white.rounded-xl.p-4.opacity-50,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4.overflow-visible {
+  border: 1px solid var(--subtle-card-line) !important;
+  box-shadow: var(--subtle-card-shadow) !important;
+}
+
+main .bg-white.rounded-\[22px\].p-5 > h3,
+main .bg-white.rounded-xl.p-6 > h3,
+main .bg-white.rounded-xl.shadow-card.p-5.shadow-sm > h3,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4 > h3,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4.overflow-visible > div > h3 {
+  display: block !important;
+  margin-bottom: 14px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid var(--subtle-card-line) !important;
+  color: var(--subtle-card-title) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+}
+
+main .bg-white.rounded-xl.shadow-card.p-5.shadow-sm > .flex.items-center.justify-between.mb-4,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4 > .flex.items-center.justify-between.mb-4,
+aside.fixed.right-0 .relative.bg-white.rounded-xl.p-4.opacity-50 > .flex.items-center.justify-between.mb-2 {
+  margin-bottom: 14px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid var(--subtle-card-line) !important;
+}
+
+main .bg-white.rounded-xl.shadow-card.p-5.shadow-sm > .flex.items-center.justify-between.mb-4 > h3,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4 > .flex.items-center.justify-between.mb-4 > h3,
+aside.fixed.right-0 .relative.bg-white.rounded-xl.p-4.opacity-50 > .flex.items-center.justify-between.mb-2 > h3 {
+  color: var(--subtle-card-title) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+}
+
+main .bg-white.rounded-xl.shadow-card.p-5.shadow-sm p.text-xs,
+main .bg-white.rounded-\[22px\].p-5 > p.text-sm,
+main .bg-white.rounded-xl.p-6 > p.text-xs,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4 p[class*="text-[12px]"],
+aside.fixed.right-0 .bg-white.rounded-xl.p-4 p.text-sm,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4.overflow-visible > div > p[class*="text-[12px]"] {
+  color: var(--subtle-card-copy) !important;
+  line-height: 1.5 !important;
+}
+
+main .bg-white.rounded-xl.shadow-card.p-5.shadow-sm p.text-xs,
+main .bg-white.rounded-xl.p-6 > p.text-xs,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4 p[class*="text-[12px]"],
+aside.fixed.right-0 .bg-white.rounded-xl.p-4.overflow-visible > div > p[class*="text-[12px]"] {
+  font-size: 12px !important;
+}
+
+main .bg-white.rounded-\[22px\].p-5 > p.text-sm,
+aside.fixed.right-0 .bg-white.rounded-xl.p-4 p.text-sm {
+  font-size: 13px !important;
+}

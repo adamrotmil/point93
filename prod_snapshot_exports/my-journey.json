@@ -1,0 +1,149 @@
+{
+  "route": "/my-journey",
+  "requestedUrl": "https://point93.ai/my-journey",
+  "finalUrl": "https://point93.ai/my-journey",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "Assessments",
+    "Your Progress",
+    "Your Professional Foundation & Team Structure",
+    "Your Firm Platform, Technology & Support",
+    "Your Investment Management Excellence",
+    "Your Planning Process & Implementation",
+    "Your Client Service & Communication",
+    "Your Fees, Value & Positioning",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "Module 1 • Industry Experience & Market Navigation Do your credentials command immediate respect from sophisticated prospects? This module measures the professional signals that high-value clients evaluate before their first meeting: designations, education, career trajectory, and industry recognition. It reveals whether your credibility markers match or exceed what competitors are presenting to the same prospects. Not Started",
+      "href": "https://point93.ai/modules/1921d2b9-4145-47fd-b5f7-91c50d0ffebb"
+    },
+    {
+      "text": "Module 2 • Regulatory Record & Fiduciary Standing Can prospects see that their interests will always come first? This module examines the structural and behavioral commitments that demonstrate client-first priorities: fiduciary status, compensation transparency, and conflict management practices. It reveals whether prospects can clearly see the professional standards that protect their interests. Not Started",
+      "href": "https://point93.ai/modules/ce29cfe2-9258-411f-be85-dbc98f9e80ff"
+    },
+    {
+      "text": "Module 3 • Team Structure & Client Service Model Does your business structure give clients confidence in your long-term stability? This module evaluates the organizational elements that signal sustainability: team depth, succession planning, role specialization, and operational infrastructure. It reveals whether your business structure reassures clients that their relationship will endure regardless of circumstances. Not Started",
+      "href": "https://point93.ai/modules/bb142f72-e35b-464f-80e6-1e4896e024ed"
+    },
+    {
+      "text": "Module 4 • Firm Platform & Product Access Does your firm's platform give clients confidence their assets are protected? This module examines the institutional foundation behind your practice: custodial relationships, firm stability, regulatory standing, and insurance protections. It reveals whether sophisticated prospects will view your platform as appropriate for their wealth level and complexity. Not Started",
+      "href": "https://point93.ai/modules/58861052-31af-4d66-9903-4d4235ecc941"
+    },
+    {
+      "text": "Module 5 • Technology & Digital Experience Does your technology create a modern, seamless client experience? This module evaluates the digital touchpoints that shape daily client experience: portal capabilities, mobile access, reporting tools, and communication platforms. It reveals whether your technology investment matches client expectations formed by their experiences with other professional services. Not Started",
+      "href": "https://point93.ai/modules/15f8d669-b00e-49eb-8196-c99ccc119366"
+    },
+    {
+      "text": "Module 6 • Firm Support & Operational Infrastructure Can clients trust that their sensitive information is fully protected? This module measures the cybersecurity practices and compliance infrastructure that protect client data and assets: security protocols, privacy practices, and regulatory adherence. It reveals whether your protective measures meet the elevated expectations of high-net-worth clients and professional referral sources. Not Started",
+      "href": "https://point93.ai/modules/0db71168-880d-4166-a8c8-e663475ce57c"
+    },
+    {
+      "text": "Module 7 • Investment Philosophy & Portfolio Construction Can you articulate a clear investment philosophy that prospects find compelling? This module evaluates how clearly and consistently you communicate your investment beliefs: your core methodology, market perspective, and the principles that guide decisions. It reveals whether your investment story creates differentiation and builds the conviction that wins competitive situations. Not Started",
+      "href": "https://point93.ai/modules/b0e24190-0156-43e6-92e5-77e5727b1073"
+    },
+    {
+      "text": "Module 8 • Investment Selection & Due Diligence Is your investment selection process rigorous enough to earn client trust? This module evaluates how you choose investments: research depth, due diligence standards, manager evaluation criteria, and selection documentation. It reveals whether your process demonstrates the professional rigor that sophisticated clients expect and competitors may lack. Not Started",
+      "href": "https://point93.ai/modules/6c4ac9f8-ab67-40d5-a77a-03e6b72b9e8c"
+    },
+    {
+      "text": "Module 9 • Risk Management & Portfolio Monitoring Do your monitoring practices demonstrate active stewardship of client assets? This module measures your ongoing portfolio oversight: monitoring frequency, rebalancing discipline, performance tracking, and response protocols. It reveals whether clients experience the attentive asset stewardship that justifies your fees and prevents them from questioning your value. Not Started",
+      "href": "https://point93.ai/modules/818ef794-034e-4649-9134-01d3d04f20bb"
+    },
+    {
+      "text": "Module 10 • Performance Measurement & Reporting Do your clients truly understand their portfolio performance and what it means? This module evaluates how you educate clients about investment results: reporting clarity, benchmark context, expectation management, and ongoing education. It reveals whether clients develop the understanding that keeps them confident through all market conditions and positions them to refer others knowledgeably. Not Started",
+      "href": "https://point93.ai/modules/8fb050f1-80a3-4b45-b665-c035262736ce"
+    },
+    {
+      "text": "Module 11 • Investment Communication & Client Education 6 data points covering decision explanations, market commentary, volatility communication, behavioral coaching, client education, and portfolio change communication Not Started",
+      "href": "https://point93.ai/modules/59d39250-8e60-4426-bea3-5ce7908b0ea6"
+    },
+    {
+      "text": "Module 11 • Discovery Process & Goal-Setting Excellence Does your planning process address the full picture of each client's financial life? This module evaluates your core financial planning capability: needs analysis depth, goal integration, plan comprehensiveness, and ongoing review processes. It reveals whether your planning methodology creates the holistic value that differentiates you from investment-focused competitors. Not Started",
+      "href": "https://point93.ai/modules/d1a9d02e-cfba-4900-ac3a-3325019e0ed4"
+    },
+    {
+      "text": "Module 12 • Planning Breadth & Specialized Capabilities Can you solve the complex challenges that basic planning doesn't address? This module measures your capabilities in specialized areas: tax planning integration, estate strategy, charitable planning, and business owner services. It reveals whether your expertise matches the advanced needs of high-complexity clients and earns referrals from specialists in those fields. Not Started",
+      "href": "https://point93.ai/modules/1765896e-e351-44a3-9a89-b073b48d3308"
+    },
+    {
+      "text": "Module 13 • Plan Implementation & Progress Monitoring Do you address the protection gaps that could derail your clients' financial plans? This module examines your risk management integration: insurance review practices, protection gap analysis, solution recommendations, and carrier relationships. It reveals whether you provide the comprehensive protection oversight that true wealth management requires and clients increasingly expect. Not Started",
+      "href": "https://point93.ai/modules/5529ecb1-4c0a-4fd2-8622-a361af96a0d7"
+    },
+    {
+      "text": "Module 14 • Service Model & Client Experience Do clients know exactly what to expect from you—and do you consistently deliver? This module evaluates the operational side of client experience: service definition, delivery consistency, accessibility, and responsiveness. It reveals whether clients have clear expectations that are reliably met—the foundation that must exist before deeper relationship value can develop. Not Started",
+      "href": "https://point93.ai/modules/0836f40c-1c40-47b9-bc77-19578b66165f"
+    },
+    {
+      "text": "Module 15 • Team Coordination & Capability Have you built relationships where clients genuinely want to see you succeed? This module measures the emotional quality of your client relationships: personal connection depth, family integration, life event recognition, and client feedback practices. It reveals whether you've created the relationship experience that transforms satisfied clients into genuine advocates for your practice. Not Started",
+      "href": "https://point93.ai/modules/fa1d1636-d76b-4630-959b-af3b11bfca73"
+    },
+    {
+      "text": "Module 16 • Fee Structure & Value Articulation This module evaluates the crucial link between your pricing and perceived value: fee transparency, value articulation, competitive positioning, and client understanding of what they pay for. It reveals whether you're maximizing both client satisfaction and practice economics through effective value communication. Not Started",
+      "href": "https://point93.ai/modules/8621f1c7-2c34-4ab4-baa3-cd8c56b0771d"
+    },
+    {
+      "text": "View all →",
+      "href": "https://point93.ai/business-intelligence"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com Assessments Track your progress through all assessment modules 0% At Risk 0 Completed 0 In Progress 17 Not Started Your Progress 0 of 17 modules (0%) Completed (0) In Progress (0) Not Started (17) Jump to Area 1 Your Professional Foundation & Team Structure 2 Your Firm Platform, Technology & Support 3 Your Investment Management Excellence 4 Your Planning Process & Implementation 5 Your Client Service & Communication 6 Your Fees, Value & Positioning 1 Your Professional Foundation & Team Structure 0 of 3 modules completed 0% Do your credentials, experience, and team inspire immediate confidence? This area measures the professional credibility signals that prospects evaluate before ever meeting you. It reveals whether your credentials, career trajectory, team composition, and business structure create the foundation of trust that high-value clients require. KEY BUSINESS INTELLIGENCE • Identify credential gaps that may be costing you consideration with sophisticated prospects • Understand how your team structure compares to practices winning similar clients • Discover succession and continuity concerns that may be causing client anxiety • Benchmark your experience profile against top advisors in your market • Reveal professional development investments that signal commitment to excellence Module 1 • Industry Experience & Market Navigation Do your credentials command immediate respect from sophisticated prospects? This module measures the professional signals that high-value clients evaluate before their first meeting: designations, education, career trajectory, and industry recognition. It reveals whether your credibility markers match or exceed what competitors are presenting to the same prospects. Not Started Module 2 • Regulatory Record & Fiduciary Standing Can prospects see that their interests will always come first? This module examines the structural and behavioral commitments that demonstrate client-first priorities: fiduciary status, compensation transparency, and conflict management practices. It reveals whether prospects can clearly see the professional standards that protect their interests. Not Started Module 3 • Team Structure & Client Service Model Does your business structure give clients confidence in your long-term stability? This module evaluates the organizational elements that signal sustainability: team depth, succession planning, role specialization, and operational infrastructure. It reveals whether your business structure reassures clients that their relationship will endure regardless of circumstances. Not Started 2 Your Firm Platform, Technology & Support 0 of 3 modules completed 0% Does your platform give clients confidence they're getting institutional-quality support? This area examines the infrastructure behind your advice: custodial strength, technology capabilities, cybersecurity practices, and regulatory compliance. It reveals whether your platform matches the institutional expectations of sophisticated clients and the operational requirements of professional referral sources. KEY BUSINESS INTELLIGENCE • Identify platform limitations that may be concerns for high-net-worth prospects • Understand how your technology experience compares to client expectations • Discover security and compliance practices that professional referral sources evaluate • Benchmark your digital capabilities against practices winning similar clients • Reveal infrastructure investments that signal operational excellence to sophisticated evaluators Module 4 • Firm Platform & Product Access Does your firm's platform give clients confidence their assets are protected? This module examines the institutional foundation behind your practice: custodial relationships, firm stability, regulatory standing, and insurance protections. It reveals whether sophisticated prospects will view your platform as appropriate for their wealth level and complexity. Not Started Module 5 • Technology & Digital Experience Does your technology create a modern, seamless client experience? This module evaluates the digital touchpoints that shape daily client experience: portal capabilities, mobile access, reporting tools, and communication platforms. It reveals whether your technology investment matches client expectations formed by their experiences with other professional services. Not Started Module 6 • Firm Support & Operational Infrastructure Can clients trust that their sensitive information is fully protected? This module measures the cybersecurity practices and compliance infrastructure that protect client data and assets: security protocols, privacy practices, and regulatory adherence. It reveals whether your protective measures meet the elevated expectations of high-net-worth clients and professional referral sources. Not Started 3 Your Investment Management Excellence 0 of 5 modules completed 0% Can you clearly articulate a disciplined investment philosophy that builds client confidence? This area examines your investment approach from philosophy through execution: the clarity of your methodology, rigor of your selection process, quality of your monitoring, and effectiveness of your client communication. It reveals whether your investment story creates the confidence and understanding that keeps clients committed through market cycles. KEY BUSINESS INTELLIGENCE • Identify how clearly you articulate investment philosophy compared to winning competitors • Understand whether your selection and monitoring processes meet institutional standards • Discover gaps between your performance communication and client comprehension • Benchmark your investment education approach against top client-retention practices • Reveal the investment story elements that most influence prospect decisions Module 7 • Investment Philosophy & Portfolio Construction Can you articulate a clear investment philosophy that prospects find compelling? This module evaluates how clearly and consistently you communicate your investment beliefs: your core methodology, market perspective, and the principles that guide decisions. It reveals whether your investment story creates differentiation and builds the conviction that wins competitive situations. Not Started Module 8 • Investment Selection & Due Diligence Is your investment selection process rigorous enough to earn client trust? This module evaluates how you choose investments: research depth, due diligence standards, manager evaluation criteria, and selection documentation. It reveals whether your process demonstrates the professional rigor that sophisticated clients expect and competitors may lack. Not Started Module 9 • Risk Management & Portfolio Monitoring Do your monitoring practices demonstrate active stewardship of client assets? This module measures your ongoing portfolio oversight: monitoring frequency, rebalancing discipline, performance tracking, and response protocols. It reveals whether clients experience the attentive asset stewardship that justifies your fees and prevents them from questioning your value. Not Started Module 10 • Performance Measurement & Reporting Do your clients truly understand their portfolio performance and what it means? This module evaluates how you educate clients about investment results: reporting clarity, benchmark context, expectation management, and ongoing education. It reveals whether clients develop the understanding that keeps them confident through all market conditions and positions them to refer others knowledgeably. Not Started Module 11 • Investment Communication & Client Education 6 data points covering decision explanations, market commentary, volatility communication, behavioral coaching, client education, and portfolio change communicat",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/my-journey.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/my-journey.html"
+}

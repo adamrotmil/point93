@@ -1,0 +1,74 @@
+{
+  "route": "/admin/bi-builder",
+  "requestedUrl": "https://point93.ai/admin/bi-builder",
+  "finalUrl": "https://point93.ai/admin/bi-builder",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "Business Intelligence Builder",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "View all →",
+      "href": "https://point93.ai/business-intelligence"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com Business Intelligence Builder Areas → Stages → Questions hierarchy New BI Area BI AREAS NextGen Ready active Avg % Elite % Client Referrals active Avg % Elite % PitchPerfect active Avg % Elite % COI Referrals active Avg % Elite % Client Retention Risk active Avg % Elite % STAGES Select an area Select a stage to manage questions 0 Advisor Score At Risk Profile Completion 0 of 18 modules · Comprehensive Intelligence Profiles View all → 🎯 NextGen Ready 0% 🎯 Client Referrals 0% What Clients Are Asking Coming Soon Weekly - Jan 27 “Should I be worried about the new fiduciary rule changes?” Advisors rated ready 68% Your readiness 72 - top 34% Improve your ranking → Strengths / Weaknesses Complete modules to see your strengths and areas needing attention Insight Areas Complete modules to see your insight area scores",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-bi-builder.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-bi-builder.html"
+}

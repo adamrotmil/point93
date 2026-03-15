@@ -1,0 +1,441 @@
+{
+  "route": "/scores",
+  "requestedUrl": "https://point93.ai/scores",
+  "finalUrl": "https://point93.ai/scores",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "Module Scores",
+    "Your Professional Foundation & Team Structure",
+    "Industry Experience & Market Navigation",
+    "Regulatory Record & Fiduciary Standing",
+    "Team Structure & Client Service Model",
+    "Your Firm Platform, Technology & Support",
+    "Firm Platform & Product Access",
+    "Technology & Digital Experience",
+    "Firm Support & Operational Infrastructure",
+    "Your Investment Management Excellence",
+    "Investment Philosophy & Portfolio Construction",
+    "Investment Selection & Due Diligence",
+    "Risk Management & Portfolio Monitoring",
+    "Performance Measurement & Reporting",
+    "Investment Communication & Client Education",
+    "Your Planning Process & Implementation",
+    "Discovery Process & Goal-Setting Excellence",
+    "Planning Breadth & Specialized Capabilities",
+    "Plan Implementation & Progress Monitoring",
+    "Your Client Service & Communication",
+    "Service Model & Client Experience",
+    "Team Coordination & Capability",
+    "Your Fees, Value & Positioning",
+    "Fee Structure & Value Articulation",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/1921d2b9-4145-47fd-b5f7-91c50d0ffebb"
+    },
+    {
+      "text": "Professional Credentials --",
+      "href": "https://point93.ai/insight-areas/f0c27d92-5fe6-425d-839e-60859335c00d"
+    },
+    {
+      "text": "Market Cycle Experience --",
+      "href": "https://point93.ai/insight-areas/44785d7c-53a2-4c3e-810d-5fb86fbe41b8"
+    },
+    {
+      "text": "Industry Tenure --",
+      "href": "https://point93.ai/insight-areas/7191b06b-a7ed-463d-bbad-c1e4e44ec0b2"
+    },
+    {
+      "text": "Continuous Learning --",
+      "href": "https://point93.ai/insight-areas/83758b80-f874-4a4f-86fc-d08810c724fa"
+    },
+    {
+      "text": "Client Segment Expertise --",
+      "href": "https://point93.ai/insight-areas/42f5a810-5e0c-4cc7-9827-4a0762d175bf"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/ce29cfe2-9258-411f-be85-dbc98f9e80ff"
+    },
+    {
+      "text": "Regulatory Standing & History --",
+      "href": "https://point93.ai/insight-areas/cf5d88a1-8a6a-452f-b533-3bc9ea9983bc"
+    },
+    {
+      "text": "Conflict Management Discipline --",
+      "href": "https://point93.ai/insight-areas/e974b4c6-9fa6-4a82-bbff-27e033932d4e"
+    },
+    {
+      "text": "Disclosure Excellence --",
+      "href": "https://point93.ai/insight-areas/3d4a87ef-5870-4f7b-9dc6-55466b648c8e"
+    },
+    {
+      "text": "Compliance Culture --",
+      "href": "https://point93.ai/insight-areas/d37488db-c67d-43a8-a52e-30143ed98e44"
+    },
+    {
+      "text": "Background Transparency --",
+      "href": "https://point93.ai/insight-areas/48199b67-ec48-43c8-9880-cc54682e047a"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/bb142f72-e35b-464f-80e6-1e4896e024ed"
+    },
+    {
+      "text": "Team Independence & Decision Authority --",
+      "href": "https://point93.ai/insight-areas/64a3bd08-2cd8-45ac-beb0-e59021a9d7cf"
+    },
+    {
+      "text": "Proactive Capacity Management --",
+      "href": "https://point93.ai/insight-areas/e0798ecb-e41d-414e-81fd-108399a12e28"
+    },
+    {
+      "text": "Organizational Documentation Maturity --",
+      "href": "https://point93.ai/insight-areas/bdc01ec9-3479-40e0-beec-ee6d8f284beb"
+    },
+    {
+      "text": "Client Experience Consistency --",
+      "href": "https://point93.ai/insight-areas/20a58359-cf0a-4a29-b4cf-9c96fb7f7539"
+    },
+    {
+      "text": "Strategic Investment in Future Capability --",
+      "href": "https://point93.ai/insight-areas/3ffdceb1-0c9d-4ef1-932d-98cfe1acce2a"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/58861052-31af-4d66-9903-4d4235ecc941"
+    },
+    {
+      "text": "Platform Breadth - Core Capabilities --",
+      "href": "https://point93.ai/insight-areas/6a75ae41-ba7a-4528-8637-c9ff15dcab18"
+    },
+    {
+      "text": "Platform Depth - Advanced Capabilities --",
+      "href": "https://point93.ai/insight-areas/65fc85a4-8256-4c73-b9ce-0ad3a6374579"
+    },
+    {
+      "text": "Competitive Positioning for Clients --",
+      "href": "https://point93.ai/insight-areas/65ed0771-73bb-4188-b30b-f002475ed06a"
+    },
+    {
+      "text": "Execution & Optimization --",
+      "href": "https://point93.ai/insight-areas/0a926cbb-9ecc-4baf-ae0f-8b895aaea1ec"
+    },
+    {
+      "text": "Limitation & Risk Awareness --",
+      "href": "https://point93.ai/insight-areas/0e992a6d-e3b4-4454-a71d-0ebbae5f7136"
+    },
+    {
+      "text": "Limitation Navigation --",
+      "href": "https://point93.ai/insight-areas/a57a6fa8-67a4-4652-ac2b-f614adfe6a98"
+    },
+    {
+      "text": "Independence & Objectivity --",
+      "href": "https://point93.ai/insight-areas/25de967a-52c1-4266-a897-054c2c4cb4e6"
+    },
+    {
+      "text": "Platform Trajectory --",
+      "href": "https://point93.ai/insight-areas/43653cff-4499-4a33-be31-73f2ca19e249"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/15f8d669-b00e-49eb-8196-c99ccc119366"
+    },
+    {
+      "text": "Client Self-Service & Independence --",
+      "href": "https://point93.ai/insight-areas/18c18b9b-e9a0-4ba4-a99d-e5fa9fbd3bff"
+    },
+    {
+      "text": "Friction & Accessibility --",
+      "href": "https://point93.ai/insight-areas/f81d9495-543a-4a59-8f01-bbe49ea8d87c"
+    },
+    {
+      "text": "Data Integrity & System Integration --",
+      "href": "https://point93.ai/insight-areas/4470b89d-7844-4093-9ed0-307538fd3595"
+    },
+    {
+      "text": "Workflow Reliability --",
+      "href": "https://point93.ai/insight-areas/5af52961-a4a1-48bb-b280-beb29968f38e"
+    },
+    {
+      "text": "Technology Adoption & Value --",
+      "href": "https://point93.ai/insight-areas/756ae7d1-b847-4ab8-8f53-db299ea97839"
+    },
+    {
+      "text": "Technology Trajectory --",
+      "href": "https://point93.ai/insight-areas/6ea3fe24-0a2f-4724-b6b6-3f3d08bbd676"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/0db71168-880d-4166-a8c8-e663475ce57c"
+    },
+    {
+      "text": "Research Support --",
+      "href": "https://point93.ai/insight-areas/42bf3a03-519f-4678-b5b3-1dc022233320"
+    },
+    {
+      "text": "Compliance Support --",
+      "href": "https://point93.ai/insight-areas/b05212d0-c908-4857-bf48-e47997b0a740"
+    },
+    {
+      "text": "Operations Quality --",
+      "href": "https://point93.ai/insight-areas/04c767fa-8b5e-470c-bbcc-973e855c114c"
+    },
+    {
+      "text": "Training & Development --",
+      "href": "https://point93.ai/insight-areas/16528e2b-8ae1-4eb4-8690-236d11b15e50"
+    },
+    {
+      "text": "Resource Accessibility --",
+      "href": "https://point93.ai/insight-areas/971e5f72-1b1a-4248-8a78-eb3387f1ff5d"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/b0e24190-0156-43e6-92e5-77e5727b1073"
+    },
+    {
+      "text": "Philosophy Clarity --",
+      "href": "https://point93.ai/insight-areas/a864cae1-436b-43f5-8fff-1d2093d7094a"
+    },
+    {
+      "text": "Portfolio Construction Discipline --",
+      "href": "https://point93.ai/insight-areas/0c4813a6-100c-400d-9c6d-9d29c43f35db"
+    },
+    {
+      "text": "Asset Allocation Expertise --",
+      "href": "https://point93.ai/insight-areas/9e298257-8bc8-4c04-93b1-b2ea55c65110"
+    },
+    {
+      "text": "Rebalancing Sophistication --",
+      "href": "https://point93.ai/insight-areas/eac32d4f-262a-409d-a318-2747b28d7ef5"
+    },
+    {
+      "text": "Tax-Aware Investing --",
+      "href": "https://point93.ai/insight-areas/3bd440e8-210c-46ed-98e1-c53f18c0168a"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/6c4ac9f8-ab67-40d5-a77a-03e6b72b9e8c"
+    },
+    {
+      "text": "Manager Selection Process --",
+      "href": "https://point93.ai/insight-areas/2fd68a91-bb00-4495-8cc6-c8a13f6e4111"
+    },
+    {
+      "text": "Due Diligence Standards --",
+      "href": "https://point93.ai/insight-areas/96a92bc2-61ed-484b-901e-167fa21ee023"
+    },
+    {
+      "text": "Cost Consciousness --",
+      "href": "https://point93.ai/insight-areas/1661ed7e-8e57-4f3b-ac54-046a4df6be97"
+    },
+    {
+      "text": "Ongoing Monitoring --",
+      "href": "https://point93.ai/insight-areas/f71f5933-67ff-4bf8-b72b-ea037a69c7c6"
+    },
+    {
+      "text": "Research Depth --",
+      "href": "https://point93.ai/insight-areas/e844a756-2b65-4f4d-a01c-8ef59c25ca7c"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/818ef794-034e-4649-9134-01d3d04f20bb"
+    },
+    {
+      "text": "Risk Assessment Framework --",
+      "href": "https://point93.ai/insight-areas/5e1f7988-d779-464c-87bc-9c3289ca1dd6"
+    },
+    {
+      "text": "Downside Protection --",
+      "href": "https://point93.ai/insight-areas/ae42ab5e-c29c-4f10-b30a-7a8e12c85e75"
+    },
+    {
+      "text": "Concentration Monitoring --",
+      "href": "https://point93.ai/insight-areas/5c73c4fe-b57c-48e4-9e45-dfd7b659d86c"
+    },
+    {
+      "text": "Risk Communication --",
+      "href": "https://point93.ai/insight-areas/fe7091de-9aa0-4e21-ba22-af27f6683b51"
+    },
+    {
+      "text": "Stress Testing --",
+      "href": "https://point93.ai/insight-areas/b047326e-cfb6-49d1-8cc6-180db0aa6e94"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/8fb050f1-80a3-4b45-b665-c035262736ce"
+    },
+    {
+      "text": "Reporting Comprehensiveness --",
+      "href": "https://point93.ai/insight-areas/c45c6d5d-1c32-407d-93d4-e027fb283e20"
+    },
+    {
+      "text": "Benchmark Appropriateness --",
+      "href": "https://point93.ai/insight-areas/270bd72c-e6bc-44c6-b281-e8c4a93b53ef"
+    },
+    {
+      "text": "Attribution Analysis --",
+      "href": "https://point93.ai/insight-areas/48da6b36-9e9e-49af-8aa6-b3e77f168ad1"
+    },
+    {
+      "text": "Report Customization --",
+      "href": "https://point93.ai/insight-areas/223edd94-8b63-424c-8547-9d8d7b8e895c"
+    },
+    {
+      "text": "Performance Transparency --",
+      "href": "https://point93.ai/insight-areas/6bbda80d-962d-40cb-b151-ea0e8675b182"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/59d39250-8e60-4426-bea3-5ce7908b0ea6"
+    },
+    {
+      "text": "Investment Communication Substance --",
+      "href": "https://point93.ai/insight-areas/ab51f35e-9975-49b5-b814-c90fb3cfefaf"
+    },
+    {
+      "text": "Investment Education Impact --",
+      "href": "https://point93.ai/insight-areas/90e619d8-2fb9-4cdd-b0d3-90ce81ae8af0"
+    },
+    {
+      "text": "Investment Communication Infrastructure --",
+      "href": "https://point93.ai/insight-areas/f15f88c0-3e0d-4043-ba84-c2242c615f03"
+    },
+    {
+      "text": "Investment Communication Calibration --",
+      "href": "https://point93.ai/insight-areas/536ff078-40bb-48fc-b551-61b895fd381e"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/d1a9d02e-cfba-4900-ac3a-3325019e0ed4"
+    },
+    {
+      "text": "Stress-Testing & Plan Resilience --",
+      "href": "https://point93.ai/insight-areas/e76da6a7-d9d1-4089-9dde-b8a60450ff9f"
+    },
+    {
+      "text": "Analytical Depth & Insight Generation --",
+      "href": "https://point93.ai/insight-areas/f7678be3-5d54-4f8e-9f9d-0b17ed6f77e1"
+    },
+    {
+      "text": "True Goal Discovery --",
+      "href": "https://point93.ai/insight-areas/bbad641e-4a95-4676-a4e8-877266f0e4fe"
+    },
+    {
+      "text": "Process Scalability & Consistency --",
+      "href": "https://point93.ai/insight-areas/548f9d23-3a16-4e4c-8f9f-0f473e6d96c2"
+    },
+    {
+      "text": "Implementation Excellence --",
+      "href": "https://point93.ai/insight-areas/6c6499e9-39e9-45f5-a9a5-79e423db62a3"
+    },
+    {
+      "text": "Understanding the Whole Client --",
+      "href": "https://point93.ai/insight-areas/46b41911-9811-4e6b-b61f-6f83fb71aacb"
+    },
+    {
+      "text": "Navigating Priorities & Trade-offs --",
+      "href": "https://point93.ai/insight-areas/184c9075-1c05-4023-8861-929b23a14b9c"
+    },
+    {
+      "text": "Client Communication & Engagement --",
+      "href": "https://point93.ai/insight-areas/de52e372-b68c-4d45-9777-62d2c3da3d05"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/1765896e-e351-44a3-9a89-b073b48d3308"
+    },
+    {
+      "text": "Fluent Expertise Demonstration --",
+      "href": "https://point93.ai/insight-areas/a1b2c3d4-e5f6-4a1b-8c9d-111111111111"
+    },
+    {
+      "text": "Proactive Opportunity Identification --",
+      "href": "https://point93.ai/insight-areas/a1b2c3d4-e5f6-4a1b-8c9d-222222222222"
+    },
+    {
+      "text": "Cross-Discipline Integration --",
+      "href": "https://point93.ai/insight-areas/a1b2c3d4-e5f6-4a1b-8c9d-333333333333"
+    },
+    {
+      "text": "Systematic Planning Infrastructure --",
+      "href": "https://point93.ai/insight-areas/a1b2c3d4-e5f6-4a1b-8c9d-444444444444"
+    },
+    {
+      "text": "Specialist Coordination & Quarterbacking --",
+      "href": "https://point93.ai/insight-areas/a1b2c3d4-e5f6-4a1b-8c9d-555555555555"
+    },
+    {
+      "text": "Specialized Capability Breadth --",
+      "href": "https://point93.ai/insight-areas/a1b2c3d4-e5f6-4a1b-8c9d-666666666666"
+    },
+    {
+      "text": "Start Assessment",
+      "href": "https://point93.ai/modules/5529ecb1-4c0a-4fd2-8622-a361af96a0d7"
+    },
+    {
+      "text": "Implementation Discipline --",
+      "href": "https://point93.ai/insight-areas/cb105f8d-980b-491c-8192-cc8a5605e140"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com Module Scores Track your assessment scores with visual insights and benchmarks Overall Progress 0 of 17 modules completed 0% Modules Completed Your Professional Foundation & Team Structure 0/3 completed Industry Experience & Market Navigation Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Professional Credentials -- Market Cycle Experience -- Industry Tenure -- Continuous Learning -- Client Segment Expertise -- Regulatory Record & Fiduciary Standing Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Regulatory Standing & History -- Conflict Management Discipline -- Disclosure Excellence -- Compliance Culture -- Background Transparency -- Team Structure & Client Service Model Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Team Independence & Decision Authority -- Proactive Capacity Management -- Organizational Documentation Maturity -- Client Experience Consistency -- Strategic Investment in Future Capability -- Your Firm Platform, Technology & Support 0/3 completed Firm Platform & Product Access Not Started 0 data points, 8 insight areas Start Assessment Insight Areas Platform Breadth - Core Capabilities -- Platform Depth - Advanced Capabilities -- Competitive Positioning for Clients -- Execution & Optimization -- Limitation & Risk Awareness -- Limitation Navigation -- Independence & Objectivity -- Platform Trajectory -- Technology & Digital Experience Not Started 0 data points, 6 insight areas Start Assessment Insight Areas Client Self-Service & Independence -- Friction & Accessibility -- Data Integrity & System Integration -- Workflow Reliability -- Technology Adoption & Value -- Technology Trajectory -- Firm Support & Operational Infrastructure Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Research Support -- Compliance Support -- Operations Quality -- Training & Development -- Resource Accessibility -- Your Investment Management Excellence 0/5 completed Investment Philosophy & Portfolio Construction Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Philosophy Clarity -- Portfolio Construction Discipline -- Asset Allocation Expertise -- Rebalancing Sophistication -- Tax-Aware Investing -- Investment Selection & Due Diligence Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Manager Selection Process -- Due Diligence Standards -- Cost Consciousness -- Ongoing Monitoring -- Research Depth -- Risk Management & Portfolio Monitoring Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Risk Assessment Framework -- Downside Protection -- Concentration Monitoring -- Risk Communication -- Stress Testing -- Performance Measurement & Reporting Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Reporting Comprehensiveness -- Benchmark Appropriateness -- Attribution Analysis -- Report Customization -- Performance Transparency -- Investment Communication & Client Education Not Started 0 data points, 4 insight areas Start Assessment Insight Areas Investment Communication Substance -- Investment Education Impact -- Investment Communication Infrastructure -- Investment Communication Calibration -- Your Planning Process & Implementation 0/3 completed Discovery Process & Goal-Setting Excellence Not Started 0 data points, 8 insight areas Start Assessment Insight Areas Stress-Testing & Plan Resilience -- Analytical Depth & Insight Generation -- True Goal Discovery -- Process Scalability & Consistency -- Implementation Excellence -- Understanding the Whole Client -- Navigating Priorities & Trade-offs -- Client Communication & Engagement -- Planning Breadth & Specialized Capabilities Not Started 0 data points, 6 insight areas Start Assessment Insight Areas Fluent Expertise Demonstration -- Proactive Opportunity Identification -- Cross-Discipline Integration -- Systematic Planning Infrastructure -- Specialist Coordination & Quarterbacking -- Specialized Capability Breadth -- Plan Implementation & Progress Monitoring Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Implementation Discipline -- Progress Tracking -- Plan Adaptation -- Accountability Framework -- Review Cadence -- Your Client Service & Communication 0/2 completed Service Model & Client Experience Not Started 0 data points, 5 insight areas Start Assessment Insight Areas Service Accessibility -- Proactive Engagement -- Meeting Effectiveness -- Client Experience Design -- Responsiveness Standards -- Team Coordination & Capability Not Started 0 data points, 4 insight areas Start Assessment Insight Areas Team Expertise Depth -- Internal Collaboration -- External Network -- Knowledge Continuity -- Your Fees, Value & Positioning 0/1 completed Fee Structure & Value Articulation Not Started 0 data points, 6 insight areas Start Assessment Insight Areas Fee Conviction -- Competitive Positioning -- Client-Centric Flexibility -- Transparency & Disclosure -- Value Communication -- Value Tracking Systems -- 0 Advisor Score At Risk Profile Completion 0 of 18 modules · Comprehensive Intelligence Profiles View all → 🎯 NextGen Ready 0% 🎯 Client Referrals 0% What Clients Are Asking Coming Soon Weekly - Jan 27 “Should I be worried about the new fiduciary rule changes?” Advisors rated ready 68% Your readiness 72 - top 34% Improve your ranking → Strengths / Weaknesses Complete modules to see your strengths and areas needing attention Insight Areas Complete modules to see your insight area scores",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/scores.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/scores.html"
+}

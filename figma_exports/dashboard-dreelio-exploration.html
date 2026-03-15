@@ -1,0 +1,483 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Point93 Dashboard Dreelio Study</title>
+          <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+          <style>
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/3exmuO07FP19gMM08TQrpXl3BGQ.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/HJY4SY2JywrSZ2l1AEW9Tm9cO8.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/hG3wmGmFwadB6X5XPVXkMlmLr8o.woff2") format("woff2"); font-weight: 600; }
+
+:root {
+  --sky: #84b9ef;
+  --sand: #f4e6da;
+  --vellum: #f4f1ee;
+  --paper: #fbf9f6;
+  --ink: #1a1615;
+  --text: #453f3d;
+  --muted: #757170;
+  --line: rgba(69, 63, 61, 0.10);
+  --navy: #141311;
+  --gold: #cf8d13;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top center, rgba(255,255,255,0.50), transparent 22%),
+    radial-gradient(circle at 14% 16%, rgba(255,255,255,0.32), transparent 16%),
+    radial-gradient(circle at 86% 18%, rgba(255,255,255,0.32), transparent 16%),
+    linear-gradient(180deg, #9fc4ec 0%, #d7e7f8 38%, #efe8df 74%, #f4e6da 100%);
+}
+
+.capture-root { width: 1920px; padding: 56px 72px 92px; }
+
+.cover, .notes {
+  border-radius: 30px;
+  background: rgba(255,255,255,0.62);
+  border: 1px solid rgba(255,255,255,0.80);
+  box-shadow: 0 24px 50px rgba(41, 33, 29, 0.10);
+  backdrop-filter: blur(18px);
+}
+
+.cover { margin-bottom: 30px; padding: 40px 42px; }
+.notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 14px; }
+.note { padding: 18px; border-radius: 20px; background: rgba(255,255,255,0.54); border: 1px solid rgba(255,255,255,0.76); }
+
+.eyebrow, .mini {
+  font-family: "Open Runde", Inter, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(69, 63, 61, 0.62);
+}
+
+.cover h1, .title, .section-title, .logo, .note h4 {
+  color: var(--ink);
+  font-family: "Open Runde", "Saans TRIAL", "Helvetica Neue", Inter, sans-serif;
+}
+
+.cover h1 {
+  max-width: 1140px;
+  margin: 0 0 12px;
+  font-size: 46px;
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+
+.cover p, .note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.76;
+}
+
+.chips, .palette, .utility-right, .status-row, .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.chips { margin-top: 20px; }
+
+.chip, .pill, .status, .tier {
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.64);
+  border: 1px solid rgba(255,255,255,0.78);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.palette { margin-bottom: 28px; }
+.swatch {
+  width: 220px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.64);
+  border: 1px solid rgba(255,255,255,0.78);
+  box-shadow: 0 18px 34px rgba(41, 33, 29, 0.08);
+}
+
+.swatch-color { height: 66px; }
+.swatch-copy { padding: 14px; }
+.swatch-copy strong { display: block; margin-bottom: 4px; font-size: 13px; }
+.swatch-copy span { display: block; color: var(--muted); font-size: 11px; line-height: 1.45; }
+
+.variant-head { display: flex; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 14px; }
+.variant-head h2 { margin: 0 0 6px; font: 600 30px/1.02 "Open Runde", Inter, sans-serif; letter-spacing: -0.05em; color: var(--ink); }
+.variant-head p { max-width: 980px; margin: 0; color: var(--muted); font-size: 12px; line-height: 1.72; }
+
+.stage {
+  position: relative;
+  width: 1600px;
+  padding: 88px 36px 36px;
+  overflow: hidden;
+  border-radius: 38px;
+  border: 5px solid rgba(255,255,255,0.95);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.46), transparent 24%),
+    radial-gradient(circle at 8% 42%, rgba(255,255,255,0.32), transparent 18%),
+    radial-gradient(circle at 92% 42%, rgba(255,255,255,0.32), transparent 18%),
+    linear-gradient(180deg, rgba(141,186,233,0.98) 0%, rgba(214,231,248,0.96) 42%, rgba(244,236,228,0.96) 100%);
+  box-shadow: 0 40px 90px rgba(41, 33, 29, 0.12);
+}
+
+.mist, .mist-right {
+  position: absolute;
+  top: 250px;
+  width: 360px;
+  height: 220px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.54);
+  filter: blur(22px);
+}
+
+.mist { left: -120px; }
+.mist-right { right: -110px; }
+
+.top-pill {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.36);
+  border: 1px solid rgba(255,255,255,0.62);
+  box-shadow: 0 12px 30px rgba(55, 66, 82, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.top-pill .cta, .btn-primary { background: var(--navy); color: white; }
+.top-pill .cta, .btn-primary, .btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px;
+  border-radius: 999px; font-size: 12px; font-weight: 600;
+}
+
+.btn-secondary { background: rgba(255,255,255,0.62); color: rgba(69,63,61,0.82); border: 1px solid rgba(255,255,255,0.84); }
+
+.app-shell {
+  position: relative;
+  margin: 0 auto;
+  width: 1440px;
+  min-height: 1160px;
+  padding: 22px;
+  border-radius: 34px;
+  background: rgba(255,255,255,0.54);
+  border: 1px solid rgba(255,255,255,0.68);
+  box-shadow: 0 26px 60px rgba(41, 33, 29, 0.10);
+  backdrop-filter: blur(18px);
+}
+
+.app-window {
+  display: flex;
+  min-height: 1116px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: rgba(250,248,245,0.82);
+  border: 1px solid rgba(255,255,255,0.70);
+}
+
+.sidebar {
+  width: 228px;
+  padding: 22px 18px 20px;
+  background: linear-gradient(180deg, rgba(247,241,233,0.96), rgba(242,236,230,0.90));
+  border-right: 1px solid rgba(69,63,61,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.logo { font-size: 18px; font-weight: 600; letter-spacing: -0.03em; }
+.nav { display: flex; flex-direction: column; gap: 8px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 14px;
+  color: rgba(69,63,61,0.78); font-size: 12px; font-weight: 500;
+}
+
+.nav-item.active { background: rgba(255,255,255,0.56); color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.74); }
+.nav-dot { margin-left: auto; width: 6px; height: 6px; border-radius: 999px; background: var(--gold); }
+.nav-pill { margin-left: auto; padding: 4px 8px; border-radius: 999px; background: rgba(20,19,17,0.06); font-size: 9px; font-weight: 600; }
+
+.side-foot {
+  margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid rgba(69,63,61,0.08);
+}
+
+.track { width: 100%; height: 4px; border-radius: 999px; background: rgba(20,19,17,0.08); overflow: hidden; }
+.fill { width: 31%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--sky), var(--gold)); }
+
+.main {
+  flex: 1;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top center, rgba(255,255,255,0.40), transparent 18%),
+    linear-gradient(180deg, rgba(251,249,246,0.92), rgba(245,241,236,0.94));
+}
+
+.content { display: flex; flex-direction: column; gap: 18px; width: 100%; max-width: 1148px; }
+
+.utility {
+  display: flex; justify-content: space-between; align-items: center; gap: 14px;
+  padding: 12px 16px; border-radius: 999px; background: rgba(255,255,255,0.56);
+  border: 1px solid rgba(255,255,255,0.78); box-shadow: 0 10px 24px rgba(41, 33, 29, 0.06);
+}
+
+.search {
+  width: 240px; padding: 10px 16px; border-radius: 999px;
+  background: rgba(255,255,255,0.70); border: 1px solid rgba(69,63,61,0.08);
+  color: rgba(117,113,112,0.80); font-size: 12px;
+}
+
+.page-title { display: flex; flex-direction: column; gap: 8px; }
+.title { margin: 0; font-size: 42px; line-height: 1.02; letter-spacing: -0.055em; }
+.page-title p { max-width: 760px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.72; }
+
+.grid-hero, .grid-2, .grid-3, .modules, .maps, .columns { display: grid; gap: 16px; }
+.grid-hero { grid-template-columns: 1.38fr 0.62fr; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.modules { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.maps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+
+.card, .hero, .accent, .dark, .module, .map, .list {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.74);
+  box-shadow: 0 18px 34px rgba(41, 33, 29, 0.08);
+}
+
+.card, .accent, .dark, .module, .map, .list { padding: 22px; }
+.card { background: rgba(255,255,255,0.74); }
+.hero { padding: 24px; background: radial-gradient(circle at top left, rgba(255,255,255,0.40), transparent 24%), linear-gradient(180deg, rgba(169,202,238,0.86), rgba(223,236,248,0.72)); }
+.accent { background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(246,240,234,0.84)); }
+.dark { color: rgba(255,255,255,0.92); background: linear-gradient(180deg, rgba(28,31,36,0.98), rgba(40,48,60,0.96)); }
+.module, .map, .list { background: rgba(255,255,255,0.58); }
+
+.section-title { margin: 0 0 8px; font-size: 24px; line-height: 1.05; letter-spacing: -0.04em; }
+.label { margin-bottom: 14px; color: rgba(69,63,61,0.56); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+.dark .label { color: rgba(255,255,255,0.60); }
+.copy, .sub, .verdict, .line { font-size: 12px; line-height: 1.7; }
+.copy { font-size: 13px; color: rgba(69,63,61,0.84); }
+.sub { color: var(--muted); }
+.dark .copy, .dark .sub, .verdict { color: rgba(255,255,255,0.80); }
+
+.score-row, .line, .utility-right { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.metric { color: var(--ink); font: 600 38px/1 "Open Runde", Inter, sans-serif; }
+.ring {
+  display: flex; align-items: center; justify-content: center; width: 74px; height: 74px; border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(245,238,230,0.92)); border: 2px solid rgba(255,255,255,0.76);
+  color: var(--ink); font: 600 28px/1 "Open Runde", Inter, sans-serif;
+}
+
+.status { padding: 6px 10px; background: rgba(255,255,255,0.66); border: 1px solid rgba(69,63,61,0.08); font-size: 10px; }
+.status.gold { background: rgba(207,141,19,0.12); }
+.status.blue { background: rgba(132,185,239,0.18); }
+.map strong, .module strong, .list h4, .note h4 { display: block; margin-bottom: 8px; font-size: 16px; font-weight: 600; }
+.module strong { line-height: 1.35; }
+.list h4 { margin-bottom: 14px; }
+.progress { margin-top: 14px; width: 100%; height: 6px; border-radius: 999px; background: rgba(20,19,17,0.06); overflow: hidden; }
+.progress span { display: block; width: 67%; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #89bced, #c0d9f2); }
+.dots { display: flex; gap: 8px; margin-top: 14px; }
+.dot { width: 10px; height: 10px; border-radius: 999px; }
+</style>
+        </head>
+        <body>
+          <div class="capture-root"><div class="cover">
+  <div class="eyebrow">Reference Translation · Dreelio</div>
+  <h1>Dreelio's soft sky-shell, floating pill navigation, and rounded editorial calm translated into a Point93 dashboard.</h1>
+  <p>I checked the live Dreelio Framer site and pulled the cues that are really doing the work: the sky-to-vellum atmosphere, thick white frame, soft translucent pills, rounded grotesk headline voice, and a feeling of confidence without hard chrome. This pass adapts those ideas for a high-net-worth broker audience, so it stays refined and expensive rather than playful.</p>
+  <div class="chips">
+    <div class="chip">Atmospheric blue-to-vellum stage</div>
+    <div class="chip">Thick white framed shell</div>
+    <div class="chip">Floating pill controls</div>
+    <div class="chip">Near-black actions</div>
+    <div class="chip">Soft cards instead of outline-heavy panels</div>
+  </div>
+</div>
+
+<div class="palette">
+  <div class="swatch"><div class="swatch-color" style="background:#84b9ef;"></div><div class="swatch-copy"><strong>Sky</strong><span>#84b9ef</span><span>Hero atmosphere</span></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#f4e6da;"></div><div class="swatch-copy"><strong>Sand</strong><span>#f4e6da</span><span>Warm lower glow</span></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#f4f1ee;"></div><div class="swatch-copy"><strong>Vellum</strong><span>#f4f1ee</span><span>App shell and cards</span></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#1a1615;"></div><div class="swatch-copy"><strong>Ink</strong><span>#1a1615</span><span>Headlines and primary action</span></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#cf8d13;"></div><div class="swatch-copy"><strong>Gold</strong><span>#cf8d13</span><span>Selective prestige accent</span></div></div>
+</div>
+
+<div class="variant-head">
+  <div>
+    <h2>Exploration F · Sky Briefing</h2>
+    <p>The more direct Dreelio-inspired direction: a soft atmospheric shell around a calmer Point93 dashboard, with floating controls, less white-on-white stacking, and a rounded headline treatment that feels more curated and premium.</p>
+  </div>
+  <div class="pill">Closest to Dreelio's surface language</div>
+</div>
+
+<div class="stage">
+  <div class="mist"></div>
+  <div class="mist-right"></div>
+  <div class="top-pill">
+    <div class="logo">Point93</div>
+    <div>Dashboard</div>
+    <div>Results</div>
+    <div>Assessments</div>
+    <div>Intelligence</div>
+    <div class="cta">Continue assessment</div>
+  </div>
+
+  <div class="app-shell">
+    <div class="app-window">
+      <div class="sidebar">
+        <div class="logo">Point93</div>
+        <div class="nav">
+          <div class="nav-item active"><span>Dashboard</span></div>
+          <div class="nav-item"><span>My Results</span><span class="nav-dot"></span></div>
+          <div class="nav-item"><span>Assessments</span><span class="nav-pill">1 in progress</span></div>
+          <div class="nav-item"><span>My Areas</span></div>
+          <div class="nav-item"><span>Business Intelligence</span></div>
+          <div class="nav-item"><span>What Clients Are Asking</span><span class="nav-pill">Soon</span></div>
+        </div>
+        <div class="side-foot">
+          <div class="mini">Account</div>
+          <div class="tier">Comprehensive</div>
+          <div class="sub">5/17 modules · 29%</div>
+          <div class="track"><div class="fill"></div></div>
+        </div>
+      </div>
+
+      <div class="main">
+        <div class="content">
+          <div class="utility">
+            <div class="search">Search briefing, modules, or BI profiles</div>
+            <div class="utility-right">
+              <div class="pill">Comprehensive tier</div>
+              <div class="pill">Concierge view</div>
+              <div class="pill">29% complete</div>
+            </div>
+          </div>
+
+          <div class="page-title">
+            <div class="eyebrow">Practice standing</div>
+            <h3 class="title">Dashboard</h3>
+            <p>A calmer, more elevated strategic dashboard. The structure is still Point93, but the shell feels more like a curated private briefing than an admin panel.</p>
+          </div>
+
+          <div class="grid-hero">
+            <div class="hero">
+              <div class="label">Layer 1 · Welcome & Orientation</div>
+              <h4 class="section-title">Welcome back, Adam</h4>
+              <div class="copy">Point93 measures and compares your practice across modules, areas, and intelligence layers. This direction makes the experience feel less procedural and more like a premium wealth platform.</div>
+              <div class="actions">
+                <div class="btn-primary">Continue FT.2 Technology Capabilities</div>
+                <div class="btn-secondary">View welcome tour</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="label">Progress</div>
+              <div class="metric">29%</div>
+              <div class="sub">5 of 17 modules complete · 3 of 6 areas touched</div>
+              <div class="track" style="margin-top:16px;"><div class="fill"></div></div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="label">Layer 2 · Executive Summary</div>
+              <div class="score-row">
+                <div>
+                  <h4 class="section-title" style="margin-bottom:6px;">Overall P93 Score</h4>
+                  <div class="copy">83rd percentile among comparable advisors, with the greatest lift coming from operational discipline and consistency.</div>
+                  <div class="status-row">
+                    <div class="status gold">B · Competitive</div>
+                    <div class="status">5 modules complete</div>
+                    <div class="status blue">2 BI profiles active</div>
+                  </div>
+                </div>
+                <div class="ring">74</div>
+              </div>
+            </div>
+            <div class="accent">
+              <div class="label">Area Assessment Map</div>
+              <div class="maps">
+                <div class="map"><strong>PF</strong><div class="sub">100% assessed</div></div>
+                <div class="map"><strong>FT</strong><div class="sub">67% assessed</div></div>
+                <div class="map"><strong>IM</strong><div class="sub">20% assessed</div></div>
+                <div class="map"><strong>PI</strong><div class="sub">0% assessed</div></div>
+                <div class="map"><strong>SC</strong><div class="sub">0% assessed</div></div>
+                <div class="map"><strong>FV</strong><div class="sub">0% assessed</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="label">Top strengths & gaps</div>
+              <div class="columns">
+                <div class="list">
+                  <h4>Top strengths</h4>
+                  <div class="line"><span>Client autonomy systems</span><span>91 · PF.2</span></div>
+                  <div class="line"><span>Repeatable workflows</span><span>88 · FT.2</span></div>
+                  <div class="line"><span>Compliance oversight</span><span>84 · PF.1</span></div>
+                </div>
+                <div class="list">
+                  <h4>Top gaps</h4>
+                  <div class="line"><span>Investment communication</span><span>49 · IM.1</span></div>
+                  <div class="line"><span>Practice management cadence</span><span>56 · IM.2</span></div>
+                  <div class="line"><span>Value articulation</span><span>59 · PitchPerfect</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="dark">
+              <div class="label">Hub Verdict</div>
+              <div class="pill" style="display:inline-flex;margin-bottom:16px;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.68);border-color:rgba(255,255,255,0.12);">AI generated</div>
+              <div class="verdict">Your current position is solidly Competitive, with strength clustered around structure and operational clarity. The next lift will come from turning that internal quality into more visible client-facing confidence and a sharper premium narrative.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="label">Layer 3 · Detail & Action</div>
+            <div class="grid-3">
+              <div class="module">
+                <strong>Quick Win</strong>
+                <div class="sub">Complete IM.2 Practice Management to unlock deeper cross-module synthesis.</div>
+                <div class="actions"><div class="btn-primary">Continue IM.2</div></div>
+              </div>
+              <div class="module">
+                <strong>Data Point Health</strong>
+                <div class="sub">Confidence stays visible, but in a softer, more refined treatment.</div>
+                <div class="dots">
+                  <div class="dot" style="background:#84b9ef;"></div><div class="dot" style="background:#84b9ef;"></div><div class="dot" style="background:#cf8d13;"></div><div class="dot" style="background:#cf8d13;"></div>
+                  <div class="dot" style="background:#1a1615;"></div><div class="dot" style="background:#1a1615;"></div><div class="dot" style="background:#e4e2e2;"></div><div class="dot" style="background:#e4e2e2;"></div>
+                </div>
+              </div>
+              <div class="accent">
+                <strong>Moenio Nudge</strong>
+                <div class="sub">A new BI profile is available once you finish SC.1 Client Service & Communication.</div>
+                <div class="status-row"><div class="status blue">AI reference</div></div>
+              </div>
+            </div>
+
+            <div class="modules" style="margin-top:16px;">
+              <div class="module"><strong>PF.1 Compliance Fundamentals</strong><div class="sub">Completed · ~8 min</div><div class="actions"><div class="btn-primary">View results</div></div></div>
+              <div class="module"><strong>FT.2 Technology Capabilities</strong><div class="sub">In Progress · 67% done</div><div class="progress"><span></span></div><div class="actions"><div class="btn-primary">Continue assessment</div></div></div>
+              <div class="module"><strong>IM.2 Practice Management</strong><div class="sub">Recommended next · ~15 min</div><div class="actions"><div class="btn-primary">Start assessment</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notes" style="margin-top:14px;">
+  <div class="note"><h4>Borrowed from Dreelio</h4><p>Sky-to-vellum atmosphere, thick white frame, soft floating pills, and a rounded editorial type voice. Those are the cues that make the reference feel lightweight and memorable.</p></div>
+  <div class="note"><h4>Adapted for Point93</h4><p>The playful clouds became softer atmospheric mist, the CTA stayed near-black, and the dashboard cards remain structured so the product still feels credible for private-wealth advisors and brokers.</p></div>
+  <div class="note"><h4>What To Evaluate</h4><p>Whether the softer shell makes Point93 feel more expensive and distinct, or whether we should keep the shell and type language but reduce the blue atmosphere in the next pass.</p></div>
+</div>
+</div>
+        </body>
+        </html>

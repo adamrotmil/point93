@@ -1,0 +1,188 @@
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/3exmuO07FP19gMM08TQrpXl3BGQ.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/HJY4SY2JywrSZ2l1AEW9Tm9cO8.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/hG3wmGmFwadB6X5XPVXkMlmLr8o.woff2") format("woff2"); font-weight: 600; }
+
+html,
+body {
+  background: linear-gradient(180deg, var(--canvas-top) 0%, var(--canvas-mid) 38%, var(--canvas-bottom) 100%) !important;
+  color: var(--text-main) !important;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+body > div.min-h-screen {
+  background: transparent !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--ink) !important;
+  font-family: "Saans TRIAL", "Open Runde", Inter, sans-serif !important;
+  letter-spacing: -0.03em !important;
+}
+
+header.fixed.top-0 {
+  background: var(--topbar-bg) !important;
+  border-bottom: 1px solid var(--topbar-border) !important;
+  box-shadow: var(--topbar-shadow) !important;
+}
+
+header.fixed.top-0 button {
+  border-color: var(--topbar-button-border) !important;
+  background: var(--topbar-button-bg) !important;
+  color: var(--topbar-button-text) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+}
+
+aside.fixed.left-0 {
+  background: linear-gradient(180deg, var(--sidebar-bg), var(--sidebar-bg-2)) !important;
+  border-right: 1px solid rgba(255,255,255,0.08) !important;
+  backdrop-filter: none !important;
+}
+
+aside.fixed.left-0 .bg-gold-500\/15 {
+  background: var(--sidebar-active-bg) !important;
+}
+
+aside.fixed.left-0 .text-gold-400,
+aside.fixed.left-0 .group.text-gold-400,
+aside.fixed.left-0 .group .text-gold-400 {
+  color: var(--sidebar-active-text) !important;
+}
+
+aside.fixed.left-0 .bg-gold-400 {
+  background: var(--sidebar-accent) !important;
+}
+
+aside.fixed.left-0 a,
+aside.fixed.left-0 button,
+aside.fixed.left-0 span,
+aside.fixed.left-0 div {
+  border-radius: 14px;
+}
+
+aside.fixed.right-0 {
+  background: var(--right-rail-bg) !important;
+  border-left: 1px solid var(--surface-border) !important;
+}
+
+main .bg-white,
+aside.fixed.right-0 .bg-white,
+main [class*="bg-white"],
+aside.fixed.right-0 [class*="bg-white"] {
+  background: var(--surface) !important;
+  border: 1px solid var(--surface-border) !important;
+  box-shadow: var(--surface-shadow) !important;
+  border-radius: var(--surface-radius) !important;
+}
+
+main .border-gray-200,
+aside.fixed.right-0 .border-gray-200,
+main [class*="border-gray-200"],
+aside.fixed.right-0 [class*="border-gray-200"] {
+  border-color: var(--surface-border) !important;
+}
+
+main [class*="shadow"],
+aside.fixed.right-0 [class*="shadow"] {
+  box-shadow: var(--surface-shadow) !important;
+}
+
+main .bg-blue-500,
+main .bg-navy-700,
+main .bg-navy-900,
+main .from-blue-500,
+main .to-blue-600,
+main button.text-white,
+main a.text-white,
+aside.fixed.right-0 button.text-white,
+aside.fixed.right-0 a.text-white {
+  background: var(--button-bg) !important;
+  color: var(--button-text) !important;
+  border-color: var(--button-bg) !important;
+}
+
+main .text-blue-500,
+main .text-gold-600,
+main .text-gold-500,
+aside.fixed.right-0 .text-blue-500,
+aside.fixed.right-0 .text-gold-600,
+aside.fixed.right-0 .text-gold-500 {
+  color: var(--accent-text) !important;
+}
+
+main .bg-amber-100,
+main .bg-green-100,
+main .bg-red-100,
+main .bg-gold-500\/20,
+aside.fixed.right-0 .bg-amber-100,
+aside.fixed.right-0 .bg-green-100,
+aside.fixed.right-0 .bg-red-100,
+aside.fixed.right-0 .bg-gold-500\/20 {
+  border: 1px solid var(--chip-border) !important;
+}
+
+main .text-green-700,
+aside.fixed.right-0 .text-green-700 {
+  color: var(--success) !important;
+}
+
+main .text-amber-500,
+main .text-amber-600,
+aside.fixed.right-0 .text-amber-500,
+aside.fixed.right-0 .text-amber-600 {
+  color: var(--warning) !important;
+}
+
+main .text-red-700,
+aside.fixed.right-0 .text-red-700 {
+  color: var(--danger) !important;
+}
+
+main [class*="text-gray-500"],
+main [class*="text-gray-600"],
+main [class*="text-gray-700"],
+aside.fixed.right-0 [class*="text-gray-500"],
+aside.fixed.right-0 [class*="text-gray-600"],
+aside.fixed.right-0 [class*="text-gray-700"] {
+  color: var(--text-muted) !important;
+}
+
+main p,
+main li,
+aside.fixed.right-0 p,
+aside.fixed.right-0 li {
+  line-height: 1.55 !important;
+}
+
+main .rounded-xl,
+main .rounded-lg,
+main .rounded-\[22px\],
+aside.fixed.right-0 .rounded-xl,
+aside.fixed.right-0 .rounded-lg,
+aside.fixed.right-0 .rounded-\[22px\] {
+  border-radius: var(--surface-radius) !important;
+}
+
+main .h-2.bg-gray-200,
+aside.fixed.right-0 .h-2.bg-gray-200,
+main .bg-gray-200.rounded-full,
+aside.fixed.right-0 .bg-gray-200.rounded-full {
+  background: var(--track-bg) !important;
+}
+
+main .bg-\[\#FFB700\],
+main [style*="background-color: rgb(255, 183, 0)"],
+aside.fixed.right-0 .bg-\[\#FFB700\],
+aside.fixed.right-0 [style*="background-color: rgb(255, 183, 0)"] {
+  background: var(--accent-fill) !important;
+}
+
+main svg path,
+aside.fixed.right-0 svg path {
+  transition: color 180ms ease;
+}

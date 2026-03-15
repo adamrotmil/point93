@@ -1,0 +1,74 @@
+{
+  "route": "/admin/feedback",
+  "requestedUrl": "https://point93.ai/admin/feedback",
+  "finalUrl": "https://point93.ai/admin/feedback",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "User Feedback",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "View all →",
+      "href": "https://point93.ai/business-intelligence"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com User Feedback Review and manage feedback from users Refresh App Feedback Question Feedback Total Feedback 3 New (Unreviewed) 2 Approved 0 Positive 1 Negative 2 Filters Status All Statuses New Reviewed Resolved Archived Type All Types Bug Suggestion Question Praise General Rating All Ratings Thumbs Up Thumbs Down No Rating Approval All Approved Only Not Approved Showing 3 of 3 items General New No text provided () • Mar 2, 2026, 10:08 AM Suggestion New Screenshot I don't like the color theme () • Dec 23, 2025, 04:02 AM Suggestion Archived Screenshot Bad design () • Dec 18, 2025, 02:44 AM 0 Advisor Score At Risk Profile Completion 0 of 18 modules · Comprehensive Intelligence Profiles View all → 🎯 NextGen Ready 0% 🎯 Client Referrals 0% What Clients Are Asking Coming Soon Weekly - Jan 27 “Should I be worried about the new fiduciary rule changes?” Advisors rated ready 68% Your readiness 72 - top 34% Improve your ranking → Strengths / Weaknesses Complete modules to see your strengths and areas needing attention Insight Areas Complete modules to see your insight area scores",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-feedback.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-feedback.html"
+}

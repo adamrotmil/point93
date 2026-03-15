@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Point93 Browser Restyle Lab</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="lab-shell">
+    <aside class="control-panel">
+      <div class="panel-block">
+        <div class="eyebrow">Browser-First Workflow</div>
+        <h1>Point93 Restyle Lab</h1>
+        <p>This uses the captured prod HTML as the source of truth. `Prod Exact` shows the untouched clone. Every other theme is pure CSS layered onto that same DOM.</p>
+      </div>
+
+      <div class="panel-block">
+        <label class="field-label" for="route-select">Screen</label>
+        <select id="route-select"></select>
+
+        <label class="field-label" for="theme-select">Theme</label>
+        <select id="theme-select"></select>
+
+        <label class="field-label" for="viewport-width">Viewport Width</label>
+        <input id="viewport-width" type="number" min="960" max="2200" step="20" value="2048" />
+
+        <div class="button-row">
+          <button id="reload-button" class="button button-primary">Reload Preview</button>
+          <button id="open-raw-button" class="button">Open Raw Snapshot</button>
+        </div>
+      </div>
+
+      <div class="panel-block">
+        <div class="field-label">Theme Notes</div>
+        <div id="theme-description" class="theme-note"></div>
+      </div>
+
+      <div class="panel-block grow">
+        <div class="field-label">Custom CSS</div>
+        <p class="helper-copy">Use this to try local overrides without touching the theme presets. It applies live inside the iframe.</p>
+        <textarea id="custom-css" spellcheck="false"></textarea>
+        <div class="button-row">
+          <button id="apply-css-button" class="button button-primary">Apply CSS</button>
+          <button id="reset-css-button" class="button">Reset CSS</button>
+        </div>
+      </div>
+
+      <div class="panel-block">
+        <div class="field-label">Status</div>
+        <div id="status-line" class="status-line">Loading…</div>
+      </div>
+    </aside>
+
+    <main class="preview-shell">
+      <div class="preview-header">
+        <div>
+          <div class="eyebrow">Live Preview</div>
+          <div id="screen-title" class="screen-title">Dashboard</div>
+        </div>
+        <div class="preview-meta">
+          <span id="screen-path"></span>
+          <span id="theme-pill" class="theme-pill">Prod Exact</span>
+        </div>
+      </div>
+
+      <div class="preview-frame-shell">
+        <iframe id="preview-frame" title="Point93 preview"></iframe>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

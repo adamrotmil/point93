@@ -1,0 +1,1903 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Point93 / Visual Direction Review</title>
+          <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+          <style>
+:root {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --border: #d1d5de;
+  --text: #1a1d27;
+  --text-muted: #5c6478;
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.08);
+  --green: #059669;
+  --green-bg: rgba(5, 150, 105, 0.08);
+  --amber: #d97706;
+  --amber-bg: rgba(217, 119, 6, 0.08);
+  --purple: #7c3aed;
+  --purple-bg: rgba(124, 58, 237, 0.08);
+  --rose: #e11d48;
+  --rose-bg: rgba(225, 29, 72, 0.08);
+  --teal: #0d9488;
+  --teal-bg: rgba(13, 148, 136, 0.08);
+  --orange: #ea580c;
+  --orange-bg: rgba(234, 88, 12, 0.08);
+  --blue-bg: rgba(37, 99, 235, 0.06);
+  --gray-700: #64748b;
+  --gray-bg: rgba(100, 116, 139, 0.08);
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 4px 12px rgba(17, 24, 39, 0.05);
+  --shadow-md: 0 12px 24px rgba(17, 24, 39, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 26%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.capture-root {
+  width: 1920px;
+  padding: 56px 72px 88px;
+}
+
+.page-cover {
+  margin-bottom: 40px;
+  padding: 36px 40px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-md);
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-cover h1 {
+  margin: 0 0 12px;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.page-cover p {
+  max-width: 1040px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.cover-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.section-block {
+  margin-bottom: 42px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.section-header p {
+  max-width: 920px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.count-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.card-grid-2,
+.card-grid-3,
+.mini-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.card-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mini-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.doc-card,
+.panel-card,
+.token-card,
+.component-card {
+  padding: 20px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-card h3,
+.panel-card h3,
+.token-card h3,
+.component-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.doc-card p,
+.panel-card p,
+.token-card p,
+.component-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.meta-line {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.list li + li {
+  margin-top: 8px;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.swatch {
+  overflow: hidden;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 16px;
+  background: white;
+}
+
+.swatch-color {
+  height: 72px;
+}
+
+.swatch-info {
+  padding: 12px;
+}
+
+.swatch-info strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.swatch-info span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.type-sample {
+  padding: 16px 18px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 16px;
+  background: white;
+}
+
+.type-name {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.type-meta {
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.scale-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scale-table th,
+.scale-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+  text-align: left;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+.scale-table th {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scale-table tr:last-child td {
+  border-bottom: none;
+}
+
+.token-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.token-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.component-preview {
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  border: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.component-meta {
+  margin-top: 14px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.screen-section {
+  margin-bottom: 48px;
+}
+
+.screen-block + .screen-block {
+  margin-top: 28px;
+}
+
+.screen-meta {
+  margin-bottom: 12px;
+}
+
+.screen-meta h3 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.screen-meta p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.app-frame {
+  width: 1440px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 24px;
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.desktop-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: 960px;
+}
+
+.sidebar {
+  width: 220px;
+  background: var(--surface-2);
+  border-right: 1px solid rgba(209, 213, 222, 0.9);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-logo {
+  padding: 0 18px 16px;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nav-item.active {
+  padding-left: 15px;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border-left: 3px solid var(--accent);
+  font-weight: 700;
+}
+
+.nav-item .badge {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--amber-bg);
+  color: var(--amber);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.nav-item .dot {
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--green);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 18px;
+  border-top: 1px solid rgba(209, 213, 222, 0.9);
+}
+
+.sidebar-footer .label {
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.main {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.content-width {
+  width: 100%;
+  max-width: 1188px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-title {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.page-subtitle,
+.meta,
+.subtle {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.meta {
+  font-weight: 600;
+}
+
+.row,
+.stack,
+.cluster,
+.screen-grid-2,
+.screen-grid-3 {
+  display: flex;
+  gap: 16px;
+}
+
+.stack {
+  flex-direction: column;
+}
+
+.row {
+  align-items: stretch;
+}
+
+.cluster {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.screen-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.screen-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel,
+.surface-card,
+.metric-card,
+.module-card,
+.area-card,
+.bi-card,
+.form-card,
+.question-card,
+.table-card,
+.cta-card {
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 18px;
+  background: white;
+  padding: 18px;
+}
+
+.panel-header {
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-card strong,
+.surface-card strong,
+.module-card strong,
+.area-card strong,
+.bi-card strong,
+.form-card strong,
+.question-card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.score-circle {
+  width: 78px;
+  height: 78px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.score-circle.sm {
+  width: 52px;
+  height: 52px;
+  font-size: 18px;
+  border-width: 2px;
+}
+
+.band-pill,
+.state-pill,
+.tier-pill,
+.voice-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.band-pill.comp {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.band-pill.top {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.band-pill.needs {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.band-pill.risk {
+  background: var(--rose-bg);
+  color: var(--rose);
+}
+
+.state-pill.info {
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.state-pill.warn {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.state-pill.neutral {
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+.tier-pill {
+  background: var(--purple-bg);
+  color: var(--purple);
+}
+
+.voice-pill.v1 {
+  background: var(--gray-bg);
+  color: var(--gray-700);
+}
+
+.voice-pill.v2 {
+  background: var(--amber-bg);
+  color: var(--amber);
+}
+
+.voice-pill.v3 {
+  background: var(--green-bg);
+  color: var(--green);
+}
+
+.section-label {
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  background: var(--accent-glow);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ai-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--teal);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.treatment {
+  border-left: 4px solid var(--gray-700);
+  border-radius: 16px;
+  background: var(--gray-bg);
+  padding: 16px;
+}
+
+.treatment.v1 {
+  border-left-color: var(--teal);
+  background: var(--teal-bg);
+}
+
+.treatment.v2 {
+  border-left-color: var(--amber);
+  background: var(--amber-bg);
+}
+
+.treatment.v3 {
+  border-left-color: var(--green);
+  background: var(--green-bg);
+}
+
+.lens-card {
+  border: 2px solid var(--amber);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(217, 119, 6, 0.05), rgba(245, 158, 11, 0.08));
+  padding: 20px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.button,
+.button-secondary,
+.button-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.button {
+  background: var(--accent);
+  color: white;
+}
+
+.button-secondary {
+  background: var(--teal);
+  color: white;
+}
+
+.button-ghost {
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+  overflow: hidden;
+}
+
+.progress-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(209, 213, 222, 0.9);
+  text-align: left;
+  vertical-align: top;
+  font-size: 12px;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.input,
+.select {
+  padding: 12px 14px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 12px;
+  background: white;
+  font-size: 12px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.toggle {
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  position: relative;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: white;
+}
+
+.toggle.off {
+  background: rgba(209, 213, 222, 0.9);
+}
+
+.toggle.off::after {
+  right: auto;
+  left: 3px;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: white;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tab.active {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  color: var(--accent);
+}
+
+.question-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 24px;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.answer {
+  padding: 14px 16px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 14px;
+  background: white;
+  font-size: 13px;
+}
+
+.answer.selected {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.stepper {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
+.stepper-line {
+  flex: 1;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: rgba(209, 213, 222, 0.9);
+}
+
+.step-node {
+  min-width: 108px;
+  text-align: center;
+}
+
+.step-node .bubble {
+  width: 36px;
+  height: 36px;
+  margin: 0 auto 8px;
+  border-radius: 999px;
+  border: 3px solid var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--teal);
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.step-node.complete .bubble {
+  background: var(--teal);
+  color: white;
+}
+
+.step-node.locked {
+  opacity: 0.45;
+}
+
+.timeline {
+  width: 100%;
+  height: 220px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(248,250,252,0.94));
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  padding: 12px;
+}
+
+.note {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.warning {
+  background: var(--amber-bg);
+  color: #8a4a09;
+}
+
+.success {
+  background: var(--green-bg);
+  color: #065f46;
+}
+
+.teal {
+  color: var(--teal);
+}
+
+.teal-card {
+  border-color: rgba(13, 148, 136, 0.28);
+  background: linear-gradient(180deg, rgba(13,148,136,0.05), rgba(255,255,255,1));
+}
+
+body.review-body {
+  background:
+    radial-gradient(circle at top left, rgba(140, 106, 58, 0.10), transparent 24%),
+    linear-gradient(180deg, #f7f4ef 0%, #eef2f7 100%);
+}
+
+.review-root {
+  width: 1920px;
+  padding: 56px 72px 120px;
+}
+
+.review-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+
+.intro-grid,
+.principles-grid,
+.utility-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.intro-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.principles-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.utility-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.review-card,
+.principle-card,
+.utility-card,
+.direction-card,
+.reference-card {
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 28px rgba(17, 24, 39, 0.08);
+}
+
+.review-card,
+.principle-card,
+.utility-card,
+.reference-card {
+  padding: 20px;
+}
+
+.review-card h3,
+.principle-card h3,
+.utility-card h3,
+.direction-card h3,
+.reference-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.review-card p,
+.principle-card p,
+.utility-card p,
+.direction-card p,
+.reference-card p,
+.direction-body li,
+.direction-panel li {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.review-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.review-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+
+.review-section-header h2 {
+  margin: 0 0 6px;
+  font-size: 30px;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.review-section-header p {
+  max-width: 980px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.annotation-board {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.annotated-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.annotated-meta h3 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.annotated-meta p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.annotated-stage {
+  position: relative;
+  width: 1780px;
+  min-height: 1080px;
+  padding-right: 324px;
+}
+
+.annotated-stage.tall {
+  min-height: 1280px;
+}
+
+.annotated-stage.xl {
+  min-height: 1440px;
+}
+
+.screen-host {
+  width: 1440px;
+}
+
+.note-column {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ux-dot {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffffff;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.20);
+}
+
+.ux-note {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(209, 213, 222, 0.9);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 12px 24px rgba(17, 24, 39, 0.10);
+}
+
+.ux-note-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ux-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ux-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ux-note strong {
+  display: block;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.ux-note p {
+  margin: 0;
+}
+
+.ux-priority,
+.ux-priority .ux-index,
+.ux-priority.ux-dot {
+  background: #c06b2d;
+}
+
+.ux-priority .ux-tag {
+  color: #9a531f;
+  background: rgba(192, 107, 45, 0.12);
+}
+
+.ux-clarity,
+.ux-clarity .ux-index,
+.ux-clarity.ux-dot {
+  background: #2563eb;
+}
+
+.ux-clarity .ux-tag {
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.ux-flow,
+.ux-flow .ux-index,
+.ux-flow.ux-dot {
+  background: #0d9488;
+}
+
+.ux-flow .ux-tag {
+  color: #0f766e;
+  background: rgba(13, 148, 136, 0.12);
+}
+
+.ux-trust,
+.ux-trust .ux-index,
+.ux-trust.ux-dot {
+  background: #8c6a3a;
+}
+
+.ux-trust .ux-tag {
+  color: #78592f;
+  background: rgba(140, 106, 58, 0.12);
+}
+
+.ux-premium,
+.ux-premium .ux-index,
+.ux-premium.ux-dot {
+  background: #7a4d63;
+}
+
+.ux-premium .ux-tag {
+  color: #6a3e56;
+  background: rgba(122, 77, 99, 0.12);
+}
+
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.direction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.direction-card {
+  padding: 24px;
+}
+
+.direction-label {
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.direction-title {
+  margin: 0 0 10px;
+  font-size: 28px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.direction-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+
+.direction-chip {
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.direction-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.direction-preview {
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(209, 213, 222, 0.8);
+}
+
+.preview-shell {
+  display: grid;
+  grid-template-columns: 196px minmax(0, 1fr);
+  min-height: 428px;
+}
+
+.preview-sidebar {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.preview-logo {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.preview-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.preview-nav-item {
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.preview-main {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.preview-kicker {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.preview-heading {
+  margin: 0;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.preview-copy {
+  max-width: 520px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 16px;
+}
+
+.preview-card,
+.preview-note,
+.preview-action {
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.preview-score {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.preview-ring {
+  width: 82px;
+  height: 82px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.preview-list-item {
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.palette-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.palette-swatch {
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(209, 213, 222, 0.8);
+  background: #ffffff;
+}
+
+.palette-chip {
+  height: 56px;
+}
+
+.palette-info {
+  padding: 10px 12px 12px;
+}
+
+.palette-info strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+
+.palette-info span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+.direction-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.direction-panel {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(209, 213, 222, 0.8);
+  background: rgba(248, 250, 252, 0.8);
+}
+
+.direction-panel h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.direction-panel ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.editorial-preview {
+  background: linear-gradient(180deg, #f7f2eb 0%, #fdfcf9 100%);
+}
+
+.editorial-preview .preview-sidebar {
+  background: #efe7dc;
+  border-right: 1px solid rgba(140, 106, 58, 0.18);
+}
+
+.editorial-preview .preview-logo,
+.editorial-preview .preview-kicker {
+  color: #78592f;
+}
+
+.editorial-preview .preview-nav-item {
+  color: #3b3127;
+  background: rgba(140, 106, 58, 0.08);
+}
+
+.editorial-preview .preview-nav-item.active {
+  color: #14202d;
+  background: rgba(140, 106, 58, 0.16);
+}
+
+.editorial-preview .preview-heading {
+  color: #14202d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+}
+
+.editorial-preview .preview-copy {
+  color: #5f584e;
+}
+
+.editorial-preview .preview-card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(140, 106, 58, 0.18);
+}
+
+.editorial-preview .preview-note {
+  background: #f2eadf;
+  border: 1px solid rgba(140, 106, 58, 0.22);
+}
+
+.editorial-preview .preview-action {
+  background: linear-gradient(180deg, rgba(48, 73, 63, 0.08), rgba(255, 255, 255, 0.9));
+  border: 1px solid rgba(48, 73, 63, 0.2);
+}
+
+.editorial-preview .preview-ring {
+  border: 2px solid #8c6a3a;
+  color: #8c6a3a;
+}
+
+.editorial-preview .preview-list-item {
+  background: rgba(140, 106, 58, 0.08);
+  color: #3b3127;
+}
+
+.precision-preview {
+  background: linear-gradient(180deg, #f7f7f5 0%, #edf2f4 100%);
+}
+
+.precision-preview .preview-sidebar {
+  background: #e8ecef;
+  border-right: 1px solid rgba(31, 38, 48, 0.10);
+}
+
+.precision-preview .preview-logo,
+.precision-preview .preview-kicker {
+  color: #1f2630;
+}
+
+.precision-preview .preview-nav-item {
+  color: #475569;
+  background: rgba(31, 38, 48, 0.06);
+}
+
+.precision-preview .preview-nav-item.active {
+  color: #0b4d46;
+  background: rgba(30, 90, 82, 0.12);
+}
+
+.precision-preview .preview-heading {
+  color: #1f2630;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.precision-preview .preview-copy {
+  color: #52606d;
+}
+
+.precision-preview .preview-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(31, 38, 48, 0.10);
+}
+
+.precision-preview .preview-note {
+  background: linear-gradient(180deg, rgba(30, 90, 82, 0.08), rgba(255,255,255,0.92));
+  border: 1px solid rgba(30, 90, 82, 0.16);
+}
+
+.precision-preview .preview-action {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(214, 178, 115, 0.26);
+}
+
+.precision-preview .preview-ring {
+  border: 2px solid #1e5a52;
+  color: #1e5a52;
+}
+
+.precision-preview .preview-list-item {
+  background: rgba(31, 38, 48, 0.06);
+  color: #1f2630;
+}
+</style>
+        </head>
+        <body class="review-body">
+          <div class="review-root">
+            <div class="review-stack"><header class="page-cover">
+  <div class="eyebrow">Point93 mechanical system pass</div>
+  <h1>Point93 / Visual Direction Review</h1>
+  <p>A first-pass exploration of how Point93 could feel more affluent, tailored, and high-trust without losing the clean structural system. These are directional studies, not final UI comps.</p>
+  <div class="cover-chips"><div class="chip">Built from the Mobbin reference set</div><div class="chip">Bias toward discretion over flash</div><div class="chip">Two viable premium directions</div></div>
+</header>
+
+      <div class="utility-grid">
+        <div class="utility-card"><h3>Audience reality</h3><p>This is software for advisors serving ultra-high-net-worth clients. The product should feel composed, expensive in taste, and quietly authoritative.</p></div>
+        <div class="utility-card"><h3>What to borrow from Mobbin</h3><p>Borrow compositional confidence, restrained chrome, and a more art-directed approach to data surfaces. Keep the calm, not the consumer-fintech energy.</p></div>
+        <div class="utility-card"><h3>What to avoid</h3><p>Avoid generic SaaS blue, crypto aesthetics, loud dark mode, playful badges, or overt “luxury” signals that feel performative instead of credible.</p></div>
+        <div class="utility-card"><h3>Immediate goal</h3><p>Find a visual language that makes Point93 feel less generic and more like a strategic briefing system for a high-trust wealth audience.</p></div>
+      </div>
+
+      <div class="reference-grid">
+        <div class="reference-card">
+          <h3>Reference synthesis</h3>
+          <p>The mood board leans toward premium finance products: high whitespace, clear hierarchy, disciplined cards, and selective moments of rich contrast. The strongest signal is composure, not ornament.</p>
+        </div>
+        <div class="reference-card">
+          <h3>Translation for Point93</h3>
+          <p>Point93 needs to go one step further toward advisory discretion. The UI should feel like a custom practice-intelligence environment, with more gravitas and fewer generic product conventions.</p>
+        </div>
+      </div>
+    <section class="review-section"><div class="review-section-header"><div><div class="eyebrow">Exploration</div><h2>Two premium visual directions</h2><p>Both directions keep the current product architecture intact while changing the emotional register. The choice is less about “luxury styling” and more about what kind of high-trust intelligence product Point93 should become.</p></div><div class="count-pill">2 directions</div></div><div class="direction-grid">        <div class="direction-card">
+          <div class="direction-label">Direction A</div>
+          <h3 class="direction-title">Quiet Wealth Editorial</h3>
+          <p>A restrained, warm, literate direction. It treats the interface like an executive dossier with curated emphasis, elegant spacing, and a softer palette.</p>
+          <div class="direction-chips">
+            <div class="direction-chip" style="background:rgba(140,106,58,0.10);color:#78592f;">Discreet</div>
+            <div class="direction-chip" style="background:rgba(48,73,63,0.10);color:#30493f;">Tailored</div>
+            <div class="direction-chip" style="background:rgba(20,32,45,0.08);color:#14202d;">Editorial</div>
+          </div>
+          <div class="direction-body">
+            <div class="direction-preview editorial-preview">
+  <div class="preview-shell">
+    <div class="preview-sidebar">
+      <div class="preview-logo">Point93</div>
+      <div class="preview-nav">
+        <div class="preview-nav-item active">Practice Standing</div>
+        <div class="preview-nav-item">My Results</div>
+        <div class="preview-nav-item">Assessments</div>
+        <div class="preview-nav-item">Intelligence</div>
+      </div>
+    </div>
+    <div class="preview-main">
+      <div class="preview-kicker">Private Wealth Editorial</div>
+      <h4 class="preview-heading">Practice standing, rendered with discretion.</h4>
+      <div class="preview-copy">The UI feels less like software chrome and more like a tailored briefing prepared for a senior advisor before a client-facing day.</div>
+      <div class="preview-grid">
+        <div class="preview-card">
+          <div class="preview-score">
+            <div class="preview-ring">74</div>
+            <div>
+              <strong style="display:block;font-size:15px;">Competitive position</strong>
+              <div class="preview-copy">Operational discipline is strong; narrative confidence is the next lift.</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-note">
+          <div class="preview-kicker">Advisor Note</div>
+          <div class="preview-copy">Translate your strongest internal systems into clearer outward confidence in meetings.</div>
+        </div>
+      </div>
+      <div class="preview-action">
+        <div class="preview-kicker">Focus next</div>
+        <div class="preview-list">
+          <div class="preview-list-item">Complete IM.2 Practice Management</div>
+          <div class="preview-list-item">Unlock cross-module synthesis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            <div class="palette-row">
+              <div class="palette-swatch">
+  <div class="palette-chip" style="background:#f7f2eb;"></div>
+  <div class="palette-info">
+    <strong>Warm Ivory</strong>
+    <span>#f7f2eb</span>
+    <span>Base surface</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#14202d;"></div>
+  <div class="palette-info">
+    <strong>Ink</strong>
+    <span>#14202d</span>
+    <span>Primary text</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#8c6a3a;"></div>
+  <div class="palette-info">
+    <strong>Bronze</strong>
+    <span>#8c6a3a</span>
+    <span>Premium accent</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#30493f;"></div>
+  <div class="palette-info">
+    <strong>Moss</strong>
+    <span>#30493f</span>
+    <span>Insight emphasis</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#e6dfd2;"></div>
+  <div class="palette-info">
+    <strong>Fog</strong>
+    <span>#e6dfd2</span>
+    <span>Soft secondary surface</span>
+  </div>
+</div>
+
+            </div>
+            <div class="direction-panel-grid">
+              <div class="direction-panel">
+                <h4>System moves</h4>
+                <ul>
+                  <li>Replace generic blue dominance with warmer, rarer accent moments.</li>
+                  <li>Use serif-led display moments only where authority matters most.</li>
+                  <li>Give scores and insights more breathing room and narrative framing.</li>
+                </ul>
+              </div>
+              <div class="direction-panel">
+                <h4>Best test screens</h4>
+                <ul>
+                  <li>Dashboard</li>
+                  <li>My Results</li>
+                  <li>Module Results</li>
+                </ul>
+              </div>
+              <div class="direction-panel">
+                <h4>What it says</h4>
+                <ul>
+                  <li>This platform is bespoke.</li>
+                  <li>The intelligence is considered, not automated noise.</li>
+                  <li>Your practice is being reviewed with taste and care.</li>
+                </ul>
+              </div>
+              <div class="direction-panel">
+                <h4>Anti-goals</h4>
+                <ul>
+                  <li>No flashy gold-and-black wealth cliches.</li>
+                  <li>No luxury-for-luxury’s-sake ornament.</li>
+                  <li>No heavy-handed dark mode.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="direction-card">
+          <div class="direction-label">Direction B</div>
+          <h3 class="direction-title">Precision Concierge</h3>
+          <p>A sharper and more modern direction. It keeps the interface light, but makes it feel more exacting, bespoke, and confidence-building than a typical fintech dashboard.</p>
+          <div class="direction-chips">
+            <div class="direction-chip" style="background:rgba(31,38,48,0.08);color:#1f2630;">Exacting</div>
+            <div class="direction-chip" style="background:rgba(30,90,82,0.10);color:#1e5a52;">Composed</div>
+            <div class="direction-chip" style="background:rgba(214,178,115,0.16);color:#8c6a3a;">Premium</div>
+          </div>
+          <div class="direction-body">
+            <div class="direction-preview precision-preview">
+  <div class="preview-shell">
+    <div class="preview-sidebar">
+      <div class="preview-logo">Point93</div>
+      <div class="preview-nav">
+        <div class="preview-nav-item active">Dashboard</div>
+        <div class="preview-nav-item">Results</div>
+        <div class="preview-nav-item">Assessments</div>
+        <div class="preview-nav-item">BI</div>
+      </div>
+    </div>
+    <div class="preview-main">
+      <div class="preview-kicker">Precision Concierge</div>
+      <h4 class="preview-heading">An intelligence system with composure.</h4>
+      <div class="preview-copy">The interface reads as expert, tailored, and high-conviction. Data feels curated, not dumped, with premium restraint replacing generic fintech energy.</div>
+      <div class="preview-grid">
+        <div class="preview-card">
+          <div class="preview-score">
+            <div class="preview-ring">74</div>
+            <div>
+              <strong style="display:block;font-size:15px;">Standing</strong>
+              <div class="preview-copy">83rd percentile against a clearly defined peer cohort.</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-note">
+          <div class="preview-kicker">Interpretation</div>
+          <div class="preview-copy">Your strongest gains now come from client-facing articulation, not internal control.</div>
+        </div>
+      </div>
+      <div class="preview-action">
+        <div class="preview-kicker">Next milestone</div>
+        <div class="preview-list">
+          <div class="preview-list-item">Resume FT.2 Technology Capabilities</div>
+          <div class="preview-list-item">6 minutes to unlock BI stage progress</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            <div class="palette-row">
+              <div class="palette-swatch">
+  <div class="palette-chip" style="background:#f7f7f5;"></div>
+  <div class="palette-info">
+    <strong>Pearl</strong>
+    <span>#f7f7f5</span>
+    <span>Base surface</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#1f2630;"></div>
+  <div class="palette-info">
+    <strong>Slate</strong>
+    <span>#1f2630</span>
+    <span>Primary text</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#1e5a52;"></div>
+  <div class="palette-info">
+    <strong>Evergreen</strong>
+    <span>#1e5a52</span>
+    <span>Trust accent</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#d6b273;"></div>
+  <div class="palette-info">
+    <strong>Champagne</strong>
+    <span>#d6b273</span>
+    <span>Selective highlight</span>
+  </div>
+</div>
+<div class="palette-swatch">
+  <div class="palette-chip" style="background:#d9dde3;"></div>
+  <div class="palette-info">
+    <strong>Smoke</strong>
+    <span>#d9dde3</span>
+    <span>Structure and lines</span>
+  </div>
+</div>
+
+            </div>
+            <div class="direction-panel-grid">
+              <div class="direction-panel">
+                <h4>System moves</h4>
+                <ul>
+                  <li>Reduce pill clutter and rely more on hierarchy, spacing, and tonal separation.</li>
+                  <li>Treat charts, scores, and progress surfaces as prestige objects.</li>
+                  <li>Make AI blocks feel credentialed and editorial, not playful.</li>
+                </ul>
+              </div>
+              <div class="direction-panel">
+                <h4>Best test screens</h4>
+                <ul>
+                  <li>Dashboard</li>
+                  <li>Assessment flow</li>
+                  <li>BI Product</li>
+                </ul>
+              </div>
+              <div class="direction-panel">
+                <h4>What it says</h4>
+                <ul>
+                  <li>This system is disciplined and expert.</li>
+                  <li>The recommendations are curated, not generic.</li>
+                  <li>The product belongs in a premium advisory workflow.</li>
+                </ul>
+              </div>
+              <div class="direction-panel">
+                <h4>Anti-goals</h4>
+                <ul>
+                  <li>No consumer-banking friendliness.</li>
+                  <li>No crypto-style gradients and neon.</li>
+                  <li>No crowded control bars and badge stacks.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+</div></section></div>
+          </div>
+        </body>
+        </html>

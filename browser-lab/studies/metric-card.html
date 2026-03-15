@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Point93 Component Study - Metric Card</title>
+  <link rel="stylesheet" href="./metric-card.css" />
+</head>
+<body class="metric-study-body">
+  <main class="metric-study">
+    <section class="study-hero study-panel">
+      <div class="study-kicker">Component Study 01</div>
+      <div class="study-hero-row">
+        <div class="study-hero-copy">
+          <h1>Metric Card Language</h1>
+          <p>
+            This pass is not a dashboard redesign. It isolates one compact card so we can tune
+            spacing, type scale, status treatment, and restraint before we touch the next component.
+          </p>
+        </div>
+        <div class="study-chip-row">
+          <span class="study-chip">one number</span>
+          <span class="study-chip">one label</span>
+          <span class="study-chip">optional icon</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="study-grid">
+      <article class="study-panel prod-panel">
+        <div class="study-label">Baseline / Current prod as-is</div>
+        <h2>The baseline needs to be visibly present before we judge anything else.</h2>
+        <p class="study-copy">
+          This card is the current production language: compact, useful, and clear enough, but still
+          more operational than premium. We keep it here untouched so every alternative has a real
+          source of truth beside it.
+        </p>
+
+        <div class="prod-layout">
+          <div class="study-surface source-surface">
+            <div class="metric-card metric-card-prod-exact">
+              <img
+                class="metric-icon metric-icon-prod"
+                src="https://point93.ai/icons/icon-overall-score.svg"
+                alt="Overall Score icon"
+              />
+              <div class="metric-prod-copy">
+                <div class="metric-value metric-value-prod-empty">--</div>
+                <div class="metric-label metric-label-prod">Overall Score</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prod-notes">
+            <div class="decision-item">
+              <span class="decision-dot"></span>
+              <span><strong>Compact shell</strong> keeps the row efficient, but gives the card a utility feel.</span>
+            </div>
+            <div class="decision-item">
+              <span class="decision-dot"></span>
+              <span><strong>Icon + number</strong> split the emphasis instead of giving the metric a single anchor.</span>
+            </div>
+            <div class="decision-item">
+              <span class="decision-dot"></span>
+              <span><strong>10px label</strong> is workable, though a little anonymous in tone.</span>
+            </div>
+            <div class="decision-item">
+              <span class="decision-dot"></span>
+              <span><strong>Hard shadow + sharp density</strong> reads practical, not polished.</span>
+            </div>
+            <div class="decision-item">
+              <span class="decision-dot"></span>
+              <span><strong>Missing-state content</strong> is clear, but it leaves no place for richer interpretation.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="study-panel comparison-panel">
+        <div class="study-label">Apples-to-apples / Same sample payload</div>
+        <h2>Now the cards can be judged on visual language, not on different data.</h2>
+        <p class="study-copy">
+          Every card below uses the same sample payload so the differences are about visual judgment:
+          color, spacing, typography, hierarchy, and content framing.
+        </p>
+
+        <div class="comparison-board">
+          <section class="comparison-column">
+            <div class="variant-name">Current shell / normalized payload</div>
+            <div class="study-surface">
+              <div class="metric-card metric-card-prod-benchmark">
+                <img
+                  class="metric-icon metric-icon-prod"
+                  src="https://point93.ai/icons/icon-overall-score.svg"
+                  alt="Overall Score icon"
+                />
+                <div class="metric-prod-copy">
+                  <div class="metric-value metric-value-prod">74</div>
+                  <div class="metric-label metric-label-prod">Overall Score</div>
+                </div>
+              </div>
+            </div>
+            <p class="variant-note">
+              This is the current shell with the same sample value. Useful as a benchmark, but still visually dense.
+            </p>
+          </section>
+
+          <section class="comparison-column">
+            <div class="variant-name">Study A / Number + label only</div>
+            <div class="study-surface">
+              <div class="metric-card metric-card-study-a">
+                <div class="metric-stack metric-stack-roomy">
+                  <div class="metric-value">74</div>
+                  <div class="metric-label metric-label-large">Overall P93 Score</div>
+                </div>
+              </div>
+            </div>
+            <p class="variant-note">
+              The cleanest move. No delta, no chip, no icon. Just a roomy stack where the number leads and the label quietly supports it.
+            </p>
+          </section>
+
+          <section class="comparison-column">
+            <div class="variant-name">Study B / Soft icon option</div>
+            <div class="study-surface">
+              <div class="metric-card metric-card-study-b">
+                <div class="metric-with-icon">
+                  <div class="metric-icon-circle" aria-hidden="true">
+                    <svg class="metric-icon-material" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 16.5V11.5" />
+                      <path d="M12 16.5V7.5" />
+                      <path d="M17 16.5V9.5" />
+                    </svg>
+                  </div>
+                  <div class="metric-stack">
+                    <div class="metric-value">74</div>
+                    <div class="metric-label metric-label-large">Overall P93 Score</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="variant-note">
+              If the product needs an icon, this is the right family: a quiet Material-style mark on a soft gray circle, with the number still doing the real work.
+            </p>
+          </section>
+
+          <section class="comparison-column comparison-column-selected">
+            <div class="variant-name">Selected / Closest to the reference</div>
+            <div class="study-surface">
+              <div class="metric-card metric-card-selected">
+                <div class="metric-stack metric-stack-selected">
+                  <div class="metric-value metric-value-selected">74</div>
+                  <div class="metric-label metric-label-selected">Overall P93 Score</div>
+                </div>
+              </div>
+            </div>
+            <p class="variant-note">
+              This is the direction to build from: only number and label, slightly roomy spacing, gentle border, rounded corners, and no extra narrative elements.
+            </p>
+          </section>
+        </div>
+      </article>
+
+      <article class="study-panel matrix-panel">
+        <div class="study-label">Parameter shifts</div>
+        <h2>The changes should be explicit, not implicit.</h2>
+        <p class="study-copy">
+          This matrix makes the design moves inspectable, so we can tune one variable at a time in the next iteration.
+        </p>
+
+        <div class="matrix-wrap">
+          <table class="parameter-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Current shell</th>
+                <th>Study A</th>
+                <th>Study B</th>
+                <th>Selected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Color</th>
+                <td>Pure white shell, no border tint, shadow `0 2px 2px rgba(0,0,0,0.25)`, icon adds another dark cue.</td>
+                <td>Warm off-white shell, `#e9e1d8` hairline border, no accent color at all.</td>
+                <td>Same warm shell and border, plus one soft gray icon circle as the only extra visual cue.</td>
+                <td>Warm gradient shell, soft border, and no accents beyond the number itself.</td>
+              </tr>
+              <tr>
+                <th>Spacing</th>
+                <td>`60-68px` tall, `12-23px` horizontal padding, horizontal icon/value packing keeps the shell tight.</td>
+                <td>`20px` padding with a larger vertical gap between value and label, so the card breathes.</td>
+                <td>`20px` padding, icon column on the left, and still enough interior room to feel calm.</td>
+                <td>`17px` padding, generous vertical separation, and the cleanest two-line stack overall.</td>
+              </tr>
+              <tr>
+                <th>Typography</th>
+                <td>`10-12px` system label, `20-32px` utility number, functional but less distinctive.</td>
+                <td>`13px` label, `28px` Open Runde number, calmer and more legible without adding clutter.</td>
+                <td>`13px` label, `26px` Open Runde number, with the icon taking over the tertiary role.</td>
+                <td>`13px` label, `24px` Open Runde number, closest to the simple reference card.</td>
+              </tr>
+              <tr>
+                <th>Hierarchy</th>
+                <td>Icon and value both ask for attention, so the card lands with two competing anchors.</td>
+                <td>Number becomes the clear first read, with the label tucked underneath as quiet context.</td>
+                <td>Number still leads, while the icon gives orientation without competing too aggressively.</td>
+                <td>Single focal point on the number, with the label acting as the only secondary read.</td>
+              </tr>
+              <tr>
+                <th>Content</th>
+                <td>`Overall Score` only. Missing-state friendly, but little room for Point93 framing or refinement.</td>
+                <td>`Overall P93 Score` only. Cleaner, more branded, and lower cognitive load.</td>
+                <td>`Overall P93 Score` only, with an icon to help scanning when multiple cards sit in a row.</td>
+                <td>`Overall P93 Score` only. This is the most restrained and easiest to repeat across the product.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="study-panel context-panel">
+        <div class="study-label">Context row / Repetition test</div>
+        <h2>The chosen card should hold up when repeated across a product row.</h2>
+        <p class="study-copy">
+          This keeps the selected logic in view so the next card we design inherits the same discipline.
+        </p>
+
+        <div class="context-row">
+          <div class="metric-card metric-card-selected">
+            <div class="metric-stack metric-stack-selected">
+              <div class="metric-value metric-value-selected">74</div>
+              <div class="metric-label metric-label-selected">Overall P93 Score</div>
+            </div>
+          </div>
+          <div class="metric-card metric-card-selected">
+            <div class="metric-stack metric-stack-selected">
+              <div class="metric-value metric-value-selected">62</div>
+              <div class="metric-label metric-label-selected">Performance</div>
+            </div>
+          </div>
+          <div class="metric-card metric-card-selected">
+            <div class="metric-stack metric-stack-selected">
+              <div class="metric-value metric-value-selected">18</div>
+              <div class="metric-label metric-label-selected">Gap to Top 5%</div>
+            </div>
+          </div>
+          <div class="metric-card metric-card-selected">
+            <div class="metric-stack metric-stack-selected">
+              <div class="metric-value metric-value-selected">7</div>
+              <div class="metric-label metric-label-selected">Modules Completed</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="next-step-note">
+          <span class="next-step-kicker">Next component</span>
+          <p>
+            Use the selected card as the reference when we move to the chart panel. The next question
+            should be: what does a chart card look like if it inherits this exact spacing and type logic?
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

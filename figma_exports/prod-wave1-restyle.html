@@ -1,0 +1,1129 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Point93 Prod Wave 1 Restyle</title>
+          <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+          <style>
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/3exmuO07FP19gMM08TQrpXl3BGQ.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/HJY4SY2JywrSZ2l1AEW9Tm9cO8.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Open Runde"; src: url("https://framerusercontent.com/assets/hG3wmGmFwadB6X5XPVXkMlmLr8o.woff2") format("woff2"); font-weight: 600; }
+
+:root {
+  --canvas-top: #c1d5eb;
+  --canvas-mid: #eef3f7;
+  --canvas-bottom: #eee1d3;
+  --panel: rgba(255,255,255,0.96);
+  --panel-soft: #f7f2ea;
+  --line: #e7ded4;
+  --line-strong: #d8cdbf;
+  --ink: #1f1a17;
+  --copy: #5b554f;
+  --muted: #8a8176;
+  --action: #141312;
+  --action-soft: rgba(20,19,18,0.06);
+  --sky: #a8c4e3;
+  --sky-strong: #86add6;
+  --moss: #6d8661;
+  --moss-soft: rgba(109,134,97,0.14);
+  --amber: #c9a15d;
+  --amber-soft: rgba(201,161,93,0.14);
+  --rose: #c57962;
+  --rose-soft: rgba(197,121,98,0.13);
+  --navy: #273c5f;
+  --radius-shell: 28px;
+  --radius-surface: 22px;
+  --radius-card: 18px;
+  --radius-pill: 999px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--copy);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.34), transparent 28%),
+    linear-gradient(180deg, var(--canvas-top) 0%, var(--canvas-mid) 34%, #f8f4ef 66%, var(--canvas-bottom) 100%);
+}
+
+.capture-root {
+  width: 5200px;
+  padding: 56px 72px 96px;
+}
+
+.board {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.screen-column {
+  width: 1600px;
+}
+
+.screen-label {
+  margin: 0 0 18px 12px;
+  color: rgba(31,26,23,0.62);
+  font: 600 12px/1.2 "Open Runde", Inter, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.screen {
+  border-radius: 34px;
+  border: 3px solid rgba(255,255,255,0.92);
+  box-shadow: 0 32px 74px rgba(37, 31, 26, 0.10);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.38), rgba(255,255,255,0.18));
+}
+
+.app {
+  min-height: 1080px;
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr) 320px;
+  background: transparent;
+}
+
+.sidebar {
+  padding: 18px 14px 16px;
+  background: linear-gradient(180deg, rgba(38,60,95,0.98), rgba(34,53,84,0.98));
+  color: rgba(255,255,255,0.78);
+}
+
+.logo {
+  margin-bottom: 18px;
+  color: rgba(255,255,255,0.94);
+  font: 600 30px/1 "Open Runde", Inter, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.nav-group {
+  margin-bottom: 18px;
+}
+
+.nav-title {
+  margin: 18px 8px 8px;
+  color: rgba(255,255,255,0.38);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nav-item.active {
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.96);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.55);
+}
+
+.nav-item.active .nav-dot {
+  background: #f1c16c;
+}
+
+.account {
+  margin-top: 28px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.account-name {
+  color: rgba(255,255,255,0.94);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.account-meta {
+  margin-top: 2px;
+  color: rgba(255,255,255,0.48);
+  font-size: 11px;
+}
+
+.main {
+  padding: 28px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font: 600 11px/1.2 "Open Runde", Inter, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Saans TRIAL", "Open Runde", Inter, sans-serif;
+  font-size: 34px;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.page-copy {
+  margin-top: 6px;
+  max-width: 640px;
+  color: var(--copy);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.utility {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pill,
+.tag,
+.ghost-button,
+.search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.82);
+  color: var(--copy);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.search {
+  min-width: 180px;
+  justify-content: flex-start;
+  color: var(--muted);
+}
+
+.dark-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  background: var(--action);
+  color: #fff;
+  border: 1px solid var(--action);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.hero {
+  padding: 22px;
+  border-radius: var(--radius-surface);
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(168,196,227,0.90), rgba(255,255,255,0.72) 56%, rgba(247,242,234,0.92) 100%);
+  box-shadow: 0 12px 28px rgba(37,31,26,0.05);
+}
+
+.hero-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Saans TRIAL", "Open Runde", Inter, sans-serif;
+  font-size: 26px;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.hero-copy {
+  margin-top: 8px;
+  max-width: 620px;
+  color: var(--copy);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.metric-card,
+.surface,
+.module-card,
+.area-card,
+.bi-card,
+.rail-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 20px rgba(37,31,26,0.04);
+}
+
+.metric-card {
+  padding: 16px;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.metric-value {
+  margin-top: 10px;
+  color: var(--ink);
+  font-family: "Saans TRIAL", "Open Runde", Inter, sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.metric-sub {
+  margin-top: 6px;
+  color: var(--copy);
+  font-size: 12px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.surface {
+  padding: 18px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Saans TRIAL", "Open Runde", Inter, sans-serif;
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.section-copy {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.two-up,
+.three-up {
+  display: grid;
+  gap: 12px;
+}
+
+.two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.three-up { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 12px;
+}
+
+.module-card,
+.area-card,
+.bi-card {
+  padding: 16px;
+}
+
+.module-meta,
+.area-meta,
+.bi-meta {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.module-name,
+.area-name,
+.bi-name {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Saans TRIAL", "Open Runde", Inter, sans-serif;
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.module-copy,
+.area-copy,
+.bi-copy {
+  margin-top: 8px;
+  color: var(--copy);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.chip-row,
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status.good { background: var(--moss-soft); color: var(--moss); }
+.status.warn { background: var(--amber-soft); color: #9b7435; }
+.status.risk { background: var(--rose-soft); color: var(--rose); }
+.status.soft { background: rgba(20,19,18,0.05); color: var(--copy); }
+
+.progress-track {
+  height: 8px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: rgba(20,19,18,0.06);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sky-strong), #c9d7e8);
+}
+
+.chart-box {
+  height: 240px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(168,196,227,0.20), rgba(255,255,255,0.34)),
+    repeating-linear-gradient(180deg, transparent 0, transparent 39px, rgba(31,26,23,0.05) 39px, rgba(31,26,23,0.05) 40px);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-column {
+  position: absolute;
+  bottom: 0;
+  width: 48px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(180deg, rgba(134,173,214,0.9), rgba(168,196,227,0.36));
+}
+
+.radar-shell {
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,242,234,0.88));
+}
+
+.radar {
+  width: 190px;
+  height: 190px;
+  position: relative;
+  border-radius: 50%;
+  border: 1px dashed rgba(31,26,23,0.14);
+}
+
+.radar:before,
+.radar:after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  border: 1px dashed rgba(31,26,23,0.12);
+}
+
+.radar:after {
+  inset: 50px;
+}
+
+.radar-core {
+  position: absolute;
+  inset: 35px;
+  clip-path: polygon(50% 4%, 84% 22%, 92% 58%, 58% 92%, 18% 80%, 10% 38%);
+  background: rgba(134,173,214,0.32);
+  border: 2px solid rgba(134,173,214,0.66);
+}
+
+.rail {
+  padding: 28px 24px 24px 0;
+}
+
+.rail-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rail-card {
+  padding: 16px;
+}
+
+.rail-number {
+  color: var(--ink);
+  font-family: "Saans TRIAL", "Open Runde", Inter, sans-serif;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.small-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.small-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.callout {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(247,242,234,0.96), rgba(255,255,255,0.96));
+  border: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.area-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.area-card {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.modules-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.module-chip {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(20,19,18,0.04);
+  color: var(--copy);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.bi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.footer-note {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(247,242,234,0.98), rgba(255,255,255,0.94));
+  color: var(--copy);
+  font-size: 12px;
+  line-height: 1.55;
+}
+</style>
+        </head>
+        <body>
+          <div class="capture-root">            <div class="board">
+              <div class="screen-column">
+  <div class="screen-label">Wave 1 · Live prod structure · Dashboard</div>
+  <div class="screen">
+    <div class="app">
+      <aside class="sidebar"><div class="logo">.93</div><div class="nav-group"><div class="nav-item active"><div class="nav-dot"></div><div>Dashboard</div></div><div class="nav-item"><div class="nav-dot"></div><div>Assessments</div></div><div class="nav-item"><div class="nav-dot"></div><div>Insight Areas</div></div><div class="nav-item"><div class="nav-dot"></div><div>Data Points</div></div><div class="nav-item"><div class="nav-dot"></div><div>Scores</div></div><div class="nav-item"><div class="nav-dot"></div><div>Reports</div></div><div class="nav-item"><div class="nav-dot"></div><div>Business Intelligence</div></div></div><div class="nav-title">Admin</div><div class="nav-group"><div class="nav-item"><div class="nav-dot"></div><div>Area Builder</div></div><div class="nav-item"><div class="nav-dot"></div><div>BI Builder</div></div><div class="nav-item"><div class="nav-dot"></div><div>AI Hub</div></div><div class="nav-item"><div class="nav-dot"></div><div>Graph View</div></div><div class="nav-item"><div class="nav-dot"></div><div>User Management</div></div><div class="nav-item"><div class="nav-dot"></div><div>Analytics</div></div><div class="nav-item"><div class="nav-dot"></div><div>Feedback</div></div><div class="nav-item"><div class="nav-dot"></div><div>Beta</div></div></div><div class="account"><div class="account-name">Adam Rotmil</div><div class="account-meta">Comprehensive</div></div></aside>
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="eyebrow">Prod skeleton restyle</div>
+            <h1 class="page-title">A clearer command center for business health.</h1>
+            <div class="page-copy">The structure stays grounded in prod: orientation, recommended next actions, score visibility, and business intelligence. The visual shift is toward calmer hierarchy and better scanability.</div>
+          </div>
+          <div class="utility">
+            <div class="search">Search modules or areas</div>
+            <div class="ghost-button">Give Feedback</div>
+          </div>
+        </div>
+
+        <div class="hero">
+          <div class="eyebrow">Welcome back, Adam</div>
+          <h2 class="hero-title">Your next best move is to finish the first assessment and unlock the score model.</h2>
+          <div class="hero-copy">Current plan: Comprehensive. Your dashboard now emphasizes one next action, one progress story, and one strategic lens instead of competing card personalities.</div>
+          <div class="hero-actions">
+            <div class="dark-button">Begin first module</div>
+            <div class="pill">See all assessments</div>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="metric-card"><div class="metric-label">Overall score</div><div class="metric-value">74</div><div class="metric-sub">Competitive band</div></div>
+          <div class="metric-card"><div class="metric-label">Modules completed</div><div class="metric-value">5 / 17</div><div class="metric-sub">29% complete</div></div>
+          <div class="metric-card"><div class="metric-label">Gap to top 5%</div><div class="metric-value">12</div><div class="metric-sub">Focused upside</div></div>
+          <div class="metric-card"><div class="metric-label">Recommended next</div><div class="metric-value">3</div><div class="metric-sub">High-impact modules</div></div>
+        </div>
+
+        <div class="content-grid">
+          <div class="stack">
+            <div class="surface">
+              <div class="section-head">
+                <div>
+                  <h3 class="section-title">Score and performance</h3>
+                  <div class="section-copy">Prod dashboard concepts, simplified into one read.</div>
+                </div>
+                <div class="tag">Live prod content, calmer grouping</div>
+              </div>
+              <div class="focus-grid">
+                <div class="radar-shell">
+                  <div class="radar"><div class="radar-core"></div></div>
+                </div>
+                <div class="stack" style="gap:12px;">
+                  <div class="module-card">
+                    <div class="module-meta">Strengths</div>
+                    <h4 class="module-name">Your Professional Foundation</h4>
+                    <div class="module-copy">Strongest current area. The surface is quieter, so the insight is easier to notice.</div>
+                    <div class="chip-row">
+                      <div class="status good">Documentation quality</div>
+                      <div class="status good">Audit preparation</div>
+                    </div>
+                  </div>
+                  <div class="module-card">
+                    <div class="module-meta">Exposure</div>
+                    <h4 class="module-name">Firm Platform and Product Access</h4>
+                    <div class="module-copy">Lowest readiness area based on assessed coverage and industry gap.</div>
+                    <div class="chip-row">
+                      <div class="status warn">Platform breadth</div>
+                      <div class="status risk">Digital experience</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="surface">
+              <div class="section-head">
+                <div>
+                  <h3 class="section-title">Recommended next</h3>
+                  <div class="section-copy">The prod list becomes cleaner module cards with consistent metadata.</div>
+                </div>
+                <div class="pill">3 modules</div>
+              </div>
+              <div class="three-up">
+                <div class="module-card">
+                  <div class="module-meta">Your Investment Management Excellence · 30 min</div>
+                  <h4 class="module-name">Investment Communication &amp; Client Education</h4>
+                  <div class="module-copy">Highest leverage unlock for both score visibility and advisor confidence.</div>
+                  <div class="chip-row">
+                    <div class="status good">Highest impact</div>
+                    <div class="status soft">Not started</div>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+                  <div class="chip-row"><div class="dark-button">Start module</div></div>
+                </div>
+                <div class="module-card">
+                  <div class="module-meta">Professional Foundation · 30 min</div>
+                  <h4 class="module-name">Regulatory Record &amp; Fiduciary Standing</h4>
+                  <div class="module-copy">Strengthens trust framing and improves platform credibility in the score model.</div>
+                  <div class="chip-row">
+                    <div class="status good">Highest impact</div>
+                    <div class="status soft">Not started</div>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+                  <div class="chip-row"><div class="dark-button">Start module</div></div>
+                </div>
+                <div class="module-card">
+                  <div class="module-meta">Professional Foundation · 30 min</div>
+                  <h4 class="module-name">Industry Experience &amp; Market Navigation</h4>
+                  <div class="module-copy">Clarifies whether your positioning is seasoned enough for higher-value relationships.</div>
+                  <div class="chip-row">
+                    <div class="status good">Highest impact</div>
+                    <div class="status soft">Not started</div>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+                  <div class="chip-row"><div class="dark-button">Start module</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="surface">
+              <div class="section-head">
+                <div>
+                  <h3 class="section-title">Business intelligence and focus areas</h3>
+                  <div class="section-copy">Still grounded in the prod dashboard, but grouped to reduce context switching.</div>
+                </div>
+              </div>
+              <div class="two-up">
+                <div class="module-card">
+                  <div class="module-meta">Intelligence profiles</div>
+                  <h4 class="module-name">NextGen Ready</h4>
+                  <div class="module-copy">Will heirs retain the relationship? This remains a strategic category, but the card is less noisy and more legible.</div>
+                  <div class="chip-row">
+                    <div class="status warn">0%</div>
+                    <div class="status soft">5 questions</div>
+                    <div class="status soft">4 stages</div>
+                  </div>
+                </div>
+                <div class="module-card">
+                  <div class="module-meta">Focus areas</div>
+                  <h4 class="module-name">Your six operating pillars</h4>
+                  <div class="chip-row">
+                    <div class="status soft">Professional foundation</div>
+                    <div class="status soft">Firm platform</div>
+                    <div class="status soft">Investment</div>
+                    <div class="status soft">Planning</div>
+                    <div class="status soft">Client service</div>
+                    <div class="status soft">Fees and value</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="stack">
+            <div class="rail-card">
+              <div class="eyebrow">Advisor score</div>
+              <div class="rail-number">74</div>
+              <div class="chip-row">
+                <div class="status good">Competitive</div>
+                <div class="status soft">Top 34%</div>
+              </div>
+              <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+              <div class="section-copy">5 of 17 modules complete</div>
+            </div>
+            <div class="rail-card">
+              <div class="section-title">Intelligence profiles</div>
+              <div class="small-list">
+                <div class="small-item"><span>NextGen Ready</span><strong>0%</strong></div>
+                <div class="small-item"><span>Client Referrals</span><strong>0%</strong></div>
+              </div>
+            </div>
+            <div class="rail-card">
+              <div class="section-title">What clients are asking</div>
+              <div class="callout">Use this panel as a weekly strategic nudge, not a loud promotional block. The calm version reads more like a private-market brief.</div>
+            </div>
+            <div class="rail-card">
+              <div class="section-title">Strengths / weaknesses</div>
+              <div class="section-copy">Reserved until more modules are complete, but framed as a concise advisory summary.</div>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <aside class="rail">
+        <div class="rail-stack">
+          <div class="rail-card">
+            <div class="eyebrow">Prod right rail, simplified</div>
+            <div class="section-title">Context stays supportive</div>
+            <div class="section-copy">This column should help a broker make decisions, not compete with the center of the page.</div>
+          </div>
+          <div class="rail-card">
+            <div class="section-title">Profile completion</div>
+            <div class="progress-track"><div class="progress-fill" style="width:29%;"></div></div>
+            <div class="section-copy">29% complete · Comprehensive</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+              <div class="screen-column">
+  <div class="screen-label">Wave 1 · Live prod structure · Assessments</div>
+  <div class="screen">
+    <div class="app">
+      <aside class="sidebar"><div class="logo">.93</div><div class="nav-group"><div class="nav-item"><div class="nav-dot"></div><div>Dashboard</div></div><div class="nav-item active"><div class="nav-dot"></div><div>Assessments</div></div><div class="nav-item"><div class="nav-dot"></div><div>Insight Areas</div></div><div class="nav-item"><div class="nav-dot"></div><div>Data Points</div></div><div class="nav-item"><div class="nav-dot"></div><div>Scores</div></div><div class="nav-item"><div class="nav-dot"></div><div>Reports</div></div><div class="nav-item"><div class="nav-dot"></div><div>Business Intelligence</div></div></div><div class="nav-title">Admin</div><div class="nav-group"><div class="nav-item"><div class="nav-dot"></div><div>Area Builder</div></div><div class="nav-item"><div class="nav-dot"></div><div>BI Builder</div></div><div class="nav-item"><div class="nav-dot"></div><div>AI Hub</div></div><div class="nav-item"><div class="nav-dot"></div><div>Graph View</div></div><div class="nav-item"><div class="nav-dot"></div><div>User Management</div></div><div class="nav-item"><div class="nav-dot"></div><div>Analytics</div></div><div class="nav-item"><div class="nav-dot"></div><div>Feedback</div></div><div class="nav-item"><div class="nav-dot"></div><div>Beta</div></div></div><div class="account"><div class="account-name">Adam Rotmil</div><div class="account-meta">Comprehensive</div></div></aside>
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="eyebrow">Prod /my-journey</div>
+            <h1 class="page-title">Assessments should feel like a curated program, not a long dump of cards.</h1>
+            <div class="page-copy">The current prod page has the right information, but it stretches vertically and repeats itself. This exploration keeps the same six-area structure and module logic while making the overview feel more intentional.</div>
+          </div>
+          <div class="utility">
+            <div class="pill">0 completed</div>
+            <div class="pill">17 not started</div>
+          </div>
+        </div>
+
+        <div class="surface">
+          <div class="section-head">
+            <div>
+              <h3 class="section-title">Your progress</h3>
+              <div class="section-copy">One summary block instead of many small counters.</div>
+            </div>
+          </div>
+          <div class="stats-grid" style="margin-top:0;">
+            <div class="metric-card"><div class="metric-label">Completed</div><div class="metric-value">0</div><div class="metric-sub">None yet</div></div>
+            <div class="metric-card"><div class="metric-label">In progress</div><div class="metric-value">0</div><div class="metric-sub">No active modules</div></div>
+            <div class="metric-card"><div class="metric-label">Not started</div><div class="metric-value">17</div><div class="metric-sub">Main opportunity set</div></div>
+            <div class="metric-card"><div class="metric-label">Priority area</div><div class="metric-value">A3</div><div class="metric-sub">Investment excellence</div></div>
+          </div>
+          <div class="chart-box" style="margin-top:16px;height:160px;">
+            <div class="chart-column" style="left:52px;height:24px;"></div>
+            <div class="chart-column" style="left:122px;height:24px;"></div>
+            <div class="chart-column" style="left:192px;height:24px;"></div>
+            <div class="chart-column" style="left:262px;height:24px;"></div>
+            <div class="chart-column" style="left:332px;height:24px;"></div>
+            <div class="chart-column" style="left:402px;height:24px;"></div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="stack">
+            <div class="surface">
+              <div class="section-head">
+                <div>
+                  <h3 class="section-title">Assessment areas</h3>
+                  <div class="section-copy">Same prod information architecture, but regrouped into scannable area surfaces.</div>
+                </div>
+                <div class="tag">6 areas</div>
+              </div>
+              <div class="area-list">
+
+    <div class="area-card">
+      <div>
+        <div class="area-meta">Area 1 · 3 modules</div>
+        <h4 class="area-name">Your Professional Foundation & Team Structure</h4>
+        <div class="area-copy">2 highest-priority modules still untouched</div>
+        <div class="modules-inline">
+          <div class="module-chip">Industry Experience</div>
+          <div class="module-chip">Regulatory Record</div>
+          <div class="module-chip">Team Structure</div>
+        </div>
+      </div>
+      <div>
+        <div class="status soft">0% complete</div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="dark-button">Open area</div>
+    </div>
+
+    <div class="area-card">
+      <div>
+        <div class="area-meta">Area 2 · 3 modules</div>
+        <h4 class="area-name">Your Firm Platform, Technology & Support</h4>
+        <div class="area-copy">Platform and digital experience remain the biggest gap</div>
+        <div class="modules-inline">
+          <div class="module-chip">Platform Access</div>
+          <div class="module-chip">Technology</div>
+          <div class="module-chip">Support Infrastructure</div>
+        </div>
+      </div>
+      <div>
+        <div class="status soft">0% complete</div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="dark-button">Open area</div>
+    </div>
+
+    <div class="area-card">
+      <div>
+        <div class="area-meta">Area 3 · 5 modules</div>
+        <h4 class="area-name">Your Investment Management Excellence</h4>
+        <div class="area-copy">Investment communication is the clearest next unlock</div>
+        <div class="modules-inline">
+          <div class="module-chip">Communication</div>
+          <div class="module-chip">Portfolio Construction</div>
+          <div class="module-chip">Risk Monitoring</div>
+        </div>
+      </div>
+      <div>
+        <div class="status soft">0% complete</div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="dark-button">Open area</div>
+    </div>
+
+    <div class="area-card">
+      <div>
+        <div class="area-meta">Area 4 · 3 modules</div>
+        <h4 class="area-name">Your Planning Process & Implementation</h4>
+        <div class="area-copy">Planning workflows are still mostly unassessed</div>
+        <div class="modules-inline">
+          <div class="module-chip">Client Goals</div>
+          <div class="module-chip">Planning Breadth</div>
+          <div class="module-chip">Progress Monitoring</div>
+        </div>
+      </div>
+      <div>
+        <div class="status soft">0% complete</div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="dark-button">Open area</div>
+    </div>
+
+    <div class="area-card">
+      <div>
+        <div class="area-meta">Area 5 · 2 modules</div>
+        <h4 class="area-name">Your Client Service & Communication</h4>
+        <div class="area-copy">Service consistency has no signal yet</div>
+        <div class="modules-inline">
+          <div class="module-chip">Service Model</div>
+          <div class="module-chip">Client Communication</div>
+          <div class="module-chip">Review Rhythm</div>
+        </div>
+      </div>
+      <div>
+        <div class="status soft">0% complete</div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="dark-button">Open area</div>
+    </div>
+
+    <div class="area-card">
+      <div>
+        <div class="area-meta">Area 6 · 1 module</div>
+        <h4 class="area-name">Your Fees, Value & Positioning</h4>
+        <div class="area-copy">Value articulation is a strategic differentiator and still blank</div>
+        <div class="modules-inline">
+          <div class="module-chip">Fee Structure</div>
+          <div class="module-chip">Value Communication</div>
+          <div class="module-chip">Pricing Story</div>
+        </div>
+      </div>
+      <div>
+        <div class="status soft">0% complete</div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%;"></div></div>
+      </div>
+      <div class="dark-button">Open area</div>
+    </div>
+
+              </div>
+            </div>
+          </div>
+
+          <aside class="stack">
+            <div class="rail-card">
+              <div class="section-title">Recommended next</div>
+              <div class="small-list">
+                <div class="small-item"><span>Investment Communication</span><strong>A3</strong></div>
+                <div class="small-item"><span>Regulatory Standing</span><strong>A1</strong></div>
+                <div class="small-item"><span>Industry Experience</span><strong>A1</strong></div>
+              </div>
+            </div>
+            <div class="rail-card">
+              <div class="section-title">Jump to area</div>
+              <div class="chip-row">
+                <div class="status soft">A1 Foundation</div>
+                <div class="status soft">A2 Platform</div>
+                <div class="status soft">A3 Investment</div>
+                <div class="status soft">A4 Planning</div>
+                <div class="status soft">A5 Service</div>
+                <div class="status soft">A6 Fees</div>
+              </div>
+            </div>
+            <div class="rail-card">
+              <div class="section-title">Design note</div>
+              <div class="callout">Prod repeats module-level detail too early. This version delays that density until the user picks an area, which lowers cognitive load without removing information.</div>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <aside class="rail">
+        <div class="rail-stack">
+          <div class="rail-card">
+            <div class="eyebrow">Right rail principle</div>
+            <div class="section-title">Progress context only</div>
+            <div class="section-copy">The rail should reinforce priorities, not duplicate every assessment card.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+              <div class="screen-column">
+  <div class="screen-label">Wave 1 · Live prod structure · Business Intelligence</div>
+  <div class="screen">
+    <div class="app">
+      <aside class="sidebar"><div class="logo">.93</div><div class="nav-group"><div class="nav-item"><div class="nav-dot"></div><div>Dashboard</div></div><div class="nav-item"><div class="nav-dot"></div><div>Assessments</div></div><div class="nav-item"><div class="nav-dot"></div><div>Insight Areas</div></div><div class="nav-item"><div class="nav-dot"></div><div>Data Points</div></div><div class="nav-item"><div class="nav-dot"></div><div>Scores</div></div><div class="nav-item"><div class="nav-dot"></div><div>Reports</div></div><div class="nav-item active"><div class="nav-dot"></div><div>Business Intelligence</div></div></div><div class="nav-title">Admin</div><div class="nav-group"><div class="nav-item"><div class="nav-dot"></div><div>Area Builder</div></div><div class="nav-item"><div class="nav-dot"></div><div>BI Builder</div></div><div class="nav-item"><div class="nav-dot"></div><div>AI Hub</div></div><div class="nav-item"><div class="nav-dot"></div><div>Graph View</div></div><div class="nav-item"><div class="nav-dot"></div><div>User Management</div></div><div class="nav-item"><div class="nav-dot"></div><div>Analytics</div></div><div class="nav-item"><div class="nav-dot"></div><div>Feedback</div></div><div class="nav-item"><div class="nav-dot"></div><div>Beta</div></div></div><div class="account"><div class="account-name">Adam Rotmil</div><div class="account-meta">Comprehensive</div></div></aside>
+      <main class="main">
+        <div class="topbar">
+          <div>
+            <div class="eyebrow">Prod business intelligence</div>
+            <h1 class="page-title">Strategic intelligence can feel more like a private briefing than a feature catalog.</h1>
+            <div class="page-copy">The live BI page already has a strong product idea. The redesign opportunity is mostly tonal: cleaner hierarchy, calmer cards, and stronger trust signals for a high-net-worth advisory audience.</div>
+          </div>
+          <div class="utility">
+            <div class="ghost-button">Back to dashboard</div>
+          </div>
+        </div>
+
+        <div class="hero">
+          <div class="eyebrow">Cross-functional performance analytics</div>
+          <h2 class="hero-title">Business intelligence aggregates signals across modules to reveal where the practice wins, stalls, or leaks trust.</h2>
+          <div class="hero-copy">This keeps the prod framing but makes it read more like a high-value advisory system and less like an explanatory product page.</div>
+        </div>
+
+        <div class="content-grid">
+          <div class="stack">
+            <div class="surface">
+              <div class="section-head">
+                <div>
+                  <h3 class="section-title">Intelligence profiles</h3>
+                  <div class="section-copy">Profiles remain distinct, but the card system is quieter and more consistent.</div>
+                </div>
+                <div class="tag">5 profile surfaces</div>
+              </div>
+              <div class="bi-grid">
+
+    <div class="bi-card">
+      <div class="bi-meta">Business intelligence profile</div>
+      <h4 class="bi-name">NextGen Ready</h4>
+      <div class="bi-copy">Will heirs retain the relationship when wealth transfers?</div>
+      <div class="chip-row">
+        <div class="status soft">Not started</div>
+        <div class="status soft">5 questions · 4 stages</div>
+      </div>
+      <div class="chip-row"><div class="dark-button">Begin assessment</div></div>
+    </div>
+
+    <div class="bi-card">
+      <div class="bi-meta">Business intelligence profile</div>
+      <h4 class="bi-name">Client Referrals</h4>
+      <div class="bi-copy">Do clients feel confident enough to introduce you proactively?</div>
+      <div class="chip-row">
+        <div class="status soft">Not started</div>
+        <div class="status soft">4 questions · 4 stages</div>
+      </div>
+      <div class="chip-row"><div class="dark-button">Begin assessment</div></div>
+    </div>
+
+    <div class="bi-card">
+      <div class="bi-meta">Business intelligence profile</div>
+      <h4 class="bi-name">PitchPerfect</h4>
+      <div class="bi-copy">Can prospects understand your value quickly and trust the recommendation?</div>
+      <div class="chip-row">
+        <div class="status soft">Not started</div>
+        <div class="status soft">6 questions · 3 stages</div>
+      </div>
+      <div class="chip-row"><div class="dark-button">Begin assessment</div></div>
+    </div>
+
+    <div class="bi-card">
+      <div class="bi-meta">Business intelligence profile</div>
+      <h4 class="bi-name">COI Referrals</h4>
+      <div class="bi-copy">Are centers of influence motivated to return relationships your way?</div>
+      <div class="chip-row">
+        <div class="status soft">Not started</div>
+        <div class="status soft">3 questions · 5 stages</div>
+      </div>
+      <div class="chip-row"><div class="dark-button">Begin assessment</div></div>
+    </div>
+
+    <div class="bi-card">
+      <div class="bi-meta">Business intelligence profile</div>
+      <h4 class="bi-name">Client Retention Risk</h4>
+      <div class="bi-copy">Which current relationships are vulnerable to attrition or disengagement?</div>
+      <div class="chip-row">
+        <div class="status soft">Not started</div>
+        <div class="status soft">4 questions · 4 stages</div>
+      </div>
+      <div class="chip-row"><div class="dark-button">Begin assessment</div></div>
+    </div>
+
+              </div>
+            </div>
+
+            <div class="footer-note">
+              <strong style="color:var(--ink);">How business intelligence works</strong><br/>
+              Each profile collects evidence across multiple areas and modules. The design should help a broker understand the commercial relevance quickly, then move into the diagnostic flow without feeling overwhelmed.
+            </div>
+          </div>
+
+          <aside class="stack">
+            <div class="rail-card">
+              <div class="section-title">Why this page matters</div>
+              <div class="callout">This is one of the clearest premium moments in prod because the content is strategic by nature. The design should amplify discretion, intelligence, and confidence.</div>
+            </div>
+            <div class="rail-card">
+              <div class="section-title">Recommended emphasis</div>
+              <div class="small-list">
+                <div class="small-item"><span>NextGen Ready</span><strong>Core</strong></div>
+                <div class="small-item"><span>Client Referrals</span><strong>Core</strong></div>
+                <div class="small-item"><span>Retention Risk</span><strong>Monitor</strong></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      <aside class="rail">
+        <div class="rail-stack">
+          <div class="rail-card">
+            <div class="eyebrow">Live prod issue</div>
+            <div class="section-title">The cards are doing too much visual work</div>
+            <div class="section-copy">This version reduces outlines, shrinks supporting text tension, and lets the profile names and actions carry the page.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+            </div>
+</div>
+        </body>
+        </html>

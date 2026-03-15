@@ -1,0 +1,154 @@
+{
+  "route": "/admin/users",
+  "requestedUrl": "https://point93.ai/admin/users",
+  "finalUrl": "https://point93.ai/admin/users",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "User Management",
+    "Administrators",
+    "Users",
+    "Waitlisted Users",
+    "About Status",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "← Back to Admin",
+      "href": "https://point93.ai/admin"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/c9384c6a-292b-4abb-865c-2a923a870f48"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/eb5f9bb0-e3d8-479a-ae26-c6f0acc390ef"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/5ceb92b7-1523-412e-8c44-a12f5f49e9b2"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/f42bd065-e8a4-4692-b2ee-85b8a281c3d9"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/d68437ed-a285-4196-9a9d-3eb3ac621f82"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/b6ebd1aa-adaa-46ac-baef-5710afe9163b"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/d2402659-ac28-4b05-9be5-b1b47294a16c"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/33c1c536-1ea7-4f20-9729-77423c638797"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/3f756290-71e9-4ef9-9579-4426663aa12e"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/27549a32-d3e0-4e8e-bf6a-845785a7be8d"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/b13e73c0-cdbe-45bc-8975-05fdf2898e8b"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/41c6a4b2-3ec2-4a59-a3f2-ceba8f4a88e4"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/8c9615ff-4606-4a3e-84b1-a3ee9929f7c9"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/10f1ccc4-327a-4af5-81a7-14180f1bbf90"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/f88e0461-5fcc-4d45-964b-65851fb66ee1"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/f75b1d67-542a-4283-9304-ed06d63d8fef"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/8a899f1b-eb9e-4865-9b91-db6d4f0f42aa"
+    },
+    {
+      "text": "View",
+      "href": "https://point93.ai/admin/users/8657c08a-faa8-46ef-ba15-a7ef4d90f480"
+    },
+    {
+      "text": "View all →",
+      "href": "https://point93.ai/business-intelligence"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com User Management Manage all users and their permissions ← Back to Admin Search Users Status All Statuses Active Pending Role All Roles Admin User Plan All Plans Essential Professional Comprehensive Showing 18 of 18 users Administrators 6 users Collapse USER EMAIL COMPANY PLAN STATUS ROLE JOINED ACTIONS AR Adam Rotmil adam.rotmil@toptal.com Adam Rotmil Partners Essential Professional Comprehensive Active User Admin Super Admin 3/12/2026 View ME Michela Effendie michelatjan@gmail.com - Essential Professional Comprehensive Active User Admin Super Admin 2/26/2026 View U Udit Shiva uditshiva08@gmail.com - Essential Professional Comprehensive Active User Admin Super Admin 2/19/2026 View UD Udit Dasari udit.test@point93.local Krazimo Essential Professional Comprehensive Active User Admin Super Admin 2/4/2026 View KN Kevin Neal kevin@moenio.com Moenio Essential Professional Comprehensive Active User Admin Super Admin 11/3/2025 View MN Mridul Nagpal mridul@krazimo.com Krazimo Pvt. Ltd. Essential Professional Comprehensive Active User Admin Super Admin 10/11/2025 View Users 12 users Collapse USER EMAIL COMPANY PLAN STATUS ROLE JOINED ACTIONS KK Kshitij Kadu kshitij@krazimo.com - Essential Professional Comprehensive Pending Resend User Admin Super Admin 3/11/2026 View LG laur gugliermetti laura.gugliermetti@toptal.com Toptal Essential Professional Comprehensive Active User Admin Super Admin 3/10/2026 View C Claude claude2@krazimo.com - Essential Professional Comprehensive Active User Admin Super Admin 2/27/2026 View K kevin kevin@point93.ai - Essential Professional Comprehensive Active User Admin Super Admin 2/27/2026 View S Sam sam@thisisknightsbridge.com - Essential Professional Comprehensive Active User Admin Super Admin 2/27/2026 View CC Claude Code claude@krazimo.com Krazimo Essential Professional Comprehensive Active User Admin Super Admin 2/26/2026 View K Kevin kevin.neal@moenio.com - Essential Professional Comprehensive Active User Admin Super Admin 2/25/2026 View U Udit 19 uditdasari19@gmail.com - Essential Professional Comprehensive Active User Admin Super Admin 2/18/2026 View MN Mridul Nagpal mridulnagpal07@gmail.com Krazimo Essential Professional Comprehensive Active User Admin Super Admin 1/10/2026 View K Kevin kmneal1@gmail.com - Essential Professional Comprehensive Active User Admin Super Admin 1/9/2026 View J John john@krazimo.com - Essential Professional Comprehensive Pending Resend User Admin Super Admin 12/1/2025 View T Test krazimo@blinkvoice.com Test Essential Professional Comprehensive Pending Resend User Admin Super Admin 11/25/2025 View Waitlisted Users 1 user waiting for access Collapse NAME EMAIL COMPANY STATUS DATE ACTIONS Udit udit@krazimo.com Krazimo Pending 2/5/2026 Convert to User Convert to Admin About Status Active: User has completed onboarding (is_onboarded = true) Pending: User signed up but hasn't completed onboarding yet Waitlisted: User is waiting to be converted to an actual user by an admin 0 Advisor Score At Risk Profile Completion 0 of 18 modules · Comprehensive Intelligence Profiles View all → 🎯 NextGen Ready 0% 🎯 Client Referrals 0% What Clients Are Asking Coming Soon Weekly - Jan 27 “Should I be worried about the new fiduciary rule changes?” Advisors rated ready 68% Your readiness 72 - top 34% Improve your ranking → Strengths / Weaknesses Complete modules to see your strengths and areas needing attention Insight Areas Complete modules to see your insight area scores",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-users.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-users.html"
+}

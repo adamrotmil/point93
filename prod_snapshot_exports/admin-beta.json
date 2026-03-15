@@ -1,0 +1,76 @@
+{
+  "route": "/admin/beta",
+  "requestedUrl": "https://point93.ai/admin/beta",
+  "finalUrl": "https://point93.ai/admin/beta",
+  "title": "Point93 - Assessment Platform",
+  "headings": [
+    "Beta Management",
+    "Invite Beta Tester",
+    "Beta Testers (6)",
+    "Intelligence Profiles",
+    "What Clients Are Asking",
+    "Strengths / Weaknesses",
+    "Insight Areas"
+  ],
+  "links": [
+    {
+      "text": "Dashboard",
+      "href": "https://point93.ai/dashboard"
+    },
+    {
+      "text": "Insight Areas",
+      "href": "https://point93.ai/insight-areas"
+    },
+    {
+      "text": "Data Points",
+      "href": "https://point93.ai/data-points"
+    },
+    {
+      "text": "Scores",
+      "href": "https://point93.ai/scores"
+    },
+    {
+      "text": "Reports",
+      "href": "https://point93.ai/reports"
+    },
+    {
+      "text": "Area Builder",
+      "href": "https://point93.ai/admin/content-builder"
+    },
+    {
+      "text": "BI Builder",
+      "href": "https://point93.ai/admin/bi-builder"
+    },
+    {
+      "text": "AI Hub",
+      "href": "https://point93.ai/admin/ai-hub"
+    },
+    {
+      "text": "Graph View",
+      "href": "https://point93.ai/admin/graph-view"
+    },
+    {
+      "text": "User Management",
+      "href": "https://point93.ai/admin/users"
+    },
+    {
+      "text": "Analytics",
+      "href": "https://point93.ai/admin/analytics"
+    },
+    {
+      "text": "Feedback",
+      "href": "https://point93.ai/admin/feedback"
+    },
+    {
+      "text": "Beta",
+      "href": "https://point93.ai/admin/beta"
+    },
+    {
+      "text": "View all →",
+      "href": "https://point93.ai/business-intelligence"
+    }
+  ],
+  "text": "Give Feedback Dashboard Assessments No items available Insight Areas Data Points Scores Reports Business Intelligence No items available ADMIN Area Builder BI Builder AI Hub Graph View User Management Analytics Feedback Beta AR Adam Rotmil adam.rotmil@toptal.com Beta Management Invite and manage beta testers for module assessments Invite Beta Tester First Name Email Plan Tier Essential Professional Comprehensive Module Select a module... Regulatory Record & Fiduciary Standing Risk Management & Portfolio Monitoring Investment Communication & Client Education Discovery Process & Goal-Setting Excellence Firm Platform & Product Access Investment Selection & Due Diligence Firm Support & Operational Infrastructure Plan Implementation & Progress Monitoring Performance Measurement & Reporting Fee Structure & Value Articulation Test Module (2 Questions) Investment Philosophy & Portfolio Construction Planning Breadth & Specialized Capabilities Team Structure & Client Service Model Technology & Digital Experience Service Model & Client Experience Team Coordination & Capability Industry Experience & Market Navigation Send Invite Beta Testers (6) NAME EMAIL MODULE STATUS INVITED ACTIONS Sam sam@thisisknightsbridge.com Investment Philosophy & Portfolio Construction Invited 2/27/2026 Resend Claude claude2@krazimo.com Investment Communication & Client Education Invited 2/27/2026 Resend kevin kevin@point93.ai Investment Selection & Due Diligence Invited 2/27/2026 Resend Kevin kevin.neal@moenio.com Team Coordination & Capability Invited 2/25/2026 Resend Udit Shiva uditshiva08@gmail.com Investment Communication & Client Education Invited 2/19/2026 Resend Udit 19 uditdasari19@gmail.com Discovery Process & Goal-Setting Excellence Active 2/18/2026 0 Advisor Score At Risk Profile Completion 0 of 18 modules · Comprehensive Intelligence Profiles View all → 🎯 NextGen Ready 0% 🎯 Client Referrals 0% What Clients Are Asking Coming Soon Weekly - Jan 27 “Should I be worried about the new fiduciary rule changes?” Advisors rated ready 68% Your readiness 72 - top 34% Improve your ranking → Strengths / Weaknesses Complete modules to see your strengths and areas needing attention Insight Areas Complete modules to see your insight area scores",
+  "screenshotPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-beta.png",
+  "htmlPath": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-beta.html"
+}

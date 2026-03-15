@@ -1,0 +1,382 @@
+[
+  {
+    "route": "/dashboard",
+    "requestedUrl": "https://point93.ai/dashboard",
+    "finalUrl": "https://point93.ai/dashboard",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Welcome back, Adam!",
+      "Start Your Assessment",
+      "Strengths / Weaknesses",
+      "BUSINESS INTELLIGENCE",
+      "YOUR FOCUS AREAS",
+      "RECOMMENDED NEXT",
+      "Module Level Scorecard",
+      "Module Performance Board",
+      "DATA POINT SCORES",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/dashboard.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/dashboard.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/dashboard.json"
+  },
+  {
+    "route": "/my-journey",
+    "requestedUrl": "https://point93.ai/my-journey",
+    "finalUrl": "https://point93.ai/my-journey",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Assessments",
+      "Your Progress",
+      "Your Professional Foundation & Team Structure",
+      "Your Firm Platform, Technology & Support",
+      "Your Investment Management Excellence",
+      "Your Planning Process & Implementation",
+      "Your Client Service & Communication",
+      "Your Fees, Value & Positioning",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/my-journey.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/my-journey.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/my-journey.json"
+  },
+  {
+    "route": "/assess",
+    "requestedUrl": "https://point93.ai/assess",
+    "finalUrl": "https://point93.ai/dashboard",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Welcome back, Adam!",
+      "Start Your Assessment",
+      "Strengths / Weaknesses",
+      "BUSINESS INTELLIGENCE",
+      "YOUR FOCUS AREAS",
+      "RECOMMENDED NEXT",
+      "Module Level Scorecard",
+      "Module Performance Board",
+      "DATA POINT SCORES",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/assess.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/assess.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/assess.json"
+  },
+  {
+    "route": "/insight-areas",
+    "requestedUrl": "https://point93.ai/insight-areas",
+    "finalUrl": "https://point93.ai/insight-areas",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Insight Areas",
+      "Your Professional Foundation & Team Structure",
+      "Your Firm Platform, Technology & Support",
+      "Your Investment Management Excellence",
+      "Your Planning Process & Implementation",
+      "Your Client Service & Communication",
+      "Your Fees, Value & Positioning",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/insight-areas.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/insight-areas.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/insight-areas.json"
+  },
+  {
+    "route": "/data-points",
+    "requestedUrl": "https://point93.ai/data-points",
+    "finalUrl": "https://point93.ai/data-points",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Data Points",
+      "Your Professional Foundation & Team Structure",
+      "Your Firm Platform, Technology & Support",
+      "Your Investment Management Excellence",
+      "Your Planning Process & Implementation",
+      "Your Client Service & Communication",
+      "Your Fees, Value & Positioning",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/data-points.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/data-points.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/data-points.json"
+  },
+  {
+    "route": "/scores",
+    "requestedUrl": "https://point93.ai/scores",
+    "finalUrl": "https://point93.ai/scores",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Module Scores",
+      "Your Professional Foundation & Team Structure",
+      "Industry Experience & Market Navigation",
+      "Regulatory Record & Fiduciary Standing",
+      "Team Structure & Client Service Model",
+      "Your Firm Platform, Technology & Support",
+      "Firm Platform & Product Access",
+      "Technology & Digital Experience",
+      "Firm Support & Operational Infrastructure",
+      "Your Investment Management Excellence",
+      "Investment Philosophy & Portfolio Construction",
+      "Investment Selection & Due Diligence",
+      "Risk Management & Portfolio Monitoring",
+      "Performance Measurement & Reporting",
+      "Investment Communication & Client Education",
+      "Your Planning Process & Implementation",
+      "Discovery Process & Goal-Setting Excellence",
+      "Planning Breadth & Specialized Capabilities",
+      "Plan Implementation & Progress Monitoring",
+      "Your Client Service & Communication",
+      "Service Model & Client Experience",
+      "Team Coordination & Capability",
+      "Your Fees, Value & Positioning",
+      "Fee Structure & Value Articulation",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/scores.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/scores.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/scores.json"
+  },
+  {
+    "route": "/reports",
+    "requestedUrl": "https://point93.ai/reports",
+    "finalUrl": "https://point93.ai/reports",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Reports",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/reports.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/reports.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/reports.json"
+  },
+  {
+    "route": "/business-intelligence",
+    "requestedUrl": "https://point93.ai/business-intelligence",
+    "finalUrl": "https://point93.ai/business-intelligence",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Business Intelligence",
+      "NextGen Ready",
+      "Client Referrals",
+      "PitchPerfect",
+      "COI Referrals",
+      "Client Retention Risk",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/business-intelligence.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/business-intelligence.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/business-intelligence.json"
+  },
+  {
+    "route": "/business-intelligence/a3bd6321-3069-42a6-9b5f-4566c8a4b8de",
+    "requestedUrl": "https://point93.ai/business-intelligence/a3bd6321-3069-42a6-9b5f-4566c8a4b8de",
+    "finalUrl": "https://point93.ai/business-intelligence/a3bd6321-3069-42a6-9b5f-4566c8a4b8de",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "NextGen Ready",
+      "Do They Know You Exist?",
+      "Are You In The Conversation?",
+      "Do You Speak Their Language?",
+      "Does Your Tech Match Their World?",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/business-intelligence-a3bd6321-3069-42a6-9b5f-4566c8a4b8de.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/business-intelligence-a3bd6321-3069-42a6-9b5f-4566c8a4b8de.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/business-intelligence-a3bd6321-3069-42a6-9b5f-4566c8a4b8de.json"
+  },
+  {
+    "route": "/areas/507ac887-0f3f-4ea5-a427-b105c814dd7f",
+    "requestedUrl": "https://point93.ai/areas/507ac887-0f3f-4ea5-a427-b105c814dd7f",
+    "finalUrl": "https://point93.ai/areas/507ac887-0f3f-4ea5-a427-b105c814dd7f",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Your Client Service & Communication",
+      "Modules in this Area",
+      "Service Model & Client Experience",
+      "Team Coordination & Capability",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/areas-507ac887-0f3f-4ea5-a427-b105c814dd7f.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/areas-507ac887-0f3f-4ea5-a427-b105c814dd7f.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/areas-507ac887-0f3f-4ea5-a427-b105c814dd7f.json"
+  },
+  {
+    "route": "/admin/content-builder",
+    "requestedUrl": "https://point93.ai/admin/content-builder",
+    "finalUrl": "https://point93.ai/admin/content-builder",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Area Builder",
+      "HIERARCHY",
+      "Welcome to Area Builder",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-content-builder.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-content-builder.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-content-builder.json"
+  },
+  {
+    "route": "/admin/bi-builder",
+    "requestedUrl": "https://point93.ai/admin/bi-builder",
+    "finalUrl": "https://point93.ai/admin/bi-builder",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Business Intelligence Builder",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-bi-builder.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-bi-builder.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-bi-builder.json"
+  },
+  {
+    "route": "/admin/ai-hub",
+    "requestedUrl": "https://point93.ai/admin/ai-hub",
+    "finalUrl": "https://point93.ai/admin/ai-hub",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "AI Hub",
+      "Files",
+      "Files & Documents",
+      "Objects",
+      "No Object Selected",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-ai-hub.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-ai-hub.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-ai-hub.json"
+  },
+  {
+    "route": "/admin/graph-view",
+    "requestedUrl": "https://point93.ai/admin/graph-view",
+    "finalUrl": "https://point93.ai/admin/graph-view",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "System Graph View",
+      "Your Professional Foundation & Team Structure",
+      "Your Firm Platform, Technology & Support",
+      "Your Investment Management Excellence",
+      "Your Planning Process & Implementation",
+      "Your Client Service & Communication",
+      "Your Fees, Value & Positioning",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-graph-view.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-graph-view.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-graph-view.json"
+  },
+  {
+    "route": "/admin/users",
+    "requestedUrl": "https://point93.ai/admin/users",
+    "finalUrl": "https://point93.ai/admin/users",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "User Management",
+      "Administrators",
+      "Users",
+      "Waitlisted Users",
+      "About Status",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-users.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-users.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-users.json"
+  },
+  {
+    "route": "/admin/analytics",
+    "requestedUrl": "https://point93.ai/admin/analytics",
+    "finalUrl": "https://point93.ai/admin/analytics",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Analytics",
+      "Plan Distribution",
+      "Module Analytics",
+      "Average Scores by Insight Areas",
+      "Recent Activity",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-analytics.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-analytics.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-analytics.json"
+  },
+  {
+    "route": "/admin/feedback",
+    "requestedUrl": "https://point93.ai/admin/feedback",
+    "finalUrl": "https://point93.ai/admin/feedback",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "User Feedback",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-feedback.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-feedback.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-feedback.json"
+  },
+  {
+    "route": "/admin/beta",
+    "requestedUrl": "https://point93.ai/admin/beta",
+    "finalUrl": "https://point93.ai/admin/beta",
+    "title": "Point93 - Assessment Platform",
+    "headings": [
+      "Beta Management",
+      "Invite Beta Tester",
+      "Beta Testers (6)",
+      "Intelligence Profiles",
+      "What Clients Are Asking",
+      "Strengths / Weaknesses",
+      "Insight Areas"
+    ],
+    "screenshot": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-beta.png",
+    "html": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-beta.html",
+    "json": "/Users/arotmil/dev/clarvos-design-agent/Point93/prod_snapshot_exports/admin-beta.json"
+  }
+]
