@@ -15,45 +15,64 @@ type SectionCardProps = {
   title: string
   description?: string
   action?: ReactNode
+  surface?: "subtle" | "outlined"
   className?: string
   contentClassName?: string
-  children: ReactNode
+  children?: ReactNode
 }
 
 export function SectionCard({
   title,
   description,
   action,
+  surface = "subtle",
   className,
   contentClassName,
   children,
 }: SectionCardProps) {
+  const hasDescription = Boolean(description)
+
   return (
     <Card
       className={cn(
-        "rounded-[18px] border border-border/70 bg-card/96 shadow-[0_18px_34px_-32px_rgba(15,23,42,0.18)]",
+        "rounded-[16px] shadow-none",
+        surface === "outlined"
+          ? "border border-border/80 bg-white ring-0"
+          : "border-0 bg-card ring-0",
         className
       )}
     >
-      <CardHeader className="gap-3 px-6 pb-0 pt-5">
-        <div className="space-y-1.5">
-          <CardTitle className="text-[15px] font-semibold tracking-[-0.01em] text-foreground">
+      <CardHeader
+        className={cn(
+          "px-6 pb-0 pt-[13px]",
+          hasDescription ? "gap-2.5" : "gap-1"
+        )}
+      >
+        <div className={cn(hasDescription ? "space-y-1.5" : "space-y-1")}>
+          <CardTitle className="font-[family:var(--font-brand)] text-[18px] leading-[1.22] font-medium tracking-[-0.022em] text-foreground">
             {title}
           </CardTitle>
           {description ? (
-            <CardDescription className="text-[13px] leading-5 text-muted-foreground">
+            <CardDescription className="text-[12px] leading-[1.55] text-muted-foreground/88">
               {description}
             </CardDescription>
           ) : null}
         </div>
         {action ? <CardAction>{action}</CardAction> : null}
       </CardHeader>
-      <div className="px-6 pt-4">
-        <Separator className="bg-border/80" />
-      </div>
-      <CardContent className={cn("px-6 pb-6 pt-5", contentClassName)}>
-        {children}
-      </CardContent>
+      <Separator
+        className={cn(
+          "bg-border/60",
+          hasDescription ? "mt-2.5" : "mt-2"
+        )}
+      />
+      {children !== undefined ? (
+        <CardContent
+          className={cn("px-6 pb-6 pt-[12px]", contentClassName)}
+        >
+          {children}
+        </CardContent>
+      ) : null}
     </Card>
   )
 }

@@ -2,11 +2,11 @@ import * as React from "react"
 import {
   ArrowRight,
   BarChart3,
-  Bell,
   BookOpenText,
   ChevronLeft,
   ChevronRight,
   Gauge,
+  MessageSquare,
   Sparkles,
   Star,
   Target,
@@ -47,13 +47,38 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { cn } from "@/lib/utils"
+
+const RIGHT_RAIL_WIDTH = 340
+const RIGHT_RAIL_STAGE_CLASS =
+  "rounded-[18px] border border-border/75 bg-[linear-gradient(180deg,rgba(245,248,252,0.98),rgba(250,252,254,1))] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
 
 const metricCards = [
-  { icon: Gauge, value: "0", label: "Overall Score" },
-  { icon: BarChart3, value: "Pending", label: "Performance" },
-  { icon: Trophy, value: "Top 5%", label: "Go to Top 5%" },
-  { icon: Target, value: "Average", label: "Go to Average" },
-  { icon: BookOpenText, value: "0 / 18", label: "Modules Completed" },
+  {
+    icon: Gauge,
+    value: "68",
+    label: "Overall Score",
+    sparkline: [42, 45, 47, 52, 56, 58, 61, 65, 68],
+  },
+  {
+    icon: BarChart3,
+    value: "Top 23%",
+    label: "Performance",
+    sparkline: [11, 13, 15, 16, 18, 20, 22, 21, 23],
+  },
+  {
+    icon: Trophy,
+    value: "8 pts",
+    label: "Gap to Top 5%",
+    sparkline: [18, 17, 16, 15, 14, 12, 11, 10, 8],
+  },
+  {
+    icon: Target,
+    value: "10 pts",
+    label: "Gap to Average",
+    sparkline: [22, 20, 18, 16, 15, 13, 12, 11, 10],
+  },
+  { icon: BookOpenText, value: "4/18", label: "Modules Completed" },
 ] as const
 
 const scoreRadarData = [
@@ -90,16 +115,13 @@ const profileRows = [
 
 const moduleCards = [
   {
-    title: "Module Level Scorecard",
-    body: "Complete modules to see scorecard detail and benchmark placement.",
+    title: "Level Scorecard",
   },
   {
-    title: "Module Performance Board",
-    body: "Complete modules to see performance signals and trend movement.",
+    title: "Performance",
   },
   {
-    title: "Data Point Scores",
-    body: "Complete modules to see your scored data points and recommendations.",
+    title: "Datapoint Scoring",
   },
 ] as const
 
@@ -119,35 +141,27 @@ function DashboardShell() {
 
   return (
     <SidebarInset className="bg-transparent">
-      <div className="min-h-svh bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(241,246,255,0.92)_48%,_rgba(236,241,248,0.88)_100%)]">
-        <header className="sticky top-0 z-20 border-b border-border/75 bg-background/82 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4 px-5 py-4 sm:px-8">
-            <div className="flex items-center gap-3">
-              <SidebarTrigger
-                variant="outline"
-                size="icon-sm"
-                className="rounded-full md:hidden"
-              />
-              <div>
-                <p className="text-xs font-medium tracking-[0.16em] text-muted-foreground uppercase">
-                  Point93 advisory dashboard
-                </p>
-                <h1 className="text-[1.9rem] font-semibold tracking-[-0.03em] text-foreground">
-                  Welcome back, Adam
-                </h1>
+      <div className="min-h-svh bg-background">
+        <header className="bg-transparent">
+          <div
+            className={cn(
+              "px-5 pb-5 pt-7 sm:px-8 sm:pb-6 sm:pt-8",
+              !rightRailCollapsed && "xl:pr-[23rem]"
+            )}
+          >
+            <div className="mx-auto flex max-w-[1120px] items-center gap-4">
+              <div className="flex items-center gap-3">
+                <SidebarTrigger
+                  variant="outline"
+                  size="icon-sm"
+                  className="rounded-full md:hidden"
+                />
+                <div>
+                  <h1 className="font-[family:var(--font-brand)] text-[2.18rem] font-normal tracking-[-0.03em] text-foreground">
+                    Welcome back, Brendon
+                  </h1>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Badge
-                variant="outline"
-                className="hidden rounded-full border-border/80 bg-white/70 px-3 py-1 text-[11px] text-muted-foreground md:inline-flex"
-              >
-                Comprehensive
-              </Badge>
-              <Button variant="outline" size="sm" className="rounded-full">
-                <Bell className="size-4" />
-                Live Feedback
-              </Button>
             </div>
           </div>
         </header>
@@ -162,55 +176,34 @@ function DashboardShell() {
           side="right"
           collapsed={rightRailCollapsed}
           onClick={() => setRightRailCollapsed((value) => !value)}
-          rightRailWidth={rightRailCollapsed ? 0 : 320}
+          rightRailWidth={rightRailCollapsed ? 0 : RIGHT_RAIL_WIDTH}
         />
 
-        <main className="mx-auto max-w-[1500px] px-5 py-6 sm:px-8 sm:py-8">
-          <div
-            className={
-              rightRailCollapsed
-                ? "grid gap-0 xl:grid-cols-[minmax(0,1fr)_0rem]"
-                : "grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]"
-            }
-          >
-            <div className="space-y-6">
-              <SectionCard
-                title="Start Your Assessment"
-                description="Complete your first module to unlock scores, comparisons, and targeted business-intelligence recommendations."
-                action={
-                  <Badge className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-medium text-primary">
-                    Current plan
-                  </Badge>
-                }
-                className="overflow-hidden rounded-[18px] border-border/70 bg-[linear-gradient(135deg,rgba(252,254,255,0.98),rgba(232,241,255,0.9))]"
-              >
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                  <div className="max-w-2xl space-y-3">
-                    <p className="text-sm leading-6 text-muted-foreground">
-                      Your priority modules will appear here based on what
-                      actually wins and keeps clients.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge
-                        variant="outline"
-                        className="rounded-full border-primary/12 bg-white/80 px-2.5 py-1 text-[11px] text-foreground/72"
-                      >
-                        18 modules in journey
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className="rounded-full border-primary/12 bg-white/80 px-2.5 py-1 text-[11px] text-foreground/72"
-                      >
-                        Personalized by plan
-                      </Badge>
-                    </div>
-                  </div>
-                  <Button size="lg" className="rounded-full px-5">
-                    Begin First Module
-                    <ArrowRight className="size-4" />
-                  </Button>
-                </div>
-              </SectionCard>
+        <main
+          className={cn(
+            "relative px-5 pb-8 pt-5 sm:px-8 sm:pb-10 sm:pt-6",
+            !rightRailCollapsed && "xl:pr-[23rem]"
+          )}
+        >
+          <div className="mx-auto max-w-[1120px] space-y-6">
+            <section className="overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,rgba(37,99,235,0.98),rgba(29,78,216,0.97)_52%,rgba(22,61,186,1)_100%)] px-6 py-6 shadow-[0_26px_44px_-32px_rgba(29,78,216,0.55)]">
+              <div className="max-w-2xl">
+                <h2 className="font-[family:var(--font-brand)] text-[1.3rem] font-medium tracking-[-0.024em] text-white">
+                  Start Your Assessment
+                </h2>
+                <p className="mt-2 max-w-[34rem] text-[12.5px] leading-[1.55] text-white/78">
+                  Complete your first module to unlock your scores and surface
+                  the priorities that matter most for your business.
+                </p>
+                <Button
+                  size="lg"
+                  className="mt-5 rounded-full bg-white px-5 text-primary hover:bg-white/96"
+                >
+                  Begin First Module
+                  <ArrowRight className="size-4" />
+                </Button>
+              </div>
+            </section>
 
               <section className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-5">
                 {metricCards.map((card) => (
@@ -225,38 +218,53 @@ function DashboardShell() {
                     <SectionCard
                       key={card.title}
                       title={card.title}
+                      surface="outlined"
                       className="min-h-[180px]"
-                      contentClassName="flex h-full items-start"
+                      contentClassName="flex h-full items-center justify-center"
                     >
-                      <p className="text-sm leading-6 text-muted-foreground">
-                        {card.body}
-                      </p>
+                      <div className="flex w-full flex-col items-center justify-center gap-4 py-1">
+                        <div className="grid size-12 place-items-center rounded-full bg-muted text-muted-foreground/75">
+                          <BookOpenText className="size-5 stroke-[1.7]" />
+                        </div>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="px-3"
+                        >
+                          Start First Module
+                        </Button>
+                      </div>
                     </SectionCard>
                   ))}
                 </div>
               </section>
 
-              <SectionCard
-                title="Strengths / Weaknesses"
-                description="Complete modules to see your strengths and areas needing attention."
-              >
-                <div className="rounded-[20px] border border-dashed border-border bg-muted/35 px-5 py-8 text-sm leading-6 text-muted-foreground">
-                  Your first assessment will unlock a clearer read on what is
-                  already working well and what should change next.
-                </div>
-              </SectionCard>
+            <SectionCard
+              title="Strengths / Weaknesses"
+              description="Complete modules to see your strengths and areas needing attention."
+            >
+              <div className="rounded-[16px] bg-white px-5 py-8 text-sm leading-6 text-muted-foreground">
+                Your first assessment will unlock a clearer read on what is
+                already working well and what should change next.
+              </div>
+            </SectionCard>
 
-              <section className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
-                <BusinessIntelligenceCard />
-                <FocusAreasCard />
-              </section>
-            </div>
-
-            <DashboardRightRail
-              collapsed={rightRailCollapsed}
-            />
+            <section className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
+              <BusinessIntelligenceCard />
+              <FocusAreasCard />
+            </section>
           </div>
+          <DashboardRightRail collapsed={rightRailCollapsed} />
         </main>
+
+        <Button
+          variant="outline"
+          size="sm"
+          className="fixed bottom-6 right-6 z-40 rounded-full border-border bg-white/96 shadow-[0_10px_24px_-18px_rgba(15,23,42,0.35)] backdrop-blur-sm"
+        >
+          <MessageSquare className="size-4" />
+          Leave Feedback
+        </Button>
       </div>
     </SidebarInset>
   )
@@ -281,8 +289,8 @@ function DesktopPanelHandle({
       size="icon-sm"
       className={
         isLeft
-          ? "fixed top-1/2 z-30 hidden h-12 w-6 -translate-y-1/2 rounded-r-md rounded-l-none border-slate-300 bg-white text-slate-600 shadow-md md:flex"
-          : "fixed top-1/2 z-30 hidden h-12 w-6 -translate-y-1/2 rounded-l-md rounded-r-none border-slate-300 bg-white text-slate-600 shadow-md xl:flex"
+          ? "fixed top-1/2 z-30 hidden h-12 w-6 -translate-y-1/2 rounded-r-md rounded-l-none border-border bg-white text-muted-foreground shadow-[0_4px_12px_-12px_rgba(15,23,42,0.22)] md:flex"
+          : "fixed top-1/2 z-30 hidden h-12 w-6 -translate-y-1/2 rounded-l-md rounded-r-none border-border bg-white text-muted-foreground shadow-[0_4px_12px_-12px_rgba(15,23,42,0.22)] xl:flex"
       }
       onClick={onClick}
       aria-label={
@@ -300,10 +308,7 @@ function DesktopPanelHandle({
               left: collapsed ? "3rem" : "16rem",
             }
           : {
-              right:
-                rightRailWidth === 0
-                  ? "max(calc((100vw - 1500px) / 2), 0px)"
-                  : `max(calc((100vw - 1500px) / 2 + ${rightRailWidth}px), ${rightRailWidth}px)`,
+              right: rightRailWidth === 0 ? "0px" : `${rightRailWidth}px`,
             }
       }
     >
@@ -326,62 +331,61 @@ function DesktopPanelHandle({
 function ScoreSummaryCard() {
   return (
     <SectionCard
-      title="Score Summary"
-      description="Complete assessments to see your score plotted against top-performing advisors and the broader industry."
+      title="How You Compare"
+      surface="outlined"
       className="min-h-[460px]"
     >
       <div className="space-y-5">
-        <div className="flex flex-wrap gap-2">
-          <Badge
-            variant="outline"
-            className="rounded-full border-[color:var(--chart-1)]/25 bg-[color:var(--chart-1)]/8 px-3 py-1 text-[11px] text-[color:var(--chart-1)]"
-          >
-            Your score vs top 5%
-          </Badge>
-          <Badge
-            variant="outline"
-            className="rounded-full border-[color:var(--chart-2)]/25 bg-[color:var(--chart-2)]/8 px-3 py-1 text-[11px] text-[color:var(--chart-2)]"
-          >
-            Industry average
-          </Badge>
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <span className="size-2.5 rounded-full bg-primary shadow-[0_0_0_3px_rgba(37,99,235,0.12)]" />
+            <span>You</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="size-2.5 rounded-full bg-[color:var(--chart-1)]" />
+            <span>Top 5%</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="size-2.5 rounded-full bg-[color:var(--chart-2)]" />
+            <span>Industry average</span>
+          </div>
         </div>
-        <ChartContainer
-          config={scoreRadarConfig}
-          className="mx-auto h-[372px] w-full max-w-[540px]"
-        >
-          <RadarChart data={[...scoreRadarData]} outerRadius={132}>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
-            />
-            <PolarGrid className="stroke-border/80" />
-            <PolarAngleAxis
-              dataKey="category"
-              tick={{
-                fill: "var(--color-muted-foreground)",
-                fontSize: 11,
-              }}
-            />
-            <RechartsRadar
-              dataKey="average"
-              fill="var(--color-average)"
-              fillOpacity={0.08}
-              stroke="var(--color-average)"
-              strokeWidth={1.75}
-            />
-            <RechartsRadar
-              dataKey="top5"
-              fill="var(--color-top5)"
-              fillOpacity={0.16}
-              stroke="var(--color-top5)"
-              strokeWidth={2.2}
-            />
-          </RadarChart>
-        </ChartContainer>
-        <p className="text-center text-sm leading-6 text-muted-foreground">
-          Complete assessments to calculate your personal score and see where
-          your current business model stands today.
-        </p>
+        <div className="relative rounded-[20px] border border-border/75 bg-[linear-gradient(180deg,rgba(245,248,252,0.98),rgba(250,252,254,1))] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+          <ChartContainer
+            config={scoreRadarConfig}
+            className="mx-auto h-[392px] w-full max-w-[560px]"
+          >
+            <RadarChart data={[...scoreRadarData]} outerRadius={136}>
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="line" />}
+              />
+              <PolarGrid className="stroke-border/80" />
+              <PolarAngleAxis
+                dataKey="category"
+                tick={{
+                  fill: "var(--color-muted-foreground)",
+                  fontSize: 11,
+                }}
+              />
+              <RechartsRadar
+                dataKey="average"
+                fill="var(--color-average)"
+                fillOpacity={0.08}
+                stroke="var(--color-average)"
+                strokeWidth={1.75}
+              />
+              <RechartsRadar
+                dataKey="top5"
+                fill="var(--color-top5)"
+                fillOpacity={0.16}
+                stroke="var(--color-top5)"
+                strokeWidth={2.2}
+              />
+            </RadarChart>
+          </ChartContainer>
+          <div className="pointer-events-none absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-primary shadow-[0_0_0_5px_rgba(37,99,235,0.14)]" />
+        </div>
       </div>
     </SectionCard>
   )
@@ -418,7 +422,7 @@ function BusinessIntelligenceCard() {
             <TableRow key={row.name} className="border-border/70">
               <TableCell className="px-0 py-4">
                 <div className="flex items-center gap-3">
-                  <div className="grid size-9 place-items-center rounded-full bg-primary/8 text-primary">
+                  <div className="grid size-9 place-items-center rounded-full bg-white text-primary shadow-[0_1px_0_rgba(15,23,42,0.04)]">
                     <Sparkles className="size-4 stroke-[1.9]" />
                   </div>
                   <div>
@@ -433,13 +437,13 @@ function BusinessIntelligenceCard() {
                 {row.value}
               </TableCell>
               <TableCell className="py-4 pr-0 text-right">
-                <Badge
-                  variant="outline"
-                  className="rounded-full border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] text-emerald-700"
-                >
-                  {row.impact}
-                </Badge>
-              </TableCell>
+                  <Badge
+                    variant="outline"
+                    className="rounded-full border-emerald-200/80 bg-white px-2.5 py-1 text-[11px] text-emerald-700"
+                  >
+                    {row.impact}
+                  </Badge>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -455,12 +459,12 @@ function FocusAreasCard() {
       description="As you complete more of your journey, Point93 will consolidate the most important actions here."
       className="min-h-[332px]"
     >
-      <div className="flex h-full min-h-[220px] flex-col justify-between rounded-[22px] bg-muted/35 p-5">
-        <div className="grid size-11 place-items-center rounded-full bg-primary/8 text-primary">
+      <div className="flex h-full min-h-[220px] flex-col justify-between rounded-[16px] bg-white p-5">
+        <div className="grid size-11 place-items-center rounded-full bg-muted text-primary">
           <Workflow className="size-5 stroke-[1.9]" />
         </div>
         <div className="space-y-2">
-          <p className="text-base font-semibold tracking-[-0.02em] text-foreground">
+          <p className="text-[15px] font-medium tracking-[-0.015em] text-foreground">
             No focus areas yet
           </p>
           <p className="text-sm leading-6 text-muted-foreground">
@@ -481,114 +485,139 @@ function DashboardRightRail({
 }: {
   collapsed: boolean
 }) {
+  if (collapsed) {
+    return null
+  }
+
   return (
-    <aside className="relative xl:sticky xl:top-[92px] xl:self-start">
-      {collapsed ? (
-        <div aria-hidden="true" className="min-h-[720px]" />
-      ) : (
-        <div className="space-y-4">
-          <ProfileScoreCard />
-          <SectionCard
-            title="Intelligence Profiles"
-            action={
-              <Button variant="ghost" size="sm" className="rounded-full">
-                View all
-              </Button>
-            }
-          >
-            <div className="space-y-4">
-              {profileRows.map((row) => (
-                <div key={row.name} className="space-y-2">
-                  <div className="flex items-center justify-between gap-3 text-sm">
-                    <div className="flex items-center gap-2">
-                      <div className="grid size-7 place-items-center rounded-full bg-amber-100 text-amber-700">
-                        <Star className="size-3.5 stroke-[1.8]" />
-                      </div>
-                      <span className="font-medium text-foreground">
-                        {row.name}
-                      </span>
-                    </div>
-                    <span className="text-muted-foreground">{row.value}%</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-muted">
-                    <div
-                      className="h-full rounded-full bg-primary/70"
-                      style={{ width: `${row.value}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </SectionCard>
-          <SectionCard
-            title="What Clients Are Asking"
-            action={
-              <Badge
-                variant="outline"
-                className="rounded-full border-border/80 bg-muted/50 px-2.5 py-1 text-[11px]"
-              >
-                Coming soon
-              </Badge>
-            }
-          >
-            <div className="space-y-4">
-              <div className="rounded-[20px] bg-muted/45 p-4">
-                <p className="text-sm leading-6 text-muted-foreground">
-                  “Should I be worried about the fee changes?”
-                </p>
-              </div>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-muted-foreground">Advisors ready</span>
-                  <span className="font-medium text-foreground">66%</span>
-                </div>
-                <div className="flex items-center justify-between gap-3">
-                  <span className="text-muted-foreground">Your readiness</span>
-                  <span className="font-medium text-foreground">72%</span>
-                </div>
-              </div>
-              <Button className="w-full rounded-full">
-                Improve your ranking
-              </Button>
-            </div>
-          </SectionCard>
-          <SectionCard
-            title="Insight Areas"
-            description="Complete modules to reveal the insight areas most relevant to your business."
-          >
-            <div className="rounded-[20px] border border-dashed border-border bg-muted/35 p-4 text-sm leading-6 text-muted-foreground">
-              Your strongest and weakest operating areas will appear here once
-              enough assessment data has been collected.
-            </div>
-          </SectionCard>
+    <>
+      <div className="mt-6 space-y-4 xl:hidden">
+        <RightRailContent />
+      </div>
+      <aside className="hidden xl:block">
+        <div
+          className="fixed inset-y-0 right-0 overflow-y-auto border-l border-border/80 bg-sidebar"
+          style={{ width: `${RIGHT_RAIL_WIDTH}px` }}
+        >
+          <div className="flex min-h-full flex-col">
+            <RightRailContent />
+          </div>
         </div>
-      )}
-    </aside>
+      </aside>
+    </>
+  )
+}
+
+function RightRailContent() {
+  return (
+    <div className="pt-[88px]">
+      <ProfileScoreCard />
+      <RightRailSection
+        title="Intelligence Profiles"
+        action={
+          <Button
+            variant="secondary"
+            size="sm"
+            className="px-3"
+          >
+            View all
+          </Button>
+        }
+      >
+        <div className={cn(RIGHT_RAIL_STAGE_CLASS, "space-y-4")}>
+          {profileRows.map((row) => (
+            <div key={row.name} className="space-y-2">
+              <div className="flex items-center justify-between gap-3 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="grid size-7 place-items-center rounded-full bg-white text-primary shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+                    <Star className="size-3.5 stroke-[1.8]" />
+                  </div>
+                  <span className="font-medium text-foreground">
+                    {row.name}
+                  </span>
+                </div>
+                <span className="text-muted-foreground">{row.value}%</span>
+              </div>
+              <div className="h-2 rounded-full bg-white">
+                <div
+                  className="h-full rounded-full bg-primary/70"
+                  style={{ width: `${row.value}%` }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </RightRailSection>
+      <RightRailSection
+        title="What Clients Are Asking"
+        action={
+          <Badge
+            variant="outline"
+            className="rounded-full border-border bg-white px-2.5 py-1 text-[11px]"
+          >
+            Coming soon
+          </Badge>
+        }
+      >
+        <div className={cn(RIGHT_RAIL_STAGE_CLASS, "space-y-4")}>
+          <div className="rounded-[16px] bg-white/92 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+            <p className="text-sm leading-6 text-muted-foreground">
+              “Should I be worried about the fee changes?”
+            </p>
+          </div>
+          <div className="space-y-2 text-sm">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-muted-foreground">Advisors ready</span>
+              <span className="font-medium text-foreground">66%</span>
+            </div>
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-muted-foreground">Your readiness</span>
+              <span className="font-medium text-foreground">72%</span>
+            </div>
+          </div>
+          <Button className="w-full rounded-full">Improve your ranking</Button>
+        </div>
+      </RightRailSection>
+      <RightRailSection
+        title="Insight Areas"
+        description="Complete modules to reveal the insight areas most relevant to your business."
+      >
+        <div
+          className={cn(
+            RIGHT_RAIL_STAGE_CLASS,
+            "text-sm leading-6 text-muted-foreground"
+          )}
+        >
+          Your strongest and weakest operating areas will appear here once
+          enough assessment data has been collected.
+        </div>
+      </RightRailSection>
+    </div>
   )
 }
 
 function ProfileScoreCard() {
   return (
-    <div className="rounded-[18px] border border-border/70 bg-card/96 p-5 shadow-[0_18px_34px_-32px_rgba(15,23,42,0.18)]">
+    <section className="border-b border-border/75 px-5 pb-5 pt-4">
       <div className="flex flex-col items-center">
-        <div className="relative h-[92px] w-[164px]">
+        <div className="relative h-[104px] w-[164px]">
           <svg
             width="164"
-            height="92"
-            viewBox="0 0 164 92"
+            height="104"
+            viewBox="0 0 164 104"
             className="overflow-visible"
             aria-hidden="true"
           >
             <path
-              d="M 6 76 A 70 70 0 0 1 146 76"
+              d="M 6 82 A 70 70 0 0 1 146 82"
               fill="none"
               stroke="rgba(148,163,184,0.24)"
               strokeWidth="12"
               strokeLinecap="round"
             />
           </svg>
-          <div className="absolute inset-x-0 top-8 text-center">
-            <p className="text-[2.5rem] leading-none font-semibold tracking-[-0.05em] text-foreground">
+          <div className="absolute inset-x-0 top-10 text-center">
+            <p className="font-[family:var(--font-display)] text-[2.44rem] leading-none font-normal tracking-[-0.03em] text-foreground">
               0
             </p>
             <p className="mt-1 text-[12px] text-muted-foreground">
@@ -596,7 +625,7 @@ function ProfileScoreCard() {
             </p>
             <Badge
               variant="outline"
-              className="mt-2 rounded-full border-slate-200 bg-slate-100 px-2.5 py-0.5 text-[11px] font-medium text-slate-600"
+              className="mt-2 rounded-full border-border bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground"
             >
               Not Started
             </Badge>
@@ -609,12 +638,43 @@ function ProfileScoreCard() {
           Profile Completion
         </p>
         <div className="mb-2 h-2 overflow-hidden rounded-full bg-muted">
-          <div className="h-full w-0 rounded-full bg-slate-400 transition-all duration-500" />
+          <div className="h-full w-0 rounded-full bg-muted-foreground/55 transition-all duration-500" />
         </div>
         <p className="text-[12px] text-foreground">
-          <span className="font-semibold">0 of 18</span> modules · Comprehensive
+          <span className="font-medium">0 of 18</span> modules · Comprehensive
         </p>
       </div>
-    </div>
+    </section>
+  )
+}
+
+function RightRailSection({
+  title,
+  description,
+  action,
+  children,
+}: {
+  title: string
+  description?: string
+  action?: React.ReactNode
+  children: React.ReactNode
+}) {
+  return (
+    <section className="border-b border-border/75 px-5 py-5 last:border-b-0">
+      <div className="flex items-start justify-between gap-3">
+        <div className="space-y-1">
+          <h2 className="text-[14px] font-medium tracking-[-0.015em] text-foreground">
+            {title}
+          </h2>
+          {description ? (
+            <p className="text-[12px] leading-[1.55] text-muted-foreground">
+              {description}
+            </p>
+          ) : null}
+        </div>
+        {action ? <div className="shrink-0">{action}</div> : null}
+      </div>
+      <div className="mt-5">{children}</div>
+    </section>
   )
 }

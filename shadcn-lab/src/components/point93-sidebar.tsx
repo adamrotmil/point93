@@ -111,10 +111,10 @@ export function Point93Sidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton className="h-auto rounded-2xl px-3 py-2.5">
               <div className="grid size-8 place-items-center rounded-full bg-sidebar-primary/12 text-[12px] font-semibold text-sidebar-primary">
-                AR
+                BS
               </div>
               <div className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden">
-                <p className="truncate text-sm font-medium">Adam Rotmil</p>
+                <p className="truncate text-sm font-medium">Hi, Brendon</p>
                 <p className="truncate text-xs text-sidebar-foreground/62">
                   admin@point93.ai
                 </p>

@@ -14,39 +14,20 @@ import {
 import {
   BarChart3Icon,
   BrainCircuitIcon,
-  Building2Icon,
   FileBarChart2Icon,
   GaugeIcon,
   LayoutDashboardIcon,
   RadarIcon,
-  SparklesIcon,
   TargetIcon,
-  WorkflowIcon,
 } from "lucide-react"
 
 const data = {
   user: {
-    name: "Adam Rotmil",
+    name: "Brendon Smith",
     email: "admin@point93.ai",
     avatar: "",
   },
-  teams: [
-    {
-      name: "Point93",
-      logo: <WorkflowIcon />,
-      plan: "Comprehensive",
-    },
-    {
-      name: "Executive",
-      logo: <SparklesIcon />,
-      plan: "Advisory",
-    },
-    {
-      name: "Corporate",
-      logo: <Building2Icon />,
-      plan: "Enterprise",
-    },
-  ],
+  plan: "Comprehensive",
   navMain: [
     {
       title: "Dashboard",
@@ -157,11 +138,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
       collapsible="icon"
-      className="border-r border-sidebar-border/80"
+      className="border-r border-sidebar-border bg-sidebar"
       {...props}
     >
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+      <SidebarHeader className="border-b border-sidebar-border/80 px-4 py-4">
+        <TeamSwitcher plan={data.plan} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
