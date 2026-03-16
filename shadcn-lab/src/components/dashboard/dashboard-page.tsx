@@ -192,8 +192,9 @@ function DashboardShell() {
           )}
         >
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[332px] bg-[linear-gradient(180deg,#0d2f78_0%,#17429d_100%)]" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 top-[332px] bg-[linear-gradient(180deg,#fbfcfe_0%,#f6f8fb_58%,#f8f5f1_100%)]" />
           <div className="relative z-10 mx-auto max-w-[1120px]">
-            <section className="pb-14 pt-7 text-white sm:pb-20 sm:pt-8">
+            <section className="pb-14 pt-9 text-white sm:pb-20 sm:pt-10">
               <div className="flex items-center gap-3">
                 <SidebarTrigger
                   variant="outline"
@@ -201,7 +202,7 @@ function DashboardShell() {
                   className="rounded-full border-white/18 bg-white/10 text-white hover:bg-white/14 hover:text-white md:hidden"
                 />
                 <div>
-                  <h1 className="font-[family:var(--font-brand)] text-[1.75rem] leading-[1.04] font-normal tracking-[-0.035em] text-white sm:text-[2rem]">
+                  <h1 className="font-[family:var(--font-brand)] text-[1.3125rem] leading-[1.06] font-normal tracking-[-0.03em] text-white sm:text-[1.5rem]">
                     Welcome back, Brendon
                   </h1>
                 </div>
@@ -209,19 +210,19 @@ function DashboardShell() {
 
               <div className="mt-6 h-px w-full bg-white/16" />
 
-              <div className="mt-7 flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-8">
+              <div className="mt-7 flex flex-col gap-5 md:flex-row md:items-start md:justify-between md:gap-8">
                 <div className="max-w-2xl">
                   <h2 className="font-[family:var(--font-brand)] text-[1.38rem] leading-[1.06] font-medium tracking-[-0.03em] text-white sm:text-[1.55rem]">
                     Start Your Assessment
                   </h2>
                   <p className="mt-3 max-w-[35rem] text-[15px] leading-[1.6] text-white/82 sm:text-[16px]">
-                    Complete your first module to unlock your scores and surface
-                    the top priorities for your business.
+                    Complete the first module to see your scores and
+                    priorities.
                   </p>
                 </div>
                 <Button
                   size="lg"
-                  className="h-11 shrink-0 self-start rounded-full bg-white px-7 text-[0.95rem] font-medium text-primary hover:bg-white/96 md:self-end"
+                  className="h-11 shrink-0 self-start rounded-full bg-white px-7 text-[0.95rem] font-medium text-primary hover:bg-white/96"
                 >
                   Begin First Module
                   <ArrowRight className="size-4" />
