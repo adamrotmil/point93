@@ -113,6 +113,24 @@ const profileRows = [
   { name: "Client Referrals", value: 0 },
 ] as const
 
+const advisorScorePreviewPeak = 100
+const actualAdvisorScore = 0
+
+const clientQuestionFeed = [
+  "Should I be worried about the fee changes?",
+  "How do top advisors explain volatility without sounding reactive?",
+  "What should I say when clients ask if rates will fall again?",
+  "How are firms reframing planning conversations this quarter?",
+  "What are the best advisors saying about cash management right now?",
+  "How should I answer clients asking whether to wait on the sidelines?",
+  "What are firms doing to keep younger clients engaged?",
+  "How are advisors handling the shift toward more planning-led conversations?",
+  "What are clients asking about private markets this month?",
+  "How do top teams talk about downside protection without sounding defensive?",
+  "What are advisors saying when clients ask about rebalancing?",
+  "How should I position my value when clients focus on fees?",
+] as const
+
 const moduleCards = [
   {
     title: "Level Scorecard",
@@ -142,30 +160,6 @@ function DashboardShell() {
   return (
     <SidebarInset className="bg-transparent">
       <div className="min-h-svh bg-background">
-        <header className="bg-transparent">
-          <div
-            className={cn(
-              "px-5 pb-5 pt-7 sm:px-8 sm:pb-6 sm:pt-8",
-              !rightRailCollapsed && "xl:pr-[23rem]"
-            )}
-          >
-            <div className="mx-auto flex max-w-[1120px] items-center gap-4">
-              <div className="flex items-center gap-3">
-                <SidebarTrigger
-                  variant="outline"
-                  size="icon-sm"
-                  className="rounded-full md:hidden"
-                />
-                <div>
-                  <h1 className="font-[family:var(--font-brand)] text-[2.18rem] font-normal tracking-[-0.03em] text-foreground">
-                    Welcome back, Brendon
-                  </h1>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
         <DesktopPanelHandle
           side="left"
           collapsed={leftSidebarCollapsed}
@@ -181,78 +175,99 @@ function DashboardShell() {
 
         <main
           className={cn(
-            "relative px-5 pb-8 pt-5 sm:px-8 sm:pb-10 sm:pt-6",
+            "relative overflow-hidden px-5 pb-8 pt-0 sm:px-8 sm:pb-10",
             !rightRailCollapsed && "xl:pr-[23rem]"
           )}
         >
-          <div className="mx-auto max-w-[1120px] space-y-6">
-            <section className="overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,rgba(37,99,235,0.98),rgba(29,78,216,0.97)_52%,rgba(22,61,186,1)_100%)] px-6 py-6 shadow-[0_26px_44px_-32px_rgba(29,78,216,0.55)]">
-              <div className="max-w-2xl">
-                <h2 className="font-[family:var(--font-brand)] text-[1.3rem] font-medium tracking-[-0.024em] text-white">
-                  Start Your Assessment
-                </h2>
-                <p className="mt-2 max-w-[34rem] text-[12.5px] leading-[1.55] text-white/78">
-                  Complete your first module to unlock your scores and surface
-                  the priorities that matter most for your business.
-                </p>
-                <Button
-                  size="lg"
-                  className="mt-5 rounded-full bg-white px-5 text-primary hover:bg-white/96"
-                >
-                  Begin First Module
-                  <ArrowRight className="size-4" />
-                </Button>
-              </div>
-            </section>
-
-              <section className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-5">
-                {metricCards.map((card) => (
-                  <MetricCard key={card.label} {...card} />
-                ))}
-              </section>
-
-              <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
-                <ScoreSummaryCard />
-                <div className="grid gap-4 xl:grid-cols-1">
-                  {moduleCards.map((card) => (
-                    <SectionCard
-                      key={card.title}
-                      title={card.title}
-                      surface="outlined"
-                      className="min-h-[180px]"
-                      contentClassName="flex h-full items-center justify-center"
-                    >
-                      <div className="flex w-full flex-col items-center justify-center gap-4 py-1">
-                        <div className="grid size-12 place-items-center rounded-full bg-muted text-muted-foreground/75">
-                          <BookOpenText className="size-5 stroke-[1.7]" />
-                        </div>
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          className="px-3"
-                        >
-                          Start First Module
-                        </Button>
-                      </div>
-                    </SectionCard>
-                  ))}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[332px] bg-[linear-gradient(180deg,#0d2f78_0%,#17429d_100%)]" />
+          <div className="relative z-10 mx-auto max-w-[1120px]">
+            <section className="pb-14 pt-7 text-white sm:pb-20 sm:pt-8">
+              <div className="flex items-center gap-3">
+                <SidebarTrigger
+                  variant="outline"
+                  size="icon-sm"
+                  className="rounded-full border-white/18 bg-white/10 text-white hover:bg-white/14 hover:text-white md:hidden"
+                />
+                <div>
+                  <h1 className="font-[family:var(--font-brand)] text-[3rem] leading-[0.95] font-medium tracking-[-0.055em] text-white sm:text-[3.5rem]">
+                    Welcome back, Brendon
+                  </h1>
                 </div>
-              </section>
-
-            <SectionCard
-              title="Strengths / Weaknesses"
-              description="Complete modules to see your strengths and areas needing attention."
-            >
-              <div className="rounded-[16px] bg-white px-5 py-8 text-sm leading-6 text-muted-foreground">
-                Your first assessment will unlock a clearer read on what is
-                already working well and what should change next.
               </div>
-            </SectionCard>
 
-            <section className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
-              <BusinessIntelligenceCard />
-              <FocusAreasCard />
+              <div className="mt-8">
+                <div className="max-w-2xl">
+                  <h2 className="font-[family:var(--font-brand)] text-[1.9rem] leading-[0.98] font-semibold tracking-[-0.05em] text-white sm:text-[2.25rem]">
+                    Start Your Assessment
+                  </h2>
+                  <p className="mt-3 max-w-[35rem] text-[15px] leading-[1.6] text-white/82 sm:text-[16px]">
+                    Complete your first module to unlock your scores and surface
+                    the top priorities for your business.
+                  </p>
+                  <Button
+                    size="lg"
+                    className="mt-6 rounded-full bg-white px-5 text-primary hover:bg-white/96"
+                  >
+                    Begin First Module
+                    <ArrowRight className="size-4" />
+                  </Button>
+                </div>
+              </div>
             </section>
+
+            <div className="-mt-12 rounded-[28px] border border-border/80 bg-white p-5 shadow-[0_28px_60px_-38px_rgba(15,23,42,0.24)] sm:-mt-14 sm:p-6">
+              <div className="space-y-6">
+                <section className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-5">
+                  {metricCards.map((card) => (
+                    <MetricCard key={card.label} {...card} />
+                  ))}
+                </section>
+
+                <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+                  <ScoreSummaryCard />
+                  <div className="grid gap-4 xl:grid-cols-1">
+                    {moduleCards.map((card) => (
+                      <SectionCard
+                        key={card.title}
+                        title={card.title}
+                        surface="outlined"
+                        compactHeader
+                        className="min-h-[180px]"
+                        contentClassName="flex h-full items-center justify-center"
+                      >
+                        <div className="flex w-full flex-col items-center justify-center gap-4 py-1">
+                          <div className="grid size-12 place-items-center rounded-full bg-muted text-muted-foreground/75">
+                            <BookOpenText className="size-5 stroke-[1.7]" />
+                          </div>
+                          <Button
+                            variant="outline"
+                            size="default"
+                            className="h-9 rounded-[6px] border-border/90 bg-white px-4 text-[0.82rem] shadow-none hover:bg-muted/45"
+                          >
+                            Start First Module
+                          </Button>
+                        </div>
+                      </SectionCard>
+                    ))}
+                  </div>
+                </section>
+
+                <SectionCard
+                  title="Strengths / Weaknesses"
+                  description="Complete modules to see your strengths and areas needing attention."
+                >
+                  <div className="rounded-[16px] bg-white px-5 py-8 text-sm leading-6 text-muted-foreground">
+                    Your first assessment will unlock a clearer read on what is
+                    already working well and what should change next.
+                  </div>
+                </SectionCard>
+
+                <section className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
+                  <BusinessIntelligenceCard />
+                  <FocusAreasCard />
+                </section>
+              </div>
+            </div>
           </div>
           <DashboardRightRail collapsed={rightRailCollapsed} />
         </main>
@@ -333,6 +348,7 @@ function ScoreSummaryCard() {
     <SectionCard
       title="How You Compare"
       surface="outlined"
+      compactHeader
       className="min-h-[460px]"
     >
       <div className="space-y-5">
@@ -510,7 +526,7 @@ function DashboardRightRail({
 
 function RightRailContent() {
   return (
-    <div className="pt-[88px]">
+    <div className="pt-4">
       <ProfileScoreCard />
       <RightRailSection
         title="Intelligence Profiles"
@@ -538,12 +554,7 @@ function RightRailContent() {
                 </div>
                 <span className="text-muted-foreground">{row.value}%</span>
               </div>
-              <div className="h-2 rounded-full bg-white">
-                <div
-                  className="h-full rounded-full bg-primary/70"
-                  style={{ width: `${row.value}%` }}
-                />
-              </div>
+              <QuintileBar value={row.value} />
             </div>
           ))}
         </div>
@@ -560,11 +571,7 @@ function RightRailContent() {
         }
       >
         <div className={cn(RIGHT_RAIL_STAGE_CLASS, "space-y-4")}>
-          <div className="rounded-[16px] bg-white/92 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
-            <p className="text-sm leading-6 text-muted-foreground">
-              “Should I be worried about the fee changes?”
-            </p>
-          </div>
+          <RotatingClientQuestionFeed />
           <div className="space-y-2 text-sm">
             <div className="flex items-center justify-between gap-3">
               <span className="text-muted-foreground">Advisors ready</span>
@@ -596,7 +603,93 @@ function RightRailContent() {
   )
 }
 
+function QuintileBar({ value }: { value: number }) {
+  const filledSegments = Math.max(0, Math.min(5, Math.ceil(value / 20)))
+
+  return (
+    <div className="grid grid-cols-5 gap-1">
+      {Array.from({ length: 5 }, (_, index) => (
+        <div
+          key={index}
+          className={cn(
+            "h-2 rounded-full bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]",
+            index < filledSegments && "bg-primary/72"
+          )}
+        />
+      ))}
+    </div>
+  )
+}
+
 function ProfileScoreCard() {
+  const [displayScore, setDisplayScore] = React.useState(actualAdvisorScore)
+  const [displayDirection, setDisplayDirection] = React.useState<"up" | "down">(
+    "up"
+  )
+  const previousScoreRef = React.useRef(actualAdvisorScore)
+
+  React.useEffect(() => {
+    const updateDisplayScore = (nextScore: number) => {
+      if (nextScore === previousScoreRef.current) {
+        return
+      }
+
+      setDisplayDirection(
+        nextScore >= previousScoreRef.current ? "up" : "down"
+      )
+      previousScoreRef.current = nextScore
+      setDisplayScore(nextScore)
+    }
+
+    if (actualAdvisorScore > 0) {
+      updateDisplayScore(actualAdvisorScore)
+      return
+    }
+
+    let frameId = 0
+    let startTime: number | null = null
+
+    const riseDuration = 1500
+    const holdDuration = 650
+    const fallDuration = 1050
+    const totalDuration = riseDuration + holdDuration + fallDuration
+
+    const animate = (timestamp: number) => {
+      if (startTime === null) {
+        startTime = timestamp
+      }
+
+      const elapsed = timestamp - startTime
+
+      if (elapsed <= riseDuration) {
+        const progress = elapsed / riseDuration
+        updateDisplayScore(
+          Math.round(advisorScorePreviewPeak * easeOutCubic(progress))
+        )
+      } else if (elapsed <= riseDuration + holdDuration) {
+        updateDisplayScore(advisorScorePreviewPeak)
+      } else if (elapsed <= totalDuration) {
+        const progress = (elapsed - riseDuration - holdDuration) / fallDuration
+        updateDisplayScore(
+          Math.round(advisorScorePreviewPeak * (1 - easeInOutCubic(progress)))
+        )
+      } else {
+        updateDisplayScore(0)
+        return
+      }
+
+      frameId = window.requestAnimationFrame(animate)
+    }
+
+    frameId = window.requestAnimationFrame(animate)
+
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
+
+  const gaugeStroke = getAdvisorGaugeColor(displayScore)
+  const gaugeStatus =
+    actualAdvisorScore > 0 ? `${actualAdvisorScore}%` : "Not Started"
+
   return (
     <section className="border-b border-border/75 px-5 pb-5 pt-4">
       <div className="flex flex-col items-center">
@@ -615,11 +708,19 @@ function ProfileScoreCard() {
               strokeWidth="12"
               strokeLinecap="round"
             />
+            <path
+              d="M 6 82 A 70 70 0 0 1 146 82"
+              pathLength="100"
+              fill="none"
+              stroke={gaugeStroke}
+              strokeWidth="12"
+              strokeLinecap="round"
+              strokeDasharray="100"
+              strokeDashoffset={100 - displayScore}
+            />
           </svg>
           <div className="absolute inset-x-0 top-10 text-center">
-            <p className="font-[family:var(--font-display)] text-[2.44rem] leading-none font-normal tracking-[-0.03em] text-foreground">
-              0
-            </p>
+            <OdometerScore value={displayScore} direction={displayDirection} />
             <p className="mt-1 text-[12px] text-muted-foreground">
               Advisor Score
             </p>
@@ -627,7 +728,7 @@ function ProfileScoreCard() {
               variant="outline"
               className="mt-2 rounded-full border-border bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground"
             >
-              Not Started
+              {gaugeStatus}
             </Badge>
           </div>
         </div>
@@ -645,6 +746,220 @@ function ProfileScoreCard() {
         </p>
       </div>
     </section>
+  )
+}
+
+function OdometerScore({
+  value,
+  direction,
+}: {
+  value: number
+  direction: "up" | "down"
+}) {
+  const digits = [
+    {
+      key: "hundreds",
+      digit: Math.floor(value / 100) % 10,
+      visible: value >= 100,
+    },
+    {
+      key: "tens",
+      digit: Math.floor(value / 10) % 10,
+      visible: value >= 10,
+    },
+    {
+      key: "ones",
+      digit: value % 10,
+      visible: true,
+    },
+  ] as const
+
+  return (
+    <div className="flex justify-center" aria-label={String(value)} role="text">
+      <span className="sr-only">{value}</span>
+      <div
+        aria-hidden="true"
+        className="inline-flex items-center justify-center font-[family:var(--font-display)] text-[2.44rem] leading-none font-normal tracking-[-0.03em] text-foreground"
+      >
+        {digits.map((digit) => (
+          <OdometerDigit
+            key={digit.key}
+            digit={digit.digit}
+            visible={digit.visible}
+            direction={direction}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function OdometerDigit({
+  digit,
+  visible,
+  direction,
+}: {
+  digit: number
+  visible: boolean
+  direction: "up" | "down"
+}) {
+  const repeatCount = 30
+  const centerOffset = 10
+  const digitSequence = React.useMemo(
+    () =>
+      Array.from({ length: repeatCount * 10 }, (_, index) => index % 10),
+    []
+  )
+  const [position, setPosition] = React.useState(centerOffset * 10 + digit)
+
+  React.useEffect(() => {
+    setPosition(centerOffset * 10 + digit)
+  }, [])
+
+  React.useEffect(() => {
+    setPosition((current) => {
+      let next = current
+
+      if (direction === "up") {
+        while (digitSequence[next % 10] !== digit) {
+          next += 1
+        }
+      } else {
+        while (digitSequence[((next % 10) + 10) % 10] !== digit) {
+          next -= 1
+        }
+      }
+
+      return next
+    })
+  }, [digit, digitSequence, direction])
+
+  return (
+    <div
+      className={cn(
+        "relative overflow-hidden transition-[width,opacity] duration-300 ease-out",
+        visible ? "w-[0.68em] opacity-100" : "w-0 opacity-0"
+      )}
+      style={{ height: "1em" }}
+    >
+      <div
+        className="absolute inset-x-0 top-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ transform: `translateY(-${position}em)` }}
+      >
+        {digitSequence.map((sequenceDigit, index) => (
+          <div
+            key={index}
+            className="flex h-[1em] items-center justify-center"
+            aria-hidden="true"
+          >
+            {sequenceDigit}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function getAdvisorGaugeColor(score: number) {
+  const clamped = Math.max(0, Math.min(100, score)) / 100
+  return interpolateHexColor("#c7bbab", "#2563eb", clamped)
+}
+
+function interpolateHexColor(start: string, end: string, amount: number) {
+  const from = hexToRgb(start)
+  const to = hexToRgb(end)
+
+  const red = Math.round(from[0] + (to[0] - from[0]) * amount)
+  const green = Math.round(from[1] + (to[1] - from[1]) * amount)
+  const blue = Math.round(from[2] + (to[2] - from[2]) * amount)
+
+  return `rgb(${red}, ${green}, ${blue})`
+}
+
+function hexToRgb(value: string) {
+  const normalized = value.replace("#", "")
+  const safe =
+    normalized.length === 3
+      ? normalized
+          .split("")
+          .map((char) => char + char)
+          .join("")
+      : normalized
+
+  return [
+    parseInt(safe.slice(0, 2), 16),
+    parseInt(safe.slice(2, 4), 16),
+    parseInt(safe.slice(4, 6), 16),
+  ] as const
+}
+
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3)
+}
+
+function easeInOutCubic(t: number) {
+  return t < 0.5
+    ? 4 * t * t * t
+    : 1 - Math.pow(-2 * t + 2, 3) / 2
+}
+
+function RotatingClientQuestionFeed() {
+  const [activeIndex, setActiveIndex] = React.useState(0)
+  const [isAnimating, setIsAnimating] = React.useState(false)
+
+  React.useEffect(() => {
+    let timeoutId: number | undefined
+
+    const intervalId = window.setInterval(() => {
+      setIsAnimating(true)
+
+      timeoutId = window.setTimeout(() => {
+        React.startTransition(() => {
+          setActiveIndex((current) => (current + 1) % clientQuestionFeed.length)
+        })
+        setIsAnimating(false)
+      }, 340)
+    }, 3800)
+
+    return () => {
+      window.clearInterval(intervalId)
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId)
+      }
+    }
+  }, [])
+
+  const nextIndex = (activeIndex + 1) % clientQuestionFeed.length
+
+  return (
+    <div className="overflow-hidden rounded-[16px] bg-white/92 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
+      <div className="relative h-[56px] overflow-hidden">
+        <div
+          className={cn(
+            "absolute inset-0 transition-all duration-300 ease-out",
+            isAnimating
+              ? "-translate-y-full opacity-0"
+              : "translate-y-0 opacity-100"
+          )}
+        >
+          <p className="text-sm leading-6 text-muted-foreground">
+            “{clientQuestionFeed[activeIndex]}”
+          </p>
+        </div>
+        <div
+          className={cn(
+            "absolute inset-0 transition-all duration-300 ease-out",
+            isAnimating
+              ? "translate-y-0 opacity-100"
+              : "translate-y-full opacity-0"
+          )}
+        >
+          <p className="text-sm leading-6 text-muted-foreground">
+            “{clientQuestionFeed[nextIndex]}”
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 

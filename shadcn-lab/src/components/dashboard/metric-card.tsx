@@ -1,3 +1,4 @@
+import * as React from "react"
 import type { LucideIcon } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
@@ -42,6 +43,7 @@ export function MetricCard({
 }
 
 function MetricSparkline({ data }: { data: readonly number[] }) {
+  const id = React.useId().replace(/:/g, "")
   const width = 168
   const height = 44
   const padding = 4
@@ -66,6 +68,8 @@ function MetricSparkline({ data }: { data: readonly number[] }) {
   const areaPoints = `${padding},${height - padding} ${points} ${
     width - padding
   },${height - padding}`
+  const areaClipId = `metric-sparkline-area-${id}`
+  const dotPatternId = `metric-sparkline-dots-${id}`
 
   return (
     <div className="mt-3.5">
@@ -74,10 +78,27 @@ function MetricSparkline({ data }: { data: readonly number[] }) {
         className="h-11 w-full overflow-visible"
         aria-hidden="true"
       >
-        <polyline
-          points={areaPoints}
-          fill="rgba(37,99,235,0.08)"
-          stroke="none"
+        <defs>
+          <clipPath id={areaClipId}>
+            <polygon points={areaPoints} />
+          </clipPath>
+          <pattern
+            id={dotPatternId}
+            width="7"
+            height="7"
+            patternUnits="userSpaceOnUse"
+          >
+            <circle cx="1.7" cy="1.7" r="0.8" fill="rgba(37,99,235,0.24)" />
+          </pattern>
+        </defs>
+        <polygon points={areaPoints} fill="rgba(37,99,235,0.08)" stroke="none" />
+        <rect
+          x="0"
+          y="0"
+          width={width}
+          height={height}
+          fill={`url(#${dotPatternId})`}
+          clipPath={`url(#${areaClipId})`}
         />
         <polyline
           points={points}

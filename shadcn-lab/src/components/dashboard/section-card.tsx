@@ -16,6 +16,7 @@ type SectionCardProps = {
   description?: string
   action?: ReactNode
   surface?: "subtle" | "outlined"
+  compactHeader?: boolean
   className?: string
   contentClassName?: string
   children?: ReactNode
@@ -26,6 +27,7 @@ export function SectionCard({
   description,
   action,
   surface = "subtle",
+  compactHeader = false,
   className,
   contentClassName,
   children,
@@ -44,12 +46,19 @@ export function SectionCard({
     >
       <CardHeader
         className={cn(
-          "px-6 pb-0 pt-[13px]",
+          compactHeader ? "px-6 pb-0 pt-[11px]" : "px-6 pb-0 pt-[13px]",
           hasDescription ? "gap-2.5" : "gap-1"
         )}
       >
         <div className={cn(hasDescription ? "space-y-1.5" : "space-y-1")}>
-          <CardTitle className="font-[family:var(--font-brand)] text-[18px] leading-[1.22] font-medium tracking-[-0.022em] text-foreground">
+          <CardTitle
+            className={cn(
+              "font-[family:var(--font-brand)] font-semibold text-foreground",
+              compactHeader
+                ? "text-[18px] leading-[1.08] tracking-[-0.03em]"
+                : "text-[22px] leading-[1.08] tracking-[-0.04em]"
+            )}
+          >
             {title}
           </CardTitle>
           {description ? (
@@ -63,12 +72,21 @@ export function SectionCard({
       <Separator
         className={cn(
           "bg-border/60",
-          hasDescription ? "mt-2.5" : "mt-2"
+          compactHeader
+            ? hasDescription
+              ? "mt-2"
+              : "mt-1.5"
+            : hasDescription
+              ? "mt-2.5"
+              : "mt-2"
         )}
       />
       {children !== undefined ? (
         <CardContent
-          className={cn("px-6 pb-6 pt-[12px]", contentClassName)}
+          className={cn(
+            compactHeader ? "px-6 pb-6 pt-[10px]" : "px-6 pb-6 pt-[12px]",
+            contentClassName
+          )}
         >
           {children}
         </CardContent>
