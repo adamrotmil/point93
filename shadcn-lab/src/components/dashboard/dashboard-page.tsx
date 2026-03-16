@@ -1011,6 +1011,12 @@ function BusinessIntelligenceCard({
   return (
     <SectionCard
       title="Business Intelligence"
+      titleAccessory={
+        <InfoTooltip label="About Business Intelligence">
+          Prioritized recommendations based on your profile and the
+          highest-impact growth opportunities.
+        </InfoTooltip>
+      }
       description="Prioritized recommendations based on your profile and the highest-impact growth opportunities."
       action={
         <Button variant="ghost" size="sm" className="rounded-full">
@@ -1042,7 +1048,13 @@ function BusinessIntelligenceCard({
                     <Sparkles className="size-4 stroke-[1.9]" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground">{row.name}</p>
+                    <div className="flex items-center gap-1.5">
+                      <p className="font-medium text-foreground">{row.name}</p>
+                      <InfoTooltip label={`About ${row.name}`}>
+                        Strategic BI recommendation ranked by likely business
+                        impact for your current profile.
+                      </InfoTooltip>
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       Opportunity signal
                     </p>
@@ -1076,6 +1088,12 @@ function FocusAreasCard({
   return (
     <SectionCard
       title="Your Focus Areas"
+      titleAccessory={
+        <InfoTooltip label="About Your Focus Areas">
+          Consolidated growth priorities generated from your completed modules,
+          datapoints, and BI signals.
+        </InfoTooltip>
+      }
       description="As you complete more of your journey, Point93 will consolidate the most important actions here."
       className="min-h-[332px]"
     >
@@ -1105,9 +1123,15 @@ function FocusAreasCard({
                 key={item.title}
                 className="border-b border-border/70 pb-3 last:border-b-0 last:pb-0"
               >
-                <p className="text-[14px] font-medium tracking-[-0.015em] text-foreground">
-                  {item.title}
-                </p>
+                <div className="flex items-center gap-1.5">
+                  <p className="text-[14px] font-medium tracking-[-0.015em] text-foreground">
+                    {item.title}
+                  </p>
+                  <InfoTooltip label={`About ${item.title}`}>
+                    Priority theme surfaced from your current assessment and BI
+                    signal mix.
+                  </InfoTooltip>
+                </div>
                 <p className="mt-1 text-sm leading-5 text-muted-foreground">
                   {item.note}
                 </p>
