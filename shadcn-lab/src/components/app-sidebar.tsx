@@ -99,7 +99,7 @@ const data = {
       icon: <FileTextIcon />,
     },
     {
-      title: "Business Intelligence",
+      title: "Business Intel",
       url: "#",
       icon: <LightbulbIcon />,
       collapsible: true,

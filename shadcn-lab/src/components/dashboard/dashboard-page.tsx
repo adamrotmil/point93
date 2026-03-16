@@ -25,6 +25,12 @@ import { SectionCard } from "@/components/dashboard/section-card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -129,6 +135,12 @@ const clientQuestionFeed = [
   "How do top teams talk about downside protection without sounding defensive?",
   "What are advisors saying when clients ask about rebalancing?",
   "How should I position my value when clients focus on fees?",
+  "How are leading advisors talking about tax-aware positioning this year?",
+  "What should I say when clients ask if they should keep excess cash parked?",
+  "How are top firms framing estate planning conversations right now?",
+  "What are advisors hearing from clients who want more downside protection?",
+  "How should I respond when clients compare me to low-cost digital offerings?",
+  "What are advisors saying when business-owner clients ask about succession?",
 ] as const
 
 const moduleCards = [
@@ -189,29 +201,31 @@ function DashboardShell() {
                   className="rounded-full border-white/18 bg-white/10 text-white hover:bg-white/14 hover:text-white md:hidden"
                 />
                 <div>
-                  <h1 className="font-[family:var(--font-brand)] text-[3rem] leading-[0.95] font-medium tracking-[-0.055em] text-white sm:text-[3.5rem]">
+                  <h1 className="font-[family:var(--font-brand)] text-[1.75rem] leading-[1.04] font-normal tracking-[-0.035em] text-white sm:text-[2rem]">
                     Welcome back, Brendon
                   </h1>
                 </div>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-6 h-px w-full bg-white/16" />
+
+              <div className="mt-7 flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-8">
                 <div className="max-w-2xl">
-                  <h2 className="font-[family:var(--font-brand)] text-[1.9rem] leading-[0.98] font-semibold tracking-[-0.05em] text-white sm:text-[2.25rem]">
+                  <h2 className="font-[family:var(--font-brand)] text-[1.38rem] leading-[1.06] font-medium tracking-[-0.03em] text-white sm:text-[1.55rem]">
                     Start Your Assessment
                   </h2>
                   <p className="mt-3 max-w-[35rem] text-[15px] leading-[1.6] text-white/82 sm:text-[16px]">
                     Complete your first module to unlock your scores and surface
                     the top priorities for your business.
                   </p>
-                  <Button
-                    size="lg"
-                    className="mt-6 rounded-full bg-white px-5 text-primary hover:bg-white/96"
-                  >
-                    Begin First Module
-                    <ArrowRight className="size-4" />
-                  </Button>
                 </div>
+                <Button
+                  size="lg"
+                  className="h-11 shrink-0 self-start rounded-full bg-white px-7 text-[0.95rem] font-medium text-primary hover:bg-white/96 md:self-end"
+                >
+                  Begin First Module
+                  <ArrowRight className="size-4" />
+                </Button>
               </div>
             </section>
 
@@ -224,7 +238,10 @@ function DashboardShell() {
                 </section>
 
                 <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
-                  <ScoreSummaryCard />
+                  <div className="grid gap-4">
+                    <ScoreSummaryCard />
+                    <StrengthsWeaknessesCard />
+                  </div>
                   <div className="grid gap-4 xl:grid-cols-1">
                     {moduleCards.map((card) => (
                       <SectionCard
@@ -251,16 +268,6 @@ function DashboardShell() {
                     ))}
                   </div>
                 </section>
-
-                <SectionCard
-                  title="Strengths / Weaknesses"
-                  description="Complete modules to see your strengths and areas needing attention."
-                >
-                  <div className="rounded-[16px] bg-white px-5 py-8 text-sm leading-6 text-muted-foreground">
-                    Your first assessment will unlock a clearer read on what is
-                    already working well and what should change next.
-                  </div>
-                </SectionCard>
 
                 <section className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
                   <BusinessIntelligenceCard />
@@ -345,63 +352,78 @@ function DesktopPanelHandle({
 
 function ScoreSummaryCard() {
   return (
-    <SectionCard
-      title="How You Compare"
-      surface="outlined"
-      compactHeader
-      className="min-h-[460px]"
-    >
-      <div className="space-y-5">
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-muted-foreground">
+    <Card className="min-h-[382px] rounded-[16px] border border-[#223a61] bg-[linear-gradient(180deg,#263d68_0%,#203457_100%)] text-white shadow-[0_18px_42px_-30px_rgba(15,23,42,0.55)] ring-0">
+      <CardHeader className="grid grid-cols-[1fr_auto] items-start gap-3 px-5 pb-0 pt-4">
+        <CardTitle className="font-[family:var(--font-brand)] text-[22px] leading-[1.08] font-semibold tracking-[-0.04em] text-white">
+          How You Compare
+        </CardTitle>
+        <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-[11px] text-white/72">
           <div className="flex items-center gap-2">
-            <span className="size-2.5 rounded-full bg-primary shadow-[0_0_0_3px_rgba(37,99,235,0.12)]" />
+            <span className="size-2.5 rounded-full bg-primary shadow-[0_0_0_3px_rgba(37,99,235,0.16)]" />
             <span>You</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="size-2.5 rounded-full bg-[color:var(--chart-1)]" />
+            <span className="size-2.5 rounded-full bg-[#fb923c]" />
             <span>Top 5%</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="size-2.5 rounded-full bg-[color:var(--chart-2)]" />
+            <span className="block w-4 border-t-2 border-dashed border-[#2dd4bf]" />
             <span>Industry average</span>
           </div>
         </div>
-        <div className="relative rounded-[20px] border border-border/75 bg-[linear-gradient(180deg,rgba(245,248,252,0.98),rgba(250,252,254,1))] px-5 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
+      </CardHeader>
+      <CardContent className="px-4 pb-3 pt-3">
+        <div className="relative pt-2">
           <ChartContainer
             config={scoreRadarConfig}
-            className="mx-auto h-[392px] w-full max-w-[560px]"
+            className="mx-auto h-[320px] w-full max-w-[520px] [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-white/14 [&_.recharts-text]:fill-white/58"
           >
-            <RadarChart data={[...scoreRadarData]} outerRadius={136}>
+            <RadarChart data={[...scoreRadarData]} outerRadius={124}>
               <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent indicator="line" />}
               />
-              <PolarGrid className="stroke-border/80" />
+              <PolarGrid className="stroke-white/14" />
               <PolarAngleAxis
                 dataKey="category"
                 tick={{
-                  fill: "var(--color-muted-foreground)",
-                  fontSize: 11,
+                  fill: "rgba(255,255,255,0.58)",
+                  fontSize: 12.5,
                 }}
               />
               <RechartsRadar
                 dataKey="average"
-                fill="var(--color-average)"
-                fillOpacity={0.08}
-                stroke="var(--color-average)"
-                strokeWidth={1.75}
+                fill="rgba(45,212,191,0.06)"
+                stroke="rgba(45,212,191,0.92)"
+                strokeWidth={1.5}
+                strokeDasharray="4 5"
               />
               <RechartsRadar
                 dataKey="top5"
-                fill="var(--color-top5)"
-                fillOpacity={0.16}
-                stroke="var(--color-top5)"
-                strokeWidth={2.2}
+                fill="rgba(251,146,60,0.14)"
+                stroke="rgba(251,146,60,0.96)"
+                strokeWidth={2}
               />
             </RadarChart>
           </ChartContainer>
-          <div className="pointer-events-none absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-primary shadow-[0_0_0_5px_rgba(37,99,235,0.14)]" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#203457] bg-primary shadow-[0_0_0_5px_rgba(37,99,235,0.16)]" />
         </div>
+      </CardContent>
+    </Card>
+  )
+}
+
+function StrengthsWeaknessesCard() {
+  return (
+    <SectionCard
+      title="Strengths / Weaknesses"
+      description="Complete modules to see your strengths and areas needing attention."
+      className="min-h-[152px]"
+      contentClassName="pt-[10px]"
+    >
+      <div className="rounded-[14px] bg-white px-4 py-5 text-sm leading-6 text-muted-foreground">
+        Your first assessment will unlock a clearer read on what is already
+        working well and what should change next.
       </div>
     </SectionCard>
   )
@@ -936,27 +958,23 @@ function RotatingClientQuestionFeed() {
       <div className="relative h-[56px] overflow-hidden">
         <div
           className={cn(
-            "absolute inset-0 transition-all duration-300 ease-out",
-            isAnimating
-              ? "-translate-y-full opacity-0"
-              : "translate-y-0 opacity-100"
+            "absolute inset-0",
+            isAnimating && "transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
           )}
+          style={{
+            transform: isAnimating ? "translateY(-56px)" : "translateY(0px)",
+          }}
         >
-          <p className="text-sm leading-6 text-muted-foreground">
-            “{clientQuestionFeed[activeIndex]}”
-          </p>
-        </div>
-        <div
-          className={cn(
-            "absolute inset-0 transition-all duration-300 ease-out",
-            isAnimating
-              ? "translate-y-0 opacity-100"
-              : "translate-y-full opacity-0"
-          )}
-        >
-          <p className="text-sm leading-6 text-muted-foreground">
-            “{clientQuestionFeed[nextIndex]}”
-          </p>
+          <div className="flex h-[56px] items-start">
+            <p className="text-sm leading-6 text-muted-foreground">
+              “{clientQuestionFeed[activeIndex]}”
+            </p>
+          </div>
+          <div className="flex h-[56px] items-start">
+            <p className="text-sm leading-6 text-muted-foreground">
+              “{clientQuestionFeed[nextIndex]}”
+            </p>
+          </div>
         </div>
       </div>
     </div>
