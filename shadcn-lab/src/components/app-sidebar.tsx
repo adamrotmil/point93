@@ -39,13 +39,15 @@ const data = {
       url: "#",
       icon: <HouseIcon />,
       isActive: true,
+      tooltip: "Dashboard — start here for progress, scores, and next actions.",
     },
     {
       title: "Assessments",
       url: "#",
       icon: <ChartColumnBigIcon />,
+      tooltip: "Assessments — complete modules and track your journey.",
       collapsible: true,
-      defaultOpen: true,
+      defaultOpen: false,
       badge: 6,
       items: [
         {
@@ -82,28 +84,34 @@ const data = {
       title: "Insight Areas",
       url: "#",
       icon: <SparklesIcon />,
+      tooltip: "Insight Areas — review your key growth themes.",
     },
     {
       title: "Data Points",
       url: "#",
       icon: <DatabaseIcon />,
+      tooltip: "Data Points — inspect the granular signals behind each score.",
     },
     {
       title: "Scores",
       url: "#",
       icon: <BarChart3Icon />,
+      tooltip: "Scores — compare scorecards, benchmarks, and trends.",
     },
     {
       title: "Reports",
       url: "#",
       icon: <FileTextIcon />,
+      tooltip: "Reports — export and download your assessment outputs.",
     },
     {
       title: "Business Intel",
       url: "#",
       icon: <LightbulbIcon />,
+      tooltip:
+        "Business Intel — explore strategic BI profiles beyond module scores.",
       collapsible: true,
-      defaultOpen: true,
+      defaultOpen: false,
       badge: 5,
       items: [
         {
@@ -184,7 +192,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       className="border-r border-sidebar-border bg-sidebar"
       {...props}
     >
-      <SidebarHeader className="border-b border-sidebar-border/80 px-4 py-4">
+      <SidebarHeader className="border-b border-sidebar-border/80 px-4 py-4 group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:py-3">
         <TeamSwitcher plan={data.plan} />
       </SidebarHeader>
       <SidebarContent>

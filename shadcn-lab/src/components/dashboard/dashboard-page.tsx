@@ -5,6 +5,7 @@ import {
   BookOpenText,
   ChevronLeft,
   ChevronRight,
+  CircleHelp,
   Gauge,
   MessageSquare,
   Sparkles,
@@ -12,6 +13,7 @@ import {
   Target,
   Trophy,
   Workflow,
+  type LucideIcon,
 } from "lucide-react"
 import {
   PolarAngleAxis,
@@ -53,48 +55,497 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
 
 const RIGHT_RAIL_WIDTH = 340
 const RIGHT_RAIL_STAGE_CLASS =
   "rounded-[18px] border border-border/75 bg-[linear-gradient(180deg,rgba(245,248,252,0.98),rgba(250,252,254,1))] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
 
-const metricCards = [
+export type DashboardScenario = "zero" | "partial" | "active"
+
+type DashboardMetricCard = {
+  icon: LucideIcon
+  value: string
+  label: string
+  tooltip: string
+  sparkline?: readonly number[]
+}
+
+type ScoreRadarDatum = {
+  category: string
+  top5: number
+  average: number
+  you: number
+}
+
+type HeroScenario = {
+  title: string
+  body: string
+  cta: string
+  animateCta?: boolean
+}
+
+type StrengthsScenario = {
+  empty: boolean
+  strengths?: readonly string[]
+  gaps?: readonly string[]
+}
+
+type ModuleCardScenario = {
+  title: string
+  tooltip: string
+  state: "empty" | "filled"
+  items?: readonly {
+    label: string
+    value: string
+    tone?: "positive" | "neutral" | "caution"
+  }[]
+}
+
+type IntelligenceRow = {
+  name: string
+  value: string
+  impact: string
+}
+
+type ProfileRow = {
+  name: string
+  value: number
+  tooltip: string
+}
+
+type FocusAreaItem = {
+  title: string
+  note: string
+}
+
+type InsightAreaItem = {
+  name: string
+  score: string
+  note: string
+}
+
+type DashboardScenarioData = {
+  hero: HeroScenario
+  metricCards: readonly DashboardMetricCard[]
+  scoreSummary: {
+    subtitle: string
+    data: readonly ScoreRadarDatum[]
+    showYouShape: boolean
+  }
+  strengths: StrengthsScenario
+  moduleCards: readonly ModuleCardScenario[]
+  intelligenceRows: readonly IntelligenceRow[]
+  focusAreas: {
+    empty: boolean
+    items?: readonly FocusAreaItem[]
+  }
+  rightRail: {
+    advisorScore: number
+    scoreStatus: string
+    modulesCompleted: number
+    totalModules: number
+    profileRows: readonly ProfileRow[]
+    insightAreas?: readonly InsightAreaItem[]
+  }
+}
+
+const moduleCardDefinitions = [
   {
-    icon: Gauge,
-    value: "68",
-    label: "Overall Score",
-    sparkline: [42, 45, 47, 52, 56, 58, 61, 65, 68],
+    title: "Level Scorecard",
+    tooltip: "Shows module scorecard detail and benchmark placement.",
   },
   {
-    icon: BarChart3,
-    value: "Top 23%",
-    label: "Performance",
-    sparkline: [11, 13, 15, 16, 18, 20, 22, 21, 23],
+    title: "Performance",
+    tooltip: "Shows performance signals and trend movement by module.",
   },
   {
-    icon: Trophy,
-    value: "8 pts",
-    label: "Gap to Top 5%",
-    sparkline: [18, 17, 16, 15, 14, 12, 11, 10, 8],
+    title: "Datapoint Scoring",
+    tooltip: "Shows scored data points and recommendations behind each module.",
   },
-  {
-    icon: Target,
-    value: "10 pts",
-    label: "Gap to Average",
-    sparkline: [22, 20, 18, 16, 15, 13, 12, 11, 10],
-  },
-  { icon: BookOpenText, value: "4/18", label: "Modules Completed" },
 ] as const
 
-const scoreRadarData = [
-  { category: "Professional", top5: 72, average: 38 },
-  { category: "Fees", top5: 61, average: 33 },
-  { category: "Client Service", top5: 78, average: 47 },
-  { category: "Planning", top5: 67, average: 35 },
-  { category: "Investment", top5: 74, average: 42 },
-  { category: "Firm Platform", top5: 58, average: 31 },
-] as const
+const dashboardScenarios: Record<DashboardScenario, DashboardScenarioData> = {
+  zero: {
+    hero: {
+      title: "Start Your Assessment",
+      body: "Complete the first module to see your scores and priorities.",
+      cta: "Begin First Module",
+      animateCta: true,
+    },
+    metricCards: [
+      {
+        icon: Gauge,
+        value: "0",
+        label: "Overall Score",
+        tooltip: "Overall score, band, and percentile across completed modules.",
+      },
+      {
+        icon: BarChart3,
+        value: "—",
+        label: "Performance",
+        tooltip: "Your ranking relative to peers across completed modules.",
+      },
+      {
+        icon: Trophy,
+        value: "—",
+        label: "Gap to Top 5%",
+        tooltip: "Distance between your current score and top-performing advisors.",
+      },
+      {
+        icon: Target,
+        value: "—",
+        label: "Gap to Average",
+        tooltip: "Distance between your current score and the industry average.",
+      },
+      {
+        icon: BookOpenText,
+        value: "0/18",
+        label: "Modules Completed",
+        tooltip: "Completed modules unlock deeper scores, insights, and BI access.",
+      },
+    ],
+    scoreSummary: {
+      subtitle: "Complete modules to see your top growth areas.",
+      showYouShape: false,
+      data: [
+        { category: "Professional", top5: 72, average: 38, you: 0 },
+        { category: "Fees", top5: 61, average: 33, you: 0 },
+        { category: "Client Service", top5: 78, average: 47, you: 0 },
+        { category: "Planning", top5: 67, average: 35, you: 0 },
+        { category: "Investment", top5: 74, average: 42, you: 0 },
+        { category: "Firm Platform", top5: 58, average: 31, you: 0 },
+      ],
+    },
+    strengths: {
+      empty: true,
+    },
+    moduleCards: moduleCardDefinitions.map((card) => ({
+      ...card,
+      state: "empty",
+    })),
+    intelligenceRows: [
+      { name: "NextGen Ready", value: "0", impact: "Highest impact" },
+      { name: "Client Referrals", value: "0", impact: "High impact" },
+      { name: "PitchPerfect", value: "0", impact: "High impact" },
+      { name: "COI Referrals", value: "0", impact: "Highest impact" },
+    ],
+    focusAreas: {
+      empty: true,
+    },
+    rightRail: {
+      advisorScore: 0,
+      scoreStatus: "Not Started",
+      modulesCompleted: 0,
+      totalModules: 18,
+      profileRows: [
+        {
+          name: "NextGen Ready",
+          value: 0,
+          tooltip:
+            "Strategic BI profile focused on multigenerational readiness and retention.",
+        },
+        {
+          name: "Client Referrals",
+          value: 0,
+          tooltip:
+            "Strategic BI profile focused on generating stronger referral momentum.",
+        },
+      ],
+    },
+  },
+  partial: {
+    hero: {
+      title: "Recommended Next Module",
+      body: "Continue with Fees, Value & Positioning to close one of your biggest score gaps.",
+      cta: "Start Recommended Module",
+    },
+    metricCards: [
+      {
+        icon: Gauge,
+        value: "41",
+        label: "Overall Score",
+        tooltip: "Overall score, band, and percentile across completed modules.",
+        sparkline: [14, 16, 20, 24, 29, 34, 36, 39, 41],
+      },
+      {
+        icon: BarChart3,
+        value: "Top 46%",
+        label: "Performance",
+        tooltip: "Your ranking relative to peers across completed modules.",
+        sparkline: [68, 64, 61, 58, 55, 52, 50, 48, 46],
+      },
+      {
+        icon: Trophy,
+        value: "19 pts",
+        label: "Gap to Top 5%",
+        tooltip: "Distance between your current score and top-performing advisors.",
+        sparkline: [30, 28, 27, 25, 24, 22, 21, 20, 19],
+      },
+      {
+        icon: Target,
+        value: "6 pts",
+        label: "Gap to Average",
+        tooltip: "Distance between your current score and the industry average.",
+        sparkline: [13, 12, 11, 10, 9, 8, 7, 7, 6],
+      },
+      {
+        icon: BookOpenText,
+        value: "4/18",
+        label: "Modules Completed",
+        tooltip: "Completed modules unlock deeper scores, insights, and BI access.",
+      },
+    ],
+    scoreSummary: {
+      subtitle: "Benchmark your current profile across the 6 core business areas.",
+      showYouShape: true,
+      data: [
+        { category: "Professional", top5: 72, average: 38, you: 45 },
+        { category: "Fees", top5: 61, average: 33, you: 34 },
+        { category: "Client Service", top5: 78, average: 47, you: 51 },
+        { category: "Planning", top5: 67, average: 35, you: 42 },
+        { category: "Investment", top5: 74, average: 42, you: 40 },
+        { category: "Firm Platform", top5: 58, average: 31, you: 36 },
+      ],
+    },
+    strengths: {
+      empty: false,
+      strengths: [
+        "Client service cadence is already above average.",
+        "Planning conversations are becoming more consistent.",
+      ],
+      gaps: [
+        "Fee articulation remains a drag on conversion.",
+        "Platform confidence still trails stronger peers.",
+      ],
+    },
+    moduleCards: [
+      {
+        ...moduleCardDefinitions[0],
+        state: "filled",
+        items: [
+          { label: "Client Service", value: "58 · Competitive", tone: "positive" },
+          { label: "Planning", value: "47 · Emerging", tone: "neutral" },
+          { label: "Fees", value: "34 · At Risk", tone: "caution" },
+        ],
+      },
+      {
+        ...moduleCardDefinitions[1],
+        state: "filled",
+        items: [
+          { label: "Client Service", value: "+6 vs last module", tone: "positive" },
+          { label: "Planning", value: "+4 vs baseline", tone: "positive" },
+          { label: "Fees", value: "-2 this month", tone: "caution" },
+        ],
+      },
+      {
+        ...moduleCardDefinitions[2],
+        state: "filled",
+        items: [
+          { label: "Referral ask clarity", value: "72", tone: "positive" },
+          { label: "Planning cadence", value: "64", tone: "neutral" },
+          { label: "Fee positioning", value: "43", tone: "caution" },
+        ],
+      },
+    ],
+    intelligenceRows: [
+      { name: "NextGen Ready", value: "41", impact: "Highest impact" },
+      { name: "Client Referrals", value: "27", impact: "High impact" },
+      { name: "PitchPerfect", value: "22", impact: "High impact" },
+      { name: "COI Referrals", value: "18", impact: "Highest impact" },
+    ],
+    focusAreas: {
+      empty: false,
+      items: [
+        {
+          title: "Fee articulation",
+          note: "Clarify value before pricing comes up.",
+        },
+        {
+          title: "Next-gen engagement",
+          note: "Start building visibility with heirs earlier.",
+        },
+        {
+          title: "Referral capture",
+          note: "Create a clearer post-review ask.",
+        },
+      ],
+    },
+    rightRail: {
+      advisorScore: 41,
+      scoreStatus: "Emerging",
+      modulesCompleted: 4,
+      totalModules: 18,
+      profileRows: [
+        {
+          name: "NextGen Ready",
+          value: 22,
+          tooltip:
+            "Strategic BI profile focused on multigenerational readiness and retention.",
+        },
+        {
+          name: "Client Referrals",
+          value: 14,
+          tooltip:
+            "Strategic BI profile focused on generating stronger referral momentum.",
+        },
+      ],
+      insightAreas: [
+        { name: "Client Service", score: "58", note: "Ahead of average" },
+        { name: "Planning", score: "47", note: "Improving steadily" },
+        { name: "Fees", score: "34", note: "Primary gap" },
+      ],
+    },
+  },
+  active: {
+    hero: {
+      title: "Recommended Next Module",
+      body: "Complete Planning Process & Implementation to improve your score and sharpen your next growth priorities.",
+      cta: "Start Recommended Module",
+    },
+    metricCards: [
+      {
+        icon: Gauge,
+        value: "68",
+        label: "Overall Score",
+        tooltip: "Overall score, band, and percentile across completed modules.",
+        sparkline: [42, 45, 47, 52, 56, 58, 61, 65, 68],
+      },
+      {
+        icon: BarChart3,
+        value: "Top 23%",
+        label: "Performance",
+        tooltip: "Your ranking relative to peers across completed modules.",
+        sparkline: [31, 29, 28, 27, 26, 25, 24, 23, 23],
+      },
+      {
+        icon: Trophy,
+        value: "8 pts",
+        label: "Gap to Top 5%",
+        tooltip: "Distance between your current score and top-performing advisors.",
+        sparkline: [18, 17, 16, 15, 14, 12, 11, 10, 8],
+      },
+      {
+        icon: Target,
+        value: "10 pts",
+        label: "Gap to Average",
+        tooltip: "Distance between your current score and the industry average.",
+        sparkline: [22, 20, 18, 16, 15, 13, 12, 11, 10],
+      },
+      {
+        icon: BookOpenText,
+        value: "11/18",
+        label: "Modules Completed",
+        tooltip: "Completed modules unlock deeper scores, insights, and BI access.",
+      },
+    ],
+    scoreSummary: {
+      subtitle: "Benchmark your current profile across the 6 core business areas.",
+      showYouShape: true,
+      data: [
+        { category: "Professional", top5: 72, average: 38, you: 58 },
+        { category: "Fees", top5: 61, average: 33, you: 49 },
+        { category: "Client Service", top5: 78, average: 47, you: 66 },
+        { category: "Planning", top5: 67, average: 35, you: 62 },
+        { category: "Investment", top5: 74, average: 42, you: 54 },
+        { category: "Firm Platform", top5: 58, average: 31, you: 44 },
+      ],
+    },
+    strengths: {
+      empty: false,
+      strengths: [
+        "Client service and planning are already creating separation.",
+        "Investment communication is outperforming the broader market.",
+      ],
+      gaps: [
+        "Fee positioning is still the clearest unlock for the next jump.",
+        "Firm platform confidence needs a stronger operating story.",
+      ],
+    },
+    moduleCards: [
+      {
+        ...moduleCardDefinitions[0],
+        state: "filled",
+        items: [
+          { label: "Client Service", value: "74 · Competitive", tone: "positive" },
+          { label: "Planning", value: "69 · Competitive", tone: "positive" },
+          { label: "Fees", value: "52 · Needs Work", tone: "caution" },
+        ],
+      },
+      {
+        ...moduleCardDefinitions[1],
+        state: "filled",
+        items: [
+          { label: "Client Service", value: "+12 vs baseline", tone: "positive" },
+          { label: "Planning", value: "+9 vs baseline", tone: "positive" },
+          { label: "Firm Platform", value: "+5 vs last quarter", tone: "neutral" },
+        ],
+      },
+      {
+        ...moduleCardDefinitions[2],
+        state: "filled",
+        items: [
+          { label: "Review follow-through", value: "81", tone: "positive" },
+          { label: "Planning agenda clarity", value: "77", tone: "positive" },
+          { label: "Fee framing consistency", value: "56", tone: "caution" },
+        ],
+      },
+    ],
+    intelligenceRows: [
+      { name: "NextGen Ready", value: "63", impact: "Highest impact" },
+      { name: "Client Referrals", value: "49", impact: "High impact" },
+      { name: "PitchPerfect", value: "44", impact: "High impact" },
+      { name: "COI Referrals", value: "37", impact: "Highest impact" },
+    ],
+    focusAreas: {
+      empty: false,
+      items: [
+        {
+          title: "Fee story refinement",
+          note: "Translate value faster in the first 90 seconds.",
+        },
+        {
+          title: "Next-gen relationship mapping",
+          note: "Deepen visibility with heirs and spouses.",
+        },
+        {
+          title: "Referral conversion",
+          note: "Tighten the ask after moments of visible value.",
+        },
+      ],
+    },
+    rightRail: {
+      advisorScore: 68,
+      scoreStatus: "Competitive",
+      modulesCompleted: 11,
+      totalModules: 18,
+      profileRows: [
+        {
+          name: "NextGen Ready",
+          value: 61,
+          tooltip:
+            "Strategic BI profile focused on multigenerational readiness and retention.",
+        },
+        {
+          name: "Client Referrals",
+          value: 43,
+          tooltip:
+            "Strategic BI profile focused on generating stronger referral momentum.",
+        },
+      ],
+      insightAreas: [
+        { name: "Client Service", score: "74", note: "Strongest edge" },
+        { name: "Planning", score: "69", note: "Above peer average" },
+        { name: "Fees", score: "52", note: "Largest remaining gap" },
+      ],
+    },
+  },
+}
 
 const scoreRadarConfig = {
   top5: {
@@ -107,20 +558,38 @@ const scoreRadarConfig = {
   },
 } satisfies ChartConfig
 
-const intelligenceRows = [
-  { name: "NextGen Ready", value: "8", impact: "Highest impact" },
-  { name: "Client Referrals", value: "0", impact: "High impact" },
-  { name: "PitchPerfect", value: "0", impact: "High impact" },
-  { name: "COI Referrals", value: "0", impact: "Highest impact" },
-] as const
-
-const profileRows = [
-  { name: "NextGen Ready", value: 0 },
-  { name: "Client Referrals", value: 0 },
-] as const
+function InfoTooltip({
+  label,
+  children,
+}: {
+  label: string
+  children: React.ReactNode
+}) {
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <button
+            type="button"
+            aria-label={label}
+            className="inline-flex size-5 items-center justify-center rounded-full opacity-60 transition-[opacity,color] hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60"
+          />
+        }
+      >
+        <CircleHelp className="size-3.5" />
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        align="start"
+        className="max-w-[240px] text-[11px] leading-[1.45]"
+      >
+        {children}
+      </TooltipContent>
+    </Tooltip>
+  )
+}
 
 const advisorScorePreviewPeak = 100
-const actualAdvisorScore = 0
 
 const clientQuestionFeed = [
   "Should I be worried about the fee changes?",
@@ -143,31 +612,28 @@ const clientQuestionFeed = [
   "What are advisors saying when business-owner clients ask about succession?",
 ] as const
 
-const moduleCards = [
-  {
-    title: "Level Scorecard",
-  },
-  {
-    title: "Performance",
-  },
-  {
-    title: "Datapoint Scoring",
-  },
-] as const
-
-export function Point93DashboardPage() {
+export function Point93DashboardPage({
+  scenario = "zero",
+}: {
+  scenario?: DashboardScenario
+}) {
   return (
     <SidebarProvider defaultOpen>
       <AppSidebar />
-      <DashboardShell />
+      <DashboardShell scenario={scenario} />
     </SidebarProvider>
   )
 }
 
-function DashboardShell() {
+function DashboardShell({
+  scenario,
+}: {
+  scenario: DashboardScenario
+}) {
   const [rightRailCollapsed, setRightRailCollapsed] = React.useState(false)
   const { state, toggleSidebar } = useSidebar()
   const leftSidebarCollapsed = state === "collapsed"
+  const scenarioData = dashboardScenarios[scenario]
 
   return (
     <SidebarInset className="bg-transparent">
@@ -202,7 +668,7 @@ function DashboardShell() {
                   className="rounded-full border-white/18 bg-white/10 text-white hover:bg-white/14 hover:text-white md:hidden"
                 />
                 <div>
-                  <h1 className="font-[family:var(--font-brand)] text-[1.3125rem] leading-[1.06] font-normal tracking-[-0.03em] text-white sm:text-[1.5rem]">
+                  <h1 className="font-[family:var(--font-brand)] text-[1rem] leading-[1.06] font-normal tracking-[-0.03em] text-white sm:text-[1.125rem]">
                     Welcome back, Brendon
                   </h1>
                 </div>
@@ -213,18 +679,20 @@ function DashboardShell() {
               <div className="mt-7 flex flex-col gap-5 md:flex-row md:items-start md:justify-between md:gap-8">
                 <div className="max-w-2xl">
                   <h2 className="font-[family:var(--font-brand)] text-[1.38rem] leading-[1.06] font-medium tracking-[-0.03em] text-white sm:text-[1.55rem]">
-                    Start Your Assessment
+                    {scenarioData.hero.title}
                   </h2>
                   <p className="mt-3 max-w-[35rem] text-[15px] leading-[1.6] text-white/82 sm:text-[16px]">
-                    Complete the first module to see your scores and
-                    priorities.
+                    {scenarioData.hero.body}
                   </p>
                 </div>
                 <Button
                   size="lg"
-                  className="h-11 shrink-0 self-start rounded-full bg-white px-7 text-[0.95rem] font-medium text-primary hover:bg-white/96"
+                  className={cn(
+                    "h-11 shrink-0 self-start rounded-full bg-white px-7 text-[0.95rem] font-medium text-primary hover:bg-white/96",
+                    scenarioData.hero.animateCta && "cta-breathe"
+                  )}
                 >
-                  Begin First Module
+                  {scenarioData.hero.cta}
                   <ArrowRight className="size-4" />
                 </Button>
               </div>
@@ -233,51 +701,86 @@ function DashboardShell() {
             <div className="-mt-12 rounded-[28px] border border-border/80 bg-white p-5 shadow-[0_28px_60px_-38px_rgba(15,23,42,0.24)] sm:-mt-14 sm:p-6">
               <div className="space-y-6">
                 <section className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-5">
-                  {metricCards.map((card) => (
+                  {scenarioData.metricCards.map((card) => (
                     <MetricCard key={card.label} {...card} />
                   ))}
                 </section>
 
                 <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
                   <div className="grid gap-4">
-                    <ScoreSummaryCard />
-                    <StrengthsWeaknessesCard />
+                    <ScoreSummaryCard data={scenarioData.scoreSummary} />
+                    <StrengthsWeaknessesCard data={scenarioData.strengths} />
                   </div>
                   <div className="grid gap-4 xl:grid-cols-1">
-                    {moduleCards.map((card) => (
+                    {scenarioData.moduleCards.map((card) => (
                       <SectionCard
                         key={card.title}
                         title={card.title}
+                        titleAccessory={
+                          <InfoTooltip label={`About ${card.title}`}>
+                            {card.tooltip}
+                          </InfoTooltip>
+                        }
                         surface="outlined"
                         compactHeader
                         className="min-h-[180px]"
                         contentClassName="flex h-full items-center justify-center"
                       >
-                        <div className="flex w-full flex-col items-center justify-center gap-4 py-1">
-                          <div className="grid size-12 place-items-center rounded-full bg-muted text-muted-foreground/75">
-                            <BookOpenText className="size-5 stroke-[1.7]" />
+                        {card.state === "empty" ? (
+                          <div className="flex w-full flex-col items-center justify-center gap-4 py-1">
+                            <div className="grid size-12 place-items-center rounded-full bg-muted text-muted-foreground/75">
+                              <BookOpenText className="size-5 stroke-[1.7]" />
+                            </div>
+                            <Button
+                              variant="outline"
+                              size="default"
+                              className="h-9 rounded-[6px] border-border/90 bg-white px-4 text-[0.82rem] shadow-none hover:bg-muted/45"
+                            >
+                              Start First Module
+                            </Button>
                           </div>
-                          <Button
-                            variant="outline"
-                            size="default"
-                            className="h-9 rounded-[6px] border-border/90 bg-white px-4 text-[0.82rem] shadow-none hover:bg-muted/45"
-                          >
-                            Start First Module
-                          </Button>
-                        </div>
+                        ) : (
+                          <div className="w-full space-y-3 py-1">
+                            {card.items?.map((item) => (
+                              <div
+                                key={`${card.title}-${item.label}`}
+                                className="flex items-center justify-between border-b border-border/65 pb-2 last:border-b-0 last:pb-0"
+                              >
+                                <span className="text-[12.5px] text-muted-foreground">
+                                  {item.label}
+                                </span>
+                                <span
+                                  className={cn(
+                                    "text-[12.5px] font-medium",
+                                    item.tone === "positive"
+                                      ? "text-emerald-700"
+                                      : item.tone === "caution"
+                                        ? "text-amber-700"
+                                        : "text-foreground"
+                                  )}
+                                >
+                                  {item.value}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </SectionCard>
                     ))}
                   </div>
                 </section>
 
                 <section className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)]">
-                  <BusinessIntelligenceCard />
-                  <FocusAreasCard />
+                  <BusinessIntelligenceCard rows={scenarioData.intelligenceRows} />
+                  <FocusAreasCard data={scenarioData.focusAreas} />
                 </section>
               </div>
             </div>
           </div>
-          <DashboardRightRail collapsed={rightRailCollapsed} />
+          <DashboardRightRail
+            collapsed={rightRailCollapsed}
+            data={scenarioData.rightRail}
+          />
         </main>
 
         <Button
@@ -328,7 +831,7 @@ function DesktopPanelHandle({
       style={
         isLeft
           ? {
-              left: collapsed ? "3rem" : "16rem",
+              left: collapsed ? "3.5rem" : "16rem",
             }
           : {
               right: rightRailWidth === 0 ? "0px" : `${rightRailWidth}px`,
@@ -351,13 +854,28 @@ function DesktopPanelHandle({
 }
               
 
-function ScoreSummaryCard() {
+function ScoreSummaryCard({
+  data,
+}: {
+  data: DashboardScenarioData["scoreSummary"]
+}) {
   return (
-    <Card className="min-h-[382px] rounded-[16px] border border-[#223a61] bg-[linear-gradient(180deg,#263d68_0%,#203457_100%)] text-white shadow-[0_18px_42px_-30px_rgba(15,23,42,0.55)] ring-0">
+    <Card className="min-h-[344px] rounded-[16px] border border-[#223a61] bg-[linear-gradient(180deg,#263d68_0%,#203457_100%)] text-white shadow-[0_18px_42px_-30px_rgba(15,23,42,0.55)] ring-0">
       <CardHeader className="grid grid-cols-[1fr_auto] items-start gap-3 px-5 pb-0 pt-4">
-        <CardTitle className="font-[family:var(--font-brand)] text-[22px] leading-[1.08] font-semibold tracking-[-0.04em] text-white">
-          How You Compare
-        </CardTitle>
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-2">
+            <CardTitle className="font-[family:var(--font-brand)] text-[22px] leading-[1.08] font-semibold tracking-[-0.04em] text-white">
+              How You Compare
+            </CardTitle>
+            <InfoTooltip label="About How You Compare">
+              Compare your current score profile to top-performing advisors and
+              the industry average across core business areas.
+            </InfoTooltip>
+          </div>
+          <p className="text-[13px] leading-[1.45] text-white/66">
+            {data.subtitle}
+          </p>
+        </div>
         <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-[11px] text-white/72">
           <div className="flex items-center gap-2">
             <span className="size-2.5 rounded-full bg-primary shadow-[0_0_0_3px_rgba(37,99,235,0.16)]" />
@@ -373,13 +891,17 @@ function ScoreSummaryCard() {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="px-4 pb-3 pt-3">
-        <div className="relative pt-2">
+      <CardContent className="px-4 pb-1 pt-1">
+        <div className="relative">
           <ChartContainer
             config={scoreRadarConfig}
-            className="mx-auto h-[320px] w-full max-w-[520px] [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-white/14 [&_.recharts-text]:fill-white/58"
+            className="mx-auto h-[286px] w-full max-w-[500px] [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-white/14 [&_.recharts-text]:fill-white/58"
           >
-            <RadarChart data={[...scoreRadarData]} outerRadius={124}>
+            <RadarChart
+              data={[...data.data]}
+              outerRadius={114}
+              margin={{ top: 18, right: 38, bottom: 0, left: 38 }}
+            >
               <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent indicator="line" />}
@@ -392,6 +914,14 @@ function ScoreSummaryCard() {
                   fontSize: 12.5,
                 }}
               />
+              {data.showYouShape ? (
+                <RechartsRadar
+                  dataKey="you"
+                  fill="rgba(37,99,235,0.18)"
+                  stroke="rgba(96,165,250,0.98)"
+                  strokeWidth={2}
+                />
+              ) : null}
               <RechartsRadar
                 dataKey="average"
                 fill="rgba(45,212,191,0.06)"
@@ -407,30 +937,77 @@ function ScoreSummaryCard() {
               />
             </RadarChart>
           </ChartContainer>
-          <div className="pointer-events-none absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#203457] bg-primary shadow-[0_0_0_5px_rgba(37,99,235,0.16)]" />
+          {!data.showYouShape ? (
+            <div className="pointer-events-none absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#203457] bg-primary shadow-[0_0_0_5px_rgba(37,99,235,0.16)]" />
+          ) : null}
         </div>
       </CardContent>
     </Card>
   )
 }
 
-function StrengthsWeaknessesCard() {
+function StrengthsWeaknessesCard({
+  data,
+}: {
+  data: DashboardScenarioData["strengths"]
+}) {
   return (
     <SectionCard
       title="Strengths / Weaknesses"
+      titleAccessory={
+        <InfoTooltip label="About Strengths / Weaknesses">
+          Edge and exposure ranking surfaces your top strengths and growth
+          areas.
+        </InfoTooltip>
+      }
       description="Complete modules to see your strengths and areas needing attention."
       className="min-h-[152px]"
       contentClassName="pt-[10px]"
     >
-      <div className="rounded-[14px] bg-white px-4 py-5 text-sm leading-6 text-muted-foreground">
-        Your first assessment will unlock a clearer read on what is already
-        working well and what should change next.
-      </div>
+      {data.empty ? (
+        <div className="rounded-[14px] bg-white px-4 py-5 text-sm leading-6 text-muted-foreground">
+          Your first assessment will unlock a clearer read on what is already
+          working well and what should change next.
+        </div>
+      ) : (
+        <div className="grid gap-4 rounded-[14px] bg-white px-4 py-4 md:grid-cols-2">
+          <div className="space-y-2">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              Strengths
+            </p>
+            <ul className="space-y-2 text-sm leading-5 text-foreground">
+              {data.strengths?.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-[0.42rem] size-1.5 shrink-0 rounded-full bg-emerald-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="space-y-2">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              Priority gaps
+            </p>
+            <ul className="space-y-2 text-sm leading-5 text-foreground">
+              {data.gaps?.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-[0.42rem] size-1.5 shrink-0 rounded-full bg-amber-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </SectionCard>
   )
 }
 
-function BusinessIntelligenceCard() {
+function BusinessIntelligenceCard({
+  rows,
+}: {
+  rows: readonly IntelligenceRow[]
+}) {
   return (
     <SectionCard
       title="Business Intelligence"
@@ -457,7 +1034,7 @@ function BusinessIntelligenceCard() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {intelligenceRows.map((row) => (
+          {rows.map((row) => (
             <TableRow key={row.name} className="border-border/70">
               <TableCell className="px-0 py-4">
                 <div className="flex items-center gap-3">
@@ -491,38 +1068,64 @@ function BusinessIntelligenceCard() {
   )
 }
 
-function FocusAreasCard() {
+function FocusAreasCard({
+  data,
+}: {
+  data: DashboardScenarioData["focusAreas"]
+}) {
   return (
     <SectionCard
       title="Your Focus Areas"
       description="As you complete more of your journey, Point93 will consolidate the most important actions here."
       className="min-h-[332px]"
     >
-      <div className="flex h-full min-h-[220px] flex-col justify-between rounded-[16px] bg-white p-5">
-        <div className="grid size-11 place-items-center rounded-full bg-muted text-primary">
-          <Workflow className="size-5 stroke-[1.9]" />
+      {data.empty ? (
+        <div className="flex h-full min-h-[220px] flex-col justify-between rounded-[16px] bg-white p-5">
+          <div className="grid size-11 place-items-center rounded-full bg-muted text-primary">
+            <Workflow className="size-5 stroke-[1.9]" />
+          </div>
+          <div className="space-y-2">
+            <p className="text-[15px] font-medium tracking-[-0.015em] text-foreground">
+              No focus areas yet
+            </p>
+            <p className="text-sm leading-6 text-muted-foreground">
+              Finish your first module to generate tailored focus areas and see
+              how your priorities should stack over time.
+            </p>
+          </div>
+          <Button variant="outline" className="w-fit rounded-full">
+            Review the journey
+          </Button>
         </div>
-        <div className="space-y-2">
-          <p className="text-[15px] font-medium tracking-[-0.015em] text-foreground">
-            No focus areas yet
-          </p>
-          <p className="text-sm leading-6 text-muted-foreground">
-            Finish your first module to generate tailored focus areas and see
-            how your priorities should stack over time.
-          </p>
+      ) : (
+        <div className="rounded-[16px] bg-white px-5 py-4">
+          <div className="space-y-3">
+            {data.items?.map((item) => (
+              <div
+                key={item.title}
+                className="border-b border-border/70 pb-3 last:border-b-0 last:pb-0"
+              >
+                <p className="text-[14px] font-medium tracking-[-0.015em] text-foreground">
+                  {item.title}
+                </p>
+                <p className="mt-1 text-sm leading-5 text-muted-foreground">
+                  {item.note}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-        <Button variant="outline" className="w-fit rounded-full">
-          Review the journey
-        </Button>
-      </div>
+      )}
     </SectionCard>
   )
 }
 
 function DashboardRightRail({
   collapsed,
+  data,
 }: {
   collapsed: boolean
+  data: DashboardScenarioData["rightRail"]
 }) {
   if (collapsed) {
     return null
@@ -531,7 +1134,7 @@ function DashboardRightRail({
   return (
     <>
       <div className="mt-6 space-y-4 xl:hidden">
-        <RightRailContent />
+        <RightRailContent data={data} />
       </div>
       <aside className="hidden xl:block">
         <div
@@ -539,7 +1142,7 @@ function DashboardRightRail({
           style={{ width: `${RIGHT_RAIL_WIDTH}px` }}
         >
           <div className="flex min-h-full flex-col">
-            <RightRailContent />
+            <RightRailContent data={data} />
           </div>
         </div>
       </aside>
@@ -547,12 +1150,17 @@ function DashboardRightRail({
   )
 }
 
-function RightRailContent() {
+function RightRailContent({
+  data,
+}: {
+  data: DashboardScenarioData["rightRail"]
+}) {
   return (
     <div className="pt-4">
-      <ProfileScoreCard />
+      <ProfileScoreCard data={data} />
       <RightRailSection
         title="Intelligence Profiles"
+        infoTooltip="Stage-based BI profiles surface strategic growth opportunities and can be unlocked through prerequisites or purchased directly."
         action={
           <Button
             variant="secondary"
@@ -564,16 +1172,21 @@ function RightRailContent() {
         }
       >
         <div className={cn(RIGHT_RAIL_STAGE_CLASS, "space-y-4")}>
-          {profileRows.map((row) => (
+          {data.profileRows.map((row) => (
             <div key={row.name} className="space-y-2">
               <div className="flex items-center justify-between gap-3 text-sm">
                 <div className="flex items-center gap-2">
                   <div className="grid size-7 place-items-center rounded-full bg-white text-primary shadow-[0_1px_0_rgba(15,23,42,0.04)]">
                     <Star className="size-3.5 stroke-[1.8]" />
                   </div>
-                  <span className="font-medium text-foreground">
-                    {row.name}
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-medium text-foreground">
+                      {row.name}
+                    </span>
+                    <InfoTooltip label={`About ${row.name}`}>
+                      {row.tooltip}
+                    </InfoTooltip>
+                  </div>
                 </div>
                 <span className="text-muted-foreground">{row.value}%</span>
               </div>
@@ -584,6 +1197,7 @@ function RightRailContent() {
       </RightRailSection>
       <RightRailSection
         title="What Clients Are Asking"
+        infoTooltip="Periodic question sets on current industry topics, scored and benchmarked against the advisor community."
         action={
           <Badge
             variant="outline"
@@ -610,17 +1224,41 @@ function RightRailContent() {
       </RightRailSection>
       <RightRailSection
         title="Insight Areas"
+        infoTooltip="Diagnostic themes ranked by gap priority; scores remain visible at every tier."
         description="Complete modules to reveal the insight areas most relevant to your business."
       >
-        <div
-          className={cn(
-            RIGHT_RAIL_STAGE_CLASS,
-            "text-sm leading-6 text-muted-foreground"
-          )}
-        >
-          Your strongest and weakest operating areas will appear here once
-          enough assessment data has been collected.
-        </div>
+        {data.insightAreas?.length ? (
+          <div className={cn(RIGHT_RAIL_STAGE_CLASS, "space-y-3")}>
+            {data.insightAreas.map((item) => (
+              <div
+                key={item.name}
+                className="border-b border-border/65 pb-3 last:border-b-0 last:pb-0"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-sm font-medium text-foreground">
+                    {item.name}
+                  </span>
+                  <span className="rounded-full bg-white px-2 py-0.5 text-[11px] font-medium text-foreground shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+                    {item.score}
+                  </span>
+                </div>
+                <p className="mt-1 text-[12px] leading-[1.5] text-muted-foreground">
+                  {item.note}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div
+            className={cn(
+              RIGHT_RAIL_STAGE_CLASS,
+              "text-sm leading-6 text-muted-foreground"
+            )}
+          >
+            Your strongest and weakest operating areas will appear here once
+            enough assessment data has been collected.
+          </div>
+        )}
       </RightRailSection>
     </div>
   )
@@ -644,12 +1282,16 @@ function QuintileBar({ value }: { value: number }) {
   )
 }
 
-function ProfileScoreCard() {
-  const [displayScore, setDisplayScore] = React.useState(actualAdvisorScore)
+function ProfileScoreCard({
+  data,
+}: {
+  data: DashboardScenarioData["rightRail"]
+}) {
+  const [displayScore, setDisplayScore] = React.useState(data.advisorScore)
   const [displayDirection, setDisplayDirection] = React.useState<"up" | "down">(
     "up"
   )
-  const previousScoreRef = React.useRef(actualAdvisorScore)
+  const previousScoreRef = React.useRef(data.advisorScore)
 
   React.useEffect(() => {
     const updateDisplayScore = (nextScore: number) => {
@@ -664,8 +1306,8 @@ function ProfileScoreCard() {
       setDisplayScore(nextScore)
     }
 
-    if (actualAdvisorScore > 0) {
-      updateDisplayScore(actualAdvisorScore)
+    if (data.advisorScore > 0) {
+      updateDisplayScore(data.advisorScore)
       return
     }
 
@@ -707,11 +1349,14 @@ function ProfileScoreCard() {
     frameId = window.requestAnimationFrame(animate)
 
     return () => window.cancelAnimationFrame(frameId)
-  }, [])
+  }, [data.advisorScore])
 
   const gaugeStroke = getAdvisorGaugeColor(displayScore)
-  const gaugeStatus =
-    actualAdvisorScore > 0 ? `${actualAdvisorScore}%` : "Not Started"
+  const completionPercent = Math.round(
+    (data.modulesCompleted / data.totalModules) * 100
+  )
+  const gaugeStatus = data.scoreStatus
+  const hasStarted = data.advisorScore > 0
 
   return (
     <section className="border-b border-border/75 px-5 pb-5 pt-4">
@@ -744,12 +1389,21 @@ function ProfileScoreCard() {
           </svg>
           <div className="absolute inset-x-0 top-10 text-center">
             <OdometerScore value={displayScore} direction={displayDirection} />
-            <p className="mt-1 text-[12px] text-muted-foreground">
-              Advisor Score
-            </p>
+            <div className="mt-1 flex items-center justify-center gap-1.5 text-[12px] text-muted-foreground">
+              <p>Advisor Score</p>
+              <InfoTooltip label="About Advisor Score">
+                Composite score and percentile summary across completed
+                modules.
+              </InfoTooltip>
+            </div>
             <Badge
               variant="outline"
-              className="mt-2 rounded-full border-border bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground"
+              className={cn(
+                "mt-2 rounded-full px-2.5 py-0.5 text-[11px] font-medium",
+                hasStarted
+                  ? "border-blue-200 bg-blue-50 text-blue-700"
+                  : "border-border bg-muted text-muted-foreground"
+              )}
             >
               {gaugeStatus}
             </Badge>
@@ -758,14 +1412,24 @@ function ProfileScoreCard() {
       </div>
       <div className="my-4 border-t border-border/70" />
       <div>
-        <p className="mb-2 text-[12px] text-muted-foreground">
-          Profile Completion
-        </p>
+        <div className="mb-2 flex items-center gap-1.5 text-[12px] text-muted-foreground">
+          <p>Profile Completion</p>
+          <InfoTooltip label="About Profile Completion">
+            Tracks progress through the 18-module journey and unlocks deeper
+            dashboard content over time.
+          </InfoTooltip>
+        </div>
         <div className="mb-2 h-2 overflow-hidden rounded-full bg-muted">
-          <div className="h-full w-0 rounded-full bg-muted-foreground/55 transition-all duration-500" />
+          <div
+            className="h-full rounded-full bg-muted-foreground/55 transition-all duration-500"
+            style={{ width: `${completionPercent}%` }}
+          />
         </div>
         <p className="text-[12px] text-foreground">
-          <span className="font-medium">0 of 18</span> modules · Comprehensive
+          <span className="font-medium">
+            {data.modulesCompleted} of {data.totalModules}
+          </span>{" "}
+          modules · Comprehensive
         </p>
       </div>
     </section>
@@ -985,11 +1649,13 @@ function RotatingClientQuestionFeed() {
 function RightRailSection({
   title,
   description,
+  infoTooltip,
   action,
   children,
 }: {
   title: string
   description?: string
+  infoTooltip?: string
   action?: React.ReactNode
   children: React.ReactNode
 }) {
@@ -997,9 +1663,14 @@ function RightRailSection({
     <section className="border-b border-border/75 px-5 py-5 last:border-b-0">
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1">
-          <h2 className="text-[14px] font-medium tracking-[-0.015em] text-foreground">
-            {title}
-          </h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-[14px] font-medium tracking-[-0.015em] text-foreground">
+              {title}
+            </h2>
+            {infoTooltip ? (
+              <InfoTooltip label={`About ${title}`}>{infoTooltip}</InfoTooltip>
+            ) : null}
+          </div>
           {description ? (
             <p className="text-[12px] leading-[1.55] text-muted-foreground">
               {description}

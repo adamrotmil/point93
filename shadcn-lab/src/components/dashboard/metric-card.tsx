@@ -2,12 +2,18 @@ import * as React from "react"
 import type { LucideIcon } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
 
 type MetricCardProps = {
   icon: LucideIcon
   value: string
   label: string
+  tooltip?: string
   sparkline?: readonly number[]
   className?: string
 }
@@ -16,6 +22,7 @@ export function MetricCard({
   icon: _icon,
   value,
   label,
+  tooltip,
   sparkline,
   className,
 }: MetricCardProps) {
@@ -29,9 +36,28 @@ export function MetricCard({
     >
       <CardContent className="px-5 py-[18px]">
         <div className="min-w-0">
-          <p className="text-[12.5px] font-medium leading-5 text-foreground/92">
-            {label}
-          </p>
+          {tooltip ? (
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <p className="w-fit cursor-default text-[12.5px] font-medium leading-5 text-foreground/92" />
+                }
+              >
+                {label}
+              </TooltipTrigger>
+              <TooltipContent
+                side="top"
+                align="start"
+                className="max-w-[220px] text-[11px] leading-[1.45]"
+              >
+                {tooltip}
+              </TooltipContent>
+            </Tooltip>
+          ) : (
+            <p className="text-[12.5px] font-medium leading-5 text-foreground/92">
+              {label}
+            </p>
+          )}
           <p className="mt-2.5 font-[family:var(--font-display)] text-[1.66rem] leading-none font-normal tracking-[-0.03em] text-foreground/92">
             {value}
           </p>

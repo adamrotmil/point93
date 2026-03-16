@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils"
 type SectionCardProps = {
   title: string
   description?: string
+  titleAccessory?: ReactNode
   action?: ReactNode
   surface?: "subtle" | "outlined"
   compactHeader?: boolean
@@ -25,6 +26,7 @@ type SectionCardProps = {
 export function SectionCard({
   title,
   description,
+  titleAccessory,
   action,
   surface = "subtle",
   compactHeader = false,
@@ -51,16 +53,19 @@ export function SectionCard({
         )}
       >
         <div className={cn(hasDescription ? "space-y-1.5" : "space-y-1")}>
-          <CardTitle
-            className={cn(
-              "font-[family:var(--font-brand)] font-semibold text-foreground",
-              compactHeader
-                ? "text-[18px] leading-[1.08] tracking-[-0.03em]"
-                : "text-[22px] leading-[1.08] tracking-[-0.04em]"
-            )}
-          >
-            {title}
-          </CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle
+              className={cn(
+                "font-[family:var(--font-brand)] font-semibold text-foreground",
+                compactHeader
+                  ? "text-[18px] leading-[1.08] tracking-[-0.03em]"
+                  : "text-[22px] leading-[1.08] tracking-[-0.04em]"
+              )}
+            >
+              {title}
+            </CardTitle>
+            {titleAccessory}
+          </div>
           {description ? (
             <CardDescription className="text-[12px] leading-[1.55] text-muted-foreground/88">
               {description}

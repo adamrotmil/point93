@@ -26,6 +26,7 @@ export function NavMain({
     url: string
     icon?: React.ReactNode
     isActive?: boolean
+    tooltip?: string
     collapsible?: boolean
     defaultOpen?: boolean
     badge?: string | number
@@ -52,7 +53,7 @@ export function NavMain({
               <CollapsibleTrigger
                 render={
                   <SidebarMenuButton
-                    tooltip={item.title}
+                    tooltip={item.tooltip ?? item.title}
                     className="h-10 rounded-xl px-3 text-[14px] font-medium text-sidebar-foreground/88 [&_svg]:size-[18px]"
                   />
                 }
@@ -75,7 +76,7 @@ export function NavMain({
                           className="h-auto min-h-8 items-start gap-3 rounded-lg px-2 py-2 text-[13px] leading-[1.34] text-sidebar-foreground/66 hover:bg-transparent hover:text-sidebar-foreground/88"
                           render={<a href={subItem.url} />}
                         >
-                          <span className="mt-[0.38rem] size-2 shrink-0 rounded-full bg-sidebar-foreground/28" />
+                          <span className="mt-[0.44rem] size-1 shrink-0 rounded-full bg-sidebar-foreground/28" />
                           <span className="whitespace-normal">{subItem.title}</span>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -91,7 +92,7 @@ export function NavMain({
           ) : (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
-                tooltip={item.title}
+                tooltip={item.tooltip ?? item.title}
                 isActive={item.isActive}
                 className="h-10 rounded-xl px-3 text-[14px] font-medium text-sidebar-foreground/88 [&_svg]:size-[18px]"
                 render={<a href={item.url} />}
