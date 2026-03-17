@@ -8,7 +8,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ThemeProvider>
+    <ThemeProvider defaultTheme="light" storageKey="point93-theme">
       <TooltipProvider delay={0}>
         <App />
       </TooltipProvider>
