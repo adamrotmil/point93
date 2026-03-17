@@ -1157,8 +1157,10 @@ function DashboardRightRail({
 
   return (
     <>
-      <div className="mt-6 space-y-4 xl:hidden">
-        <RightRailContent data={data} />
+      <div className="mt-6 xl:hidden">
+        <div className="overflow-hidden rounded-[28px] border border-border/80 bg-sidebar shadow-[0_28px_60px_-38px_rgba(15,23,42,0.2)]">
+          <RightRailContent data={data} />
+        </div>
       </div>
       <aside className="hidden xl:block">
         <div
