@@ -774,6 +774,14 @@ function DashboardShell({
                   <BusinessIntelligenceCard rows={scenarioData.intelligenceRows} />
                   <FocusAreasCard data={scenarioData.focusAreas} />
                 </section>
+
+                {!rightRailCollapsed ? (
+                  <section className="xl:hidden">
+                    <div className="overflow-hidden rounded-[22px] border border-border/75 bg-[linear-gradient(180deg,#fbfcfe_0%,#f7f9fc_100%)] shadow-[0_18px_42px_-34px_rgba(15,23,42,0.16)]">
+                      <RightRailContent data={scenarioData.rightRail} />
+                    </div>
+                  </section>
+                ) : null}
               </div>
             </div>
           </div>
@@ -1156,23 +1164,16 @@ function DashboardRightRail({
   }
 
   return (
-    <>
-      <div className="mt-6 xl:hidden">
-        <div className="overflow-hidden rounded-[28px] border border-border/80 bg-sidebar shadow-[0_28px_60px_-38px_rgba(15,23,42,0.2)]">
+    <aside className="hidden xl:block">
+      <div
+        className="fixed inset-y-0 right-0 overflow-y-auto border-l border-border/80 bg-sidebar"
+        style={{ width: `${RIGHT_RAIL_WIDTH}px` }}
+      >
+        <div className="flex min-h-full flex-col">
           <RightRailContent data={data} />
         </div>
       </div>
-      <aside className="hidden xl:block">
-        <div
-          className="fixed inset-y-0 right-0 overflow-y-auto border-l border-border/80 bg-sidebar"
-          style={{ width: `${RIGHT_RAIL_WIDTH}px` }}
-        >
-          <div className="flex min-h-full flex-col">
-            <RightRailContent data={data} />
-          </div>
-        </div>
-      </aside>
-    </>
+    </aside>
   )
 }
 
